@@ -8,24 +8,48 @@
 
 ---
 
-## 1. LES DIX CHOSES QUI BLOQUENT — à faire avant toute exploration
+## 1. LES NEUF CHOSES QUI BLOQUENT — à faire avant toute exploration
 
-**Aucune boucle d'exploration ne peut démarrer tant que ces dix points ne sont
-pas réglés.** Ce ne sont pas des améliorations : ce sont des blocages, dont
-plusieurs sont posés par les documents eux-mêmes comme des conditions d'arrêt.
+> **Révision du 05/08/2026.** Une version antérieure listait dix blocages, dont
+> **deux étaient déjà résolus par le commit qui les écrivait** — « le plan n'est
+> référencé nulle part » et « `00` n'a pas de première tâche ». Ils sont retirés.
+> Trouvé par audit adversarial ; c'est exactement la faute que ce document
+> dénonce en §2 — présenter comme un fait ce qu'on n'a pas revérifié.
+>
+> Et un blocage a été **ajouté** : il n'était dans aucune des listes, et c'est le
+> plus grave.
+
+**Aucune boucle d'exploration ne peut démarrer tant que ces neuf points ne sont
+pas réglés.** Ce ne sont pas des améliorations : plusieurs sont posés par les
+documents eux-mêmes comme des conditions d'arrêt.
 
 | # | ce qui bloque | conséquence |
 |---|---|---|
-| **B1** | **`06_Plan_exploration.md` et `chantiers/` ne sont référencés nulle part** | le plan est invisible depuis l'ordre de lecture — une session ne saura pas qu'il existe |
-| **B2** | **`00` n'a aucune première tâche** | une session ouvre le dépôt et n'a aucune instruction d'action |
-| **B3** | **Trois documents donnent trois réponses à « que puis-je lancer ? »** | `05` §2 dit rien · `05` §9 et `06` V1 disent jusqu'à É2 · `06` V2 dit jusqu'à É3 |
-| **B4** | **`decisions/ADR-000` ne nomme pas le jour de banc d'instrument** | `05` en fait une condition d'arrêt explicite → C2 bloqué → C3 → C4 → le banc |
-| **B5** | **`journal/registre-des-grandeurs.md` n'existe pas** | `05` §5 : « aucun calcul ne se fait avant » son existence |
-| **B6** | **É0 exige une ligne `coût` que les fiches de `03` ne portent pas** | la règle de départage des doublons n'a pas d'entrée → aucune fiche n'est testable |
-| **B7** | **É2 est inerte par construction** | son bloc de référence part vide et ne se remplit qu'après É4, lui-même bloqué → l'épreuve ne peut rien éliminer |
-| **B8** | **« mur », « contact », « bande d'étude » ne sont définis nulle part** | plusieurs fiches ne sont pas calculables ; la bande pilote pourtant deux décisions de production |
-| **B9** | **La correction de multiplicité n'a ni seuil ni procédure** | et l'interdit de « changer un seuil après résultat » empêchera de l'écrire plus tard |
-| **B10** | **L'IC de Student n'a pas de niveau de confiance écrit** | É4 ne peut pas être appliqué de façon reproductible |
+| **B1** | **La métrique d'É4 n'existe nulle part.** `05` dit ce qu'elle mesure — « le gain par-dessus les candidats déjà retenus » — **sans jamais nommer la quantité**. L'AUC est interdite, toute grandeur économique aussi. Il ne reste rien. | **É4 n'est pas calculable**, donc la boucle n'a pas d'épreuve terminale, donc É2 ne remplit jamais son bloc de référence, donc **rien ne peut être retenu**. Le sommet du harnais est indéfini. → `decisions/ADR-001`, **PROPOSÉ, en attente d'arbitrage** |
+| **B2** | **Trois documents donnent trois réponses à « que puis-je lancer ? »** | `05` §2 dit rien · `05` §9 et `06` V1 disent jusqu'à É2 · `06` V2 dit jusqu'à É3. **La bonne réponse est « rien »** : É0 et É2 touchent du marché, et aucun jour d'exploration ne s'ouvre avant C3 gelé. |
+| **B3** | **`decisions/ADR-000` ne nomme pas le jour de banc d'instrument** | `05` en fait une condition d'arrêt explicite → C2 bloqué → C3 → C4 → le banc. Le jour n'est nommé que dans un **commentaire de script**. |
+| **B4** | **`journal/registre-des-grandeurs.md` n'existe pas** | `05` §5 : « aucun calcul ne se fait avant » son existence |
+| **B5** | **Les fiches de `03` n'ont pas les lignes qu'`05` exige** | il en manque **deux**, pas une : `coût` (règle de départage d'É0) et le **périmètre minimal**, qu'`05` exige déclaré dans la fiche avant le calcul |
+| **B6** | **É2 est inerte par construction** | son bloc de référence part vide et ne se remplit qu'après É4, lui-même bloqué par B1 |
+| **B7** | **« mur », « contact », « bande d'étude » ne sont définis nulle part** | plusieurs fiches ne sont pas calculables ; la bande pilote pourtant deux décisions de production |
+| **B8** | **La correction de multiplicité n'a ni seuil ni procédure** | et l'interdit de « changer un seuil après résultat » empêchera de l'écrire plus tard. Le risque était de plus dimensionné sur « une soixantaine » de candidats ; `03` en porte **29**. |
+| **B9** | **L'IC de Student n'a pas de niveau de confiance écrit** | É4 n'est pas applicable de façon reproductible → traité par `ADR-001` |
+
+### Et douze décisions de conception que C9 exigerait d'inventer
+
+Le harnais — **le chantier que `06` déclare primordial** — n'est pas
+constructible en l'état. Quelqu'un qui n'a pas participé à sa conception devrait
+inventer, au minimum : le schéma que le générateur doit émettre (il ne vit que
+dans une archive déclarée sans autorité) · le modèle génératif du carnet · la
+constante de grille, écrite dans aucun document · **la vérité à injecter — qui
+est le devenir, lequel n'a pas de définition opératoire** · l'amplitude plausible
+du phénomène, sans laquelle le critère d'arrêt le plus important est
+inapplicable · le vocabulaire d'états du registre, dont deux schémas concurrents
+coexistent · et la place d'ÉS, absent de la liste des épreuves de C9.
+
+**Détail complet dans le rapport d'audit du 05/08.** Aucun de ces points n'est un
+défaut de conception : ce sont des décisions qui n'ont simplement pas encore été
+prises.
 
 **Tout le reste des rapports d'audit — environ 65 points — est de l'hygiène.**
 Renvois vers du code hors dépôt, coût de lecture sous-estimé, quatre façons
@@ -90,14 +114,30 @@ par `ADR-000`. Conservé intact.
 
 ## 4. Ce qui peut démarrer sans rien attendre
 
+**Quatre chantiers, pas deux.** Une version antérieure de ce document n'en
+listait que deux et concluait « tout le reste attend » — c'était faux, et ça
+cachait le chantier que le plan déclare primordial.
+
 **C0 — la littérature.** Ce que la microstructure et la surveillance de marché
 définissent réellement comme leurre, liquidité cachée, absorption. Aucune donnée
-touchée. C'est ce qui alimente les définitions manquantes de **B8**.
+touchée. C'est ce qui alimente les définitions manquantes de **B7**.
 
 **C8 — ce qui traverse vers Binance.** Papier pour l'essentiel. Et la question
 qui commande tout le produit : la décomposition **exécuté / retiré / ajouté**
 est-elle reconstructible côté Binance ? Si non, le produit change de nature — et
 il vaut mieux l'apprendre en semaine 1 qu'en P7.
+
+**C5 — les protagonistes.** **Déjà lancé**, protocole pré-enregistré dans
+`chantiers/C5-protagonistes.md`. Réserve à porter : ses six grandeurs sont
+décrites dans le protocole mais **n'ont pas de fiche au format d'`05`**, ce que
+`06` interdit. À régulariser avant d'en tirer un résultat.
+
+**C9 — le harnais.** `06` le déclare **le chantier primordial**, et il s'écrit
+**pendant** la construction : les quatre pièces se développent et se testent sur
+carnet fabriqué, où la vérité est connue. Elles ne dépendent d'aucune donnée
+pour être écrites — seulement pour tourner.
+⚠️ Mais voir §1 : douze décisions de conception restent à prendre, et **B1** doit
+être arbitré avant que le sommet du harnais ait un sens.
 
 Tout le reste attend soit la construction, soit les définitions.
 

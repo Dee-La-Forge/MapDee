@@ -5,3 +5,13 @@
 01:07:06  --- BTC  01-07  phase=deep ---
 === lot : 7 jours, BTC, phase=deep ===
 [1/7] === BTC 20251201 (328 Gio libres) ===
+  extraction : 24 fichiers de statuts, 24 de diffs en 82s
+  statuts 00h : 7,882,598 (cumul 7,882,598) [table deja ecrite]
+  statuts 01h : 5,616,660 (cumul 13,499,258) [table deja ecrite]
+  statuts 02h : 4,168,626 (cumul 17,667,884) [table deja ecrite]
+  statuts 03h : 4,082,070 (cumul 21,749,954) [table deja ecrite]
+  statuts 04h : 4,138,186 (cumul 25,888,140) [table deja ecrite]
+  statuts 05h : 3,361,875 (cumul 29,250,015) [table deja ecrite]
+  statuts 06h : 3,528,844 (cumul 32,778,859) [table deja ecrite]
+  statuts 07h : 3,445,803 (cumul 36,224,662) [table deja ecrite]
+  statuts 08h : 3,196,479 (cumul 39,421,141) [table deja ecrite]
