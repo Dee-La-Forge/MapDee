@@ -17,9 +17,46 @@ Code : `_recupere/recorder/adapters/`. Tourne depuis le 28/07/2026, 10 flux/10.
 | **Bybit** linear | `wss://stream.bybit.com/v5/public/linear` | `orderbook.200.<sym>` · `publicTrade.<sym>` | aucun |
 | **OKX** SWAP | `wss://ws.okx.com:8443/ws/v5/public` | `{"channel":"books"}` · `{"channel":"trades"}` | `https://www.okx.com/api/v5/public/instruments?instType=SWAP` |
 | **Coinbase** | `wss://ws-feed.exchange.coinbase.com` | `level2_batch` · `matches` | aucun |
-| **Hyperliquid** | `wss://api.hyperliquid.xyz/ws` | `{"type":"l2Book","coin":…}` · `{"type":"trades","coin":…}` | aucun |
+| **Hyperliquid** | `wss://api.hyperliquid.xyz/ws` | `{"type":"l2Book","coin":…}` · `{"type":"trades","coin":…}` · **`nSigFigs` — voir §1 bis** | aucun |
 
 Keep-alive : Bybit `{"op":"ping"}` · Hyperliquid `{"method":"ping"}`.
+
+### 1 bis. `nSigFigs` — ce qui débloque la portée d'Hyperliquid
+
+**Mesuré et mis en production le 04/08/2026.**
+
+`l2Book` rend **toujours 20 paliers par côté**. À la résolution native ça ne
+porte qu'à **±0,03 % du mid**, alors que la bande d'étude va de 0,12 à 0,80 %.
+**Le recorder a enregistré Hyperliquid pendant huit jours à 26 fois trop court
+pour voir ses propres objets.** `SNAP_BAND` n'y pouvait rien : la limite ne vient
+pas de ce qu'on garde, mais de ce que la venue envoie.
+
+`nSigFigs` regroupe les prix — les 20 paliers portent alors bien plus loin.
+Mesuré sur BTC à 64 295 $, **une connexion par résolution** :
+
+| `nSigFigs` | pas du prix | portée | couvre 0,12–0,80 % ? |
+|---|---|---|---|
+| absent | 1 $ | 0,030 % | ❌ |
+| 5 | 1 $ | 0,032 % | ❌ — identique au natif |
+| **4** | 10 $ | 0,304 % | partiellement |
+| **3** | **100 $** | **3,030 %** | ✅ |
+| 2 | 1 000 $ | 30,2 % | inexploitable |
+
+En production : deux venues de plus, `hyperliquid_fin` (nSigFigs 4) et
+`hyperliquid_large` (nSigFigs 3). Portée réellement enregistrée : **0,857 %**,
+écrêtée par `SNAP_BAND = ±1 %`. Code :
+`_recupere/recorder/adapters/hyperliquid_agg.py`.
+
+> ⚠️ **Le piège, et il a mordu.** Les messages agrégés ne portent que `coin`,
+> `time` et `spread` — **ils ne disent pas de quelle résolution ils viennent**.
+> Sur une connexion unique, deux résolutions sont indiscernables. Une première
+> attribution faite ainsi s'est révélée **fausse d'un cran** : on croyait qu'il
+> fallait `nSigFigs = 4`, c'est **3**. D'où la règle — **une connexion par
+> résolution**, jamais de déduction par l'ordre des réponses.
+
+Ce n'est **pas** de la profondeur au sens du L4 : les paliers sont des seaux de
+100 $, pas des ordres individuels. Ça sert à **voir** les murs en direct, pas à
+les étudier un par un.
 
 **Protocole d'intégrité, un par venue** — ils ne se ressemblent pas, et c'est ce
 qui coûte le plus cher à porter :

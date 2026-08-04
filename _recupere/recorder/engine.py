@@ -30,6 +30,8 @@ from .adapters.binance import BinanceAdapter
 from .adapters.bybit import BybitAdapter
 from .adapters.coinbase import CoinbaseAdapter
 from .adapters.hyperliquid import HyperliquidAdapter
+from .adapters.hyperliquid_agg import (HyperliquidFinAdapter,
+                                       HyperliquidLargeAdapter)
 from .adapters.okx import OkxAdapter
 from .state import Stream, now_ms
 from .store import Writer
@@ -37,6 +39,8 @@ from .store import Writer
 ADAPTERS = {
     "binance": BinanceAdapter, "bybit": BybitAdapter, "okx": OkxAdapter,
     "coinbase": CoinbaseAdapter, "hyperliquid": HyperliquidAdapter,
+    "hyperliquid_fin": HyperliquidFinAdapter,
+    "hyperliquid_large": HyperliquidLargeAdapter,
 }
 
 
