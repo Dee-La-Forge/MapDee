@@ -5,6 +5,12 @@
 > réécrit, rapport de mesure gelé et corrigé par errata. Ce document ne s'octroie
 > aucune licence propre ; c'est par les licences locales qu'une doctrine se perd.
 >
+> **Et la ligne entre les deux se trace ainsi** : un cadrage décrit une
+> **intention**, et une intention change. Un rapport décrit une **mesure**, et
+> une mesure ne change pas. **Tout document qui porte un chiffre issu de nos
+> données est un rapport, quel que soit son nom** — y compris celui-ci, le jour
+> où il en portera un.
+>
 > Il ne contient **aucun chiffre de mesure hérité**. Les durées du §8 sont des
 > **extrapolations** d'une seule mesure faite le 04/08/2026 sur un jour-symbole ;
 > elles se vérifient au premier lot et se corrigent ici.
@@ -34,6 +40,21 @@ La différence n'est pas rhétorique, elle débloque :
 
 On mesure le devenir, on cherche ce qui le précède, et l'intention reste hors
 du périmètre — on ne la nomme pas, on ne la revendique pas.
+
+### Le rappel qui commande tout le reste
+
+On apprend sur Hyperliquid, où la vérité est observable. On **applique sur
+Binance**, où elle ne l'est pas : c'est là que se fait le volume, c'est là qu'on
+exécute, et c'est de là que sort le flux de l'affichage.
+
+**Un mécanisme qui ne traverse pas n'est pas un demi-résultat : il ne sert ni à
+afficher ni à trader.** Il va au journal. D'où un livrable qui n'était pas dans
+la liste et qui devrait y être en permanence :
+
+> **un verdict de traversée par mécanisme** — existe-t-il côté Binance, oui,
+> non, ou sous condition d'une approximation à démontrer.
+
+C'est l'objet de C8, et c'est pour ça qu'il démarre en semaine 1.
 
 ---
 
@@ -178,10 +199,15 @@ inutilisables** parce qu'ils n'existent pas côté Binance.
 | **V2 — la cible n'a pas de définition opératoire** | É4 en entier | littérature, puis écriture, puis gel |
 | **V3 — le devenir n'a pas de définition opératoire** | le typage | **allégé par le §1** : on définit un fait observable, plus une intention |
 | **V4 — validité du bootstrap inconnue** | tout intervalle de confiance | mesurer la fraction de paires intra-unité |
+| **V5 — aucun observable de substitution démontré côté Binance** | **É1, donc l'admissibilité de toute famille de traits** — et in fine le produit | inventorier ce que Binance publie, et mesurer la traversée sur la fenêtre simultanée |
 
 **V1 est moins cher qu'il n'en a l'air** : la renormalisation est une épreuve de
 candidat, pas une table de production. Quelques jours à la cadence la plus fine
 suffisent.
+
+**V5 est le moins cher des cinq, et le plus tard découvert si on l'ignore.** Sa
+première moitié est du papier — É1 se répond en trois questions, sans calcul. Sa
+seconde moitié est une mesure courte, sur une fenêtre qui existe déjà.
 
 ---
 
@@ -206,10 +232,18 @@ publiable.** Un chantier qui ne produit rien n'a pas eu lieu.
 * **échec** : un contrôle croisé qui ne ferme pas → **on ne construit pas la
   suite**. Rapport de non-conformité, et on répare.
 
-**Le premier lot s'arrête avant les jours de fin de mois.** L'`ADR-000` prévoit
-d'étendre la réserve sur ces jours-là si l'écart-type l'impose ; or un jour déjà
-regardé ne peut plus entrer dans la réserve. La boucle ne se referme donc que
-dans un sens, et elle ordonne la construction :
+**La règle de la réserve est ASYMÉTRIQUE, et il faut la dire ainsi.** Une
+formulation antérieure disait que la taille de la réserve serait « fixée par
+l'écart-type ». C'est impossible dans cet ordre : l'ADR gèle des jours **avant**
+que la mesure n'existe, et un jour déjà regardé ne peut plus y rentrer.
+
+> L'`ADR-000` fixe la réserve, et elle ne bouge plus. **C6.1 ne la dimensionne
+> pas — il dit si elle SUFFIT.** Si elle ne suffit pas, on ne peut qu'y **ajouter
+> des jours jamais regardés**. Jamais en reprendre.
+
+**Le premier lot s'arrête donc avant les jours de fin de mois** — ils sont la
+seule réserve de jours jamais regardés, donc l'unique issue que la règle
+asymétrique laisse ouverte. La construction s'ordonne :
 
 1. construire la **première tranche**, hors jours de fin de mois ;
 2. mesurer l'écart-type dessus (**C6**) ;
@@ -410,7 +444,10 @@ fin de phase coûte la phase.
 * aucune mesure sur la réserve, ni construction, ni lecture ;
 * aucun jour d'exploration ouvert avant que C3 ne soit gelé et commité ;
 * aucun candidat testé sans sa fiche ;
-* **aucune conclusion négative sans son plancher de détection.**
+* **aucune conclusion négative sans son plancher de détection** ;
+* **aucun mécanisme retenu sans son verdict de traversée.** Un mécanisme qui ne
+  vit que côté L4 est un résultat de laboratoire, pas un livrable : il est
+  étiqueté comme tel et il va au journal.
 
 ---
 
@@ -418,10 +455,18 @@ fin de phase coûte la phase.
 
 | décision | pourquoi elle ne se prend pas seul |
 |---|---|
-| **la largeur de la nappe** | seul choix irréversible de la construction |
+| **le sort de l'enregistreur de production** | il se dégrade, et **chaque jour de panne est un jour de fenêtre de traversée perdu définitivement** (C8) — la fenêtre où les deux places sont observées ensemble ne se rattrape pas |
 | **le troisième symbole** | choix de symboles, et ~15 h de machine — contre **un témoin de signe de plus**, et aucune puissance (§6, C1) |
-| **démarrer C5 en parallèle, ou après le mois** | arbitrage de priorité |
 | **la cible et le devenir**, une fois rédigés | ce sont les définitions du produit |
 | **les seuils des critères d'arrêt §7** | ils engagent à abandonner |
+
+**La largeur de la nappe est tranchée** — nappe **large**, décision du
+04/08/2026, gravée dans `construire_decembre.ps1` avec sa raison à côté du
+réglage. Elle ne bloque plus la construction. Contrepartie assumée : environ le
+double de temps de rejeu, contre l'impossibilité d'élargir après coup.
+
+**L'ordre de démarrage n'est plus un arbitrage non plus** : C0, C5 et C8 ne
+dépendent d'aucun verrou et partent immédiatement. C5 est lancé — son protocole
+est pré-enregistré dans `chantiers/C5-protagonistes.md`.
 
 Tout le reste s'exécute sans arbitrage.
