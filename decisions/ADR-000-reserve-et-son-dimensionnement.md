@@ -12,6 +12,10 @@
 > Les ADR de MapDee vivent dans `decisions/`, ceux de l'archive dans
 > `_recupere/lab/04-decisions/`, et les deux séries se recoupent en numéros.
 
+> ⚠️ **ADDENDUM DU 04/08/2026, 22 h 20 — une affirmation de ce document est
+> fausse. Voir l'addendum en fin de fichier.** Le corps du texte n'est pas
+> réécrit : « effacer une faute est pire que l'avoir commise ».
+
 **Date** : 2026-08-04, 22 h 10 · **Statut** : **ACCEPTÉE** — validée par Meddy
 le 04/08/2026 à 22 h 02, **avant** le lancement de la reconstruction du mois.
 Aucun jour de 17-23 n'a été ouvert à cette heure.
@@ -130,3 +134,68 @@ identifiée, prompt §8 piège n° 11).
 * Si l'extension (c) est déclenchée, l'exploration perd des jours qu'elle
   croyait avoir. C'est le coût de ne pas savoir σ, et il est payé d'avance
   plutôt que découvert.
+
+---
+
+## Addendum du 04/08/2026, 22 h 20 — la réserve *était* fondée par un ADR
+
+**Ce document affirme, deux fois, que la réserve 17-23 « n'est fondée par aucun
+ADR ». C'est faux.** Trouvé en lisant `_recupere/lab/DETTE-20260803.md` §C2,
+qui y renvoie explicitement, puis vérifié à la source.
+
+`_recupere/lab/04-decisions/ADR-021-unite-configuration-et-impact.md`, daté du
+**2026-08-03 à 10 h 15**, statut **GELÉ**, porte une section « Partition des
+jours — révision de l'ADR-020 » :
+
+| jours | statut |
+|---|---|
+| 2025-12-09 → 16 | EXPLORATION |
+| **2025-12-17 → 23** | **RÉSERVE DE CERTIFICATION — jamais ouverte** |
+| 2025-12-24 → 31 | réserve libre |
+
+> « Les jours 17-23 ne sont ni construits, ni étiquetés, ni regardés, tant que
+> le protocole n'est pas pré-inscrit. Le garde-fou `_refuse_si_gele` sera
+> étendu à cette tranche. »
+
+Et l'en-tête de cet ADR précise qu'aucune donnée d'exploration n'était ouverte
+à son écriture. **L'antériorité de la réserve est donc réelle et datée** — un
+jour de plus que ce que je lui prêtais.
+
+### Comment j'ai commis l'erreur
+
+J'ai cherché la réserve par `grep` dans `04-decisions/`, lu l'ADR-020 en
+entier, constaté qu'il disait « 09-31 exploration », et conclu. **L'ADR-021
+figurait dans les résultats de ce même `grep` et je ne l'ai pas ouvert.** La
+faute n'est pas la conclusion, c'est de l'avoir tirée d'une lecture partielle
+alors que `00_Prompt_MapDee.md` §0 prescrit de lire `_recupere/lab/` en entier
+avant d'écrire — ce que je n'avais pas fait.
+
+C'est aussi, mot pour mot, la faute que le journal du 04/08 (« M2 ») consigne
+en §0 : *« J'ai passé la première moitié de la nuit à réparer l'instrument sans
+avoir lu `lab/`. Deux de mes contributions étaient des redécouvertes. »*
+Troisième occurrence dans ce dossier.
+
+### Ce qui change, et ce qui ne change pas
+
+**Ne change pas — la décision.** MapDee repart de zéro : les ADR de
+`_recupere/` sont des archives sans autorité ici (décision Meddy, 04/08).
+Il faut donc bien un ADR **de MapDee** pour porter la réserve, et c'est
+celui-ci. Le dimensionnement par un σ mesuré, le refus de se fonder sur les
+1,35 bp de quatre jours, l'extension prévue sur 24-31 et l'aveu sur la chauffe
+du 24 sont intacts — aucun ne dépendait de la prémisse fausse.
+
+**Change — la formulation exacte.** Partout où ce document écrit « la réserve
+n'est fondée par aucun ADR », lire :
+
+> « la réserve n'est fondée par aucun ADR **de MapDee**, et l'ADR-021 de
+> l'archive, qui l'établissait, n'a plus autorité ici. »
+
+**Change aussi — un point de fait.** La DETTE §C2 signalait que la garde
+`_refuse_si_gele` ne couvrait pas encore 17-23. Elle le couvre aujourd'hui
+(`jour.py`, constante `RESERVE`, vérifié le 04/08). Cette dette est éteinte.
+
+**Et un gain, non prévu.** L'ADR-021 classe les jours **24-31 en « réserve
+libre »**, pas en exploration ordinaire. L'extension prévue au point (c) de cet
+ADR tombe donc sur une tranche que l'archive destinait déjà à cet usage : les
+deux décisions sont cohérentes, prises à un jour d'intervalle et sans
+concertation.
