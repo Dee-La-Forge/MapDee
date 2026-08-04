@@ -199,3 +199,26 @@ libre »**, pas en exploration ordinaire. L'extension prévue au point (c) de ce
 ADR tombe donc sur une tranche que l'archive destinait déjà à cet usage : les
 deux décisions sont cohérentes, prises à un jour d'intervalle et sans
 concertation.
+
+---
+
+## Addendum du 04/08/2026, 23 h 55 — trois renvois devenus morts, et une dette à ne pas perdre
+
+Les documents de cadrage ont été réécrits dans la nuit. **Le corps de cet ADR
+n'est pas retouché** — il porte une décision datée. Mais trois de ses renvois ne
+résolvent plus, et il faut le dire ici plutôt que de les corriger en place.
+
+| dans cet ADR | renvoyait à | où c'est maintenant |
+|---|---|---|
+| « prompt §3 » pour l'écart-type hérité | l'ancien §3 | **nulle part, et c'est voulu** — l'affirmation « il faut une vingtaine de jours » a été retirée des cadrages, conformément à la conséquence n° 3 de cet ADR. Le grief reste vérifiable dans l'archive du laboratoire mort. |
+| « prompt §8 piège n° 11 » pour la garde en lecture | l'ancien §8 | `FAITS.md` §8, piège n° 9 |
+| « `00_Prompt` §0 prescrit de lire `_recupere/lab/` en entier » | l'ancien §0 | `00_Prompt_MapDee.md` §13, ordre de lecture — **l'obligation avait été supprimée dans la même nuit ; elle est restaurée** |
+
+**Et une dette que cet ADR est aujourd'hui le seul à porter, donc à ne pas
+perdre** : la garde contre le **mélange de générations** existe à l'écriture et
+dans les manifestes d'artefacts, **pas à la lecture**. Un chargeur qui balaie un
+dossier peut encore concaténer deux générations en silence. Elle est désormais
+consignée dans `FAITS.md` §8, piège n° 9 et §13.
+
+Le point (e) du corps — la chauffe du dernier jour construit lit la veille, qui
+appartient à la réserve — **reste valable et non traité**.

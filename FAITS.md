@@ -181,6 +181,42 @@ aucune observation.
 
 ---
 
+## 6 bis. Le constat qui avait fermé la traversée — et pourquoi il ne tient probablement pas
+
+**À RE-MESURER — et c'est prioritaire, parce que la traversée est de retour dans
+le chemin critique.**
+
+Un constat a fermé la traversée Hyperliquid → Binance dans une itération
+précédente : *la quasi-totalité des murs étiquetés « a fui »*. Un label presque
+constant n'apprend rien, donc il n'y aurait rien à transférer.
+
+**Ce constat n'a jamais été audité.** Et un audit voisin, lui sérieux, montre que
+l'instrument qui l'a produit avait trois défauts qui vont tous dans le même sens :
+
+| défaut de l'instrument | effet |
+|---|---|
+| la grille qui date le contact était **beaucoup plus grossière** que ce que son propre code documentait | le contact est daté **systématiquement en retard** |
+| les candidats morts avant leur première photo étaient **écartés** | **sélection directe sur la grandeur étudiée** — on ne garde que les ordres ayant survécu assez longtemps pour être vus |
+| contact et features venaient de **deux séries différentes** | le plancher qui existe mécaniquement côté Binance n'existait pas côté Hyperliquid |
+
+Une population filtrée sur la survie, dont le contact est daté en retard,
+**produit mécaniquement un taux de fuite très élevé**. C'est l'explication la
+plus économique du constat, et **personne ne l'a établie**.
+
+> ⚠️ **LE PIÈGE À NE PAS REPAYER — deux nombres presque identiques désignent
+> deux choses opposées.** Dans les archives, une même valeur apparaît des deux
+> côtés d'un raisonnement : une fois comme **fraction de murs étiquetés « a
+> fui »** — mauvais signe, le label serait constant — et une fois comme
+> **fraction d'observations faites hors de la bande de tolérance** — bon signe,
+> puisque ça infirme la circularité du banc. **Ce n'est pas la même grandeur, et
+> les confondre inverse la conclusion.** Vérifier de laquelle il s'agit avant de
+> citer l'une ou l'autre.
+
+**Ce que ça implique pour le programme** : la traversée n'a **jamais été
+réfutée** — elle a été fermée par un instrument défectueux. Le ré-établir est un
+préalable à toute promesse sur H3, et ça porte sur le **label**, donc sur P2 —
+en amont de la porte.
+
 ## 7. Corruptions et défauts connus
 
 | | |
@@ -242,6 +278,25 @@ minutes.
 6. **`work/` gonfle d'environ 15 Gio par passage et ne se nettoie pas.** Mesuré
    à 21 Go de résidus le 04/08.
 7. **`data/` est dans `.gitignore` et n'y entre jamais.**
+8. **NE PAS affiner un rejeu en baissant simplement son pas d'échantillonnage.**
+   ⚠️ **PIÈGE — mesuré, et il a coûté des heures de calcul dans la mauvaise
+   direction.** Un rejeu qui **accumule** (moyennes glissantes, fenêtres, pics)
+   ne se raffine pas en réduisant son pas : ça l'**éloigne** de la production au
+   lieu de l'en rapprocher, parce que la structure d'accumulation change avec le
+   pas. Le correctif est une **boucle à deux niveaux** — accumuler à un pas fin,
+   vider et lisser à un pas grossier, archiver une fenêtre sur N. Décrit comme
+   quelques lignes, **jamais implémenté.**
+   *Portée* : ce piège vise les rejeux **accumulateurs**. Il ne vise pas
+   l'émission d'une photo instantanée du carnet, qui n'accumule rien — mais la
+   distinction se vérifie code en main avant de baisser un pas.
+9. **Aucune garde à la LECTURE contre le mélange de générations.**
+   ⚠️ **PIÈGE.** Deux jours construits par deux versions du code sont
+   distinguables dans la donnée, mais **un `glob` les concatène en silence**. La
+   protection existe à l'**écriture** (refus sur les jours gelés) et
+   l'**empreinte** d'artefact permet de les distinguer — mais **rien n'oblige un
+   lecteur à la consulter**. La garde en lecture est **à construire** : tout
+   chargeur qui balaie un dossier doit refuser deux jeux de paramètres
+   différents, bruyamment.
 
 ---
 
@@ -275,10 +330,36 @@ Autre effet mesuré : `BOOK_KEEP = 0,05` élague à ±5 % du mid, ce qui **tronq
 de moitié** le flux `nSigFigs=3` sur ETH (18 paliers remontés au lieu de 40),
 et son mid remonté est quantifié (`1875.00` exactement).
 
-`WsLevel` porte trois champs : `px`, `sz`, **`n`** (nombre d'ordres) — d'après
-la documentation officielle. **Non vérifié par moi.** `n` est compté **après
-agrégation**, donc inutilisable pour reconstituer une masse par ordre sur la
-grille de production dès qu'on emploie `nSigFigs`.
+### `n`, le nombre d'ordres par palier — et la masse par ordre
+
+`WsLevel` porte trois champs : `px`, `sz`, **`n`** (nombre d'ordres). Source :
+la documentation officielle de la venue, **vérifiée par Meddy le 04/08/2026, pas
+par le co-chercheur** — l'attribution compte, elle dit qui peut la contredire.
+
+Ça rend `sz / n` — **la masse moyenne par ordre** — calculable **sans le L4**.
+La grandeur n'est pas anodine : un mur fait d'un seul gros ordre ne se comporte
+pas comme un mur fait de cent petits, et c'est une distinction que la masse
+seule ne fait pas.
+
+**Trois conditions avant de s'en servir, aucune remplie à ce jour :**
+
+1. ⚠️ **`n` est compté APRÈS agrégation.** Dès qu'on emploie un regroupement de
+   prix, `n` porte sur le seau agrégé, pas sur le palier de la grille de
+   production. Et comme la grille de production re-découpe les prix autrement,
+   `sz/n` devient la masse moyenne **dans le seau**, pas dans le palier. **Ce
+   n'est pas la même grandeur que celle qu'on dériverait du L4.**
+2. **Le test d'équivalence est faisable immédiatement et sans coût** : sur
+   l'archive, construire `n` par palier de production depuis le L4, simuler
+   l'agrégation telle que la venue la produit, et mesurer la corrélation de rang
+   entre les deux `sz/n`. Ça tranche l'équivalence **sans toucher au direct et
+   sans consommer un jour de réserve**. À faire avant d'inscrire la grandeur au
+   banc.
+3. **Ce que sort un nœud n'a pas été vérifié.** L'API publique n'en dit rien.
+
+> **Verdict tant que 1-3 ne sont pas rendus** : `sz/n` est **utilisable pour
+> fabriquer la vérité, non affichable** — et tout rapport qui l'emploie le dit.
+> C'est la même paroi que la profondeur : la grandeur existe là où la bande n'est
+> pas, et la bande est couverte là où la grandeur perd son sens.
 
 ### Protocoles d'intégrité — un par venue, ils ne se ressemblent pas
 
@@ -334,7 +415,32 @@ parquet de 32,5 M lignes et selftest des garde-fous.
 suivantes exigent 3.11+. Changer d'interpréteur est une décision séparée.
 
 GPU : **GTX 1060, Pascal sm_61** → ni RAPIDS, ni cuDF, ni cuML. XGBoost et
-PyTorch fonctionnent.
+PyTorch fonctionnent. La VRAM est la vraie limite à surveiller dès qu'on
+manipule des millions d'ordres.
+
+⚠️ **Deux dépendances manquent à l'épinglage** et le pipeline d'apprentissage en
+a besoin : **LightGBM** et **scikit-learn**. À ajouter au moment où on en aura
+l'usage, pas avant — mais à ne pas découvrir ce jour-là.
+
+### Le décodeur ne trouve pas la donnée tout seul — PIÈGE
+
+⚠️ **Sans `_recupere/construit/`, l'archive brute est un tas d'octets.** Il porte
+le décodeur du format binaire, la grille commune à la production, le rejeu avec
+sa chauffe et les gardes de gel. Ses commentaires documentent des fautes mesurées
+**avec leur coût** : les réécrire perdrait la seule chose qui protège.
+
+Et il **calcule ses chemins par rapport à son propre dossier parent**. Lancé tel
+quel depuis le dépôt, il cherche la donnée là où elle n'est pas : **il échoue, ou
+il écrit au mauvais endroit.**
+
+> **Deux variables d'environnement sont obligatoires** — `GON_OPENBOOK_SRC`
+> (racine des archives) et `GON_OPENBOOK_OUT` (racine des sorties). Le lanceur
+> `construire_decembre.ps1` les pose ; **tout appel direct doit les poser aussi.**
+>
+> **Contrôle avant tout lot long** : importer les constantes du module et
+> vérifier qu'il imprime les bons chemins **et le bon gel** — chauffe, réserve,
+> jours figés. Un lot de plusieurs heures qui écrit au mauvais endroit se
+> découvre à la fin.
 
 Disque, relevé le 04/08 : `C:` **311 Go libres** · `H:` 1,1 To · `E:` 209 Go.
 
@@ -401,8 +507,25 @@ M2   chaque sortie du registre se range dans exactement une cause :
 
 **Correctif candidat — l'hystérésis de suivi.** Une fois un palier entré au
 registre, on continue de l'enregistrer sous le seuil jusqu'à extinction. Ça
-préserve la continuité de la trajectoire sans refaire l'acquisition. **Trois
-coûts, à mesurer avant de l'adopter, jamais à supposer :**
+préserve la continuité de la trajectoire sans refaire l'acquisition.
+
+Il se justifie **par construction, pas par ampleur** : un registre à seuil unique
+rend la présence non locale, ce qui est vrai indépendamment de la fréquence du
+phénomène. On ne mesure pas si un défaut structurel mérite d'être corrigé.
+
+> **DEUX BORNES D'ABANDON, POSÉES AVANT TOUTE SIMULATION.** L'hystérésis est
+> abandonnée si l'un des deux se produit :
+>
+> * le **registre suivi** dépasse **2 ×** le plafond de paliers en vigueur, en
+>   médiane sur une journée ;
+> * le **débit sortant** dépasse **1,5 ×** celui du régime actuel.
+>
+> Ces deux bornes sont écrites **avant** d'avoir vu la moindre simulation. **Elles
+> ne se renégocient pas après.** Sans elles, « à mesurer avant d'adopter » n'est
+> pas un pré-enregistrement — c'est une permission de choisir le seuil qui
+> arrange.
+
+**Et trois coûts à mesurer, jamais à supposer :**
 
 1. **le registre devient dépendant du chemin.** Le produit est 100 % navigateur,
    chaque visiteur ouvre sa propre connexion : un visiteur arrivé pendant la vie
@@ -427,3 +550,35 @@ coûts, à mesurer avant de l'adopter, jamais à supposer :**
 
 Les itérations précédentes ont travaillé sur 5 à 12 jours d'un ou deux symboles
 — **par limite de ce qui avait été construit, pas par limite de données.**
+
+⚠️ **Et ces trois chantiers ne tiennent pas sur le volume qui porte déjà
+l'archive.** Le point est mesuré et il a une conséquence opératoire : **trancher
+où le pipeline écrit AVANT de lancer une construction longue**, pas après. Un lot
+de plusieurs heures qui sature le disque à la fin perd tout. Deux autres volumes
+sont disponibles et largement dimensionnés (§10).
+
+Autre poste à surveiller : le **répertoire d'extraction temporaire** gonfle à
+chaque passage et **ne se nettoie pas tout seul**. Il se purge entre deux lots —
+en gardant celui de la veille du jour suivant, qui lui sert de chauffe.
+
+## 13. Ce qui est effectivement construit
+
+**À RE-MESURER à chaque lot, et à tenir à jour ici** : sans cet inventaire,
+personne ne peut savoir depuis les documents quels jours existent, sous quels
+paramètres, ni ce qu'un `glob` ramasserait.
+
+L'inventaire ne se recopie pas à la main — il se **dérive des manifestes**
+d'artefacts, qui portent chacun le hash du contenu, les paramètres de
+construction, le commit et les versions. C'est leur raison d'être.
+
+> **La commande qui fait foi** : regrouper les artefacts d'un dossier par jeu de
+> paramètres. **Si le regroupement rend plus d'une clé, un `glob` sur ce dossier
+> mélange deux générations.** Les fichiers sans manifeste tombent sous une clé
+> « inconnu » — ils ne sont pas silencieux.
+>
+> Fonction : `construit/empreinte.py`, `generations()`.
+
+État au 04/08/2026 : la reconstruction de décembre n'a pas encore été relancée
+sous les paramètres arrêtés. **Tout ce qui est sur disque est donc d'une
+génération antérieure**, et un mélange est possible tant que le lot n'a pas
+tourné en entier.

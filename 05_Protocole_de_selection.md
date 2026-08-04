@@ -48,7 +48,7 @@ candidat, c'est un résultat déguisé.
 
 ---
 
-## 2. La cible est fixée avant, et ne bouge plus
+## 2. La nature de la cible est fixée avant, et ne bouge plus
 
 Toutes les grandeurs sont jugées contre **la même cible**.
 
@@ -64,6 +64,19 @@ fabrique de la corrélation mécanique.
 
 La cible retenue est aussi la seule qui réponde à la question posée : *où va le
 prix, et pourquoi il y va.*
+
+**Ce qui est gelé ici, et ce qui ne l'est pas.** Le gel porte sur la **nature**
+de la cible — le déplacement du prix — et sur l'**interdiction d'en changer**.
+C'est un gel de nature, **pas un gel de formule**.
+
+Reste à écrire : la **définition opératoire**. À partir de quel instant. Sur
+quel horizon. Sur quelle grille. Ce qui compte comme déplacement. Tant que ces
+quatre points ne sont pas écrits, É3 ne peut pas donner le signe de la relation
+à la cible, et É4 ne peut pas produire d'intervalle de confiance sur elle.
+
+> **Le banc ne tourne pas avant que la définition opératoire ne soit écrite et
+> commitée par ADR.** Elle se fige au même titre que le reste : une fois
+> commitée, elle ne bouge plus qu'en rejugeant tous les candidats déjà passés.
 
 **Interdit, sans exception** : changer la cible, la métrique ou un seuil après
 avoir vu un résultat. Un changement nécessaire se fait **par ADR**, et **tous
@@ -96,12 +109,17 @@ L'ordre n'est pas arbitraire : on élimine avec ce qui coûte des secondes avant
 de dépenser des heures.
 
 ```
+  ÉS  banc synthétique         préalable  ←  aucun jour de marché consommé (§8)
   É0  doublon interne          secondes   ←  élimine la majorité du catalogue
   É1  admissible au produit    minutes    ←  papier, aucun calcul
   É2  redit-elle un candidat déjà retenu ?   minutes
   É3  survit-elle à l'échelle  heures
   É4  apporte-t-elle ?         heures     ←  la seule qui coûte vraiment
 ```
+
+**ÉS est une étape préalable, pas une épreuve du banc.** Elle se franchit
+**avant É0** et elle est **obligatoire** : une méthode qui ne l'a pas passée
+n'entre pas dans la séquence. Ses règles sont au §8.
 
 ### É0 — Est-ce un doublon d'un autre candidat ?
 
@@ -115,6 +133,11 @@ déguisé quatre fois.
 garde **le moins cher à calculer** ; l'autre est éliminé et inscrit au registre
 avec son chiffre.
 
+**Sur quoi ça se calcule.** Une corrélation se calcule sur des données : É0
+**touche du marché**. Il tourne sur un **périmètre minimal** — un petit nombre
+de jours d'exploration, **jamais la réserve**. Ce périmètre est **déclaré dans
+la fiche avant le calcul**, et il ne s'étend pas après avoir vu le résultat.
+
 ### É1 — Pourra-t-elle vivre dans le produit ?
 
 Quatre questions, réponse oui/non, aucun calcul.
@@ -126,8 +149,19 @@ Quatre questions, réponse oui/non, aucun calcul.
 | tourne-t-elle **dans un navigateur**, à la cadence du flux ? | éliminée, sauf si une version simplifiée est démontrée |
 | survit-elle à la **dégradation du flux d'affichage** ? | **à mesurer, jamais à supposer.** Le régime exact est dans `FAITS.md` — et il n'est pas le même pour l'écran et pour l'archive. |
 
-Une grandeur qui échoue aux quatre ne sera **jamais** affichée. Autant le savoir
-en une minute qu'après trois semaines.
+**Règle d'élimination, cas par cas** — chaque question tranche seule :
+
+* échec à **« sans L4 »** → **réorientation**, pas élimination. La grandeur
+  passe à la fabrique de vérité ; elle sort du banc d'affichage ;
+* échec à **« traverse vers Binance »** → **éliminée pour le produit** ;
+* échec à **« tourne dans un navigateur »** → **éliminée pour le produit**, sauf
+  version simplifiée démontrée ;
+* échec à **« survit à la dégradation »** → **n'élimine pas**. Cette question
+  n'est pas une porte : elle **exige une mesure**, qui doit être produite avant
+  É4.
+
+Une seule des deux questions produit — Binance ou navigateur — suffit à éliminer.
+Autant le savoir en une minute qu'après trois semaines.
 
 ### É2 — Redit-elle quelque chose qu'on tient déjà ?
 
@@ -139,6 +173,10 @@ connue. Ils **ré-encodaient la même chose dans une autre langue**.
 **Mesure** : corrélation de rang avec **les candidats déjà retenus**. Le bloc de
 référence part vide et grandit au fil du banc — on n'importe aucune conclusion
 d'une itération antérieure.
+
+Comme É0, É2 est une corrélation : il **touche du marché**. Même règle — le
+**périmètre minimal** déclaré dans la fiche avant le calcul, jamais la réserve.
+Le même périmètre sert à É0 et à É2 pour un candidat donné.
 
 **Règle** :
 
@@ -179,6 +217,20 @@ La seule épreuve coûteuse, et la dernière.
 la performance de la grandeur toute seule. Une grandeur qui brille seule mais
 n'ajoute rien est un doublon, pas une découverte.
 
+**Le premier candidat — le témoin trivial.** Le bloc de référence part vide.
+Mesurer un apport par-dessus le vide, c'est mesurer une performance isolée —
+exactement ce que le §6 interdit. Donc :
+
+> **Le premier candidat est jugé contre un témoin trivial déclaré d'avance,
+> jamais contre le vide.**
+
+Le témoin trivial est une grandeur **volontairement pauvre** — par exemple la
+**masse brute au palier**. Il est déclaré **avant le premier calcul**, comme un
+candidat à part entière : sa **fiche** au §1, sa **ligne au registre**. Il ne
+passe pas les épreuves et **il ne peut jamais être « retenu »** : il ne sert que
+de **plancher**. Un premier candidat qui n'apporte rien par-dessus la masse
+brute n'apporte rien.
+
 **Les quatre conditions, toutes obligatoires :**
 
 | condition | règle |
@@ -209,6 +261,9 @@ Chaque candidat, retenu ou éliminé, laisse une ligne dans
 nom · date · épreuve où il tombe · le CHIFFRE qui l'a fait tomber · qui l'a proposé
 ```
 
+⚠️ **Ce fichier n'existe pas encore** : il est à créer **au premier candidat
+déposé**, et **aucun calcul ne se fait avant** son existence.
+
 **Aucune élimination sur une opinion.** Chacune porte son chiffre. Si on s'est
 trompé, on sait exactement pourquoi on l'avait sorti, et on peut rouvrir — par
 un ADR, jamais en silence.
@@ -223,8 +278,12 @@ distinctes** — le même objet y revient sous plusieurs vocabulaires. C'est É0
 les fond, et il coûte des secondes.
 
 L'entonnoir attendu : **É0 à É2 éliminent la grande majorité du catalogue en une
-journée**, sans toucher une donnée de marché. On en teste sérieusement **une
-dizaine**, pas soixante. C'est ce qui rend la reprise complète faisable au lieu
+journée**. Attention à ne pas se raconter d'histoire sur ce coût : **seul É1 est
+réellement du papier**. É0 et É2 sont des corrélations, donc des calculs sur
+données — ils tournent sur le **périmètre minimal** déclaré d'avance, un petit
+nombre de jours d'exploration, **jamais la réserve**. Ce qui est bon marché ici,
+c'est le temps de calcul, pas l'absence de données. On en teste sérieusement
+**une dizaine**, pas soixante. C'est ce qui rend la reprise complète faisable au lieu
 d'infinie — et c'est la raison pour laquelle l'ordre des épreuves est celui du
 coût croissant.
 
@@ -280,6 +339,19 @@ Il rend trois choses qu'aucune mesure sur données réelles ne donne :
 * le comportement dans un **bras nul** — le même carnet sans injection. Une
   méthode qui détecte là est disqualifiée.
 
+**Règle de sortie — deux façons d'échouer ici, pas une.**
+
+* **le bras nul détecte** → méthode **disqualifiée** ;
+* **le plancher de détection est au-dessus de l'amplitude que le phénomène peut
+  plausiblement avoir** → la méthode est **écartée à ce stade**. Elle **ne
+  consomme aucun jour de marché**. Un instrument qui ne peut pas voir ce qu'on
+  cherche ne produira que des négatifs ininterprétables.
+
+Dans les deux cas, **le chiffre du plancher est inscrit au registre** — y
+compris quand la méthode passe. Sans lui, aucun négatif futur n'est lisible.
+L'amplitude plausible du phénomène est déclarée **avant** la mesure du plancher,
+jamais après.
+
 **Ce qu'il n'achète pas**, et qui doit figurer dans chaque rapport : un carnet
 fabriqué n'a pas la structure de dépendance du vrai. Une méthode qui passe le
 banc synthétique n'est pas validée — elle est **admise à consommer des jours de
@@ -304,6 +376,11 @@ simule.
    **littérature**, puis l'**observation des trajectoires brutes** sur le jour de
    banc d'instrument. Jamais l'inverse — définir après avoir regardé, c'est
    fabriquer une cible dégénérée.
+
+   **Quel jour.** Il est fixé par la **convention de gel des jours**, et il doit
+   être **nommé dans `decisions/ADR-000`** — pas ici. Ce document ne choisit
+   aucun jour. **Tant que ce jour n'est pas nommé dans l'ADR, l'observation ne
+   démarre pas.**
 
    **Et quand ils seront définis, voici comment on les éprouve** — la règle est
    posée maintenant, avant de connaître les définitions, pour qu'elle ne soit pas
@@ -344,6 +421,11 @@ simule.
    quelque chose — et c'est un préalable à É4, pas un raffinement. Dette de
    méthode héritée : elle survit à la refonte, parce qu'elle ne dépend d'aucun
    instrument particulier.
+5. **Le banc synthétique (ÉS) n'existe pas encore.** Ni carnet fabriqué, ni
+   mécanisme injecté, ni bras nul. C'est une **étape préalable obligatoire**
+   (§4, §8) : tant qu'elle n'est pas construite, **aucune méthode n'est admise à
+   consommer un jour de marché**, et aucun plancher de détection n'est
+   disponible — donc aucun négatif produit d'ici là ne serait interprétable.
 
 ---
 
@@ -356,5 +438,16 @@ ultérieure :
   conséquences ;
 * **rejuge tous les candidats déjà passés** sous la nouvelle règle ;
 * est **datée et commitée** avant le calcul suivant.
+
+**Ce que ce gel gèle exactement.** Il gèle les **règles du banc** et la
+**nature** de la cible — le déplacement du prix — avec l'interdiction d'en
+changer. C'est un **gel de nature, pas un gel de formule**.
+
+Il ne gèle pas ce qui n'est pas encore écrit. La **définition opératoire** de la
+cible — instant de départ, horizon, grille, ce qui compte comme déplacement —
+reste à produire. Elle se fige à son tour, **par ADR séparé**, et **le banc ne
+tourne pas avant ce commit** : sans elle, ni É3 ni É4 ne sont calculables (§2,
+§9 point 2). Un document gelé sur une cible non définie ne serait pas un gel,
+seulement une promesse.
 
 Un protocole qu'on ajuste en cours de route n'est pas un protocole.

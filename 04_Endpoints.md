@@ -291,4 +291,4 @@ mesuré contre Binance : Bybit −0,7 bp · OKX −0,3 bp · Hyperliquid −0,9 
   Si cette source doit alimenter l'affichage, la diagnostiquer est un préalable.
 * **Les clés d'API** : aucune n'est nécessaire pour ce qui précède — tout est
   public. Si un compte privilégié devient nécessaire (OKX VIP4+), il change le
-  périmètre de la §5 et se décide (voir la répartition des rôles du prompt, §10).
+  périmètre de la §5 et se décide (voir la répartition des rôles du prompt, §12).

@@ -42,16 +42,48 @@ Trois confusions à écarter d'emblée, parce que chacune a déjà coûté du te
 | ce n'est pas | pourquoi |
 |---|---|
 | **de la détection de fraude** | on ne demande jamais « ce mur est-il sincère ». Le spoofing est traité comme un **moyen de la cinétique du prix**, pas comme un délit à dénoncer. |
-| **de la prédiction de prix** | on ne cherche pas un signal d'alpha. On cherche des mécanismes, et une carte de ces mécanismes. |
+| **de la prédiction de prix** | on ne cherche pas un signal d'alpha. On cherche des mécanismes, et une carte de ces mécanismes. **Voir juste en dessous — la distinction n'est pas cosmétique et elle s'opérationnalise.** |
 | **une heatmap de plus** | une couche qui dirait « il y a de la masse ici » n'ajoute rien. La masse ne dit pas si un palier a été annulé ou mangé — c'est précisément la distinction qui porte le sujet. |
+
+### « Pas de prédiction » et « cible = déplacement du prix » ne se contredisent pas
+
+Il faut le rendre opérable, sinon la première ligne du tableau interdit ce que le
+banc prescrit. La cible **est** le déplacement du prix. Ce qui distingue un
+mécanisme d'un signal d'alpha n'est pas la cible, c'est **ce qu'on exige de
+l'énoncé** :
+
+| | un signal d'alpha | un mécanisme |
+|---|---|---|
+| ce qu'il affirme | « le prix va monter » | « **si** cette configuration se présente, **alors** le prix se déplace de ce côté, **parce que** ceci a cédé » |
+| ce qui le valide | qu'il gagne | qu'il **survive au changement d'échelle**, qu'il **réplique sur un autre symbole**, et que sa **condition** soit identifiable avant |
+| ce qui le tue | qu'il cesse de payer | qu'il change de signe à une échelle, ou qu'il ne réplique pas |
+| ce qu'on en fait | une position | une **couche affichée** : on montre la configuration, pas une flèche |
+
+Un mécanisme qui ne dirait que « ça monte » sans condition ni structure ne passe
+pas — non parce qu'il serait faux, mais parce qu'il n'explique rien et
+qu'**il ne s'affiche pas**.
 
 ## 2. Les deux places, et leurs deux rôles
 
-**Hyperliquid est le laboratoire.** C'est la seule place au monde qui publie le
-cycle de vie complet d'un ordre — placement, durée de vie exacte, terminaison,
-et l'identité des deux contreparties d'une transaction. C'est donc la seule où
-l'on puisse **fabriquer une vérité** : ce mur a-t-il été annulé, ou mangé, et
-par qui. Les labels se fabriquent là, et nulle part ailleurs.
+**Hyperliquid est le laboratoire.** Le cycle de vie complet d'un ordre y est
+**disponible** — placement, durée de vie exacte, terminaison — ainsi que
+l'identité des deux contreparties d'une transaction. C'est ce qui permet de
+**fabriquer une vérité** : cette masse a-t-elle été annulée, ou mangée, et par
+qui.
+
+⚠️ **Disponible ne veut pas dire publié en direct, et la nuance coûte.** L'API
+publique **ne donne pas** ce niveau de détail — elle le limite à sa propre
+adresse. Il s'obtient de deux façons seulement : par une **archive**, ou en
+faisant tourner un **nœud non-validateur**. Le nœud ne produit **aucun
+historique** : il démarre le jour où on le lance.
+
+**Conséquence à tenir** : le rôle « laboratoire » est **acquis sur archive** et
+**non acquis en temps réel**. Toute promesse de vérification quotidienne suppose
+un nœud qui n'existe pas encore. Détail dans `FAITS.md` §9 et `04_Endpoints.md`.
+
+Sur l'unicité : à notre connaissance et sur les venues que l'enregistreur teste,
+**aucune autre ne publie l'identité des contreparties**. C'est une constatation
+sur un échantillon, pas une propriété du monde — et elle suffit au raisonnement.
 
 **Binance est le marché.** C'est là que le volume se fait, là qu'on exécute, et
 là que la couche doit s'afficher.
@@ -98,7 +130,15 @@ Contraintes non négociables, décidées ici et pas après :
 5. **Survivre à la dégradation du flux d'affichage.** À **mesurer**, jamais à
    supposer. Le régime exact est dans `FAITS.md`.
 
-**La heatmap n'existe pas encore. Elle est à fabriquer.**
+6. **Un score s'affiche comme un RANG, jamais comme une probabilité** — sauf
+   calibration démontrée, symbole par symbole. Une probabilité non calibrée
+   affichée comme telle est un mensonge à l'utilisateur.
+
+**La surface d'affichage est GON-TV**, l'éditeur de chart du projet.
+**La heatmap n'existe pas encore : elle est à fabriquer.** Des maquettes de rendu
+existent hors dépôt, côté GON-TV — **les regarder avant de décider de la forme de
+sortie.** Le vocabulaire visuel a déjà été travaillé ; la recherche doit
+l'alimenter, pas le réinventer.
 
 ### Quand les objectifs s'opposent
 
@@ -119,7 +159,7 @@ trajectoire du prix** — où il va — et si elle survit aux quatre contrôles 
 
 | | |
 |---|---|
-| **renormalisation** | même signe aux cinq échelles d'observation |
+| **renormalisation** | même signe aux cinq échelles d'observation, **et** corrélation de rang suffisante entre l'échelle la plus fine et chacune des autres. Les deux conditions, pas la première seule — le détail chiffré est dans `05_Protocole_de_selection.md`. |
 | **unité** | le **JOUR**, jamais l'observation ; IC de **Student** |
 | **contrôle négatif** | sortie d'une bande nulle tirée par **décalage circulaire**, jamais par permutation i.i.d. |
 | **réplication** | même signe sur **deux symboles**. Un effet qui n'apparaît que sur un symbole est un sur-ajustement. |
@@ -182,6 +222,22 @@ Trois conséquences dures :
 * **le ML se branche sur la table**, pas sur la donnée brute. La table est le
   contrat entre la recherche et le modèle ; elle se fige avant tout
   entraînement.
+
+⚠️ **La table n'a aujourd'hui aucun schéma.** Ni colonnes, ni procédure de gel.
+C'est le contrat central du projet et il est vide — à écrire avant P5.
+
+### Le réglage des hyperparamètres, quand on y arrivera
+
+Décision de Meddy : le réglage se fera avec **Optuna**. Il ne s'installe pas
+avant la phase d'apprentissage, donc **après la porte**.
+
+Trois conditions, sans lesquelles l'outil se retourne contre nous — mille essais
+automatiques trouvent toujours un score flatteur, même sur du bruit :
+
+* Optuna ne voit **que** le pli d'entraînement, jamais les données de jugement ;
+* le **nombre d'essais est fixé et écrit avant** de lancer la recherche ;
+* le gain final se vérifie sur des données **jamais touchées** — c'est l'usage
+  terminal de la réserve, et la seule raison pour laquelle elle est gelée.
 
 ## 7. Le statut de tout ce qui précède MapDee
 
@@ -259,8 +315,15 @@ connexion déjà payés.
 
 Deux points de périmètre qui ne se trouvent nulle part ailleurs :
 
-* **la convention de gel des jours** est fixée par `decisions/ADR-000` ;
-* **`data/` est dans `.gitignore` et n'y entre jamais.**
+* **`data/` est dans `.gitignore` et n'y entre jamais** ;
+* **la convention de gel des jours** est portée par `decisions/ADR-000` —
+  **et elle y est incomplète.** L'ADR fixe la réserve et son extension. Il ne dit
+  rien de deux autres statuts que **le code applique pourtant** : des jours dont
+  les tables principales sont figées et ne se reconstruisent pas, et un **jour de
+  banc d'instrument** qui ne sert qu'à valider l'ingestion. Tant que ces deux
+  statuts ne sont pas écrits dans l'ADR, la convention annoncée est fausse à
+  l'endroit précis où le code refuse d'écrire. **À compléter avant le premier
+  lot.**
 
 ## 11. Ce qui bloque aujourd'hui
 
@@ -273,12 +336,22 @@ Deux points de périmètre qui ne se trouvent nulle part ailleurs :
    **déplacement du prix**, pas la fraction exécutée — un spoof réussi n'est
    jamais exécuté, donc une cible d'exécution récompenserait le spoof **raté**.
    Reste à l'écrire en définition opératoire.
-3. **Les patterns n'ont pas de définition opératoire.** Le vocabulaire existe —
-   annulé, mangé, rechargé — mais nommer n'est pas définir. Tant que ce n'est
-   pas écrit, il n'y a rien à entraîner et rien à falsifier. Deux routes :
+3. **Les comportements n'ont pas de définition opératoire.** Le vocabulaire
+   existe — annulé, mangé, rechargé — mais nommer n'est pas définir. Tant que ce
+   n'est pas écrit, il n'y a rien à entraîner et rien à falsifier. Deux routes :
    la littérature, puis l'observation des trajectoires brutes sur le jour de
    banc. **Jamais l'inverse** : définir après avoir regardé, c'est fabriquer une
    cible dégénérée.
+4. **Le mot « mur » n'est défini nulle part**, et il est employé partout — y
+   compris dans la question qui fonde le projet. Une définition opératoire
+   existait dans le laboratoire précédent, par quantile de la masse de bande ;
+   elle est **disponible comme point de départ et sans autorité**, et elle porte
+   une conséquence qu'il faut reprendre avec elle : définir le mur par un
+   quantile rend sa **fréquence paramétrique**, donc **le nombre de murs cesse
+   d'être un signal**. Seules leur position et leur taille relative en portent.
+   À trancher explicitement, pas à hériter en silence.
+5. **La table n'a pas de schéma** (§6). C'est le contrat entre la recherche et
+   le modèle, et il est vide.
 
 ## 12. Répartition des rôles
 
@@ -302,6 +375,7 @@ présenter à charge égale.
 |---|---|
 | ce document | en premier |
 | `01_Cahier_des_charges.md` | la méthode et les interdictions — avant de coder |
+| **`journal/` et `_recupere/lab/`, EN ENTIER** | **avant d'écrire une ligne de code.** Une demi-heure. Cette obligation n'est pas décorative : sa violation a déjà produit **trois fois** dans ce dossier une redécouverte ou une erreur factuelle — dont une consignée dans `decisions/ADR-000`, où l'auteur impute explicitement sa faute à ne pas l'avoir respectée. On y lit **pour savoir ce qui a déjà été payé**, jamais pour y citer un acquis. |
 | `FAITS.md` | la donnée et ce qu'il reste à mesurer |
 | `04_Endpoints.md` | avant toute connexion |
 | `05_Protocole_de_selection.md` | le banc — avant de proposer une grandeur |

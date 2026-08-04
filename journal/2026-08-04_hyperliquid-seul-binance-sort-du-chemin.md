@@ -84,3 +84,38 @@ qui n'existe pas aujourd'hui.
   plus le projet.
 
 Rien n'est effacé. La phase P7 reste lisible, barrée, avec sa raison.
+
+---
+
+## ⚠️ ERRATA du 04/08/2026, 23 h 50 — cette décision est RENVERSÉE
+
+**Le texte ci-dessus n'est pas réécrit** : c'est un rapport, il porte une
+décision datée, et l'effacer détruirait la trace. Mais **il ne fait plus foi.**
+
+**La décision inverse a été prise le même jour** : Hyperliquid est le
+**laboratoire** — c'est là que la vérité se fabrique — et **Binance est le marché
+et le produit**. La traversée HL → Binance n'est pas une phase optionnelle :
+**c'est le programme.** P7 est de retour dans le chemin critique.
+
+Ce qui fait foi désormais : `00_Prompt_MapDee.md` §2 et
+`01_Cahier_des_charges.md` §2.
+
+### Ce qui, de cette entrée, reste vrai et compte
+
+Les trois faiblesses qu'elle relevait n'ont pas disparu — elles deviennent des
+**risques à porter**, pas des raisons d'abandonner :
+
+* **on ne peut pas vérifier sur Binance.** Sans identité de portefeuille, la
+  vérité forte n'y est pas calculable : la traversée ne se valide jamais contre
+  la vérité, seulement contre un proxy. C'est le **plafond structurel** du
+  produit, et il est repris tel quel dans les documents de cadrage ;
+* **les deux côtés ne se recouvrent pas dans le temps** — l'archive et
+  l'enregistrement en direct ne portent pas sur la même période ;
+* **le constat qui avait tué la traversée n'a jamais été audité.** C'est le point
+  le plus important de l'entrée ci-dessus, et il devient **prioritaire** puisque
+  la traversée est de retour. Le dossier complet, avec le piège des deux nombres
+  presque identiques qui désignent des choses opposées, est dans `FAITS.md`
+  §6 bis.
+
+**Ce qui a changé n'est pas un fait, c'est un arbitrage** : le produit vit sur
+Binance, donc la traversée est dans le chemin critique — avec son plafond écrit.
