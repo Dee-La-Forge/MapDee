@@ -222,3 +222,47 @@ consignée dans `FAITS.md` §8, piège n° 9 et §13.
 
 Le point (e) du corps — la chauffe du dernier jour construit lit la veille, qui
 appartient à la réserve — **reste valable et non traité**.
+
+---
+
+## Addendum du 05/08/2026 — la convention de gel, complétée
+
+**Le corps de cet ADR n'est pas retouché.** Il portait la réserve et son
+dimensionnement. Il lui manquait **deux statuts que le code applique pourtant**,
+et cette absence bloquait trois chantiers.
+
+`05_Protocole_de_selection.md` fait du **jour de banc d'instrument** une
+condition d'arrêt explicite : *« tant que ce jour n'est pas nommé dans l'ADR,
+l'observation ne démarre pas »*. Il n'y était pas nommé. C2 était donc bloqué, et
+C3 puis C4 derrière lui. Le jour n'existait que dans un **commentaire de
+script** — ce qui n'est ni opposable, ni lisible par quelqu'un qui suit l'ordre
+de lecture.
+
+### La convention complète
+
+| jours | statut | ce qui est autorisé |
+|---|---|---|
+| **2025-12-01 → 07** | **TABLES PRINCIPALES FIGÉES** | seul le carnet profond se fabrique. Les tables d'ordres et de carnet **ne se réécrivent pas** : elles portent des contrôles croisés rendus, et les reconstruire détruirait la pièce à conviction. Le code refuse toute autre phase. |
+| **2025-12-08** | **BANC D'INSTRUMENT** | validation de l'ingestion et **observation des trajectoires brutes**. Ni certification, ni conception de grandeurs — un jour dont on a mesuré la qualité d'instrument n'est plus vierge pour un verdict. |
+| **2025-12-09 → 16** | **EXPLORATION** | libre |
+| **2025-12-17 → 23** | **RÉSERVE** | **rien, jamais** — ni construction, ni lecture, ni mesure |
+| **2025-12-24 → 31** | **EXPLORATION, ET SEULE ZONE D'EXTENSION** | ⚠️ **ni construits ni regardés** tant que l'écart-type n'a pas dit si la réserve suffit. Ce sont les seuls jours jamais regardés qui restent : les ouvrir ferme l'unique issue prévue par la règle asymétrique du corps de cet ADR. |
+
+### Ce que ça débloque et ce que ça n'autorise pas
+
+* **C2 peut démarrer** dès que le jour 08 est construit — l'observation des
+  trajectoires une par une se fait sur lui, et sur lui seul.
+* **Ça ne rend pas le jour 08 utilisable pour autre chose.** L'observation qu'on
+  y fait le consomme comme jeu vierge : aucune certification ne s'y rendra.
+* **Le code fait déjà respecter les deux gels** — la réserve et les tables
+  figées. Le banc d'instrument, lui, **n'est porté par aucune garde** : c'est une
+  convention d'usage, pas un refus. Elle tient par discipline, pas par
+  construction, et il faut le savoir.
+
+### Réserve d'honnêteté
+
+Cette convention n'est pas décidée ici : elle est **transcrite**. Elle vivait
+dans le code et dans les commentaires du lanceur, et elle vient d'une itération
+antérieure. La porter dans l'ADR la rend opposable et lisible — **ça ne la
+valide pas**. Si un jour on veut un autre découpage, il se décide, il ne se
+déduit pas de ce qui existait.
