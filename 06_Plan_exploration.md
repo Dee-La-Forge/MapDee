@@ -289,6 +289,62 @@ La décision de le construire se prend sur cette base — un témoin de plus con
 * **échec** : une méthode qui détecte dans le bras nul est **disqualifiée**, sans
   appel.
 
+### C9 — Le harnais : automatiser le banc
+
+**C'est le chantier primordial.** Le registre de `03` porte des dizaines de
+grandeurs, et il faut **toutes** les explorer — à cinq résolutions, sur deux
+symboles. À la main, c'est infaisable ; sans elles, rien n'arrive dans la carte.
+
+**Ce qui rend l'automatisation possible** : aucune des cinq épreuves ne demande
+un jugement. Chacune est un calcul à seuil fixe, et les seuils sont gravés
+d'avance. C'est exactement pour ça qu'ils l'ont été.
+
+| étage | ce qui est mécanique |
+|---|---|
+| **É0** | corrélation de rang entre candidats, deux à deux → doublons fondus |
+| **É1** | déjà répondu dans la fiche → une lecture |
+| **É2** | corrélation de rang contre les candidats retenus |
+| **É3** | la même grandeur aux cinq résolutions → comparaison des signes et des rangs |
+| **É4** | gain incrémental, IC de Student sur les jours, nul par décalage circulaire, réplication |
+
+**Les quatre pièces à construire, dans cet ordre** :
+
+1. **Le générateur synthétique.** Un carnet fabriqué qui émet **exactement le
+   schéma de `deep`** — sinon une méthode validée sur synthétique ne tournerait
+   pas telle quelle sur décembre, et le banc ne testerait rien. Il émet
+   **l'observable et la vérité séparément** : la méthode ne voit que
+   l'observable, le banc compare à la vérité. Déterministe à graine fixée, sans
+   quoi le bras nul n'est pas comparable au bras injecté.
+   Sa grille doit être **identique à celle de la production** — vérifié par un
+   test qui compare bit à bit, jamais par un import de l'archive.
+2. **Le registre des grandeurs.** La machine à états de la boucle : une ligne
+   par candidat, son état, et **le chiffre qui l'a fait tomber**. En ajout seul,
+   jamais en effacement. Il porte aussi le **nombre de candidats déclaré avant
+   le premier calcul** — c'est la première protection contre la multiplicité.
+   Sans ce fichier, « quoi ensuite » redevient un jugement, et une session
+   retestera ce qu'une autre a déjà éliminé.
+3. **Les cinq épreuves**, chacune avec son seuil et son refus. Une épreuve
+   échouée arrête le candidat et écrit sa ligne.
+4. **Le préflight.** Il refuse de démarrer si l'arbre git est sale, si le
+   protocole n'est pas commité, si le périmètre touche un jour gelé, si un
+   dossier porte deux générations, ou si un fichier obligatoire manque. **Il ne
+   prévient pas, il bloque** — une règle en prose n'a jamais arrêté personne.
+
+**Ce qui ne dépend pas des données** : les quatre pièces se construisent et se
+testent **sur carnet fabriqué**, où la vérité est connue. Elles peuvent donc
+être écrites pendant que la construction tourne.
+
+**Ce qui dépend des définitions** : É3 et É4 ne peuvent pas s'exécuter avant que
+la cible n'ait sa définition opératoire (C3). Le harnais s'écrit avant, il ne
+tourne qu'après.
+
+* **entrée** : les fiches de `03`, et rien d'autre pour construire.
+* **sortie** : une boucle qui prend une fiche, la passe par les cinq épreuves,
+  écrit son verdict et son chiffre au registre, et enchaîne — jusqu'à ce qu'un
+  critère d'arrêt la termine.
+* **échec** : si une épreuve ne peut pas être rendue mécanique sans arbitrage,
+  c'est le protocole qu'il faut corriger, pas le harnais qu'il faut assouplir.
+
 ### C5 — Protagonistes *(parallèle, ne dépend d'aucun verrou)*
 
 * **entrée** : les transactions avec identité — déjà captées, jamais lues.
@@ -410,7 +466,9 @@ C1 instrument ──► C2 regarder ──► C3 écrire et geler ──► C4 b
    ├──► C6 incertitude ─────────────────────────────────────────────► BANC RÉEL
    ├──► C7 présence                                                    É0 → É4
    ├──► C5 protagonistes   (parallèle, ne dépend de rien)
-   └──► C8 traversée       (parallèle, papier, semaine 1)
+   ├──► C8 traversée       (parallèle, papier, semaine 1)
+   └──► C9 harnais         (parallèle — s'écrit sur synthétique,
+                            ne tourne qu'après C3)
 ```
 
 Cinq règles qui ne se contournent pas :
@@ -424,6 +482,9 @@ Cinq règles qui ne se contournent pas :
   sont **ni construits ni regardés** avant que l'écart-type ne soit connu. Un
   jour regardé ne peut plus entrer dans la réserve : construire tout d'un coup
   fige la réserve à sa taille initiale **par défaut, pas par décision**.
+* **C9 s'écrit pendant la construction.** Le harnais ne dépend d'aucune
+  donnée pour être écrit — seulement pour tourner. L'écrire plus tard, c'est
+  attendre les définitions les bras croisés, puis attendre le harnais.
 * **C8 avant qu'une grandeur ne coûte cher.** Une grandeur qui ne traverse pas
   n'a pas à franchir É2, É3 ou É4 avant qu'on l'apprenne.
 
