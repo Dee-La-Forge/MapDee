@@ -58,7 +58,23 @@ param(
 # une construction de 32 h ne doit pas dependre de son ordre.
 $PY = "C:\Python\Python310\python.exe"
 
+# ⚠️ DEFAUT CORRIGE LE 05/08/2026, demontre par execution lors de l'audit.
+# Si `$PY` n'existe pas, `&` leve une CommandNotFoundException : le programme
+# n'est JAMAIS lance, donc `$LASTEXITCODE` n'est pas mis a jour — il vaut encore
+# 0, herite de la commande precedente. Les deux blocs passaient, le script
+# imprimait « termine », code de sortie 0, ET RIEN N'ETAIT CONSTRUIT. Pire, le
+# message d'erreur ne partait pas dans le journal.
+# Un controle qui ne peut pas echouer ne protege pas.
+if (-not (Test-Path $PY)) {
+    Write-Error "REFUS : interpreteur introuvable a '$PY'. Rien n'est lance."
+    exit 1
+}
+
 $DEPOT = "C:\Users\DyBoo\Desktop\-MapDee-"
+if (-not (Test-Path "$DEPOT\data\l4\openbook-202512\book_diffs_202512.tar")) {
+    Write-Error "REFUS : archive source introuvable. Rien n'est lance."
+    exit 1
+}
 $env:GON_OPENBOOK_SRC = "$DEPOT\data\l4\openbook-202512"
 $env:GON_OPENBOOK_OUT = "$DEPOT\data\openbook"
 $env:GON_DEEP_MS      = $DeepMs
