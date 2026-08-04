@@ -1,0 +1,10 @@
+data/
+__pycache__/
+*.pyc
+
+# sorties de calcul : regenerables, jamais versionnees
+*.parquet
+_lot*.log
+
+# le store du recorder ne vit pas dans le depot
+_recupere/recorder/store/
