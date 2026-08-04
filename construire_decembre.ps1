@@ -90,8 +90,8 @@ foreach ($coin in $Coins) {
         Out-File $log -Append -Encoding utf8
     if ($LASTEXITCODE -ne 0) { Note "ECHEC sur 01-07 $coin (code $LASTEXITCODE) — arret"; exit 1 }
 
-    Note "--- $coin  08-16 et 24-31  phase=all ---"
-    & $PY construit/lot.py --coin $coin --jours 20251208..20251216 20251224..20251231 2>&1 |
+    Note "--- $coin  08-16  phase=all  (TRANCHE 1 SEULE) ---"
+    & $PY construit/lot.py --coin $coin --jours 20251208..20251216 2>&1 |
         Out-File $log -Append -Encoding utf8
     if ($LASTEXITCODE -ne 0) { Note "ECHEC sur 08-31 $coin (code $LASTEXITCODE) — arret"; exit 1 }
 }

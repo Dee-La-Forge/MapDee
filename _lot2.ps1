@@ -1,3 +1,20 @@
+# ============================================================================
+# SCRIPT NEUTRALISE LE 05/08/2026 — NE PAS EXECUTER
+#
+# Il construit 20251225 a 20251231 : la ZONE D'EXTENSION DE LA RESERVE.
+# `decisions/ADR-000` ne peut agrandir la reserve qu'avec des jours JAMAIS
+# REGARDES, et ces huit jours sont les seuls qui restent. Les construire ferme
+# l'unique issue prevue par la regle, definitivement.
+#
+# Il n'exporte NI GON_DEEP_MS NI GON_DEEP_BAND : il fabriquerait une seconde
+# generation d'artefacts sous des parametres abandonnes.
+#
+# Conserve pour la trace, jamais reecrit. Le lanceur en vigueur est
+# `construire_decembre.ps1`.
+# ============================================================================
+Write-Error "REFUS : _lot2.ps1 est neutralise. Il detruirait l'extension de reserve prevue par ADR-000 et fabriquerait une generation d'artefacts abandonnee. Utiliser construire_decembre.ps1."
+exit 1
+
 # Lot 2 — les 21 jours restants de decembre, BTC.
 #
 # Attend la fin du lot 1 (deux rejeux simultanes se disputent le disque et le

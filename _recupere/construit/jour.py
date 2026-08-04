@@ -292,24 +292,52 @@ def parametres_courants() -> dict:
 
 
 def _ecris_manifestes(day: str, coin: str, phase: str,
-                      stats: dict | None = None) -> int:
-    """Un manifeste par artefact reellement present sur le disque.
+                      stats: dict | None = None,
+                      produits: set[str] | None = None) -> int:
+    """Un manifeste UNIQUEMENT pour les artefacts que CETTE passe a produits.
 
-    On ne declare pas ce qu'on a voulu ecrire, on decrit ce qui existe :
-    `--phase deep` n'ecrit pas `hl_book`, et un jour rejoue sans statuts n'a
-    pas de `hl_orders`. `ecris` rend None sur un artefact absent, donc la
-    boucle est naturellement juste.
+    ⚠️ DEFAUT CORRIGE LE 05/08/2026, trouve par audit adversarial.
+
+    La version precedente tamponnait les trois `kind` des qu'ils existaient sur
+    le disque. Conséquence mesurée : sous `--phase deep` — la PREMIERE commande
+    du lanceur sur les jours figes — `hl_orders` et `hl_book` existent deja mais
+    n'ont pas ete produits par la passe. Leurs manifestes etaient ECRASES et
+    re-tamponnes avec le commit du jour, la phase courante et des parametres qui
+    ne les ont pas produits.
+
+    Le hash restant juste, `verifie()` aurait repondu OK : c'etait un mensonge
+    de PROVENANCE, pas d'integrite — la categorie la plus difficile a rattraper,
+    parce que rien ne la signale.
+
+    `produits` porte les `kind` que la passe a reellement ecrits. En son
+    absence on ne devine pas : on n'ecrit rien.
     """
+    if not produits:
+        print("  -> manifestes : AUCUN (la passe ne declare aucun artefact "
+              "produit)", flush=True)
+        return 0
+
     src_diffs = SRC / "book_diffs_202512.tar"
     src_ord = SRC / f"{coin.lower()}_orders_202512.tar.xz"
+    entrees_par_kind = {"hl_orders": [src_ord],
+                        "hl_book": [src_diffs],
+                        "deep": [src_diffs]}
     n = 0
-    for kind, entrees in (("hl_orders", [src_ord]),
-                          ("hl_book", [src_diffs]),
-                          ("deep", [src_diffs])):
-        if empreinte.ecris(_cible(kind, day, coin), kind=kind, jour=day,
-                           coin=coin, phase=phase,
+    for kind in ("hl_orders", "hl_book", "deep"):
+        if kind not in produits:
+            continue
+        cible = _cible(kind, day, coin)
+        # Garde de provenance : on ne remplace jamais un manifeste RECONSTITUE
+        # sans avoir produit l'artefact. Ici on l'a produit, donc on remplace —
+        # mais on le dit, parce qu'une provenance qui change doit se voir.
+        anc = empreinte.lis(cible)
+        if anc is not None and anc.get("reconstitue"):
+            print(f"     {kind} : manifeste reconstitue remplace par une "
+                  f"provenance reelle", flush=True)
+        if empreinte.ecris(cible, kind=kind, jour=day, coin=coin, phase=phase,
                            parametres=parametres_courants(),
-                           entrees=entrees, stats=stats or {}) is not None:
+                           entrees=entrees_par_kind[kind],
+                           stats=stats or {}) is not None:
             n += 1
     return n
 
@@ -755,7 +783,17 @@ def build(day: str, coin: str, phase: str = "all") -> dict:
     # Un artefact sans manifeste est indistinguable d'un artefact construit
     # sous un autre reglage : meme nom, meme schema, sens different. Ecrit
     # APRES fermeture des fichiers — on hache ce qui est sur le disque.
-    n_man = _ecris_manifestes(day, coin, phase, stats)
+    #
+    # `produits` = ce que CETTE passe a reellement ecrit, et rien d'autre.
+    # `deep` est toujours emis (l'objet du rejeu) ; `hl_book` seulement hors
+    # `--phase deep` ; `hl_orders` seulement si `refaire_orders` etait vrai —
+    # sinon le fichier existait deja complet et la passe ne l'a pas touche.
+    produits = {"deep"}
+    if phase != "deep":
+        produits.add("hl_book")
+    if refaire_orders:
+        produits.add("hl_orders")
+    n_man = _ecris_manifestes(day, coin, phase, stats, produits=produits)
     stats["manifestes"] = n_man
     print(f"  -> manifestes : {n_man} ecrits", flush=True)
     return stats
