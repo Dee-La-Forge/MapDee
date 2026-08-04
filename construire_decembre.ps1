@@ -28,9 +28,24 @@
 # REGLAGE `deep` : passe en parametre, mesure sur le banc (jour 08) le
 # 04/08/2026. Voir `journal/` pour le verdict et son critere pre-enregistre.
 
+# REGLAGE ARRETE LE 04/08/2026.
+#
+# DeepMs = 250 — MESURE. L'emission de `deep` est imbriquee sous la porte de
+#   `hl_book` : a 250 ms elle sort a CHAQUE photo du carnet (verifie,
+#   deep_snaps == book_snaps a l'unite). Descendre plus bas ne donne rien de
+#   plus sans toucher `SNAP_MIN_MS`, qui porte sa propre justification.
+#
+# DeepBand = 0.10 — DECISION, pas mesure. C'est le SEUL choix irreversible de
+#   la construction : on retrecit toujours a la lecture, on n'elargit jamais
+#   sans refaire les 48 constructions. Et la bande d'etude autour de laquelle
+#   on serait tente de retrecir est une HYPOTHESE heritee d'un ADR sans
+#   autorite — la graver serait graver l'hypothese.
+#   Cout assume : ~2x le temps de rejeu et ~42 Go, contre ~15 Go en etroit.
+#   Contrepartie : une vue etroite se derive de la large en quelques minutes,
+#   l'inverse est impossible.
 param(
     [string]$DeepMs   = "250",
-    [string]$DeepBand = "0.02",
+    [string]$DeepBand = "0.10",
     [string[]]$Coins  = @("BTC", "ETH")
 )
 
