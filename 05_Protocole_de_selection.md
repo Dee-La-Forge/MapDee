@@ -185,6 +185,13 @@ connue. Ils **ré-encodaient la même chose dans une autre langue**.
 référence part vide et grandit au fil du banc — on n'importe aucune conclusion
 d'une itération antérieure.
 
+**Le bloc ne part pas vide de témoin** (correction du 05/08, audit de Meddy —
+I.7) : le **témoin trivial** déclaré pour É4 y entre dès le départ. Un candidat
+corrélé à `|ρ| ≥ 0,70` avec la masse brute au palier **est** une redite de
+présence, et c'est exactement ce qu'É2 doit attraper. Le correctif d'É4 ne
+réparait qu'une des deux épreuves qui souffraient du même défaut. Le témoin
+reste non retenable — entrer dans le bloc de référence n'est pas être retenu.
+
 Comme É0, É2 est une corrélation : il **touche du marché**. Même règle — le
 **périmètre minimal** déclaré dans la fiche avant le calcul, jamais la réserve.
 Le même périmètre sert à É0 et à É2 pour un candidat donné.
@@ -219,6 +226,14 @@ demandée. Voir §9.
    `≥ 0,60`.
 
 Une seule échelle qui change de signe → **éliminée**.
+
+⚠️ **Contesté avant gel** (audit du 05/08, I.9) : le barreau à **100 ms** tombe
+dans l'interdécile de la cadence de **blocs** de la place (~87 ms, `FAITS` §2) —
+à cette résolution, une part de ce qui varie est la **discrétisation de la
+place**, pas le phénomène, et c'est ce barreau qui sert de **référence** au
+critère de rang. À arbitrer par ADR avant le premier passage d'É3 : échelle la
+plus fine = **grille de blocs native** (événementielle), pas un bin mural de
+100 ms.
 
 ### É4 — Apporte-t-elle quelque chose, en plus du reste ?
 

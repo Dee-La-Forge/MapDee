@@ -266,3 +266,35 @@ dans le code et dans les commentaires du lanceur, et elle vient d'une itération
 antérieure. La porter dans l'ADR la rend opposable et lisible — **ça ne la
 valide pas**. Si un jour on veut un autre découpage, il se décide, il ne se
 déduit pas de ce qui existait.
+
+
+---
+
+## Addendum n° 2 du 05/08/2026 — le périmètre de σ, corrigé (audit de Meddy)
+
+**Le corps n'est pas retouché.** Sa décision (b) disait : σ mesuré « sur les
+seuls jours d'exploration — `20251209-16` et `20251224-31` ». Deux défauts,
+trouvés par l'audit du 05/08 :
+
+* **circularité (I.3)** — le plan interdit de toucher 24-31 tant que σ n'est
+  pas connu ; (b) voulait pourtant les compter dans σ. Les deux règles étaient
+  incompatibles, **et c'est le document qui engage qui portait la version
+  cassée** ;
+* **puissance (I.4)** — exclure 01-08 sans raison écrite laissait σ sur
+  **8 jours** (IC de σ à un rapport haut/bas de **3,1**) au lieu de **16**
+  (rapport **2,1**). Cet ADR rejetait à raison un σ à 4 jours parce qu'il
+  dimensionnait « à un facteur 6,6 » ; sa propre clause menait à 3,1. La
+  frontière du 09 venait d'un ADR d'archive **sans autorité**.
+
+**Décision (b), version corrigée — formulation de Meddy :**
+
+> **σ se mesure sur les jours d'exploration effectivement construits, hors
+> zone d'extension.**
+
+Elle casse la circularité, récupère jusqu'à 16 jours, et ne suppose rien de ce
+que le code refuse d'écrire.
+
+**Réserve à porter avec la mesure** : si la grandeur journalière dont on prend
+l'écart-type consomme les tables `hl_*` des jours 01-07, celles-ci sont d'une
+**génération antérieure** (piège du mélange, `FAITS` §8 n° 9). Dans ce cas σ se
+restreint aux jours homogènes — et le dit dans son rapport.

@@ -34,8 +34,11 @@ dépense.
 
 **Rappel des deux barres** que rien ne contourne. É1 : sans `oid`, sans identité,
 sans cycle de vie, dans un navigateur, et sous la dégradation du démon —
-2 500 ms, filtre `v > médiane`, 500 paliers. É2 : gain **incrémental** par-dessus
-le bloc de persistance, jamais la performance isolée. C'est cette seconde barre
+2 500 ms, filtre `v > médiane`, 500 paliers. É2 : **corrélation de rang**
+avec les candidats déjà retenus, témoin trivial inclus (barres 0,50 / 0,70) — le
+gain incrémental, c'est **É4**, pas É2. *(Corrigé le 05/08 : ce rappel décrivait
+É2 avec la définition d'É4, et « le bloc de persistance » n'existe pas dans
+`05`.)* C'est cette seconde barre
 qui a tué la sonologie, avec des descripteurs qui battaient pourtant la meilleure
 grandeur connue **isolément**.
 
@@ -175,6 +178,9 @@ muet sur le réapprovisionnement.
 - **définition** — analyse de survie sur la durée de vie du palier, **sous
   censure** (voir F3). Décliné par covariable : masse relative, distance au prix,
   approche en cours.
+  **Entrée au banc (correction du 05/08, II.2)** : soumise comme **écart à sa
+  ligne de base**, pas comme taux brut — un mécanisme de seuil doit entrer
+  monotone, sinon le contrôle de rang d'É4 l'élimine à tort.
 - **observable** — au niveau du palier : les diffs suffisent. Au niveau de
   l'ordre : `oid` et cycle de vie, donc L4.
 - **à l'exécution** — c'est la question qu'on se pose vraiment devant un mur :
@@ -325,6 +331,8 @@ d'une série.
   à revenir à son état après une perturbation.
 - **définition** — croissance de l'autocorrélation à retard court et de la
   variance de la masse de bande, sur une fenêtre glissante.
+  **Entrée au banc (correction du 05/08, II.2)** : l'**écart** de ces deux
+  grandeurs à leur ligne de base glissante — même raison que B1.
 - **observable** — la série de masse.
 - **à l'exécution** — un signal d'**avertissement**, pas d'entrée : il dit de
   réduire la taille, pas de prendre position.
@@ -339,6 +347,8 @@ d'une série.
 - **mesure** — la disparition d'un mur en déclenche-t-elle d'autres ?
 - **définition** — distribution de la taille des grappes de disparitions
   rapprochées dans le temps et l'espace des prix.
+  **Entrée au banc (correction du 05/08, II.2)** : la **taille de grappe**,
+  quantité déjà monotone — même raison que B1.
 - **observable** — la décomposition A3, sur toute la bande.
 - **à l'exécution** — c'est le scénario du coût extrême : le slippage n'est pas
   la somme des paliers traversés si les suivants s'effacent à l'approche.

@@ -153,3 +153,26 @@ une hypothèse.
 * utiliser le taux d'annulation comme discriminant ;
 * conclure sans intervalle de confiance ;
 * nommer une intention.
+
+
+---
+
+## Addendum du 05/08/2026 — le nul du §7 portait un mauvais nom (audit de Meddy)
+
+**Aucun classement n'a encore été calculé** : cette correction précède tout
+usage du nul — elle ne suit aucun résultat.
+
+Le §7 nommait « décalage circulaire » un réappariement de portefeuilles entre
+périodes. **C'est une permutation d'étiquettes** : les portefeuilles n'ont pas
+d'ordre naturel, et décaler circulairement une liste arbitraire, c'est la
+permuter. La procédure reste la bonne — pour tester la persistance, casser le
+lien d'identité est le bon nul — mais la raison du « jamais i.i.d. » (préserver
+l'autocorrélation **temporelle**) ne s'applique pas ici : le lien détruit n'en a
+pas. Le §7 se lit donc : **nul = permutation d'étiquettes, appariée** — et le
+nom « décalage circulaire » ne doit pas être recopié ailleurs sur la foi de ce
+protocole.
+
+Et le facteur à contrôler réellement est nommé : **tous les portefeuilles
+partagent les mêmes jours** — un facteur de marché commun peut gonfler la
+persistance apparente. Le placebo apparié en activité y répond en partie ; la
+part restante est **publiée comme réserve** avec le résultat de persistance.

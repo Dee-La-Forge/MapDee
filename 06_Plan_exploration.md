@@ -189,6 +189,15 @@ en semaine 1 : sans lui, on peut finir la phase avec des mécanismes établis,
 avec intervalle de confiance, répliqués sur deux symboles, et **tous
 inutilisables** parce qu'ils n'existent pas côté Binance.
 
+### Correction du 05/08 — C8 ne porte pas H2
+
+Une version antérieure inscrivait C8 en atténuation de H2. **C'est faux** : C8
+est du papier — il répond « cette grandeur est-elle *calculable* sans le L4 »,
+pas « la *trace survit*-elle », qui est empirique et testable **après H1**
+seulement. C8 atténue l'admissibilité et le volet papier de H3. **H2 n'a pas de
+chantier dédié**, et il ne faut pas croire ce risque traité : son test est celui
+du §2 — retirer les colonnes L4 et mesurer ce qui reste de la trace.
+
 ---
 
 ## 5. Les verrous
@@ -329,6 +338,14 @@ d'avance. C'est exactement pour ça qu'ils l'ont été.
    protocole n'est pas commité, si le périmètre touche un jour gelé, si un
    dossier porte deux générations, ou si un fichier obligatoire manque. **Il ne
    prévient pas, il bloque** — une règle en prose n'a jamais arrêté personne.
+
+   **Correction du 05/08 (audit, I.5)** : le préflight passe **EN TÊTE des
+   quatre pièces**, pas en quatrième — la seule construction jamais lancée l'a
+   été avec `sale=True`, **consigné et non bloqué** : démonstration
+   expérimentale de la règle qu'il incarne. Et son contrôle d'arbre propre doit
+   **exclure les chemins de sortie déclarés** (le journal de construction
+   s'écrit en continu), sinon il s'interbloque pendant toute construction
+   longue.
 
 **Ce qui ne dépend pas des données** : les quatre pièces se construisent et se
 testent **sur carnet fabriqué**, où la vérité est connue. Elles peuvent donc
