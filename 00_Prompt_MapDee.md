@@ -392,15 +392,46 @@ présenter à charge égale.
 
 ## 13. Ordre de lecture
 
+> **`ETAT.md` se lit juste après ce document, et avant tout le reste.** Il dit
+> où en est le projet, **ce qui bloque**, et **ce qui n'est pas établi malgré
+> les apparences**. Ce document-ci dit ce qu'on cherche ; `ETAT.md` dit ce qu'on
+> peut faire aujourd'hui. Sans lui, une session part sur des chiffres qu'elle
+> croira acquis.
+
 | | quand |
 |---|---|
-| ce document | en premier |
+| ce document | **en premier** — l'objectif et les règles |
+| **`ETAT.md`** | **en second, toujours** — les blocages, l'état matériel, et ce qui n'est pas établi |
+| `06_Plan_exploration.md` | **le plan de travail** — les chantiers, leur ordre, les critères d'arrêt |
 | `01_Cahier_des_charges.md` | la méthode et les interdictions — avant de coder |
-| **`journal/` et `_recupere/lab/`, EN ENTIER** | **avant d'écrire une ligne de code.** Une demi-heure. Cette obligation n'est pas décorative : sa violation a déjà produit **trois fois** dans ce dossier une redécouverte ou une erreur factuelle — dont une consignée dans `decisions/ADR-000`, où l'auteur impute explicitement sa faute à ne pas l'avoir respectée. On y lit **pour savoir ce qui a déjà été payé**, jamais pour y citer un acquis. |
-| `FAITS.md` | la donnée et ce qu'il reste à mesurer |
-| `04_Endpoints.md` | avant toute connexion |
+| `FAITS.md` | la donnée, et surtout **ce qu'il reste à mesurer** |
 | `05_Protocole_de_selection.md` | le banc — avant de proposer une grandeur |
+| `03_EconoPhysique.md` | le registre des grandeurs candidates — dès qu'on cherche un candidat |
+| `chantiers/` | les protocoles pré-enregistrés, un par chantier |
 | `decisions/` | les ADR de MapDee |
-| `03_EconoPhysique.md` | au moment de P3 seulement |
-| `02_Resultats_de_test.md` | **ne pas lire pour se documenter.** Chiffres des itérations de test, sur un instrument reconstruit depuis : **aucun n'a valeur de fait**. Il ne sert qu'à une chose — savoir ce qui avait été trouvé avant, quand on vient de re-mesurer la même grandeur et qu'on veut comparer. Jamais comme point de départ. |
-| `_recupere/lab/` | archives des dépôts morts — sans autorité, à consulter, jamais à citer comme acquis |
+| `04_Endpoints.md` | avant toute connexion |
+| `journal/` | les entrées datées — **on y lit pour savoir ce qui a déjà été payé**, jamais pour y citer un acquis |
+| `02_Resultats_de_test.md` | **ne pas lire pour se documenter.** Chiffres des itérations de test, sur un instrument reconstruit depuis : **aucun n'a valeur de fait**. Il ne sert qu'à comparer, après avoir re-mesuré. Jamais comme point de départ. |
+| `_recupere/` | **archive de dépôts morts. Aucune autorité.** On y va chercher une pièce précise quand on en a besoin, et on ressort. **On ne l'audite pas, on ne le répare pas** — ce qui doit vivre dans MapDee est réécrit, pas rapiécé. Ses faits d'instrument sont déjà extraits dans `FAITS.md`. |
+
+## 14. La première tâche
+
+**Ne code rien.** Lis dans l'ordre ci-dessus, puis rends quatre choses :
+
+1. **Les blocages que tu peux lever seul**, parmi les dix de `ETAT.md` §1, et
+   dans quel ordre.
+2. **Ce qui te manque pour lever les autres** — précisément : une définition, une
+   décision produit, une mesure.
+3. **Ce que tu comptes faire en premier**, et pourquoi celui-là plutôt qu'un
+   autre.
+4. **Ce que tu penses être faux dans ces documents.**
+
+Le point 4 n'est pas une politesse. **Tu cherches les erreurs avant les
+performances, tu remets en question les hypothèses — y compris celles de ces
+documents et celles de Meddy — et tu considères toute hypothèse non démontrée
+comme fausse jusqu'à preuve du contraire.**
+
+Et la faute à ne pas commettre, parce qu'elle a déjà été commise ici : **ne
+présente pas comme vérifié ce que tu as seulement regardé.** Un constat sur un
+document se vérifie en ouvrant le fichier. Un chiffre mesuré sur la donnée de ce
+dépôt n'est pas établi tant que l'instrument qui l'a produit n'a pas été audité.
