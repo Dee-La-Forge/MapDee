@@ -48,6 +48,7 @@ from sortedcontainers import SortedList
 ICI = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ICI))
 
+from construit import empreinte                                  # noqa: E402
 from construit.openbook import (Mapdir, decode_px,               # noqa: E402
                                 read_diffs, read_statuses)
 from construit.grille import BIN_REL, nice                       # noqa: E402
@@ -116,8 +117,42 @@ OPEN = 1
 # demarrage a froid : `plan` rejoue les `WARMUP_H` dernieres heures de la VEILLE
 # en partant d'un dictionnaire VIDE (`book = {}`). Un ordre pose l'avant-veille
 # et jamais retouche reste invisible. L'avantage se mesure, il ne se decrete pas.
-DEEP_MS = 10_000      # cadence de l'archive de production
-DEEP_BAND = 0.10      # nappe +/- 10 % du mid
+#
+# LES DEUX SONT SURCHARGEABLES, et ils doivent l'etre — audit du 04/08/2026.
+#
+# `DEEP_MS` : le protocole de selection (`05_Protocole_de_selection.md`, E3)
+# exige la meme grandeur a 100 ms, 500 ms, 1 s, 5 s et 20 s. Une constante en
+# dur rendait cette epreuve inexecutable, et un mois entier a ete construit
+# a 10 s avant qu'on ne le voie.
+#
+# ATTENTION, ce parametre a un PLAFOND qui n'est pas le sien. L'emission de
+# `deep` est imbriquee sous la porte de `hl_book` (voir plus bas, ligne ~600) :
+# elle ne peut sortir qu'aux instants ou `hl_book` prend deja une photo. Avec
+# `SNAP_MIN_MS = 250` comme plancher dur et une cadence `hl_book` mesuree a
+# 718 ms de moyenne (120 433 photos le 20251216, BTC), descendre `DEEP_MS`
+# sous 250 ne donne RIEN de plus : on obtient « a chaque photo du carnet »,
+# pas 100 ms. C'est ce qui explique le defaut deja consigne au programme :
+# `dt` median de `deep` = 10 366 ms pour DEEP_MS = 10 000, l'excedent de
+# 366 ms etant l'attente de la photo suivante (demi-periode = 359 ms).
+# Pour descendre plus bas il faut toucher `SNAP_MIN_MS`, qui porte sa propre
+# mesure — c'est une autre decision, et elle passe par un ADR.
+#
+# `DEEP_BAND` : mesure du 04/08 sur `deep_20251216_BTC.parquet` (3,5 M lignes,
+# 911 photos), part des lignes conservees selon la bande gardee —
+#
+#     +/-0,80 % (DIST_MAX)   638 paliers/photo   16,6 % des lignes
+#     +/-1,5 %              1 134                29,5 %
+#     +/-2,0 %              1 467                38,2 %
+#     +/-10 % (l'ancien)    3 845               100 %
+#
+# — soit 83,4 % des lignes archivees HORS de la bande d'etude. On payait une
+# cadence grossiere pour stocker ce qu'aucune mesure ne regarde.
+DEEP_MS = int(os.environ.get("GON_DEEP_MS", "10000"))
+DEEP_BAND = float(os.environ.get("GON_DEEP_BAND", "0.10"))
+# Les DEFAUTS ne changent pas : un artefact construit sans variable d'env
+# garde exactement le sens qu'il avait avant l'audit. Le nouveau reglage se
+# demande explicitement, et le manifeste l'enregistre — sinon deux
+# generations de `deep` deviennent indiscernables sur le disque.
 DEEP_LOT = 400        # photos par groupe de lignes ecrit sur disque
 
 # ---------------------------------------------------------------- jours geles
@@ -243,6 +278,40 @@ def _cible(kind: str, day: str, coin: str) -> Path:
     d = OUT / kind / "parts"
     d.mkdir(parents=True, exist_ok=True)
     return d / f"{kind}_{day}_{coin}.parquet"
+
+
+def parametres_courants() -> dict:
+    """Les constantes qui changent le SENS d'un artefact sans changer son schema.
+
+    Un `deep` a +/-2 % et un `deep` a +/-10 % ont les memes colonnes. Sans ce
+    dictionnaire dans le manifeste, rien sur le disque ne les distingue.
+    """
+    return {"DEEP_MS": DEEP_MS, "DEEP_BAND": DEEP_BAND, "WARMUP_H": WARMUP_H,
+            "BIN_REL": BIN_REL, "SNAP_MS": SNAP_MS, "SNAP_MIN_MS": SNAP_MIN_MS,
+            "LEVELS": LEVELS, "DEEP_LOT": DEEP_LOT}
+
+
+def _ecris_manifestes(day: str, coin: str, phase: str,
+                      stats: dict | None = None) -> int:
+    """Un manifeste par artefact reellement present sur le disque.
+
+    On ne declare pas ce qu'on a voulu ecrire, on decrit ce qui existe :
+    `--phase deep` n'ecrit pas `hl_book`, et un jour rejoue sans statuts n'a
+    pas de `hl_orders`. `ecris` rend None sur un artefact absent, donc la
+    boucle est naturellement juste.
+    """
+    src_diffs = SRC / "book_diffs_202512.tar"
+    src_ord = SRC / f"{coin.lower()}_orders_202512.tar.xz"
+    n = 0
+    for kind, entrees in (("hl_orders", [src_ord]),
+                          ("hl_book", [src_diffs]),
+                          ("deep", [src_diffs])):
+        if empreinte.ecris(_cible(kind, day, coin), kind=kind, jour=day,
+                           coin=coin, phase=phase,
+                           parametres=parametres_courants(),
+                           entrees=entrees, stats=stats or {}) is not None:
+            n += 1
+    return n
 
 
 def fusionne(kind: str, day: str) -> dict:
@@ -681,6 +750,14 @@ def build(day: str, coin: str, phase: str = "all") -> dict:
           f"{deep.n_photos:,} photos · {stats['deep_mo']} Mo "
           f"({deep.n_lignes / max(deep.n_photos, 1):.0f} paliers/photo)",
           flush=True)
+
+    # ---- 4. MANIFESTES -----------------------------------------------------
+    # Un artefact sans manifeste est indistinguable d'un artefact construit
+    # sous un autre reglage : meme nom, meme schema, sens different. Ecrit
+    # APRES fermeture des fichiers — on hache ce qui est sur le disque.
+    n_man = _ecris_manifestes(day, coin, phase, stats)
+    stats["manifestes"] = n_man
+    print(f"  -> manifestes : {n_man} ecrits", flush=True)
     return stats
 
 

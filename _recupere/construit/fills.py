@@ -232,6 +232,15 @@ def build(day: str, coin: str) -> dict:
         "oid": pa.array(oid_l, pa.int64()),
     }), _cible("hl_fills", day, coin), compression="zstd")
 
+    # Manifeste : meme regle que `jour.py`. Un artefact sans manifeste est
+    # indistinguable d'un artefact d'une autre generation.
+    from construit import empreinte
+    from construit.jour import parametres_courants
+    empreinte.ecris(_cible("hl_fills", day, coin), kind="hl_fills", jour=day,
+                    coin=coin, phase="fills",
+                    parametres=parametres_courants(),
+                    entrees=[SRC / "trades_2025_12.tar"])
+
     mk_a, tk_a = np.array(ec_mk), np.array(ec_tk)
     return {
         "jour": day, "coin": coin, "trades": len(tr), "lignes": n,

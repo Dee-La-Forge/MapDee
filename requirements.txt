@@ -1,0 +1,35 @@
+# Python 3.10.7 (C:\Python\Python310\python.exe)
+#
+# Versions EXACTES installees et verifiees le 04/08/2026 a 21 h 55 : imports,
+# relecture d'un parquet `deep` (32 492 831 lignes) et selftest des 5
+# garde-fous passes sous ces versions. Ce ne sont pas les seules qui
+# marchent, ce sont les seules qui ont ete eprouvees. Les epingler evite de
+# decouvrir une difference de comportement de `pivot_table` ou de
+# `groupby.quantile` au milieu d'une mesure.
+#
+#     python -m venv .venv
+#     .venv/Scripts/activate        # Windows
+#     pip install -r requirements.txt
+#
+# Sans pyarrow, TOUT echoue des la premiere lecture :
+#     ImportError: Unable to find a usable engine ... pyarrow
+#
+# PLAFOND PYTHON 3.10 : numpy, pandas et scipy sont deja a leur derniere
+# version compatible ; les suivantes exigent Python >= 3.11. Changer
+# d'interpreteur est une decision separee — elle invalide les empreintes des
+# artefacts construits sous celui-ci.
+numpy==2.2.6
+pandas==2.3.3
+pyarrow==25.0.0
+scipy==1.15.3
+
+# `construit/` seulement (fabrication des parquets depuis l'archive brute).
+# Le carnet est rejoue ordre par ordre : il faut les meilleurs prix a chaque
+# diff, donc une liste TRIEE avec insertion et retrait en O(log n). Un tri a
+# chaque photo coutait le rejeu entier.
+sortedcontainers==2.4.0
+
+# `recorder/` seulement (acquisition temps reel). Sans eux aucun adapter ne
+# s'importe : `adapters/base.py` et `adapters/*.py`.
+orjson==3.11.9
+websockets==16.1.1
