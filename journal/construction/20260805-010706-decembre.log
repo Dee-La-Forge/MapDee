@@ -15,3 +15,26 @@
   statuts 06h : 3,528,844 (cumul 32,778,859) [table deja ecrite]
   statuts 07h : 3,445,803 (cumul 36,224,662) [table deja ecrite]
   statuts 08h : 3,196,479 (cumul 39,421,141) [table deja ecrite]
+  statuts 09h : 3,327,155 (cumul 42,748,296) [table deja ecrite]
+  statuts 10h : 2,258,201 (cumul 45,006,497) [table deja ecrite]
+  statuts 11h : 2,812,713 (cumul 47,819,210) [table deja ecrite]
+  statuts 12h : 5,195,978 (cumul 53,015,188) [table deja ecrite]
+  statuts 13h : 5,426,758 (cumul 58,441,946) [table deja ecrite]
+  statuts 14h : 6,912,889 (cumul 65,354,835) [table deja ecrite]
+  statuts 15h : 8,765,379 (cumul 74,120,214) [table deja ecrite]
+  statuts 16h : 7,704,332 (cumul 81,824,546) [table deja ecrite]
+  statuts 17h : 6,034,626 (cumul 87,859,172) [table deja ecrite]
+  statuts 18h : 5,501,033 (cumul 93,360,205) [table deja ecrite]
+  statuts 19h : 5,479,018 (cumul 98,839,223) [table deja ecrite]
+  statuts 20h : 5,810,256 (cumul 104,649,479) [table deja ecrite]
+  statuts 21h : 4,846,298 (cumul 109,495,777) [table deja ecrite]
+  statuts 22h : 3,452,518 (cumul 112,948,295) [table deja ecrite]
+  statuts 23h : 3,080,808 (cumul 116,029,103) [table deja ecrite]
+  -> hl_orders : 116,029,103 lignes en 622.3s
+  diffs 01/00h (chauffe) : 5,017,557 À ordres 5,078 À prix 1562/1614 À photos 0
+  diffs 01/01h (chauffe) : 3,925,304 À ordres 6,739 À prix 2379/1740 À photos 0
+  diffs 01/02h (chauffe) : 3,082,417 À ordres 7,613 À prix 2578/1725 À photos 0
+  diffs 01/03h (chauffe) : 3,027,446 À ordres 8,395 À prix 2711/2117 À photos 0
+  diffs 01/04h (chauffe) : 3,075,503 À ordres 8,928 À prix 2840/2266 À photos 0
+  diffs 01/05h (chauffe) : 2,605,900 À ordres 9,926 À prix 3336/2281 À photos 0
+  diffs 01/06h (chauffe) : 2,593,502 À ordres 10,564 À prix 3620/2395 À photos 0
