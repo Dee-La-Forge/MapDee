@@ -34,6 +34,15 @@ param(
     [string[]]$Coins  = @("BTC", "ETH")
 )
 
+# INTERPRETEUR EXPLICITE, jamais `python` du PATH. Le journal du 04/08 (§4.9)
+# rapporte qu'une iteration precedente a du tourner sous Anaconda 3.12
+# (pyarrow 16.1 / pandas 2.1.1 / numpy 1.26.2) faute de pyarrow sous 3.10 —
+# et c'est cet environnement-la que decrivait le premier `requirements.txt`.
+# Aujourd'hui `python` resout bien vers 3.10.7 et aucun Anaconda n'est
+# installe (verifie le 04/08/2026), mais un PATH est une variable de session :
+# une construction de 32 h ne doit pas dependre de son ordre.
+$PY = "C:\Python\Python310\python.exe"
+
 $DEPOT = "C:\Users\DyBoo\Desktop\-MapDee-"
 $env:GON_OPENBOOK_SRC = "$DEPOT\data\l4\openbook-202512"
 $env:GON_OPENBOOK_OUT = "$DEPOT\data\openbook"
@@ -62,12 +71,12 @@ foreach ($coin in $Coins) {
     # 01-07 : `hl_*` figes (controles croises rendus dessus), seul `deep`
     # se fabrique. `lot.py` refuserait `--phase all` sur ces jours.
     Note "--- $coin  01-07  phase=deep ---"
-    & python construit/lot.py --coin $coin --jours 20251201..20251207 --phase deep 2>&1 |
+    & $PY construit/lot.py --coin $coin --jours 20251201..20251207 --phase deep 2>&1 |
         Out-File $log -Append -Encoding utf8
     if ($LASTEXITCODE -ne 0) { Note "ECHEC sur 01-07 $coin (code $LASTEXITCODE) — arret"; exit 1 }
 
     Note "--- $coin  08-16 et 24-31  phase=all ---"
-    & python construit/lot.py --coin $coin --jours 20251208..20251216 20251224..20251231 2>&1 |
+    & $PY construit/lot.py --coin $coin --jours 20251208..20251216 20251224..20251231 2>&1 |
         Out-File $log -Append -Encoding utf8
     if ($LASTEXITCODE -ne 0) { Note "ECHEC sur 08-31 $coin (code $LASTEXITCODE) — arret"; exit 1 }
 }
