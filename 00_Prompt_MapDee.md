@@ -170,28 +170,49 @@ se convertir en profit pour valoir.
 
 ## 5. La matière première
 
-`03_EconoPhysique.md` catalogue les concepts. Ce n'est **pas** un plan : c'est le
-réservoir dans lequel les candidats sont puisés. Les familles qui portent le
-sujet : flux et conservation · potentiel et paysage d'énergie · entropie et
-information · files d'attente et hazard rate · processus auto-excités ·
-résilience et rhéologie · diffusion et temps de premier passage · criticité et
-transitions de phase · absorption.
+`03_EconoPhysique.md` est le **registre des grandeurs candidates**. Reformaté le
+05/08/2026 : ce n'était qu'un empilement de sessions — des centaines de noms,
+classés en étoiles attribuées par intuition, le même objet revenant sous six
+vocabulaires. Il est maintenant un registre de **fiches**, au format du banc, et
+l'ancien catalogue est conservé **intégralement en annexe** : rien n'est
+supprimé, tout est rangé, et une fusion se conteste en revenant lire le texte
+d'origine.
 
-Trois avertissements, qui comptent autant que la liste :
+**Ce n'est toujours pas un plan.** Une fiche déposée n'est pas une grandeur
+retenue : elle est admise à passer le banc.
 
-* le catalogue classe ses concepts **par intuition**, ce que la méthode interdit ;
-* il escalade **par nouveauté** plutôt que par pertinence ;
-* il compte beaucoup de doublons — le même objet sous plusieurs noms. C'est
-  l'épreuve É0 du banc qui les fond.
+Sept blocs, et leur ordre est celui de l'**utilité à l'exécution**, jamais celui
+de la nouveauté :
 
-**Ne pas confondre quatre choses** que le catalogue traite comme
-interchangeables : une **feature** va en P3 · un **contrôle d'instrument**
-(l'équation de continuité : elle ferme ou elle ne ferme pas) va en P1 · une
-**unité de sortie** va en P8 · un **critère de falsification** est transverse.
+| | |
+|---|---|
+| **A · le flux** | ce qui décide du mouvement — le bloc qui répond à la question du projet, et celui dont la plus grande part traverse |
+| **B · la vie et la mort d'un mur** | disparition, résilience, réapprovisionnement, absorption |
+| **C · la forme du carnet** | concentration, courbure, diffusion |
+| **D · le régime** | quand le système bascule |
+| **E · les protagonistes** | **tout le bloc est marqué « ne traverse pas »** — il fabrique la vérité, il ne s'affichera jamais |
+| **F · les contrôles** | **ce ne sont PAS des features.** Elles ne prédisent rien : elles disent si l'instrument ment |
+| **G · le cadre** | ce qui conditionne l'usage de tout le reste |
 
-Et le meilleur du catalogue n'est pas une feature : c'est la **renormalisation**.
+**Trois choses que le registre impose, et qui sont plus importantes que la
+liste :**
+
+* **chaque fiche porte une ligne « à l'exécution »** — ce que la grandeur change
+  quand on doit poster, retirer ou traverser. **Si cette ligne est vide, la fiche
+  ne sert pas au produit.** C'est ce critère, et pas l'élégance, qui a écarté des
+  familles entières empruntées à d'autres disciplines. Une seule ligne suffirait
+  à les rouvrir.
+* **chaque fiche porte son verdict de traversée**, rempli à la déclaration et pas
+  après. C'est ce qui rend l'épreuve d'admissibilité gratuite.
+* **ne pas confondre quatre choses** que l'ancien catalogue traitait comme
+  interchangeables : une **feature** va en P3 · un **contrôle d'instrument**
+  (l'équation de continuité : elle ferme ou elle ne ferme pas) va en P1 · une
+  **unité de sortie** va en P8 · un **critère de falsification** est transverse.
+
+Et le meilleur du registre n'est pas une feature : c'est la **renormalisation**.
 Un vrai phénomène survit au changement d'échelle. C'est la seule ligne qui
-protège au lieu de proposer un calcul de plus, et c'est devenu l'épreuve É3.
+protège au lieu de proposer un calcul de plus, et c'est devenu une épreuve du
+banc.
 
 Aucun concept n'entre sur son élégance. Chacun dépose sa fiche et passe le banc.
 

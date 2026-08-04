@@ -36,12 +36,23 @@ le prix, où il va, et pourquoi il y va.**
 Un candidat se déclare **avant d'être calculé**, par une fiche de quatre lignes :
 
 ```
-nom          :
-définition   :  la formule, sans ambiguïté
-ce qu'elle   :  en une phrase, quel mécanisme elle prétend capter
-  prétend       et pourquoi ce ne serait pas déjà capté par un candidat retenu
-coût         :  temps de calcul par jour de données
+nom            :
+mesure         :  ce que la grandeur capte, en une phrase
+définition     :  la formule ou la règle, sans ambiguïté
+observable     :  ce qu'il faut avoir pour la calculer
+à l'exécution  :  ce que ça change quand on doit poster, retirer ou traverser
+É1             :  traverse / traverse dégradée / fabrique la vérité seulement
+redite         :  de quoi elle est probablement le doublon
+coût           :  temps de calcul par jour de données
 ```
+
+**La ligne « à l'exécution » est un critère de mort, pas une description.**
+Si elle est vide, la fiche ne sert pas au produit — elle propose une analogie,
+pas une grandeur. Une seule ligne suffit à rouvrir un concept écarté : qu'on
+démontre ce qu'il change quand on doit poster, retirer ou traverser.
+
+**La ligne « É1 » est remplie à la fiche, pas après.** C'est ce qui rend
+l'épreuve É1 gratuite : elle est déjà répondue quand le candidat se présente.
 
 **Pas de fiche, pas de test.** Une grandeur définie après coup n'est pas un
 candidat, c'est un résultat déguisé.
@@ -249,6 +260,34 @@ n'est pas un gain.
 > gain simulé. Décision du 04/08/2026 : le projet cherche des **mécanismes**, pas
 > un outil de trading. Une explication n'a pas à se convertir en profit pour
 > valoir.
+
+### La multiplicité — le défaut qui ne se voit dans aucun candidat pris seul
+
+**Défaut identifié le 05/08/2026.** Il ne se corrige pas dans É4, il se corrige
+**au niveau de la collection**, et sans lui le banc fabrique des découvertes.
+
+On jugera **plusieurs dizaines de candidats**, sur **cinq résolutions**, sur
+**deux ou trois symboles**. À seuil nominal de 5 %, **un test sur vingt ressort
+« significatif » en l'absence totale de phénomène — mécaniquement.** Avec une
+soixantaine de candidats, l'espérance est de trois faux positifs, et ils seront
+présentés comme des découvertes puisque chacun aura son intervalle de confiance
+en règle.
+
+**Trois protections, toutes obligatoires :**
+
+1. **Le nombre de candidats est déclaré AVANT** le premier calcul du banc, et
+   inscrit au registre. On ne découvre pas à la fin combien de tests ont été
+   faits. Tout candidat ajouté après coup **rouvre le compte** et le déclare.
+2. **Contrôle du taux de fausses découvertes sur la collection**, pas seulement
+   un IC par candidat. Le seuil s'applique à l'ensemble des candidats jugés à
+   É4, résolutions et symboles compris.
+3. **É0 pris au sérieux**, parce qu'il change le compte : fondre les doublons
+   réduit le nombre de tests **réellement indépendants**. Une collection de
+   soixante candidats dont quarante sont des synonymes n'est pas soixante tests.
+
+**Ce que ça interdit** : présenter un candidat comme retenu sur son seul IC, sans
+dire contre combien d'autres il a été mis en concurrence. Le nombre de
+concurrents fait partie du résultat.
 
 ---
 
