@@ -132,4 +132,24 @@ foreach ($coin in $Coins) {
     if ($LASTEXITCODE -ne 0) { Note "ECHEC sur 08-31 $coin (code $LASTEXITCODE) — arret"; exit 1 }
 }
 
-Note "=== termine ==="
+# VERIFICATION DE COMPLETUDE (05/08/2026). Le run de 02:44 a imprime
+# « termine » apres avoir SAUTE les deux lots 08-16 — cause non prouvee
+# (hypothese : le script a ete edite pendant qu'il tournait ; regle adoptee :
+# ne plus JAMAIS editer un script en cours d'execution). Un « termine » qui
+# ne verifie pas ce qui existe sur le disque est un mensonge en puissance :
+# celui-ci compte les artefacts deep attendus et echoue bruyamment s'il en
+# manque un seul.
+$manquants = @()
+foreach ($coin in $Coins) {
+    foreach ($j in 1..16) {
+        $jour = "202512{0:d2}" -f $j
+        $p = "$DEPOT\data\openbook\deep\parts\deep_${jour}_${coin}.parquet"
+        if (-not (Test-Path $p)) { $manquants += "$jour $coin" }
+        elseif (-not (Test-Path "$p.manifest.json")) { $manquants += "$jour $coin (manifeste)" }
+    }
+}
+if ($manquants.Count -gt 0) {
+    Note "TERMINE INCOMPLET : $($manquants.Count) artefact(s) manquant(s) - $($manquants -join ', ')"
+    exit 1
+}
+Note "=== termine - 32/32 artefacts verifies sur disque ==="
