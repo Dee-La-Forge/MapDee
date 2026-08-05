@@ -185,6 +185,30 @@ physique**, absents de la liste de Meddy comme du catalogue :
 9. côté vérité : **inventaire des teneurs** (E7 naturel) et **métaordres /
    loi en racine carrée** — exigent l'identité, notre avantage comparatif.
 
+**Troisième balayage (06/08, sur consigne « ne rien laisser au hasard ») —
+par les données possédées et par la surveillance de marché, pas par les
+théories** :
+
+10. **le flux REJETÉ** — 70 Go d'ordres rejetés déjà sur disque
+    (`*_rejected_202512.tar.xz`), l'ombre des intentions qui n'atteignent
+    pas le carnet — exploité nulle part, possédé ici ;
+11. **divergence oracle/mark ↔ carnet** — le déclencheur mécanique des
+    liquidations (complète la famille perpétuels n° 5) ;
+12. **taille moyenne d'ordre au palier** (`mag/n` — la colonne `n` de `deep`
+    est déjà extraite) : l'ombre publique de la fragmentation E3, promue
+    candidate ;
+13. vérité : **wash-trading/self-fills** (même wallet des deux côtés — une
+    jointure) et **signatures de cadence par wallet** (empreintes d'algos,
+    C5 étape 2) ;
+14. **intensité de messages par palier** (quote stuffing — le voisin public
+    d'A6, sans estimation Hawkes) ;
+15. **détection séquentielle de ruptures** (CUSUM/SPRT — la surveillance
+    industrielle, distincte de D1) ;
+16. **dépendance de queue entre côtés** (copules — risque de redite, É0
+    tranchera) ;
+17. **contrôle F manquant : saisonnalité intrajournalière** — pas une
+    feature, une désaisonnalisation due à toute grandeur à ligne de base.
+
 Entrée au banc uniquement par fiche complète (ligne « à l'exécution »
 obligatoire), et tout ajout **rouvre le compte D10 et le dit**. La TDA reste
 écartée, porte ouverte au premier énoncé actionnable.
