@@ -191,7 +191,17 @@ théories** :
 
 10. **le flux REJETÉ** — 70 Go d'ordres rejetés déjà sur disque
     (`*_rejected_202512.tar.xz`), l'ombre des intentions qui n'atteignent
-    pas le carnet — exploité nulle part, possédé ici ;
+    pas le carnet — exploité nulle part, possédé ici. **Instruit le 06/08
+    contre le SCHEMA.md** : chaque enregistrement porte wallet, prix,
+    taille, côté ET le motif — cinq capteurs s'y accrochent :
+    `badAloPxRejected` = courses perdues des makers (intention + vitesse
+    par wallet) · `iocCancelRejected` = agression insatisfaite (invisible
+    de la bande des transactions) · `perpMarginRejected`/`perpMaxPosition`
+    = stress de marge, capteur AMONT des liquidations (famille n° 5/11) ·
+    et dans le flux ACCEPTÉ déjà scanné : `selfTradeCanceled` = marqueur
+    moteur du wash-adjacent (n° 13 trouve son code), `scheduledCancel`/
+    `triggered` = empreintes d'outillage des algos. Aucune littérature
+    établie — les bourses ne publient jamais ce flux ;
 11. **divergence oracle/mark ↔ carnet** — le déclencheur mécanique des
     liquidations (complète la famille perpétuels n° 5) ;
 12. **taille moyenne d'ordre au palier** (`mag/n` — la colonne `n` de `deep`
