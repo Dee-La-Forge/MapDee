@@ -470,6 +470,14 @@ n'y figurent pas (ils n'apparaîtront qu'aux jours 08-16, phase `all`) ; et la
 chauffe (les 8 premières heures du jour) n'est pas **isolée** dans le poste
 reconstruction — le log ne la chronomètre pas séparément.
 
+**Ajout du 05/08, ~15 h 30 — le premier jour `phase=all` mesuré**
+(`20251208` BTC, le jour de banc, chauffe par veille réelle) : scan des
+statuts 766 s (94,5 M lignes) · reconstruction + écriture `hl_book` **et**
+`deep` 3 914 s (122 191 photos — journée plus dense que le jour 1) · total
+**~80 min**. Le poste « écriture des tables de statuts » reste non mesuré
+(tables déjà écrites pour 08-16 aussi). Extrapolation tranche 1 confirmée :
+fin du lot BTC ~04 h, signal J3 (ETH 09-11) **~06 h 30-07 h**.
+
 | poste (inchangé, non remesuré) | ordre de grandeur |
 |---|---|
 | ajouter un troisième symbole | +~50 % du mois |
