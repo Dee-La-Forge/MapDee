@@ -19,9 +19,10 @@
 
 ## Comment lire une fiche
 
-Chaque fiche porte six lignes fixes. Les trois premières sont exigées par le
-protocole ; les trois autres sont le pré-tri, fait sur papier, avant toute
-dépense.
+Chaque fiche porte **huit lignes fixes** *(complétées le 05/08/2026 — blocage
+B5 : `05` exige `coût` et le périmètre minimal déclarés dans la fiche avant
+tout calcul)*. Les trois premières sont exigées par le protocole ; les
+suivantes sont le pré-tri, fait sur papier, avant toute dépense.
 
 | ligne | contenu |
 |---|---|
@@ -31,6 +32,18 @@ dépense.
 | **à l'exécution** | ce que ça change quand on doit poster, retirer ou traverser — **si cette ligne est vide, la fiche ne sert pas au produit** |
 | **É1** | ✅ traverse vers Binance · ⚠️ traverse dégradée · ❌ fabrique la vérité seulement |
 | **redite** | de quoi elle est probablement le doublon, à mesurer en É0 / É2 |
+| **coût** | temps de calcul par jour-symbole. **Estimation a priori, pas une mesure** : déclarée pour départager en É0, corrigée dans la fiche à la première exécution |
+| **périmètre minimal** | sur quoi É0 et É2 tournent pour ce candidat — déclaré ici, **avant** le calcul, et il ne s'étend pas après avoir vu un résultat |
+
+**Les deux périmètres déclarés**, communs à É0 et É2, **jamais la réserve**
+(17-23) :
+
+* **J3** — les trois premiers jours d'exploration de la tranche 1 : **9, 10,
+  11 décembre 2025**, BTC et ETH. Le défaut.
+* **J8** — les huit jours d'exploration de la tranche 1 : **9 à 16 décembre
+  2025**, BTC et ETH. Réservé aux grandeurs d'événements rares ou de régime,
+  qui n'auraient aucun contenu sur trois jours — le choix se justifie dans la
+  fiche, d'avance.
 
 **Rappel des deux barres** que rien ne contourne. É1 : sans `oid`, sans identité,
 sans cycle de vie, dans un navigateur, et sous la dégradation du démon —
@@ -73,6 +86,9 @@ part traverse.
   se calcule des deux côtés, sans identité, en quelques opérations par événement.
 - **redite** — faible avec la persistance. C'est un flux, pas un état — c'est
   précisément ce qui la rend intéressante.
+- **coût** — estimé : une passe linéaire sur les diffs, quelques opérations par
+  événement — **minutes** par jour-symbole.
+- **périmètre minimal** — **J3**.
 
 ---
 
@@ -90,6 +106,9 @@ part traverse.
   mesurer, pas à supposer.
 - **redite** — faible. C'est la variante qui vaut le plus dans tout le catalogue,
   parce qu'elle est la seule à être **locale au mur** et non globale au carnet.
+- **coût** — estimé : la même passe qu'A1 restreinte à une fenêtre de paliers,
+  mais il faut d'abord situer le mur — **minutes** par jour-symbole.
+- **périmètre minimal** — **J3**.
 
 ---
 
@@ -111,6 +130,12 @@ part traverse.
   la décomposition est-elle reconstructible en croisant les transactions agrégées
   et les diffs de profondeur ? Si oui, le socle du produit traverse.
 - **redite** — aucune. Rien d'autre dans ce registre ne fait cette distinction.
+- **coût** — estimé : une passe sur les diffs croisés aux exécutions, par
+  palier — **minutes à dizaines de minutes** par jour-symbole selon la
+  profondeur de bande. Point de repère, pas une mesure du même objet : la
+  mesure C8.2 du 05/08 a fait l'équivalent Binance d'un jour complet en
+  quelques minutes.
+- **périmètre minimal** — **J3**.
 
 ---
 
@@ -126,6 +151,10 @@ part traverse.
 - **É1** — ✅ **traverse**, trivialement.
 - **redite** — faible, mais **attention** : c'est un déséquilibre statique, donc
   probablement corrélé au bloc de présence. À mesurer en É2.
+- **coût** — estimé : le haut du carnet seulement — **secondes** par
+  jour-symbole. Le moins cher du registre, ce qui en fait le départage d'É0
+  contre tout doublon.
+- **périmètre minimal** — **J3**.
 
 ---
 
@@ -142,6 +171,10 @@ part traverse.
   à 2 500 ms, la partie courte du noyau — celle qui coûte le plus — est perdue.
   Calibrable hors ligne, applicable en direct sous forme figée.
 - **redite** — faible.
+- **coût** — estimé : la passe sur exécutions et prix est en **minutes**, mais
+  la **calibration du noyau** est un ajustement — **dizaines de minutes** par
+  jour-symbole, la plus chère du bloc A hors A6.
+- **périmètre minimal** — **J3**.
 
 ---
 
@@ -160,6 +193,11 @@ part traverse.
   détruisent. Reclassable en ⚠️ **si et seulement si** le pipeline d'acquisition
   change — c'est une des deux branches ouvertes du chantier C7.
 - **redite** — faible, mais l'estimation est fragile et coûteuse.
+- **coût** — estimé : estimation par vraisemblance sur de l'événementiel —
+  **heures** par jour-symbole. Hors ligne par construction (É1 ❌) : ce coût ne
+  pèse sur aucun jour d'exploration tant que C7 n'a pas changé l'acquisition.
+- **périmètre minimal** — **J3**, si un jour reclassée ⚠️ par C7. Sans objet
+  d'ici là.
 
 ---
 
@@ -190,6 +228,9 @@ muet sur le réapprovisionnement.
   garder distinctes, ne jamais les nommer pareil.
 - **redite** — forte avec la persistance : c'en est presque la définition
   différentielle. É2 sera sévère, et c'est normal.
+- **coût** — estimé : durées de vie de paliers sous censure (F3 obligatoire) —
+  **dizaines de minutes** par jour-symbole, l'estimateur de survie compris.
+- **périmètre minimal** — **J3**.
 
 ---
 
@@ -204,6 +245,9 @@ muet sur le réapprovisionnement.
   prix de toutes les suivantes.
 - **É1** — ✅ **traverse.**
 - **redite** — moyenne à forte avec la persistance. À mesurer avant, pas après.
+- **coût** — estimé : détection des événements puis fenêtre de retour par
+  palier — **minutes** par jour-symbole.
+- **périmètre minimal** — **J3**.
 
 ---
 
@@ -222,6 +266,10 @@ muet sur le réapprovisionnement.
   registre : elle complète le tiers manquant du vocabulaire visuel, elle
   traverse, et elle n'est pas de la persistance.
 - **redite** — aucune. Absente de l'ancien catalogue.
+- **coût** — estimé : une passe sur la sortie d'A3 pour apparier les cycles
+  exécution → recharge — **minutes** par jour-symbole, **une fois A3 payée** :
+  le coût réel est porté par A3, sa dépendance déclarée.
+- **périmètre minimal** — **J3**.
 
 ---
 
@@ -239,6 +287,12 @@ muet sur le réapprovisionnement.
 - **redite** — ⚠️ **piège connu** : cette grandeur partage son terme d'exécution
   avec la cible d'apprentissage. Ce n'est **pas** un second témoin indépendant.
   À traiter comme une **unité de sortie** (P8), pas comme une feature.
+- **coût** — estimé : **minutes** par jour-symbole une fois le contact défini —
+  mais la fiche est **incalculable tant que « contact » n'a pas de définition
+  opératoire** (blocage B7) : le vrai coût est là, pas dans le calcul.
+- **périmètre minimal** — **J8** : les contacts francs sur un mur jugé sont des
+  événements rares, trois jours n'en porteraient pas assez pour une corrélation
+  de rang. Déclaré d'avance pour cette raison, pas après un résultat.
 
 ---
 
@@ -254,6 +308,9 @@ muet sur le réapprovisionnement.
 - **É1** — ✅ traverse.
 - **redite** — faible. C'est une grandeur de **calibration d'horizon** plus qu'un
   signal, et c'est comme ça qu'il faut s'en servir.
+- **coût** — estimé : le prix seul, distribution de délais d'atteinte —
+  **secondes à minutes** par jour-symbole.
+- **périmètre minimal** — **J3**.
 
 ---
 
@@ -281,6 +338,10 @@ de ce bloc ne passe É2 sans un gain incrémental démontré.
 - **redite** — **forte**. C'est le représentant unique retenu pour toute une
   famille : entropie, énergie libre, flatness, indices de désordre, information
   de Fisher. É0 les fond ici.
+- **coût** — estimé : un indice par photo de la bande — **minutes** par
+  jour-symbole. Herfindahl et part du premier décile d'abord ; l'entropie
+  n'apporte que si les deux versions bon marché échouent.
+- **périmètre minimal** — **J3**.
 
 ---
 
@@ -297,6 +358,9 @@ de ce bloc ne passe É2 sans un gain incrémental démontré.
 - **redite** — **forte**. Représentant unique pour : courbure locale, potentiel,
   champ de forces, paysage énergétique, élasticité, pression mécanique, tension
   de surface, énergie stockée. Neuf noms, un calcul.
+- **coût** — estimé : deux dérivées discrètes du profil cumulé par photo —
+  **minutes** par jour-symbole.
+- **périmètre minimal** — **J3**.
 
 ---
 
@@ -314,6 +378,9 @@ de ce bloc ne passe É2 sans un gain incrémental démontré.
 - **É1** — ✅ traverse.
 - **redite** — **forte**. Représentant unique pour : Hurst, DFA, multifractales,
   dimension de corrélation, fractalité.
+- **coût** — estimé : déplacement quadratique moyen sur le prix seul, une
+  poignée d'horizons — **secondes** par jour-symbole.
+- **périmètre minimal** — **J3**.
 
 ---
 
@@ -339,6 +406,11 @@ d'une série.
 - **É1** — ⚠️ à mesurer sous dégradation.
 - **redite** — représentant unique pour : transitions de phase, bifurcations,
   catastrophes, Freidlin–Wentzell, grandes déviations.
+- **coût** — estimé : autocorrélation et variance sur fenêtre glissante —
+  **minutes** par jour-symbole.
+- **périmètre minimal** — **J8** : une grandeur de régime n'a de contenu que si
+  la fenêtre contient au moins un changement de régime — trois jours peuvent
+  n'en porter aucun. Déclaré d'avance pour cette raison.
 
 ---
 
@@ -355,6 +427,10 @@ d'une série.
 - **É1** — ⚠️ dépend de la finesse temporelle disponible.
 - **redite** — représentant unique pour : percolation, avalanches
   auto-organisées, réseaux de réaction, fracture, milieux granulaires.
+- **coût** — estimé : grappes de disparitions sur la sortie d'A3, toute la
+  bande — **dizaines de minutes** par jour-symbole, une fois A3 payée.
+- **périmètre minimal** — **J8** : les grappes de taille non triviale sont des
+  événements rares — même raison que D1, déclarée d'avance.
 
 ---
 

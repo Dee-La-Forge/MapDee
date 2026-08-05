@@ -8,7 +8,7 @@
 
 ---
 
-## 1. LES BLOCAGES — trois restants sur neuf
+## 1. LES BLOCAGES — deux restants sur neuf : B2 (arbitrage de Meddy) et B7 (définitions)
 
 > **Révision du 05/08/2026.** Une version antérieure listait dix blocages, dont
 > **deux étaient déjà résolus par le commit qui les écrivait** — « le plan n'est
@@ -29,7 +29,7 @@ documents eux-mêmes comme des conditions d'arrêt.
 | **B2** | **Trois documents donnent trois réponses à « que puis-je lancer ? »** | `05` §2 dit rien · `05` §9 et `06` V1 disent jusqu'à É2 · `06` V2 dit jusqu'à É3. **La bonne réponse est « rien »** : É0 et É2 touchent du marché, et aucun jour d'exploration ne s'ouvre avant C3 gelé. ⚠️ **Cette réponse est elle-même contestée** (audit du 05/08, I.1) : lue littéralement, elle interdit C5 — lancé — **et C2, qui doit précéder C3**. Arbitrage ouvert : `decisions/ADR-002`. |
 | ~~**B3**~~ | ~~**`ADR-000` ne nomme pas le jour de banc d'instrument**~~ — **LEVÉ le 05/08**, addendum à l'ADR : la convention complète y est transcrite, C2 est débloqué. *Réserve : le banc d'instrument n'est porté par aucune garde de code, il tient par discipline.* | `05` en fait une condition d'arrêt explicite → C2 bloqué → C3 → C4 → le banc. Le jour n'est nommé que dans un **commentaire de script**. |
 | ~~**B4**~~ | ~~**`journal/registre-des-grandeurs.md` n'existe pas**~~ — **LEVÉ le 05/08** : créé, avec ses états, son format de ligne et l'emplacement du nombre de candidats à déclarer avant le premier calcul | `05` §5 : « aucun calcul ne se fait avant » son existence |
-| **B5** | **Les fiches de `03` n'ont pas les lignes qu'`05` exige** | il en manque **deux**, pas une : `coût` (règle de départage d'É0) et le **périmètre minimal**, qu'`05` exige déclaré dans la fiche avant le calcul |
+| ~~**B5**~~ | ~~**Les fiches de `03` n'ont pas les lignes qu'`05` exige**~~ — **LEVÉ le 05/08** : les 16 fiches A1-D2 portent `coût` (**estimation a priori, marquée comme telle**, corrigée à la première exécution) et `périmètre minimal` — deux périmètres nommés en tête de registre, **J3** (9-11 déc.) par défaut, **J8** (9-16 déc.) pour les grandeurs d'événements rares, jamais la réserve. *Réserve : le bloc E n'a toujours pas de fiches au format d'`05` — c'est la régularisation C5, déjà en §4.* | — |
 | ~~**B6**~~ | ~~**É2 est inerte par construction**~~ — **LEVÉ le 05/08** : le **témoin trivial entre dans le bloc d'É2 dès le départ** (audit I.7, intégré dans `05`), et É4 est débloqué par `ADR-001` — le bloc se remplit donc dès le premier tour | — |
 | **B7** | **« mur », « contact », « bande d'étude » ne sont définis nulle part** | plusieurs fiches ne sont pas calculables ; la bande pilote pourtant deux décisions de production |
 | ~~**B8**~~ | ~~**La correction de multiplicité n'a ni seuil ni procédure**~~ — **LEVÉ le 05/08** : **Benjamini-Hochberg à 10 %**, collection = **les candidats seuls** — résolutions et symboles sont des conjonctions internes, pas des tests (`ADR-001`, II.3) | échéance tenue : écrit **avant** le premier calcul d'É4 |
@@ -164,8 +164,7 @@ Tout le reste attend soit la construction, soit les définitions.
 1. ~~**Rapport C8.2** + table de traversée~~ — **FAIT le 05/08** :
    `journal/c8-rapport-20260805.md`, A3 et B3 traversent, D2 garde sa
    condition propre ;
-2. **B5** : compléter les fiches de `03` — ligne `coût` et **périmètre
-   minimal** pour chacune ;
+2. ~~**B5** : compléter les fiches de `03`~~ — **FAIT le 05/08** ;
 3. **premier jour-symbole terminé** → le vrai coût **chauffe active**, poste
    par poste → corriger `06` §8 (les extrapolations étaient fausses de 41 %) ;
 4. **fin de C5 étape 1** → déplacer les 6 dernières sorties de `chantiers/`
