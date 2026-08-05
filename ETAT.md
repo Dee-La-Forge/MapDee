@@ -84,7 +84,17 @@ n'a pas été refait et son résultat re-mesuré.
 
 ---
 
-## 3. L'état matériel au 05/08/2026
+## 3. L'état matériel au 05/08/2026, ~02 h 30 — coupure de session
+
+**Ce qui tourne** (les processus OS survivent aux coupures de session) :
+
+| | état | où regarder |
+|---|---|---|
+| **construction, tranche 1** | lancée 05/08 01:07 — jour 1/32 (`20251201 BTC`). **~40-55 h**, fin estimée 06-07/08 | `journal/construction/20260805-010706-decembre.log` |
+| **C5 étape 1** (distributions) | en cours — 10/18 jours-symboles au dernier pointage | sorties `c5_*.json` **hors dépôt**, à rapatrier à la fin : `C:\Users\DyBoo\AppData\Local\Temp\claude\C--Users-DyBoo-Desktop--MapDee-\ce1f80c4-1aa7-4580-8328-da05ae8300a8\scratchpad` |
+| **C8.2** | **TERMINÉE** — verdict pré-enregistré : **reconstructible, 4/4 cibles** (incohérence 0,06-1,20 %, seuil 50 %). Binance 10-20× plus cohérent qu'Hyperliquid. Résultats commités : `journal/c8-mesure-20260805.json` | rapport **à rédiger**, table de traversée **à mettre à jour** (A3 sort de « sous condition ») |
+
+## 3 bis. Le socle
 
 **Le pipeline** — restauré depuis git, avec la cadence paramétrable et
 l'empreinte par artefact. Il porte encore des défauts identifiés et non
@@ -93,9 +103,9 @@ d'interpréter : le taux de jointure diffs→statuts se déclare « à remesurer
 chaque heure » et n'est appelé nulle part · des lignes illisibles sont jetées
 sans compteur · un compteur de qualité mélange deux causes.
 
-**Les données** — `deep/parts/` est **vide** : les artefacts d'ancienne
-génération ont été supprimés, donc plus aucun jour ne peut être « sauté » et
-plus aucun mélange de générations n'est possible. `hl_book`, `hl_orders` et
+**Les données** — les artefacts d'ancienne génération de `deep` ont été
+supprimés (aucun saut possible, aucun mélange) ; **la construction les
+refabrique en ce moment** au réglage arrêté, manifeste par artefact. `hl_book`, `hl_orders` et
 `hl_fills` restent en place, avec leurs manifestes **non certifiés**.
 
 **Le réglage arrêté** — `DEEP_MS = 250` (mesuré : l'émission sort à chaque photo
@@ -142,6 +152,20 @@ pour être écrites — seulement pour tourner.
 Tout le reste attend soit la construction, soit les définitions.
 
 ---
+
+## 4 bis. La file de reprise — dans cet ordre
+
+1. **Rapport C8.2** dans `journal/` + table de traversée de `chantiers/C8` mise
+   à jour — **A3 traverse**, B3 et D2 en héritent en partie ;
+2. **B5** : compléter les fiches de `03` — ligne `coût` et **périmètre
+   minimal** pour chacune ;
+3. **premier jour-symbole terminé** → le vrai coût **chauffe active**, poste
+   par poste → corriger `06` §8 (les extrapolations étaient fausses de 41 %) ;
+4. **fin de C5 étape 1** → rapatrier les sorties dans le dépôt, lire les
+   garde-fous — aucun classement sans eux ;
+5. **`ADR-002`** — attend **l'arbitrage de Meddy** (B2) ;
+6. ensuite : **C0** (littérature) et la **spécification de C9** — le banc a un
+   sommet depuis `ADR-001`, C9 peut être spécifié de bout en bout.
 
 ## 5. Les décisions qui n'appartiennent pas au co-chercheur
 
