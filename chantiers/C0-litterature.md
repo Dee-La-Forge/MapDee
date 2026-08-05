@@ -241,7 +241,15 @@ théories** :
     ses ruptures comme régime ;
 24. **le contexte en cadre G** — proximité du funding, régime de vol,
     distance aux grappes de liquidation : des CONDITIONNEURS déclarables
-    par les fiches, pas des candidats.
+    par les fiches, pas des candidats ;
+25. **la part sombre locale** (question de Meddy, 06/08) — la fraction du
+    flux exécuté non expliquée par la masse affichée, par palier et par
+    fenêtre : la trace mesurable des icebergs, dérivable des termes d'A3,
+    et **déjà entr'aperçue par C8.2** (fenêtres à `e > masse affichée`).
+    À porter aussi au cadre : l'asymétrie de transparence entre le côté
+    vérité (Hyperliquid, 100 % lit) et le côté produit (Binance, icebergs
+    + OTC autour) est une facette de H2 à écrire ; et le carnet n'est pas
+    tout le marché (limite de périmètre, cadre G).
 
 Entrée au banc uniquement par fiche complète (ligne « à l'exécution »
 obligatoire), et tout ajout **rouvre le compte D10 et le dit**. La TDA reste
