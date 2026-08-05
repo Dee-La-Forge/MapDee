@@ -249,7 +249,12 @@ théories** :
     À porter aussi au cadre : l'asymétrie de transparence entre le côté
     vérité (Hyperliquid, 100 % lit) et le côté produit (Binance, icebergs
     + OTC autour) est une facette de H2 à écrire ; et le carnet n'est pas
-    tout le marché (limite de périmètre, cadre G).
+    tout le marché (limite de périmètre, cadre G). Précision du 06/08 :
+    l'OTC crypto est PLUS sombre que les dark pools actions (aucune
+    impression post-trade), mais son hedging traverse nos carnets — pour
+    A1/A3 il apparaîtra comme choc de flux sans cause visible : c'est la
+    case « résidu » du typage (`05` §9.3) qui l'attrapera, on ne
+    l'inventera pas.
 
 Entrée au banc uniquement par fiche complète (ligne « à l'exécution »
 obligatoire), et tout ajout **rouvre le compte D10 et le dit**. La TDA reste
