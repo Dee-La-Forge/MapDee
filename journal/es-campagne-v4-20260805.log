@@ -1,0 +1,27 @@
+[      0s] préflight : {'protocole_hash': 'b4b72e7'} — protocole v4 gelé (composition finale)
+[      0s] volet 1a — calibration μ⁰(absorption) : 16 nuls neufs
+[     51s]   μ⁰ appliqués : {'leurre': 0.0, 'recharge': 0.0, 'absorption': -0.368}
+[     51s] volet 1b — vérification finale : 16 nuls neufs, statistique assignée
+[    101s]   nul[leurre] : moy=-0.1376 FP=0.000 passe=True
+[    102s]   nul[recharge] : moy=-0.0004 FP=0.019 passe=True
+[    102s]   nul[absorption] : moy=-0.0017 FP=0.013 passe=True
+[    102s] volet 2 — planchers, protocole unique
+[    127s]   leurre amp=0.5 : 0.0994 (d=0.29)
+[    153s]   leurre amp=1.0 : 0.1243 (d=0.36)
+[    177s]   leurre amp=2.0 : 0.1697 (d=0.5)
+[    200s]   leurre amp=4.0 : 0.243 (d=0.74)
+[    224s]   leurre amp=8.0 : 0.3258 (d=1.05)
+[    248s]   recharge amp=0.5 : 0.1371 (d=0.52)
+[    273s]   recharge amp=1.0 : 0.2167 (d=0.86)
+[    299s]   recharge amp=2.0 : 0.4457 (d=1.8)
+[    325s]   recharge amp=4.0 : 0.6028 (d=2.29)
+[    352s]   recharge amp=8.0 : 0.6799 (d=2.92)
+[    375s]   absorption amp=0.5 : 0.4464 (d=1.33)
+[    399s]   absorption amp=1.0 : 0.6024 (d=2.62)
+[    423s]   absorption amp=2.0 : 0.7318 (d=4.27)
+[    446s]   absorption amp=4.0 : 0.833 (d=3.16)
+[    470s]   absorption amp=8.0 : 1.002 (d=5.04)
+[    470s]   PLANCHER leurre : 8.0 → ÉCARTÉ — plancher 8.0 > 2.0 (ADR-004)
+[    470s]   PLANCHER recharge : 1.0 → ADMIS
+[    470s]   PLANCHER absorption : 0.5 → ADMIS
+[    470s] terminé — C:\Users\DyBoo\Desktop\-MapDee-\journal\es-campagne-v4-20260805.json

@@ -86,3 +86,20 @@
   statuts 13h : 3,497,595 (cumul 56,784,559) [table deja ecrite]
   statuts 14h : 9,373,356 (cumul 66,157,915) [table deja ecrite]
   statuts 15h : 7,509,001 (cumul 73,666,916) [table deja ecrite]
+  statuts 16h : 5,812,259 (cumul 79,479,175) [table deja ecrite]
+  statuts 17h : 5,124,607 (cumul 84,603,782) [table deja ecrite]
+  statuts 18h : 5,223,783 (cumul 89,827,565) [table deja ecrite]
+  statuts 19h : 3,765,788 (cumul 93,593,353) [table deja ecrite]
+  statuts 20h : 4,229,374 (cumul 97,822,727) [table deja ecrite]
+  statuts 21h : 3,690,612 (cumul 101,513,339) [table deja ecrite]
+  statuts 22h : 4,897,239 (cumul 106,410,578) [table deja ecrite]
+  statuts 23h : 4,371,521 (cumul 110,782,099) [table deja ecrite]
+  -> hl_orders : 110,782,099 lignes en 788.1s
+  diffs 02/16h (chauffe) : 4,384,412 ┬À ordres 5,103 ┬À prix 1384/1644 ┬À photos 0
+  diffs 02/17h (chauffe) : 3,915,248 ┬À ordres 6,790 ┬À prix 1915/2113 ┬À photos 0
+  diffs 02/18h (chauffe) : 3,551,340 ┬À ordres 7,458 ┬À prix 2238/2130 ┬À photos 0
+  diffs 02/19h (chauffe) : 2,735,714 ┬À ordres 8,311 ┬À prix 2522/2318 ┬À photos 0
+  diffs 02/20h (chauffe) : 3,489,908 ┬À ordres 8,712 ┬À prix 2656/2548 ┬À photos 0
+  diffs 02/21h (chauffe) : 2,412,655 ┬À ordres 8,976 ┬À prix 2837/2354 ┬À photos 0
+  diffs 02/22h (chauffe) : 2,473,706 ┬À ordres 9,711 ┬À prix 3036/2450 ┬À photos 0
+  diffs 02/23h (chauffe) : 2,169,757 ┬À ordres 10,191 ┬À prix 2964/2707 ┬À photos 0

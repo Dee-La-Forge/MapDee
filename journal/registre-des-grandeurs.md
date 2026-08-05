@@ -70,6 +70,9 @@ date · nom · état · épreuve · LE CHIFFRE · périmètre · qui l'a propos�
 | date | nom | état | épreuve | chiffre | périmètre | proposée par |
 |---|---|---|---|---|---|---|
 | 2026-08-05 | T0 · masse brute au palier | témoin trivial | — | — | J3 | le protocole (`05` §4), déclaré avant tout calcul |
+| 2026-08-05 | méthode banc-v4 · détecteur absorption | ÉS | ÉS | plancher 0,5× — ADMIS (barre 2,0, ADR-004) | synthétique, 8 graines-jours | C9 harnais |
+| 2026-08-05 | méthode banc-v4 · détecteur recharge | ÉS | ÉS | plancher 1,0× — ADMIS (barre 2,0, ADR-004) | synthétique, 8 graines-jours | C9 harnais |
+| 2026-08-05 | méthode banc-v4 · détecteur leurre | ÉS | ÉS | plancher 8,0× — ÉCARTÉ (barre 2,0, ADR-004) : aucun négatif leurre interprétable | synthétique, 8 graines-jours | C9 harnais |
 
 ---
 

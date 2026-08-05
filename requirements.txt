@@ -33,3 +33,7 @@ sortedcontainers==2.4.0
 # s'importe : `adapters/base.py` et `adapters/*.py`.
 orjson==3.11.9
 websockets==16.1.1
+
+# `harnais/tests/` seulement (la suite qui prouve que les garde-fous peuvent
+# lever — 55 tests au 05/08/2026). Le harnais lui-meme n'en depend pas.
+pytest==8.4.1

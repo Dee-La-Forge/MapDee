@@ -158,9 +158,17 @@ promue hors archive (D2), garde-fous d'`05` §3, stats du banc (Spearman
 partiel, Student, BH). **54/54 tests**, dont grille et schéma vérifiés bit à
 bit contre un artefact `deep` réel. La déclaration D10 est au registre (16
 candidats + témoin T0 hors compte, fiche dans `03`).
-**Prochaine étape : la campagne ÉS** — bras nul, plancher de détection par
-mécanisme, stabilité du Spearman partiel quand le bloc grandit (incertitude
-n° 1 d'`ADR-001`) — et son chiffre de puissance en jours.
+**ÉS EST RENDUE le 05/08** (`journal/es-rapport-20260805.md`) — quatre
+itérations de méthode, chacune tranchée par son bras nul, verdict final sur
+graines neuves : **absorption ADMIS (plancher 0,5×), recharge ADMIS (1,0×),
+leurre ÉCARTÉ (8,0× > barre 2,0 d'ADR-004)** — aucun négatif leurre ne sera
+interprétable avec cette méthode. Planchers au registre. Transverses :
+l'estimateur partiel dérive en ~k/n (règle à porter dans `05` : n
+observations/jour ≥ 100 × taille du bloc, avant le premier É4 réel) ; la
+puissance dit **d ≳ 1,2 détectable sur 8 jours, 0,75 avec la tranche 2**.
+**Prochaines étapes C9** : porter la règle k/n dans `05` · le rejeu
+événementiel et l'ADR D12 pour É3 · brancher É0-É2 sur les vrais artefacts
+quand la tranche 1 finit.
 
 Tout le reste attend soit la construction, soit les définitions.
 
