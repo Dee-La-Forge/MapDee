@@ -24,7 +24,7 @@ EXPLORATION = {f"202512{d:02d}" for d in range(9, 17)}
 #: Chemins de sortie déclarés — s'écrivent PENDANT un run, exclus du contrôle
 #: d'arbre propre, sinon le préflight s'interbloque (audit I.5).
 SORTIES_DECLAREES = ("journal/construction/", "journal/registre-des-grandeurs.md",
-                    "journal/c5/")
+                    "journal/c5/", "chantiers/c5_")   # C5 écrit à côté de sa recette (ETAT §3)
 
 PROTOCOLES = ("05_Protocole_de_selection.md", "03_EconoPhysique.md",
               "decisions/ADR-001-la-metrique-de-E4.md")
