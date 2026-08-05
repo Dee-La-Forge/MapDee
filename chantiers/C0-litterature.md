@@ -219,6 +219,30 @@ théories** :
 17. **contrôle F manquant : saisonnalité intrajournalière** — pas une
     feature, une désaisonnalisation due à toute grandeur à ligne de base.
 
+**Quatrième balayage (06/08, ~02 h) — par l'adversaire et par le contexte** :
+
+18. **stop-hunting avec vérité** — le code `triggered` (9) donne la carte
+    des stops réellement déclenchés ; croisée avec l'agression qui pousse le
+    prix vers eux : le mécanisme le plus raconté du crypto, jamais mesuré
+    proprement faute de déclenchements — possédés ici ;
+19. **le consensus des 7 places** — OKX, Bybit, Coinbase dorment dans le
+    store du recorder : mid consensus, écart idiosyncratique par venue,
+    **migration de profondeur** entre carnets ;
+20. **allumage de momentum** — rafale → déclenchements → retournement : les
+    trois maillons sont dans nos données (agression, `triggered`, marge) ;
+21. **prix ronds** — l'agglutination comportementale aux nombres ronds,
+    documentée depuis des décennies, invisible depuis la physique, triviale
+    (`k` modulo la grille) ;
+22. **asymétrie du temps / effet Zumbach** — la vol grossière passée prédit
+    la fine future, pas l'inverse ; l'intention est irréversible, le bruit
+    non : retourner le film du carnet et mesurer ce qui change ;
+23. **mémoire longue des signes d'échange** — le fait le plus robuste de
+    l'économophysique (l'ombre des métaordres), sans identité requise, et
+    ses ruptures comme régime ;
+24. **le contexte en cadre G** — proximité du funding, régime de vol,
+    distance aux grappes de liquidation : des CONDITIONNEURS déclarables
+    par les fiches, pas des candidats.
+
 Entrée au banc uniquement par fiche complète (ligne « à l'exécution »
 obligatoire), et tout ajout **rouvre le compte D10 et le dit**. La TDA reste
 écartée, porte ouverte au premier énoncé actionnable.
