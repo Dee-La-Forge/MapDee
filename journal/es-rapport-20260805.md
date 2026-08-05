@@ -98,6 +98,25 @@ Trois précisions que l'audit croisé impose, par ajout :
   exercé par ÉS — la part de masse à k0 sur données réelles est publiée par
   `e0_reel` avant tout verdict.
 
+## 4 ter. LE REJUGEMENT v5 (ADR-005, unité réelle) — renversement
+
+Gamme recalée sur S1-BTC ({61…970}× = M/8…2M), barre à 485, graines de nul
+neuves (400-431), composition v4 inchangée
+(`journal/es-campagne-v5-20260805.json`, hash `cec7fc0`) :
+
+| détecteur | v4 (unité synthétique) | **v5 (unité réelle)** |
+|---|---|---|
+| leurre | écarté (plancher 8×) | **ADMIS — plancher ≤ 61 (bas de gamme), d = 1,8-4,1** |
+| recharge | admis (1,0×) | **ADMIS — plancher ≤ 61, d = 6-7** |
+| absorption | admis (0,5×) | **REJETÉ à son bras nul** : le biais de contact n'est pas une constante — μ⁰ = −0,40 (calibration) contre ≈ −0,04 (vérification), centré +0,36, FP 64 %. Le centrage à 16 graines est instable pour ce mécanisme ; la v4 avait eu de la chance de tirage |
+
+Lecture : dans l'unité réelle, les détecteurs de leurre et de recharge voient
+largement sous le niveau d'un mur mesuré ; le détecteur d'absorption exige
+une calibration de biais que 16 graines ne fournissent pas de façon stable —
+à re-concevoir (biais dépendant de la trajectoire du mid au contact), pas à
+re-tirer jusqu'à ce que ça passe. Limite doublée écrite au protocole v5 :
+lieu connu ET monde homogène — bornes optimistes.
+
 ## 5. Traces
 
 Planchers inscrits au **registre** (`05` §8 — y compris pour les admis), par

@@ -89,6 +89,9 @@ date · nom · état · épreuve · LE CHIFFRE · périmètre · qui l'a propos�
 | 2026-08-05 | C3 · diffusion anormale | déposée | — | — | J3 | 03 partie I (dépôt par la boucle) |
 | 2026-08-05 | D1 · ralentissement critique | déposée | — | — | J8 | 03 partie I (dépôt par la boucle) |
 | 2026-08-05 | D2 · cascades | déposée | — | — | J8 | 03 partie I (dépôt par la boucle) |
+| 2026-08-05 | méthode banc-v5 · détecteur leurre | ÉS | ÉS | plancher <= 61x (bas de gamme) — ADMIS (barre 485, ADR-005, unité réelle) | synthétique, 8 graines-jours | C9 harnais @cec7fc0 |
+| 2026-08-05 | méthode banc-v5 · détecteur recharge | ÉS | ÉS | plancher <= 61x (bas de gamme) — ADMIS (barre 485, ADR-005) | synthétique, 8 graines-jours | C9 harnais @cec7fc0 |
+| 2026-08-05 | méthode banc-v5 · détecteur absorption | ÉS | ÉS | REJETÉ au bras nul v5 : centrage instable (μ0 −0,40 vs −0,04 entre lots de graines), FP 64 % | synthétique, 32 nuls neufs | C9 harnais @cec7fc0 |
 
 ---
 

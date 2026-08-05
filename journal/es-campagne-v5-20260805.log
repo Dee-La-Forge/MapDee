@@ -1,0 +1,21 @@
+[      0s] préflight : {'protocole_hash': 'cec7fc0'} — v5 gelée : gamme (61, 121, 242, 485, 970), barre 485.0
+[      0s] volet 1a — calibration μ⁰(absorption) : 16 nuls neufs
+[     51s]   μ⁰ : {'leurre': 0.0, 'recharge': 0.0, 'absorption': -0.4035}
+[     51s] volet 1b — vérification : 16 nuls neufs jamais vus
+[    102s]   nul[leurre] : moy=0.0249 FP=0.029 passe=True
+[    102s]   nul[recharge] : moy=-0.1064 FP=0.000 passe=True
+[    102s]   nul[absorption] : moy=0.3643 FP=0.641 passe=False
+[    102s] volet 2 — planchers dans l'unité réelle
+[    125s]   leurre amp=61 : 0.5323 (d=1.78)
+[    147s]   leurre amp=121 : 0.5776 (d=1.97)
+[    170s]   leurre amp=242 : 0.6258 (d=2.28)
+[    193s]   leurre amp=485 : 0.6819 (d=3.05)
+[    216s]   leurre amp=970 : 0.7315 (d=4.1)
+[    239s]   recharge amp=61 : 0.7596 (d=5.96)
+[    262s]   recharge amp=121 : 0.768 (d=6.55)
+[    284s]   recharge amp=242 : 0.7723 (d=6.86)
+[    307s]   recharge amp=485 : 0.7745 (d=7.04)
+[    331s]   recharge amp=970 : 0.7755 (d=7.11)
+[    331s]   PLANCHER leurre : 61 → ADMIS
+[    331s]   PLANCHER recharge : 61 → ADMIS
+[    331s] terminé — C:\Users\DyBoo\Desktop\-MapDee-\journal\es-campagne-v5-20260805.json

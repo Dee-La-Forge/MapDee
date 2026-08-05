@@ -1,0 +1,126 @@
+{
+ "protocole": "harnais/es_campagne_v5.py — rejugement ADR-005, unité réelle S1-BTC",
+ "preflight": {
+  "protocole_hash": "cec7fc0"
+ },
+ "gamme": [
+  61,
+  121,
+  242,
+  485,
+  970
+ ],
+ "barre": 485.0,
+ "mu0": {
+  "leurre": 0.0,
+  "recharge": 0.0,
+  "absorption": -0.4035
+ },
+ "bras_nul": {
+  "leurre": {
+   "moyenne": 0.0249,
+   "fp": 0.029,
+   "passe": true
+  },
+  "recharge": {
+   "moyenne": -0.1064,
+   "fp": 0.0,
+   "passe": true
+  },
+  "absorption": {
+   "moyenne": 0.3643,
+   "fp": 0.641,
+   "passe": false
+  }
+ },
+ "arms": {
+  "leurre": {
+   "61": {
+    "moyenne": 0.5323,
+    "d": 1.78,
+    "p": 0.0015040120557472795,
+    "ecartes": 0,
+    "detecte": true
+   },
+   "121": {
+    "moyenne": 0.5776,
+    "d": 1.97,
+    "p": 0.0008370708161913441,
+    "ecartes": 0,
+    "detecte": true
+   },
+   "242": {
+    "moyenne": 0.6258,
+    "d": 2.28,
+    "p": 0.00034603703303629223,
+    "ecartes": 0,
+    "detecte": true
+   },
+   "485": {
+    "moyenne": 0.6819,
+    "d": 3.05,
+    "p": 5.653421846100322e-05,
+    "ecartes": 0,
+    "detecte": true
+   },
+   "970": {
+    "moyenne": 0.7315,
+    "d": 4.1,
+    "p": 8.052197627993236e-06,
+    "ecartes": 0,
+    "detecte": true
+   }
+  },
+  "recharge": {
+   "61": {
+    "moyenne": 0.7596,
+    "d": 5.96,
+    "p": 6.364621063736654e-07,
+    "ecartes": 0,
+    "detecte": true
+   },
+   "121": {
+    "moyenne": 0.768,
+    "d": 6.55,
+    "p": 3.318381177222846e-07,
+    "ecartes": 0,
+    "detecte": true
+   },
+   "242": {
+    "moyenne": 0.7723,
+    "d": 6.86,
+    "p": 2.413556815453915e-07,
+    "ecartes": 0,
+    "detecte": true
+   },
+   "485": {
+    "moyenne": 0.7745,
+    "d": 7.04,
+    "p": 2.012386343170652e-07,
+    "ecartes": 0,
+    "detecte": true
+   },
+   "970": {
+    "moyenne": 0.7755,
+    "d": 7.11,
+    "p": 1.8834696416081933e-07,
+    "ecartes": 0,
+    "detecte": true
+   }
+  },
+  "absorption": {
+   "verdict": "DISQUALIFIÉ AU BRAS NUL"
+  }
+ },
+ "planchers": {
+  "leurre": 61,
+  "recharge": 61,
+  "absorption": null
+ },
+ "admission": {
+  "leurre": "ADMIS",
+  "recharge": "ADMIS",
+  "absorption": "REJETÉ (bras nul)"
+ },
+ "duree_totale_s": 330.9
+}
