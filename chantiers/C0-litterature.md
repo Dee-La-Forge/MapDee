@@ -167,6 +167,24 @@ instruire ici avant toute fiche** :
 3. **écart à un carnet de référence** (maximum d'entropie, distance de
    Wasserstein) — risque de redite élevé avec C1/C2, É0 tranchera.
 
+**Second balayage (même jour) — les angles morts d'un catalogue venu de la
+physique**, absents de la liste de Meddy comme du catalogue :
+
+4. **le canon de la microstructure financière** : PIN/VPIN, lambda de Kyle,
+   spreads effectifs/réalisés, sélection adverse — la famille « qui sait
+   quelque chose ? » ;
+5. **la mécanique des perpétuels** : funding, open interest, **liquidations
+   forcées** — le carburant des cascades sur ce marché précis, publié par
+   Binance, porté par Hyperliquid, et invisible depuis la physique ;
+6. **le lead-lag inter-venues et inter-symboles** — la capture simultanée
+   existe déjà, la ligne « à l'exécution » s'écrit seule ;
+7. **l'horloge volume** (temps-transaction) — transversal, aussi un axe de
+   robustesse pour É3 ;
+8. **DMD/Koopman** (identification de dynamique — risque assumé de
+   « sonologie 2.0 », É2 jugera) ;
+9. côté vérité : **inventaire des teneurs** (E7 naturel) et **métaordres /
+   loi en racine carrée** — exigent l'identité, notre avantage comparatif.
+
 Entrée au banc uniquement par fiche complète (ligne « à l'exécution »
 obligatoire), et tout ajout **rouvre le compte D10 et le dit**. La TDA reste
 écartée, porte ouverte au premier énoncé actionnable.
