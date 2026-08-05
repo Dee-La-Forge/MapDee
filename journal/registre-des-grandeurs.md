@@ -26,7 +26,7 @@ fraction ressort « significative » sans aucun phénomène, mécaniquement.
 | **candidats déclarés** | *à remplir avant le premier calcul* |
 | **date de la déclaration** | — |
 | **source** | `03_EconoPhysique.md`, partie I |
-| **procédure de contrôle** | taux de fausses découvertes à 10 %, Benjamini-Hochberg, sur l'ensemble des candidats jugés à É4 — résolutions et symboles compris (`decisions/ADR-001`) |
+| **procédure de contrôle** | taux de fausses découvertes à 10 %, Benjamini-Hochberg, sur l'ensemble des **candidats** jugés à É4 — **et eux seuls** : résolutions et symboles sont des conjonctions internes, pas des tests (`decisions/ADR-001`, II.3). *Corrigé le 05/08/2026 : une version antérieure de cette ligne écrivait « résolutions et symboles compris », à rebours de l'ADR qu'elle citait — aucune ligne de mesure n'existait encore.* |
 
 **Tout candidat ajouté après cette déclaration rouvre le compte, et le dit.**
 

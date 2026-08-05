@@ -35,21 +35,21 @@ documents eux-mêmes comme des conditions d'arrêt.
 | ~~**B8**~~ | ~~**La correction de multiplicité n'a ni seuil ni procédure**~~ — **LEVÉ le 05/08** : **Benjamini-Hochberg à 10 %**, collection = **les candidats seuls** — résolutions et symboles sont des conjonctions internes, pas des tests (`ADR-001`, II.3) | échéance tenue : écrit **avant** le premier calcul d'É4 |
 | ~~**B9**~~ | ~~**L'IC de Student n'a pas de niveau de confiance écrit**~~ — **LEVÉ le 05/08** : **bilatéral, 95 %, publié** — et il ne décide pas, BH décide (`ADR-001`, II.4) | — |
 
-### Et douze décisions de conception que C9 exigerait d'inventer
+### Les douze décisions de conception de C9 — recensées le 05/08 dans la spec
 
-Le harnais — **le chantier que `06` déclare primordial** — n'est pas
-constructible en l'état. Quelqu'un qui n'a pas participé à sa conception devrait
-inventer, au minimum : le schéma que le générateur doit émettre (il ne vit que
-dans une archive déclarée sans autorité) · le modèle génératif du carnet · la
-constante de grille, écrite dans aucun document · **la vérité à injecter — qui
-est le devenir, lequel n'a pas de définition opératoire** · l'amplitude plausible
-du phénomène, sans laquelle le critère d'arrêt le plus important est
-inapplicable · le vocabulaire d'états du registre, dont deux schémas concurrents
-coexistent · et la place d'ÉS, absent de la liste des épreuves de C9.
+**`chantiers/C9-harnais.md` §3 les recense toutes** (D1-D12), avec leur
+statut : trois se **transcrivent** du code au lieu de s'inventer (le schéma de
+`deep`, la grille `BIN_REL = 2,5e-5`, les états du registre) · six sont
+**PROPOSÉ** à l'arbitrage (modèle génératif, mécanismes injectés, place d'ÉS,
+ex æquo, promotion de la grille hors archive, alignement du format d'`05` §5) ·
+deux sont **réservées à Meddy** (amplitude plausible D6, nombre de candidats
+D10) · une exige une **ADR avant le premier É3** (l'échelle la plus fine,
+D12). Et la « vérité à injecter » est dissoute : la vérité d'ÉS est le label
+d'injection, pas le devenir — ÉS n'attend pas C3.
 
-**Détail complet dans le rapport d'audit du 05/08.** Aucun de ces points n'est un
-défaut de conception : ce sont des décisions qui n'ont simplement pas encore été
-prises.
+*(Une version antérieure renvoyait à un « détail complet dans le rapport
+d'audit du 05/08 » qui n'y a jamais figuré — référence pendante, constatée en
+écrivant la spec.)*
 
 **Tout le reste des rapports d'audit — environ 65 points — est de l'hygiène.**
 Renvois vers du code hors dépôt, coût de lecture sous-estimé, quatre façons
@@ -148,12 +148,11 @@ il vaut mieux l'apprendre en semaine 1 qu'en P7.
 décrites dans le protocole mais **n'ont pas de fiche au format d'`05`**, ce que
 `06` interdit. À régulariser avant d'en tirer un résultat.
 
-**C9 — le harnais.** `06` le déclare **le chantier primordial**, et il s'écrit
-**pendant** la construction : les quatre pièces se développent et se testent sur
-carnet fabriqué, où la vérité est connue. Elles ne dépendent d'aucune donnée
-pour être écrites — seulement pour tourner.
-⚠️ Mais voir §1 : douze décisions de conception restent à prendre, et **B1** doit
-être arbitré avant que le sommet du harnais ait un sens.
+**C9 — le harnais.** `06` le déclare **le chantier primordial**. **Spécifié de
+bout en bout le 05/08** : `chantiers/C9-harnais.md` — architecture (préflight
+en tête), contrats des quatre pièces, seuils transcrits d'`05`/`ADR-001`, les
+douze décisions recensées avec leur statut (§1). La construction du code peut
+démarrer sur P0/P1/P2 dès l'arbitrage des PROPOSÉ.
 
 Tout le reste attend soit la construction, soit les définitions.
 
@@ -174,8 +173,15 @@ Tout le reste attend soit la construction, soit les définitions.
    jours-symboles ensemble** (la reprise ne les imprime que sur 14-16) — aucun
    classement sans eux ;
 5. **`ADR-002`** — attend **l'arbitrage de Meddy** (B2) ;
-6. ensuite : **C0** (littérature) et la **spécification de C9** — le banc a un
-   sommet depuis `ADR-001`, C9 peut être spécifié de bout en bout.
+6. ~~**C0** et la **spécification de C9**~~ — **OUVERTS le 05/08, livrables
+   rendus** : `chantiers/C9-harnais.md` (spec de bout en bout — les douze
+   décisions recensées : D1/D2/D7 transcrites du code, D3/D4/D8/D9 en
+   **PROPOSÉ**, D6/D10 **réservées à Meddy**, D12 exige une ADR avant É3) et
+   `chantiers/C0-litterature.md` (synthèse d'orientation + formes proposées
+   pour les trois définitions de B7, constantes à lire sur le jour de banc).
+   **En attente d'arbitrage : D3, D4, D8, D9, D10 et les trois formes de B7.**
+   La lecture des sources de C0 reste à faire — la synthèse est de mémoire,
+   marquée comme telle.
 
 ## 5. Les décisions qui n'appartiennent pas au co-chercheur
 
