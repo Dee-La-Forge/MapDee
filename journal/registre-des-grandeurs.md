@@ -73,6 +73,22 @@ date · nom · état · épreuve · LE CHIFFRE · périmètre · qui l'a propos�
 | 2026-08-05 | méthode banc-v4 · détecteur absorption | ÉS | ÉS | plancher 0,5× — ADMIS (barre 2,0, ADR-004) | synthétique, 8 graines-jours | C9 harnais |
 | 2026-08-05 | méthode banc-v4 · détecteur recharge | ÉS | ÉS | plancher 1,0× — ADMIS (barre 2,0, ADR-004) | synthétique, 8 graines-jours | C9 harnais |
 | 2026-08-05 | méthode banc-v4 · détecteur leurre | ÉS | ÉS | plancher 8,0× — ÉCARTÉ (barre 2,0, ADR-004) : aucun négatif leurre interprétable | synthétique, 8 graines-jours | C9 harnais |
+| 2026-08-05 | A1 · OFI | déposée | — | — | J3 | 03 partie I (dépôt par la boucle) |
+| 2026-08-05 | A2 · OFI localisé au mur | déposée | — | — | J3 | 03 partie I (dépôt par la boucle) |
+| 2026-08-05 | A3 · flux signé e/r/a | déposée | — | — | J3 | 03 partie I (dépôt par la boucle) |
+| 2026-08-05 | A4 · microprice | déposée | — | — | J3 | 03 partie I (dépôt par la boucle) |
+| 2026-08-05 | A5 · propagateur | déposée | — | — | J3 | 03 partie I (dépôt par la boucle) |
+| 2026-08-05 | A6 · auto-excitation (Hawkes) | déposée | — | — | J3 | 03 partie I (dépôt par la boucle) |
+| 2026-08-05 | B1 · hazard rate (version palier) | déposée | — | — | J3 | 03 partie I (dépôt par la boucle) |
+| 2026-08-05 | B2 · résilience | déposée | — | — | J3 | 03 partie I (dépôt par la boucle) |
+| 2026-08-05 | B3 · réapprovisionnement (iceberg) | déposée | — | — | J3 | 03 partie I (dépôt par la boucle) |
+| 2026-08-05 | B4 · absorption au contact | déposée | — | — | J8 | 03 partie I (dépôt par la boucle) |
+| 2026-08-05 | B5 · premier passage | déposée | — | — | J3 | 03 partie I (dépôt par la boucle) |
+| 2026-08-05 | C1 · concentration | déposée | — | — | J3 | 03 partie I (dépôt par la boucle) |
+| 2026-08-05 | C2 · forme et courbure | déposée | — | — | J3 | 03 partie I (dépôt par la boucle) |
+| 2026-08-05 | C3 · diffusion anormale | déposée | — | — | J3 | 03 partie I (dépôt par la boucle) |
+| 2026-08-05 | D1 · ralentissement critique | déposée | — | — | J8 | 03 partie I (dépôt par la boucle) |
+| 2026-08-05 | D2 · cascades | déposée | — | — | J8 | 03 partie I (dépôt par la boucle) |
 
 ---
 

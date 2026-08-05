@@ -167,9 +167,16 @@ interprétable avec cette méthode. Planchers au registre. Transverses :
 l'estimateur partiel dérive en ~k/n (règle à porter dans `05` : n
 observations/jour ≥ 100 × taille du bloc, avant le premier É4 réel) ; la
 puissance dit **d ≳ 1,2 détectable sur 8 jours, 0,75 avec la tranche 2**.
-**Prochaines étapes C9** : porter la règle k/n dans `05` · le rejeu
-événementiel et l'ADR D12 pour É3 · brancher É0-É2 sur les vrais artefacts
-quand la tranche 1 finit.
+**LE BANC EST COMPLET ET CHARGÉ depuis le 05/08 ~05 h 30** : la boucle
+existe (`harnais/boucle.py` — ordre d'`05`, É0 avec départage par coût,
+refus propres, 59 tests), la règle k/n est dans `05` §4 **et** dans le code,
+et **les 16 candidats sont déposés au registre** (préflight passé, hash
+inscrit), chacun en attente des données de son périmètre. Ce qui manque au
+banc n'est plus du banc : les artefacts J3/J8 (construction, ~2 j), C3 pour
+É3/É4 (gel après C2 sur le jour de banc), le rejeu événementiel + ADR D12
+pour É3, et **les extracteurs de séries** (fiche → série par jour depuis les
+artefacts) — la seule pièce de code restante, à écrire et tester sur
+synthétique avant l'arrivée des données.
 
 Tout le reste attend soit la construction, soit les définitions.
 
