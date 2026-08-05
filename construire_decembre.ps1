@@ -70,6 +70,18 @@ if (-not (Test-Path $PY)) {
     exit 1
 }
 
+# INSTANCE UNIQUE (05/08/2026). Ce script est desormais relance par une tache
+# planifiee au demarrage. Deux `lot.py` concurrents ecriraient les memes
+# artefacts — le meme risque que le singleton du recorder previent. Un refus
+# ici rend la tache inoffensive quoi qu'il arrive, y compris un lancement
+# manuel pendant qu'une construction tourne.
+$dejaLa = Get-CimInstance Win32_Process -Filter "Name='python.exe'" |
+    Where-Object { $_.CommandLine -match 'lot\.py' }
+if ($dejaLa) {
+    Write-Host "REFUS : une construction tourne deja (PID $($dejaLa[0].ProcessId)). Rien n'est lance."
+    exit 0
+}
+
 $DEPOT = "C:\Users\DyBoo\Desktop\-MapDee-"
 if (-not (Test-Path "$DEPOT\data\l4\openbook-202512\book_diffs_202512.tar")) {
     Write-Error "REFUS : archive source introuvable. Rien n'est lance."
