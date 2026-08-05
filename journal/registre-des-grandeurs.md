@@ -30,6 +30,14 @@ fraction ressort « significative » sans aucun phénomène, mécaniquement.
 
 **Tout candidat ajouté après cette déclaration rouvre le compte, et le dit.**
 
+*Précision du 06/08/2026 (audit externe, critique 1 — le compte n'avait pas
+de date de gel)* : **le compte est PAR VAGUE.** La vague 1 = les 16
+ci-dessus, **gelée le 05/08** — rien ne s'y ajoute, jamais ; son BH se calcule
+sur 16. Les familles instruites dans C0 forment la **vague 2**, dont le
+compte gèlera **avant son premier calcul**, à la clôture de C0 par
+tarissement (règle dans `chantiers/C0-litterature.md` §5 pré) — jamais au
+jour du dernier É4. Le nombre de vagues est publié avec tout résultat.
+
 ---
 
 ## Les états

@@ -27,7 +27,7 @@ exécuter, annulés après l'exécution de celui-ci.
 
 **Ce que dit la recherche empirique** — les traits mesurables récurrents des
 cas documentés (Coscia 2015, Sarao ; études sur données coréennes et
-taïwanaises, p. ex. Lee, Eom & Park sur le KRX) :
+taïwanaises, p. ex. Lee, Eom & Park sur le KRX — **réf. non relues**) :
 
 * **asymétrie de côté** : grosse masse affichée d'un côté, exécution de l'autre ;
 * **durée de vie courte** conditionnée à l'approche du prix — l'ordre est
@@ -49,8 +49,8 @@ C'est la forme injectée par le générateur de C9 (D4).
 **Littérature établie** — les ordres iceberg sont le mécanisme le mieux
 documenté du lot : Esser & Mönch (« The navigation of an iceberg »), Frey &
 Sandås (impact des icebergs dans le carnet), De Winne & D'Hondt (Euronext),
-Bessembinder, Panayides & Venkataraman (coût/bénéfice de cacher). Constats
-robustes à travers les places :
+Bessembinder, Panayides & Venkataraman (coût/bénéfice de cacher) — **réf.
+non relues, toutes**. Constats robustes à travers les places :
 
 * la partie visible (*peak*) se **recharge au même prix** après exécution, à
   montant régulier et délai bref — c'est **exactement la signature de B3** ;
@@ -72,14 +72,15 @@ littérature, qui donne la forme et non les constantes de cette place.
 
 C'est le terme le **moins standardisé** des trois — la littérature académique
 parle de **résilience** (Degryse et al. ; Large, « Measuring the resiliency of
-an electronic limit order book ») et d'**impact** (Bouchaud, Farmer & Lillo ;
-Obizhaeva & Wang pour la dynamique offre/demande). Deux quantités voisines et
-distinctes :
+an electronic limit order book » — **réf. non relues**) et d'**impact** (Bouchaud, Farmer & Lillo ;
+Obizhaeva & Wang pour la dynamique offre/demande — **réf. non relues**). Deux
+quantités voisines et distinctes :
 
 * **absorption au contact** (notre B4) : la masse d'un palier est consommée par
   exécutions **sans que le prix ne le traverse** — flux exécuté élevé, déplacement
   faible. Le pendant littérature est l'écart entre **impact virtuel et impact
-  réel** (Farmer et al., « What really causes large price changes ») : le carnet
+  réel** (Farmer et al., « What really causes large price changes » — **réf.
+non relue**) : le carnet
   affiché prédit mal le déplacement, parce que la liquidité se reconstitue ;
 * **résilience** (notre B2) : la **vitesse de reformation** après consommation.
 
@@ -151,6 +152,23 @@ rétrécit toujours à la lecture.
 5. **Files et position** : Moallemi & Yuan ; Huang, Lehalle & Rosenbaum
    (modèle queue-réactif — c'est l'option de montée en gamme de D3/C9).
 
+## 5 pré. LES RÈGLES DU CHANTIER — écrites le 06/08 AVANT tout balayage supplémentaire
+(audit externe du 06/08, critiques 1-3 — toutes fondées)
+
+* **Tarissement** : un balayage se clôt quand il ne produit **plus aucune
+  famille dont la ligne « à l'exécution » peut être ÉCRITE** — le critère qui
+  a écarté des disciplines entières dans `03`. « J'ai fait N balayages »
+  n'est pas un critère (`06` §7).
+* **Compte par vagues** : la **vague 1 = 16 candidats, gelée le 05/08** —
+  aucune famille de C0 n'y entre, jamais. Les familles instruites ici
+  forment la **vague 2**, dont le compte gèlera **avant son premier calcul**,
+  à la clôture de C0 par tarissement — pas au jour du dernier É4. Le nombre
+  de vagues est publié avec tout résultat.
+* **Pas de ligne, pas de compte** : une famille sans ligne « à l'exécution »
+  écrite **ici** n'entre dans aucun compte et ne coûte de puissance à
+  personne. « É0 tranchera » n'est pas une ligne — c'est un report qui
+  inverse l'échelle des coûts (`05` §4).
+
 ## 5 bis. Familles signalées par Meddy (06/08/2026) — pointage contre le catalogue
 
 Passage en revue d'une liste de ~25 familles : la majorité est déjà au
@@ -177,7 +195,9 @@ physique**, absents de la liste de Meddy comme du catalogue :
    forcées** — le carburant des cascades sur ce marché précis, publié par
    Binance, porté par Hyperliquid, et invisible depuis la physique ;
 6. **le lead-lag inter-venues et inter-symboles** — la capture simultanée
-   existe déjà, la ligne « à l'exécution » s'écrit seule ;
+   existe déjà. **Ligne à l'exécution (écrite)** : si une place mène
+   l'autre de Δt, poster/retirer sur la retardataire AVANT la
+   propagation — le retard est le rabais ;
 7. **l'horloge volume** (temps-transaction) — transversal, aussi un axe de
    robustesse pour É3 ;
 8. **DMD/Koopman** (identification de dynamique — risque assumé de
@@ -214,8 +234,8 @@ théories** :
     d'A6, sans estimation Hawkes) ;
 15. **détection séquentielle de ruptures** (CUSUM/SPRT — la surveillance
     industrielle, distincte de D1) ;
-16. **dépendance de queue entre côtés** (copules — risque de redite, É0
-    tranchera) ;
+16. **dépendance de queue entre côtés** (copules) — **SANS LIGNE
+    écrite → hors compte en l'état** (le risque de redite s'ajoute) ;
 17. **contrôle F manquant : saisonnalité intrajournalière** — pas une
     feature, une désaisonnalisation due à toute grandeur à ligne de base.
 
@@ -252,9 +272,12 @@ théories** :
     tout le marché (limite de périmètre, cadre G). Précision du 06/08 :
     l'OTC crypto est PLUS sombre que les dark pools actions (aucune
     impression post-trade), mais son hedging traverse nos carnets — pour
-    A1/A3 il apparaîtra comme choc de flux sans cause visible : c'est la
-    case « résidu » du typage (`05` §9.3) qui l'attrapera, on ne
-    l'inventera pas. **Sur la « détection » (06/08)** : le hors-carnet ne
+    A1/A3 il apparaîtra comme choc de flux sans cause visible.
+    **Corrigé le 06/08 (audit, critique 5)** : la case « résidu » du
+    typage type des MURS irrésolus, pas des événements exogènes — y
+    verser l'OTC la rendrait illisible. L'OTC est donc **déclaré hors
+    périmètre au cadre G**, avec son propre marqueur d'événement
+    exogène si un jour on veut le compter. **Sur la « détection » (06/08)** : le hors-carnet ne
     se détecte pas, il s'infère — par COMPOSITION de familles déjà
     instruites (n° 9 métaordres, n° 20 allumage, résidus d'A5, case
     résidu) — un « détecteur de dark » séparé serait une redite qu'É0
