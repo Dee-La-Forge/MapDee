@@ -1,9 +1,8 @@
 # ADR-005 — L'unité d'amplitude ne transporte pas du synthétique au réel
 
-**Date** : 2026-08-05 · **Statut** : **PROPOSÉE — à trancher par Meddy.**
-Pas d'auto-acceptation par délégation ici : cette décision **rejuge des
-verdicts ÉS** (`05` §10) et touche un seuil (`06` §5 : les seuils
-t'appartiennent).
+**Date** : 2026-08-05 · **Statut** : **ACCEPTÉE — validée par Meddy le
+05/08/2026** (« ADR-005 validée, lance la v5 »). La campagne v5 rejuge les
+verdicts ÉS sous l'unité réelle, conformément à `05` §10.
 **Origine** : la mesure S1 du jour de banc
 (`journal/c2-rapport-20251208-BTC.md`), qui déclenche la clause d'errata
 écrite dans `ADR-004`.
