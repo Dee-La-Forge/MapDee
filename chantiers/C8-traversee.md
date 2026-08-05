@@ -53,18 +53,18 @@ ne se vide pas d'elle-même.
 | **B2** résilience | les diffs, fenêtre après l'événement |
 | **B5** premier passage | le prix seul |
 | **C3** diffusion anormale | le prix seul |
+| **A3** décomposition e/r/a | **démonstration rendue le 05/08/2026** : mesure du §4, reconstructible 4/4 cibles (`journal/c8-rapport-20260805.md`). Limite portée : quantités **nettes** par fenêtre |
+| **B3** réapprovisionnement (iceberg) | sa seule démonstration nommée était « hérite de A3 » — rendue avec elle. Même limite : détection sur quantités **nettes** |
 
 ### Traverse sous condition — la démonstration est nommée
 
 | fiche | démonstration exigée |
 |---|---|
-| **A3** décomposition e/r/a | **la mesure du §4 ci-dessous.** C'est le socle : tout le reste de cette case en dépend en partie |
 | **A2** OFI localisé au mur | le mur jugé est-il dans la fenêtre de paliers que le flux d'affichage retient ? — dépend du régime, à mesurer |
 | **A5** propagateur | une version dégradée qui survive sans la partie courte du noyau |
-| **B3** réapprovisionnement (iceberg) | hérite de A3 — c'est sa consommatrice directe |
 | **B4** absorption au contact | une définition opératoire du **contact** (C3/B7) ; et rappel : unité de sortie P8, pas une feature |
 | **C1** concentration · **C2** forme/courbure | la correction de **censure** (F3) démontrée — le filtre par la médiane fabrique de la concentration apparente |
-| **D1** ralentissement critique · **D2** cascades | tenue sous dégradation ; D2 hérite aussi de A3 |
+| **D1** ralentissement critique · **D2** cascades | tenue sous dégradation. *(La part de D2 héritée d'A3 est démontrée depuis le 05/08 ; sa condition propre reste.)* |
 
 ### Ne traverse pas
 
@@ -76,10 +76,11 @@ ne se vide pas d'elle-même.
 
 *(F et G sont hors table : contrôles d'instrument et cadre, pas des features.)*
 
-**Lecture d'ensemble, à retenir** : 6 traversent, 9 sous condition, 8 non. Et
-**cinq des neuf conditions se réduisent à deux démonstrations** — la mesure du
-§4 (A3, B3, D2 en partie) et la correction de censure (C1, C2). Le chantier ne
-disperse pas : il converge sur deux preuves.
+**Lecture d'ensemble, à retenir** *(mise à jour du 05/08/2026 après la mesure
+du §4)* : **8 traversent, 7 sous condition, 8 non.** Le chantier convergeait
+sur deux preuves ; **la première est rendue** — la mesure du §4 a fait passer
+A3 et B3, et réglé la part héritée de D2. Reste la seconde : la correction de
+censure (C1, C2).
 
 ## 4. Sortie n° 2 — la mesure de reconstructibilité, PRÉ-ENREGISTRÉE
 

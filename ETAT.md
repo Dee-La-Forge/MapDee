@@ -84,15 +84,21 @@ n'a pas été refait et son résultat re-mesuré.
 
 ---
 
-## 3. L'état matériel au 05/08/2026, ~02 h 30 — coupure de session
+## 3. L'état matériel au 05/08/2026, ~02 h 40 — après redémarrage machine
 
-**Ce qui tourne** (les processus OS survivent aux coupures de session) :
+**⚠️ La machine a redémarré à 02:23:09.** Une version antérieure de ce document
+affirmait « les processus OS survivent aux coupures de session » — vrai pour une
+coupure de session, **faux pour un redémarrage**, et le redémarrage est arrivé.
+La construction est morte au jour 2/7 BTC (`20251202`), C5 au 13ᵉ jour-symbole
+(`20251214 BTC`). **Les deux ont été relancés à 02:36** — les recettes savent
+reprendre : `lot.py` saute les jours complets sur disque, C5 a été relancé sur
+les seuls jours restants (14-16), après purge de l'extraction partielle.
 
 | | état | où regarder |
 |---|---|---|
-| **construction, tranche 1** | lancée 05/08 01:07 — jour 1/32 (`20251201 BTC`). **~40-55 h**, fin estimée 06-07/08 | `journal/construction/20260805-010706-decembre.log` |
-| **C5 étape 1** (distributions) | en cours — 10/18 jours-symboles au dernier pointage | sorties `c5_*.json` **hors dépôt**, à rapatrier à la fin : `C:\Users\DyBoo\AppData\Local\Temp\claude\C--Users-DyBoo-Desktop--MapDee-\ce1f80c4-1aa7-4580-8328-da05ae8300a8\scratchpad` |
-| **C8.2** | **TERMINÉE** — verdict pré-enregistré : **reconstructible, 4/4 cibles** (incohérence 0,06-1,20 %, seuil 50 %). Binance 10-20× plus cohérent qu'Hyperliquid. Résultats commités : `journal/c8-mesure-20260805.json` | rapport **à rédiger**, table de traversée **à mettre à jour** (A3 sort de « sous condition ») |
+| **construction, tranche 1** | relancée 05/08 02:36 — jour 1 sauté (fabriqué avant le reboot, manifeste écrit), reprise au `20251202 BTC`. **~40-55 h** restantes | le log le plus récent de `journal/construction/` (le log du premier lancement, interrompu, est commité tel quel) |
+| **C5 étape 1** (distributions) | **12/18 jours-symboles faits et rapatriés** (`journal/c5/`, commités). Les 6 restants (14-16 × BTC/ETH) relancés 02:36 depuis la recette **versionnée** `chantiers/c5_distributions.py` — les sorties s'écrivent dans `chantiers/`, à déplacer vers `journal/c5/` à la fin | `journal/c5/c5-etape1-reprise.log` |
+| **C8.2** | **TERMINÉE ET RENDUE le 05/08** — verdict pré-enregistré : **reconstructible, 4/4 cibles** (incohérence 0,06-1,20 %, seuil 50 %). Binance 7-21× plus cohérent qu'Hyperliquid. Rapport : `journal/c8-rapport-20260805.md` · chiffres : `journal/c8-mesure-20260805.json` · recette versionnée : `chantiers/c8_mesure.py` | table de traversée **à jour** : A3 et B3 traversent, D2 garde sa condition propre — 8 traversent, 7 sous condition, 8 non |
 
 ## 3 bis. Le socle
 
@@ -155,14 +161,17 @@ Tout le reste attend soit la construction, soit les définitions.
 
 ## 4 bis. La file de reprise — dans cet ordre
 
-1. **Rapport C8.2** dans `journal/` + table de traversée de `chantiers/C8` mise
-   à jour — **A3 traverse**, B3 et D2 en héritent en partie ;
+1. ~~**Rapport C8.2** + table de traversée~~ — **FAIT le 05/08** :
+   `journal/c8-rapport-20260805.md`, A3 et B3 traversent, D2 garde sa
+   condition propre ;
 2. **B5** : compléter les fiches de `03` — ligne `coût` et **périmètre
    minimal** pour chacune ;
 3. **premier jour-symbole terminé** → le vrai coût **chauffe active**, poste
    par poste → corriger `06` §8 (les extrapolations étaient fausses de 41 %) ;
-4. **fin de C5 étape 1** → rapatrier les sorties dans le dépôt, lire les
-   garde-fous — aucun classement sans eux ;
+4. **fin de C5 étape 1** → déplacer les 6 dernières sorties de `chantiers/`
+   vers `journal/c5/`, puis calculer les garde-fous §6 **sur les 18
+   jours-symboles ensemble** (la reprise ne les imprime que sur 14-16) — aucun
+   classement sans eux ;
 5. **`ADR-002`** — attend **l'arbitrage de Meddy** (B2) ;
 6. ensuite : **C0** (littérature) et la **spécification de C9** — le banc a un
    sommet depuis `ADR-001`, C9 peut être spécifié de bout en bout.
