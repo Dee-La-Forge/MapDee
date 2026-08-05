@@ -57,7 +57,7 @@ def depose_manquants(chemin: Path = registre.CHEMIN) -> list[str]:
 
 def _avance_un(nom: str, series: dict[str, "np.ndarray"] | None,
                bloc: dict[str, "np.ndarray"] | None,
-               chemin: Path) -> tuple[str, str]:
+               chemin: Path, signataire: str = "la boucle") -> tuple[str, str]:
     """Avance UN candidat tant que l'épreuve suivante est exécutable.
     Rend (état final, raison d'arrêt)."""
     f = FICHES[nom]
@@ -83,7 +83,23 @@ def _avance_un(nom: str, series: dict[str, "np.ndarray"] | None,
                 if (autre == nom or autre not in series
                         or etat_courant(autre, chemin) in ("éliminée", "réorientée")):
                     continue
+                # É0 compare INTRA-PÉRIMÈTRE seulement (audit F1) : deux
+                # périmètres différents n'ont pas le même index — corréler
+                # J3 à J8 serait un non-sens et un crash. La déduplication
+                # inter-périmètres, si un jour nécessaire, passera par ADR
+                # (intersection des jours) — pas par un accident d'index.
+                if FICHES[autre]["perimetre"] != f["perimetre"]:
+                    continue
+                if len(series[nom]) != len(series[autre]):
+                    raise RefusEpreuve(
+                        f"É0 : longueurs incompatibles à périmètre égal — "
+                        f"{nom} {len(series[nom])} contre {autre} "
+                        f"{len(series[autre])} : alignement défaillant en amont")
                 rho = spearman(series[nom], series[autre])
+                if not np.isfinite(rho):
+                    raise RefusEpreuve(
+                        f"É0 : ρ non fini contre {autre} — un NaN ne décide "
+                        f"pas, il refuse (audit F2)")
                 if abs(rho) < SEUIL_E0_DOUBLON:
                     continue
                 moi = (f["cout_rang"], ordre_decl.index(nom))
@@ -92,19 +108,19 @@ def _avance_un(nom: str, series: dict[str, "np.ndarray"] | None,
                 registre.ajouter(_aujourdhui(), perdant, "éliminée", "É0",
                                  f"ρ={abs(rho):.3f} — même objet que {gagnant}, "
                                  f"on garde le moins cher", f["perimetre"],
-                                 "la boucle", chemin)
+                                 signataire, chemin)
                 if perdant == nom:
                     tombe = True
                     break
             if tombe:
                 return "éliminée", "doublon interne (É0)"
             registre.ajouter(_aujourdhui(), nom, "É1", "É0", "aucun doublon "
-                             "parmi les vivants", f["perimetre"], "la boucle",
+                             "parmi les vivants", f["perimetre"], signataire,
                              chemin)
         elif epreuve == "É1":
             v = e1(f["e1"])
             registre.ajouter(_aujourdhui(), nom, v.etat_suivant, "É1",
-                             v.detail or "—", f["perimetre"], "la boucle", chemin)
+                             v.detail or "—", f["perimetre"], signataire, chemin)
             if not v.passe:
                 return v.etat_suivant, v.detail
         elif epreuve == "É2":
@@ -114,7 +130,7 @@ def _avance_un(nom: str, series: dict[str, "np.ndarray"] | None,
             v = e2(series[nom], bloc)
             registre.ajouter(_aujourdhui(), nom, v.etat_suivant, "É2",
                              f"ρmax={v.chiffre:.3f}", f["perimetre"],
-                             "la boucle", chemin)
+                             signataire, chemin)
             if v.etat_suivant != "É3":
                 return v.etat_suivant, v.detail
         elif epreuve == "É3":
@@ -126,14 +142,35 @@ def _avance_un(nom: str, series: dict[str, "np.ndarray"] | None,
 
 
 def tour(series: dict | None = None, bloc: dict | None = None,
-         chemin: Path = registre.CHEMIN) -> dict[str, tuple[str, str]]:
+         chemin: Path = registre.CHEMIN,
+         hash_protocole: str | None = None) -> dict[str, tuple[str, str]]:
     """Un tour de banc : dépose les manquants puis avance chaque candidat
     aussi loin que les préalables le permettent. Rend {nom: (état, raison)}."""
+    # le hash du protocole signe CHAQUE ligne du run (audit F5 — il etait
+    # promis par le preflight et jete par tous les appelants)
+    signataire = f"la boucle @{hash_protocole}" if hash_protocole else "la boucle"
+    # VALIDATION A L'ENTREE (audit F2) : une serie polluee (NaN/inf) ne
+    # decide de rien — son candidat est REFUSE avec sa raison, les autres
+    # tournent sans elle. Jamais un crash de tour, jamais un rho=nan ecrit.
+    pollues = {}
+    if series:
+        for n in list(series):
+            if not np.isfinite(series[n]).all():
+                pollues[n] = ("REFUS : série polluée (NaN/inf) — corriger "
+                              "l'extraction ou l'alignement en amont")
+                series = {k: v for k, v in series.items() if k != n}
+    if bloc:
+        for n, x in bloc.items():
+            if not np.isfinite(x).all():
+                raise RefusEpreuve(f"bloc de référence pollué (NaN/inf) : {n}")
     depose_manquants(chemin)
     rapport = {}
     for nom in FICHES:
+        if nom in pollues:
+            rapport[nom] = (etat_courant(nom, chemin) or "?", pollues[nom])
+            continue
         try:
-            rapport[nom] = _avance_un(nom, series, bloc, chemin)
+            rapport[nom] = _avance_un(nom, series, bloc, chemin, signataire)
         except RefusEpreuve as e:
             rapport[nom] = (etat_courant(nom, chemin) or "?", f"REFUS : {e}")
     return rapport

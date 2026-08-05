@@ -87,6 +87,7 @@ def series_du_perimetre(noms: list[str], t0: float) -> dict[str, np.ndarray]:
         per = FICHES[nom]["perimetre"] if nom in FICHES else "J3"
         par_perimetre.setdefault(per, []).append(nom)
     series: dict[str, list[np.ndarray]] = {n: [] for n in noms + [TEMOIN]}
+    diag: dict[str, list] = {"part_k0": [], "absdmid": {p: [] for p in par_perimetre}}
     for per, membres in par_perimetre.items():
         for j in JOURS[per]:
             for c in COINS:
@@ -96,19 +97,30 @@ def series_du_perimetre(noms: list[str], t0: float) -> dict[str, np.ndarray]:
                 s = charge(chemin, DIST_MAX)
                 for nom in membres:
                     series[nom].append(EXTRACTEURS[nom](s))
-    return {n: np.concatenate(v) for n, v in series.items() if v}
+                # diagnostics de l'audit du 05-06/08, publiés avant tout É0 :
+                # la part de masse au palier du mid (exclue des stocks/flux),
+                # et |Δmid| pour la corrélation mécanique de chaque série
+                tot = s.m_tot[0].sum() + s.m_tot[1].sum() + s.m_k0.sum()
+                diag["part_k0"].append(
+                    (f"{j} {c}", float(s.m_k0.sum() / tot) if tot else np.nan))
+                dm = np.abs(np.diff(s.mid, prepend=np.nan))
+                diag["absdmid"][per].append(dm)
+    return ({n: np.concatenate(v) for n, v in series.items() if v}, diag)
 
 
-def aligne(series: dict[str, np.ndarray]) -> dict[str, np.ndarray]:
-    """Retire pour tout le monde les photos où quiconque est NaN — un seul
-    index commun, jamais de masquage par paire. Ne s'applique qu'aux séries
-    de MÊME longueur (même périmètre) ; les autres gardent leur masque."""
+def aligne(series: dict[str, np.ndarray],
+           perimetre_de: dict[str, str]) -> dict[str, np.ndarray]:
+    """Retire, PAR PÉRIMÈTRE DÉCLARÉ, les photos où quiconque du périmètre
+    est NaN — un seul index commun par périmètre, jamais de masquage par
+    paire. (Corrigé à l'audit F1 : la version précédente groupait par
+    LONGUEUR de série — une coïncidence de tailles aurait co-masqué deux
+    périmètres étrangers.)"""
     from collections import defaultdict
-    par_longueur = defaultdict(list)
-    for n, x in series.items():
-        par_longueur[len(x)].append(n)
+    groupes = defaultdict(list)
+    for n in series:
+        groupes[perimetre_de[n]].append(n)
     out = {}
-    for _, noms in par_longueur.items():
+    for _, noms in groupes.items():
         bloc = np.vstack([series[n] for n in noms])
         garde = np.isfinite(bloc).all(axis=0)
         for n in noms:
@@ -146,16 +158,39 @@ def main() -> None:
                    chemins_manifestes=chemins)
     print(f"[{time.time()-t0:6.0f}s] préflight : {pf}")
 
-    series = aligne(series_du_perimetre(prets, t0))
+    brut, diag = series_du_perimetre(prets, t0)
+    perimetre_de = {n: (FICHES[n]["perimetre"] if n in FICHES else "J3")
+                    for n in brut}
+    # |Δmid| entre dans l'alignement de son périmètre (même index commun),
+    # puis en sort : c'est un diagnostic, jamais un candidat
+    for per, morceaux in diag["absdmid"].items():
+        if morceaux and any(perimetre_de.get(n) == per for n in brut):
+            brut[f"_absdmid_{per}"] = np.concatenate(morceaux)
+            perimetre_de[f"_absdmid_{per}"] = per
+    series = aligne(brut, perimetre_de)
+    dmid = {per: series.pop(f"_absdmid_{per}")
+            for per in diag["absdmid"] if f"_absdmid_{per}" in series}
+
+    print(f"[{time.time()-t0:6.0f}s] === diagnostics d'audit, publiés avant É0 ===")
+    for nom_js, part in diag["part_k0"]:
+        print(f"  masse au palier du mid (exclue des stocks) {nom_js} : {part:.3%}")
+    from harnais.stats import spearman as _sp
+    for nom, x in sorted(series.items()):
+        per = perimetre_de[nom]
+        if per in dmid:
+            print(f"  ρ(|Δmid|, {nom}) = {_sp(x, dmid[per]):+.3f}"
+                  f"   <- entanglement mécanique avec le prix, à garder pour É4")
+
     n_obs = {n: int(np.isfinite(x).sum()) for n, x in series.items()}
     print(f"[{time.time()-t0:6.0f}s] séries alignées : "
           f"{min(n_obs.values()):,} à {max(n_obs.values()):,} observations")
     bloc = {TEMOIN: series.pop(TEMOIN)}
 
     # LIMITE CONNUE, écrite d'avance : le témoin T0 est extrait sur J3 — les
-    # candidats J8 (D1) auront besoin d'un T0 sur J8 pour LEUR É2 ; ce lanceur
-    # les laissera en attente à É2 tant que ce n'est pas branché.
-    rapport = boucle.tour(series=series, bloc=bloc)
+    # candidats J8 (D1) auront besoin d'un T0 sur J8 pour LEUR É2 ; la garde
+    # de longueur d'É2 les laissera en attente propre d'ici là (audit F1).
+    rapport = boucle.tour(series=series, bloc=bloc,
+                          hash_protocole=pf["protocole_hash"])
     print(f"[{time.time()-t0:6.0f}s] === LE PREMIER TOUR DE BANC RÉEL ===")
     for nom, (etat_f, raison) in rapport.items():
         print(f"  {nom:38} {etat_f:16} {raison}")

@@ -51,7 +51,9 @@ def test_bornes_elementaires(jours):
     assert (t0[np.isfinite(t0)] > 0).all()
     b5 = s["B5 · premier passage"]
     fini = b5[np.isfinite(b5)]
-    assert fini.min() >= 1 and fini.max() <= HORIZON_B5
+    # version CAUSALE (audit) : un âge, 0 juste après un déplacement
+    assert fini.min() >= 0 and fini.max() <= HORIZON_B5
+    assert np.isnan(b5[0]) and np.isfinite(b5[1:]).all()
     ofi = s["A1 · OFI"]
     assert (ofi[np.isfinite(ofi)] > 0).any() and (ofi[np.isfinite(ofi)] < 0).any()
     c3 = s["C3 · diffusion anormale"]

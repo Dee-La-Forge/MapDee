@@ -30,9 +30,14 @@ import numpy as np
 import pyarrow.parquet as pq
 
 FENETRE_BASE = 240      # photos — lignes de base glissantes (B1, C3, D1)
-HORIZON_B5 = 240        # photos — plafond du premier passage
+HORIZON_B5 = 240        # photos — plafond de l'âge de niveau (B5, version causale)
 RECHARGE_W = 4          # transitions — délai exécution → recharge (B3)
 NB_BINS = 16            # bins de distance du profil (C2)
+MARGE_INTERIEURE = 0.9  # les FLUX ne se comptent que pour les paliers à
+                        # moins de 0,9 × dist_max du mid COURANT : la bande
+                        # suit le mid, et sans marge chaque déplacement
+                        # fabriquait des ajouts/retraits fantômes aux bords
+                        # (audits du 05-06/08, constat F9 en partie)
 
 
 class SeriesJour:
@@ -97,6 +102,8 @@ def charge(chemin_deep: Path, dist_max: float = 0.005) -> SeriesJour:
     s.presents_prec = np.zeros(n)
     s.recouvre = np.zeros(n)
     s.profil = np.zeros((n, NB_BINS))
+    s.m_k0 = np.zeros(n)     # masse au palier du mid — DIAGNOSTIC (audit F10) :
+                             # exclue des stocks et des flux, incluse au profil
 
     prec: dict[int, float] | None = None
     retraits_prec: set[int] = set()
@@ -114,15 +121,28 @@ def charge(chemin_deep: Path, dist_max: float = 0.005) -> SeriesJour:
                 s.herf[cote][i] = float(((mv / tot) ** 2).sum()) if tot > 0 else np.nan
                 j = int(np.argmax(km)) if cote == 0 else int(np.argmin(km))
                 s.best_k[cote][i], s.best_m[cote][i] = km[j], mv[j]
-        # profil par bins de distance relative (les deux côtés cumulés)
+        # profil par bins de distance relative (bande ENTIÈRE, k0 compris —
+        # c'est une forme de masse, pas un flux ; documenté, audit F10)
         dist = np.abs((kk + 0.5) * bs - mid) / mid
         bins = np.minimum((dist / dist_max * NB_BINS).astype(int), NB_BINS - 1)
         np.add.at(s.profil[i], bins, mm)
-        # transitions palier à palier contre la photo précédente
+        ici_k0 = mm[kk == k0]
+        s.m_k0[i] = float(ici_k0[0]) if ici_k0.size else 0.0
+
+        # transitions palier à palier contre la photo précédente — FLUX
+        # comptés uniquement pour les paliers INTÉRIEURS sous le mid COURANT
+        # et différents de k0 : une règle, appliquée partout (audit F9/F10)
+        borne = mid * dist_max * MARGE_INTERIEURE
+
+        def interieur(k: int) -> bool:
+            return k != k0 and abs((k + 0.5) * bs - mid) <= borne
+
         cur = dict(zip(kk.tolist(), mm.tolist()))
         if prec is not None:
             retraits = set()
             for k, m in cur.items():
+                if not interieur(k):
+                    continue
                 d = m - prec.get(k, 0.0)
                 cote = 0 if k < k0 else 1
                 if d > 0:
@@ -133,11 +153,11 @@ def charge(chemin_deep: Path, dist_max: float = 0.005) -> SeriesJour:
                     s.rem[cote][i] += -d
                     retraits.add(k)
             for k, m in prec.items():
-                if k not in cur:
+                if k not in cur and interieur(k):
                     s.rem[0 if k < k0 else 1][i] += m
                     s.disparus[i] += 1
                     retraits.add(k)
-            s.presents_prec[i] = len(prec)
+            s.presents_prec[i] = sum(1 for k in prec if interieur(k))
             retraits_prec = retraits
         prec = cur
     return s
@@ -185,13 +205,21 @@ def b2_resilience(s: SeriesJour) -> np.ndarray:
                      where=r_prec > 0)
 
 def b5_premier_passage(s: SeriesJour) -> np.ndarray:
-    """Photos jusqu'au déplacement du mid d'un palier, plafonné à HORIZON_B5."""
+    """L'ÂGE du niveau : photos écoulées depuis le dernier déplacement du mid
+    d'au moins un palier, plafonné à HORIZON_B5.
+
+    ⚠️ CORRIGÉ À L'AUDIT DU 05/08 : la première version mesurait le délai
+    JUSQU'AU prochain déplacement — une feature qui regarde le futur, donc
+    qui aurait fui la cible à É4. Celle-ci est strictement causale : même
+    grandeur (premier passage), lue vers l'arrière."""
     out = np.full(len(s.t), np.nan)
-    for i in range(len(s.t) - 1):
-        fin = min(len(s.t), i + HORIZON_B5)
-        dep = np.abs(s.mid[i + 1:fin] - s.mid[i]) >= s.bs[i]
-        j = int(np.argmax(dep)) if dep.any() else HORIZON_B5 - 1
-        out[i] = j + 1
+    ref, age = s.mid[0], 0
+    for i in range(1, len(s.t)):
+        if abs(s.mid[i] - ref) >= s.bs[i]:
+            ref, age = s.mid[i], 0
+        else:
+            age += 1
+        out[i] = min(age, HORIZON_B5)
     return out
 
 def c1_concentration(s: SeriesJour) -> np.ndarray:
@@ -200,9 +228,20 @@ def c1_concentration(s: SeriesJour) -> np.ndarray:
     return (s.herf[0] + s.herf[1]) / 2
 
 def c2_courbure(s: SeriesJour) -> np.ndarray:
-    """Convexité moyenne du profil cumulé de masse en distance."""
+    """Convexité du profil cumulé : 2·cum(milieu) − cum(proche) − cum(loin),
+    normalisée par la masse totale — POSITIF = le cumul bombe au-dessus de la
+    corde = masse au contact ; négatif = masse au large.
+
+    ⚠️ CORRIGÉ À L'AUDIT DU 05-06/08 (constat F4) : la première version
+    prenait la moyenne des différences secondes d'une somme cumulée — qui
+    TÉLESCOPE algébriquement en (dernier bin − premier bin)/14, jetant les
+    quatorze bins intermédiaires, c'est-à-dire toute la forme."""
     cum = np.cumsum(s.profil, axis=1)
-    return np.diff(cum, n=2, axis=1).mean(axis=1)
+    tot = cum[:, -1]
+    m = NB_BINS // 2
+    with np.errstate(invalid="ignore", divide="ignore"):
+        return np.where(tot > 0,
+                        (2 * cum[:, m] - cum[:, 0] - cum[:, -1]) / tot, np.nan)
 
 def c3_diffusion(s: SeriesJour) -> np.ndarray:
     """Exposant de diffusion glissant, par rapport des déplacements quadratiques

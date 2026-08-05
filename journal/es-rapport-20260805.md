@@ -77,6 +77,27 @@ elle s'ouvrira ; aucun changement de seuil n'est proposé ici.
   **dynamique** (retrait corrélé à l'approche du prix), pas dans son niveau.
   Un détecteur dédié est une piste ouverte — non lancée, non promise.
 
+## 4 bis. ADDENDUM du 05-06/08 — portée resserrée (audit de conception, F6/F7)
+
+Trois précisions que l'audit croisé impose, par ajout :
+
+* **les planchers (0,5× / 1,0× / 8,0×) sont des propriétés du DÉTECTEUR
+  d'ÉS**, pas du chemin É0→É4 : `_rho_run_v2` n'est exécutée par aucune ligne
+  du banc réel. Ce qui transfère réellement au banc : `student_jours`, la
+  table de puissance en jours, et la règle k/n — propriétés du code partagé.
+  « Leurre écarté » garde son sens utile (borne OPTIMISTE : le détecteur
+  informé du lieu ne voit pas sous 8×, un détecteur aveugle fera pire) ;
+  « absorption ADMIS » ne garantit rien sur le banc réel — il dit que le
+  généateur et la machinerie statistique savent former un verdict honnête ;
+* **la statistique leurre porte un biais négatif non corrigé** (−0,14 sur les
+  nuls de vérification) et son FP est mesuré du côté positif seulement —
+  direction conservatrice pour la détection, mais le plancher 8× en est
+  probablement en partie gonflé ;
+* **le générateur ne dépose jamais au palier du mid** (0 % de la masse à k0,
+  mesuré) : le traitement de k0 par les extracteurs n'a donc jamais été
+  exercé par ÉS — la part de masse à k0 sur données réelles est publiée par
+  `e0_reel` avant tout verdict.
+
 ## 5. Traces
 
 Planchers inscrits au **registre** (`05` §8 — y compris pour les admis), par

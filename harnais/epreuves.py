@@ -81,6 +81,13 @@ def e2(candidat: np.ndarray, bloc_retenu: dict[str, np.ndarray]) -> Verdict:
     if not bloc_retenu:
         raise RefusEpreuve("bloc de référence vide — le témoin trivial doit y "
                            "être dès le départ (`05` §4, correction I.7)")
+    for nom, serie in bloc_retenu.items():
+        if len(serie) != len(candidat):
+            raise RefusEpreuve(
+                f"É2 refusée : longueurs incompatibles — candidat "
+                f"{len(candidat)} obs contre {nom} {len(serie)} (périmètres "
+                f"différents, audit F1). Le bloc doit être extrait sur LE "
+                f"périmètre du candidat.")
     pire, pire_nom = 0.0, ""
     for nom, serie in bloc_retenu.items():
         rho = abs(spearman(candidat, serie))

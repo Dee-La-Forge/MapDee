@@ -14,8 +14,15 @@ from scipy import stats as sps
 
 
 def rangs(x: np.ndarray) -> np.ndarray:
-    """Rangs moyens (D9)."""
-    return sps.rankdata(np.asarray(x, dtype=float), method="average")
+    """Rangs moyens (D9). REFUSE les NaN/inf : `rankdata` les classerait en
+    silence comme les plus grands, et un ρ pollué a déjà failli écrire une
+    élimination `ρ=nan` au registre (audit du 05-06/08, constats F2/F3) —
+    l'alignement des séries se fait AVANT la corrélation, jamais dedans."""
+    a = np.asarray(x, dtype=float)
+    if not np.isfinite(a).all():
+        raise ValueError("série avec NaN/inf — aligner (index commun) avant "
+                         "toute corrélation de rang")
+    return sps.rankdata(a, method="average")
 
 
 def spearman(x: np.ndarray, y: np.ndarray) -> float:
@@ -81,6 +88,8 @@ def benjamini_hochberg(p_values: dict[str, float], q: float = 0.10) -> dict[str,
 
     Rend {nom: retenu_par_BH}.
     """
+    if not p_values:
+        return {}
     noms = sorted(p_values, key=p_values.get)
     m = len(noms)
     seuil_atteint = 0
