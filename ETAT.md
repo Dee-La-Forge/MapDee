@@ -222,6 +222,27 @@ Tout le reste attend soit la construction, soit les définitions.
    La lecture des sources de C0 reste à faire — la synthèse est de mémoire,
    marquée comme telle.
 
+## 4 ter. LES DETTES OUVERTES — la table unique (05/08/2026, ~15 h)
+
+> Inventaire exigé par Meddy (« la dette réelle est-elle dans les
+> documents ? »). Réponse honnête : l'essentiel l'était, dispersé ; deux
+> dettes ne vivaient que dans la conversation. **Cette table est désormais
+> l'endroit** : une dette s'y ajoute quand on la découvre, s'y raye quand on
+> la ferme — jamais en silence.
+
+| dette | trace | ce qui la ferme |
+|---|---|---|
+| **corrections du lanceur en attente de fin de run** — en-tête « 24 jours » (c'est 16), message « ECHEC 08-31 » (c'est 08-16), `$DEPOT` en dur (→ `$PSScriptRoot`), préflight non appelé (`sale=True` constate sans bloquer) | audit externe du 05-06/08, vérifié ligne à ligne | éditer `construire_decembre.ps1` **au premier arrêt naturel du run** — jamais pendant (règle payée 10 h ce matin) |
+| **`_recupere/construit/` est une dépendance d'exécution dure** — contredit `00` §7 (« ni bibliothèque ni dépendance ») | `journal/2026-08-06_audit-conception.md` | décision de Meddy : promouvoir `construit/` hors archive (la voie existe — la grille l'a fait, D2) ou corriger `00` §7 |
+| **C6 (incertitude) n'est pas spécifié** — et `06` §9 interdit la tranche 2 avant lui ; l'oublier figerait la réserve par défaut | nulle part avant cette table | spécifier C6 avant la fin de tranche 1 + arbitrage tranche 2 |
+| **manifestes `hl_*` anciens non certifiés** — le préflight du harnais les refusera au premier calcul qui les touche | ETAT §3 bis (sans l'implication préflight) | recertifier ou trancher par ADR avant tout calcul sur `hl_*` |
+| **le témoin T0 n'existe que sur J3** — les candidats J8 (D1) attendront à É2 (refus propre, garde de longueur) | commentaire `e0_reel.py` + test F1 | extraire T0 sur J8 quand J8 livré |
+| **extracteurs absents** : A2/B4 (→ B7), A3/B3/D2 (→ flux exécuté, interface prête), A5 (calibration), A6 (coût) | `harnais/extracteurs.py::ABSENTS` + ETAT §4 | B7 (jour de banc) · branchement transactions agrégées · décisions dédiées |
+| **intrication mécanique séries ↔ \|Δmid\|** — résiduel après marge intérieure, publié au tir | audit F9 + diagnostics `e0_reel` | lecture obligatoire au premier É4 (la cible EST le déplacement) |
+| **puissance : 8 jours ne voient que d ≳ 1,2** | rapport ÉS §3 | arbitrage tranche 2 (chez Meddy) |
+| **typage annulé/mangé/rechargé** — 2ᵉ passe sur le jour de banc, protocole séparé à écrire | `C2-observation.md` §4 | écrire ce protocole après C2, avant la passe |
+| micro-dettes assumées : `n` du générateur non décrémenté sur annulation partielle · saut de `bs` aux frontières `nice()` (générateur) · double extraction des jours J3 partagés dans `e0_reel` | cette table | au premier besoin réel, pas avant |
+
 ## 5. Les décisions qui n'appartiennent pas au co-chercheur
 
 * le troisième symbole
