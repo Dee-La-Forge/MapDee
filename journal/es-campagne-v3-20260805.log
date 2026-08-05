@@ -1,0 +1,17 @@
+[      0s] préflight : {'protocole_hash': 'ef2aab9'} — protocole v3 gelé, campagne lancée
+[      0s] volet 1a — calibration : 16 nuls, estimation de μ⁰ par mécanisme
+[     51s]   μ⁰ : {'leurre': -0.1302, 'recharge': -0.1024, 'absorption': -0.3657}
+[     51s] volet 1b — vérification : 16 nuls JAMAIS VUS, FP de la statistique centrée
+[    101s]   nul[leurre] centré : moy=0.2025 FP=0.265 passe=False
+[    102s]   nul[recharge] centré : moy=0.1020 FP=0.127 passe=False
+[    102s]   nul[absorption] centré : moy=-0.0213 FP=0.004 passe=True
+[    102s] volet 2 — plancher de détection (statistique centrée), par mécanisme
+[    102s]   leurre : disqualifié au nul, arms non mesurés
+[    102s]   recharge : disqualifié au nul, arms non mesurés
+[    127s]   absorption amp=0.5 : 0.4441
+[    151s]   absorption amp=1.0 : 0.6
+[    175s]   absorption amp=2.0 : 0.7295
+[    198s]   absorption amp=4.0 : 0.8306
+[    222s]   absorption amp=8.0 : 0.9996
+[    222s]   PLANCHER absorption : 0.5 → ADMIS
+[    222s] terminé — C:\Users\DyBoo\Desktop\-MapDee-\journal\es-campagne-v3-20260805.json

@@ -1,0 +1,117 @@
+{
+ "protocole": "harnais/es_campagne_v3.py — statistique v2 + centrage sur nul appris (coupe 16/16), verdict par mécanisme",
+ "preflight": {
+  "protocole_hash": "ef2aab9"
+ },
+ "amplitude_plausible": 2.0,
+ "mu0": {
+  "leurre": -0.1302,
+  "recharge": -0.1024,
+  "absorption": -0.3657
+ },
+ "bras_nul": {
+  "leurre": {
+   "moyenne_centree": 0.2025,
+   "ic95": [
+    0.019109623171987,
+    0.38596771799800544
+   ],
+   "taux_fausses_detections": 0.265,
+   "passe": false
+  },
+  "recharge": {
+   "moyenne_centree": 0.102,
+   "ic95": [
+    -0.05720936662718286,
+    0.2612023003153878
+   ],
+   "taux_fausses_detections": 0.127,
+   "passe": false
+  },
+  "absorption": {
+   "moyenne_centree": -0.0213,
+   "ic95": [
+    -0.17714487692764685,
+    0.13463433106877204
+   ],
+   "taux_fausses_detections": 0.004,
+   "passe": true
+  }
+ },
+ "arms": {
+  "leurre": {
+   "verdict": "DISQUALIFIÉ AU BRAS NUL — pas de plancher"
+  },
+  "recharge": {
+   "verdict": "DISQUALIFIÉ AU BRAS NUL — pas de plancher"
+  },
+  "absorption": {
+   "0.5": {
+    "moyenne_centree": 0.4441,
+    "d": 1.32,
+    "p": 0.007229244411016359,
+    "ic95": [
+     0.16356551296925476,
+     0.7245493529639346
+    ],
+    "ecartes": 0,
+    "detecte": true
+   },
+   "1.0": {
+    "moyenne_centree": 0.6,
+    "d": 2.61,
+    "p": 0.0001499989965984769,
+    "ic95": [
+     0.40817003456712453,
+     0.7918700173023633
+    ],
+    "ecartes": 0,
+    "detecte": true
+   },
+   "2.0": {
+    "moyenne_centree": 0.7295,
+    "d": 4.26,
+    "p": 6.1956990438971145e-06,
+    "ic95": [
+     0.5862719090533675,
+     0.8726474738820096
+    ],
+    "ecartes": 0,
+    "detecte": true
+   },
+   "4.0": {
+    "moyenne_centree": 0.8306,
+    "d": 3.15,
+    "p": 4.571662814074203e-05,
+    "ic95": [
+     0.6100452521640172,
+     1.0511878177897696
+    ],
+    "ecartes": 0,
+    "detecte": true
+   },
+   "8.0": {
+    "moyenne_centree": 0.9996,
+    "d": 5.03,
+    "p": 2.0052135233123298e-06,
+    "ic95": [
+     0.8336052575649973,
+     1.165691654273223
+    ],
+    "ecartes": 0,
+    "detecte": true
+   }
+  }
+ },
+ "planchers": {
+  "leurre": null,
+  "recharge": null,
+  "absorption": 0.5
+ },
+ "admission": {
+  "leurre": "REJETÉ (bras nul)",
+  "recharge": "REJETÉ (bras nul)",
+  "absorption": "ADMIS"
+ },
+ "duree_totale_s": 221.7
+}
