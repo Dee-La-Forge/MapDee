@@ -188,6 +188,14 @@ Tout le reste attend soit la construction, soit les définitions.
 
 ## 4 bis. La file de reprise — dans cet ordre
 
+> **ORDRE PERMANENT (Meddy, 05/08 ~06 h 30 : « continue jusqu'au signal J3 et
+> tire É0 »)** : un moniteur persistant surveille la livraison des jours
+> `deep`. Au signal « J3 COMPLET » (les 6 jour-symboles 09-11 × BTC/ETH avec
+> manifestes) : `python -m harnais.e0_reel` — préflight, extraction,
+> `boucle.tour` — puis relire la sortie, commiter le registre, rapporter.
+> En cas d'ÉCHEC de construction : diagnostiquer, réparer, relancer
+> (`construire_decembre.ps1` est idempotent et verrouillé).
+
 1. ~~**Rapport C8.2** + table de traversée~~ — **FAIT le 05/08** :
    `journal/c8-rapport-20260805.md`, A3 et B3 traversent, D2 garde sa
    condition propre ;
