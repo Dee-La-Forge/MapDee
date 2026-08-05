@@ -2,6 +2,10 @@
 
 **Date** : 2026-08-05 · **Statut** : **PROPOSÉ** — à trancher par Meddy
 **Écrit avant** tout calcul de banc. Aucun candidat n'a été jugé à cette heure.
+**Révisé le 05/08/2026**, avant tout calcul également : corrections **II.1,
+II.3, II.4** de l'audit de Meddy appliquées au corps ; **II.2** est traité dans
+`03` (fiches B1/D1/D2). L'audit lui-même vit dans
+`journal/2026-08-05_audit-constats.md`.
 
 ---
 
@@ -63,6 +67,16 @@ différentes.
 | **É2** | candidat ↔ bloc retenu → redite |
 | **É4** | candidat ↔ **cible**, *en contrôlant pour le bloc retenu* → **apport** |
 
+**Le bloc de contrôle est gelé par TOUR, et il est commun à É2 et É4**
+(correction **II.1**) : tous les candidats d'un tour sont jugés contre le même
+bloc ; le bloc ne grandit qu'**entre** deux tours ; et chaque verdict inscrit au
+registre **la composition du bloc** contre lequel il a été rendu. La raison
+n'est pas une barre qui monte : une corrélation partielle sachant Z n'est **pas
+la même quantité** pour deux Z différents — sans gel commun, deux candidats ne
+répondraient pas à la même question, et « le bloc retenu » désignerait deux
+objets selon l'épreuve. La dépendance **inter-tours**, elle, demeure : elle est
+**assumée et tracée**, pas supprimée.
+
 ### Pourquoi celle-là
 
 * **elle n'entraîne rien** — c'est une statistique de rang, pas un modèle ajusté ;
@@ -81,8 +95,8 @@ différentes.
 | **estimateur** | Spearman partiel, contrôlé sur les candidats retenus | même statistique qu'É0 et É2 |
 | **unité de calcul** | **le JOUR** — un coefficient par jour | les fenêtres se recouvrent ; l'unité observation fausse l'incertitude |
 | **intervalle** | **Student sur les jours, bilatéral, niveau 95 %** | le niveau manquait à `05` ; il est écrit ici |
-| **seuil** | l'IC doit **exclure zéro** | pas de plancher d'amplitude : c'est É2 qui écarte les redites, pas une magnitude arbitraire |
-| **collection** | **contrôle du taux de fausses découvertes à 10 %**, procédure de Benjamini-Hochberg, sur l'ensemble des candidats jugés à É4 — résolutions et symboles compris | à 5 % nominal et 29 candidats, les faux positifs sont mécaniques |
+| **règle de décision** | **Benjamini-Hochberg tranche, seul.** La statistique d'entrée est la **p-value du test de Student** (bilatéral) sur les coefficients journaliers ; l'IC 95 % est **publié**, il ne décide pas | deux règles concurrentes pour un même verdict rendraient É4 non mécanisable — correction **II.4** de l'audit du 05/08. Pas de plancher d'amplitude : c'est É2 qui écarte les redites |
+| **collection** | **taux de fausses découvertes à 10 %**, Benjamini-Hochberg, sur l'ensemble des **candidats** jugés à É4 — **et eux seuls**. Résolutions et symboles sont des conjonctions **internes** à chaque candidat (É3 et É4 les exigent déjà en même-signe) : les compter comme tests corrigerait **deux fois le même risque** | correction **II.3**. À 5 % nominal et 29 candidats les faux positifs restent mécaniques ; compter 290 tests détruirait la puissance que le passage à 10 % voulait acheter |
 
 **Pourquoi 10 % et pas 5 % sur la collection** : on est en exploration. Un faux
 positif coûte une mesure de plus ; un faux négatif ferme une piste, et ce projet
