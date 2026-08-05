@@ -11,9 +11,10 @@
 > données est un rapport, quel que soit son nom** — y compris celui-ci, le jour
 > où il en portera un.
 >
-> Il ne contient **aucun chiffre de mesure hérité**. Les durées du §8 sont des
-> **extrapolations** d'une seule mesure faite le 04/08/2026 sur un jour-symbole ;
-> elles se vérifient au premier lot et se corrigent ici.
+> Depuis le 05/08/2026, le §8 porte **des chiffres issus de nos données** — le
+> chronométrage du premier jour-symbole construit, chauffe active. Par la règle
+> ci-dessus, ce paragraphe est donc un **rapport** : ses chiffres ne se
+> réécrivent pas, ils se corrigent par ajout, avec leur source citée.
 
 ---
 
@@ -446,17 +447,36 @@ nombre de méthodes essayées, la fatigue. Un compte n'est pas un critère.
 
 ## 8. Dimensionnement
 
-⚠️ **Extrapolations d'une seule mesure**, un jour-symbole, chauffe désactivée.
-À vérifier au premier lot.
+**Corrigé le 05/08/2026 sur le premier jour-symbole terminé, chauffe active**
+(`20251201` BTC, phase `deep`, log `journal/construction/20260805-010706-decembre.log`).
+L'extrapolation d'origine — ~30 h le mois — venait d'une mesure chauffe
+désactivée et était **fausse d'environ un facteur deux**.
 
-| poste | ordre de grandeur |
+| poste | mesuré (jour 1, chauffe active) |
 |---|---|
-| construire le mois, deux symboles | ~30 h de machine, séquentiel |
-| ajouter un troisième symbole | +~15 h |
+| extraction de l'archive | 82 s |
+| scan des statuts (`hl_orders`, 116 M lignes) | 622 s |
+| reconstruction + écriture `deep` (400 M lignes, 90 162 photos, 1,17 Go) | 3 595 s |
+| **total jour-symbole** | **~72 min** |
+
+Soit, en extrapolant **ce seul point** : tranche 1 (32 jours-symboles) ~38 h ;
+le mois complet, deux symboles, **~55-60 h** — cohérent avec la mesure du
+troisième bras (~53 min/jour-symbole, chauffe désactivée).
+
+**Ce que ce point ne mesure pas encore**, et qui maintient la consigne
+ci-dessous : le jour 1 tournait en phase `deep` avec les tables de statuts
+**déjà écrites** — le poste « écriture des tables » et le poste `hl_book`
+n'y figurent pas (ils n'apparaîtront qu'aux jours 08-16, phase `all`) ; et la
+chauffe (les 8 premières heures du jour) n'est pas **isolée** dans le poste
+reconstruction — le log ne la chronomètre pas séparément.
+
+| poste (inchangé, non remesuré) | ordre de grandeur |
+|---|---|
+| ajouter un troisième symbole | +~50 % du mois |
 | rejeu événementiel, quelques jours | quelques heures |
-| place disque | quelques dizaines de Go ; le volume disponible est un ordre de grandeur au-dessus |
+| place disque | ~1,2 Go de `deep` par jour-symbole en nappe large ; le volume disponible est deux ordres de grandeur au-dessus (325 Gio libres mesurés) |
 | C0, C4 | jours-homme, machine négligeable |
-| C8 | jours-homme, machine nulle |
+| C8 | jours-homme ; C8.2 a coûté quelques minutes de machine |
 
 **« Le coût dominant est le scan des statuts d'ordres » n'est pas établi dans le
 régime de production.** L'affirmation vient d'un autre instrument, et la mesure

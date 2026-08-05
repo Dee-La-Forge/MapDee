@@ -165,8 +165,10 @@ Tout le reste attend soit la construction, soit les définitions.
    `journal/c8-rapport-20260805.md`, A3 et B3 traversent, D2 garde sa
    condition propre ;
 2. ~~**B5** : compléter les fiches de `03`~~ — **FAIT le 05/08** ;
-3. **premier jour-symbole terminé** → le vrai coût **chauffe active**, poste
-   par poste → corriger `06` §8 (les extrapolations étaient fausses de 41 %) ;
+3. ~~**premier jour-symbole terminé** → corriger `06` §8~~ — **FAIT le 05/08**
+   sur le jour 1 (~72 min chauffe active, poste par poste). Reste ouvert dans
+   `06` §8 : le poste écriture des tables et `hl_book` (premiers jours
+   phase `all`, 08-16) et la chauffe isolée ;
 4. **fin de C5 étape 1** → déplacer les 6 dernières sorties de `chantiers/`
    vers `journal/c5/`, puis calculer les garde-fous §6 **sur les 18
    jours-symboles ensemble** (la reprise ne les imprime que sur 14-16) — aucun
