@@ -17,11 +17,17 @@ def reg(tmp_path):
     return c
 
 
-def test_depot_des_16(reg):
+def test_depot_complete_et_idempotent(reg):
+    # le vrai registre peut déjà porter des candidats (le banc est ouvert
+    # depuis le 05/08) : on teste la complétude et l'idempotence, pas un
+    # état daté du fichier copié
+    manquaient = [n for n in FICHES if etat_courant(n, reg) is None]
     deposes = depose_manquants(reg)
-    assert len(deposes) == 16
-    assert all(etat_courant(n, reg) == "déposée" for n in FICHES)
+    assert deposes == manquaient
+    assert all(etat_courant(n, reg) is not None for n in FICHES)
+    n_lignes = len(lire(reg))
     assert depose_manquants(reg) == []   # idempotent
+    assert len(lire(reg)) == n_lignes    # et sans écriture fantôme
 
 
 def test_sans_donnees_tout_le_monde_attend_E0(reg):
