@@ -1,0 +1,43 @@
+{
+ "protocole": "harnais/es_campagne_v2.py — v1 + statistique normalisée par voisins à même distance",
+ "preflight": {
+  "protocole_hash": "6996bf6"
+ },
+ "bras_nul": {
+  "leurre": {
+   "n": 32,
+   "moyenne": -0.0289,
+   "ic95": [
+    -0.15663731657875798,
+    0.09885947884268882
+   ],
+   "ic_contient_zero": true,
+   "taux_fausses_detections": 0.02,
+   "passe": true
+  },
+  "recharge": {
+   "n": 32,
+   "moyenne": -0.0514,
+   "ic95": [
+    -0.15810514653102228,
+    0.055273052106202404
+   ],
+   "ic_contient_zero": true,
+   "taux_fausses_detections": 0.008,
+   "passe": true
+  },
+  "absorption": {
+   "n": 32,
+   "moyenne": -0.3763,
+   "ic95": [
+    -0.4824255425177416,
+    -0.2702029359861481
+   ],
+   "ic_contient_zero": false,
+   "taux_fausses_detections": 0.0,
+   "passe": false
+  }
+ },
+ "methode_disqualifiee": true,
+ "duree_totale_s": 102.4
+}
