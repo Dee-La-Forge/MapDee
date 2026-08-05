@@ -91,6 +91,14 @@ function Note($m) {
     Write-Host $l
 }
 
+# PRIORITE BASSE, HERITEE PAR LES ENFANTS (C8.4, 05/08/2026). La construction
+# partage la machine avec l'enregistreur de production, et la fenetre de
+# capture simultanee HL/Binance ne se rattrape jamais — une construction, si.
+# Le diagnostic du 05/08 a montre Binance en resync 5 fois en 40 min pendant
+# que la construction tournait : le recorder etait affame de CPU. Les processus
+# python lances par `&` heritent de la classe de priorite de ce shell.
+(Get-Process -Id $PID).PriorityClass = 'BelowNormal'
+
 Note "=== reconstruction decembre 2025 ==="
 Note "reglage deep : DEEP_MS=$DeepMs  DEEP_BAND=$DeepBand"
 Note "symboles     : $($Coins -join ', ')"

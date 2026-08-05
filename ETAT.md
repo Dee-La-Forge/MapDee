@@ -186,8 +186,9 @@ Tout le reste attend soit la construction, soit les définitions.
 ## 5. Les décisions qui n'appartiennent pas au co-chercheur
 
 * le troisième symbole
-* le sort de l'enregistreur de production — il se dégrade, et chaque jour de
-  panne est un jour de fenêtre de traversée perdu définitivement
+* ~~le sort de l'enregistreur de production~~ — **tranché le 05/08 (C8.4
+  lancée par Meddy)** : diagnostic rendu (`journal/c8-4-diagnostic-enregistreur-20260805.md`),
+  priorités corrigées, un correctif (S4U) attend une commande de Meddy
 * **la cible et le devenir, une fois rédigés** — ce sont les définitions du
   produit
 * les seuils des critères d'arrêt

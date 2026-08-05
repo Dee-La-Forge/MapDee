@@ -164,9 +164,11 @@ s'écrive en P5 en découvrant à ce moment-là ce qui ne traverse pas.
 * **C8.3 — la fenêtre simultanée** : le même estimateur sur les jours où les
   deux places sont captées ensemble. Courte, et elle ne grandit que si
   l'acquisition tourne.
-* **C8.4 — le diagnostic de l'enregistreur de production** : son volume s'est
-  effondré et des jours manquent. Chaque jour de panne est un jour de fenêtre de
-  traversée **perdu définitivement**. Décision de périmètre chez Meddy.
+* **C8.4 — le diagnostic de l'enregistreur de production** : **tranchée par
+  Meddy et rendue le 05/08/2026** — `journal/c8-4-diagnostic-enregistreur-20260805.md`.
+  Verdict : pas d'effondrement de volume (la prémisse était fausse) ; capture
+  ≥ 99,8 % hors trois pertes datées, toutes au niveau machine, causes et
+  correctifs dans le rapport. Outil de re-mesure : `chantiers/c8_capture_sante.py`.
 
 ## 6. Ce qui est interdit dans ce chantier
 
