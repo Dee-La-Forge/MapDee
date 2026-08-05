@@ -239,9 +239,15 @@ plus fine = **grille de blocs native** (événementielle), pas un bin mural de
 
 La seule épreuve coûteuse, et la dernière.
 
-**Ce qu'on mesure** : le gain **par-dessus les candidats déjà retenus**, jamais
-la performance de la grandeur toute seule. Une grandeur qui brille seule mais
+**Ce qu'on mesure** — nommé par `ADR-001` (ACCEPTÉE le 05/08/2026) : la
+**corrélation de rang partielle** entre le candidat et la cible, **en contrôlant
+pour le bloc retenu** — le gain par-dessus les candidats déjà retenus, jamais la
+performance de la grandeur toute seule. Une grandeur qui brille seule mais
 n'ajoute rien est un doublon, pas une découverte.
+
+**Le bloc de contrôle est gelé par TOUR, commun à É2 et É4**, et chaque verdict
+inscrit au registre **la composition du bloc** contre lequel il a été rendu
+(`ADR-001`, II.1).
 
 **Le premier candidat — le témoin trivial.** Le bloc de référence part vide.
 Mesurer un apport par-dessus le vide, c'est mesurer une performance isolée —
@@ -262,7 +268,7 @@ brute n'apporte rien.
 | condition | règle |
 |---|---|
 | **unité de calcul** | le **JOUR**, jamais l'observation. Les fenêtres se recouvrent, et l'ignorer fausse l'incertitude — dans le mauvais sens. |
-| **intervalle de confiance** | **Student** sur les jours ; il doit **exclure zéro**. |
+| **règle de décision** | **Benjamini-Hochberg à 10 % sur la collection des candidats tranche, seul** (`ADR-001`). La statistique d'entrée est la **p-value du test de Student** (bilatéral) sur les coefficients journaliers ; l'**IC 95 %** est **publié**, il ne décide pas. |
 | **contrôle négatif** | la grandeur doit sortir de sa bande nulle, tirée par **décalage circulaire**. Jamais par permutation i.i.d. : la permutation détruit l'autocorrélation des fenêtres recouvrantes et déclare significatif ce qui ne l'est pas. |
 | **réplication** | **même signe sur deux symboles.** Un effet qui n'apparaît que sur un symbole est un sur-ajustement. |
 
@@ -294,8 +300,11 @@ en règle.
    inscrit au registre. On ne découvre pas à la fin combien de tests ont été
    faits. Tout candidat ajouté après coup **rouvre le compte** et le déclare.
 2. **Contrôle du taux de fausses découvertes sur la collection**, pas seulement
-   un IC par candidat. Le seuil s'applique à l'ensemble des candidats jugés à
-   É4, résolutions et symboles compris.
+   un IC par candidat : **Benjamini-Hochberg à 10 %**, sur l'ensemble des
+   **candidats** jugés à É4 — **et eux seuls**. Résolutions et symboles sont des
+   conjonctions **internes** à chaque candidat (É3 et É4 les exigent déjà en
+   même-signe) : les compter comme tests corrigerait deux fois le même risque
+   (`ADR-001`, II.3).
 3. **É0 pris au sérieux**, parce qu'il change le compte : fondre les doublons
    réduit le nombre de tests **réellement indépendants**. Une collection de
    soixante candidats dont quarante sont des synonymes n'est pas soixante tests.

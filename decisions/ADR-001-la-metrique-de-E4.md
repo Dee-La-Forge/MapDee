@@ -1,6 +1,8 @@
 # ADR-001 — Ce qu'É4 mesure
 
-**Date** : 2026-08-05 · **Statut** : **PROPOSÉ** — à trancher par Meddy
+**Date** : 2026-08-05 · **Statut** : **ACCEPTÉE** — validée par Meddy le
+05/08/2026, après révision du corps (II.1/II.3/II.4) et **avant tout calcul de
+banc**.
 **Écrit avant** tout calcul de banc. Aucun candidat n'a été jugé à cette heure.
 **Révisé le 05/08/2026**, avant tout calcul également : corrections **II.1,
 II.3, II.4** de l'audit de Meddy appliquées au corps ; **II.2** est traité dans
