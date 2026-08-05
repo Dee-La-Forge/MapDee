@@ -79,16 +79,25 @@ def check_perimetre(jours: list[str]) -> None:
 def check_manifestes(manifestes: list[dict], chemins: list[str] | None = None) -> None:
     """Provenance certifiée ET génération homogène sur tout le périmètre.
 
-    Les mesures de la nuit du 04→05/08 reposaient sur des manifestes
-    `provenance_certifiee: false` — plus jamais sans refus explicite.
+    Deux générations de manifestes coexistent : l'ancienne porte un drapeau
+    `provenance_certifiee` (les mesures de la nuit du 04→05/08 reposaient sur
+    des `false` — plus jamais sans refus) ; la nouvelle (`schema_manifeste` ≥ 1,
+    écrite par `empreinte.py` à la fabrication) EST la certification — sha256
+    de l'artefact, commit du code, paramètres. On exige l'une ou l'autre.
     """
     noms = chemins or [f"manifeste[{i}]" for i in range(len(manifestes))]
     if not manifestes:
         raise PreflightError("REFUS : aucun manifeste sur le périmètre — "
                              "une donnée sans manifeste n'a pas de provenance.")
     for m, nom in zip(manifestes, noms):
-        if not m.get("provenance_certifiee", False):
-            raise PreflightError(f"REFUS : {nom} porte provenance_certifiee=false.")
+        nouveau = (m.get("schema_manifeste", 0) >= 1
+                   and bool(m.get("artefact", {}).get("sha256"))
+                   and "parametres" in m)
+        if not nouveau and not m.get("provenance_certifiee", False):
+            raise PreflightError(
+                f"REFUS : {nom} n'est certifié par aucune génération — ni "
+                f"drapeau provenance_certifiee, ni manifeste de fabrication "
+                f"(sha256 + paramètres).")
     params = [json.dumps(m.get("parametres", {}), sort_keys=True) for m in manifestes]
     if len(set(params)) > 1:
         raise PreflightError(

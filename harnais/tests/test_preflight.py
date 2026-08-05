@@ -46,6 +46,19 @@ def test_manifestes_passent_certifies_homogenes():
     check_manifestes([m, dict(m)])
 
 
+def test_manifestes_nouvelle_generation_passent():
+    # le format d'empreinte.py : la certification EST le manifeste
+    m = {"schema_manifeste": 1, "artefact": {"sha256": "9bb3b0..."},
+         "parametres": {"DEEP_MS": 250, "DEEP_BAND": 0.1}}
+    check_manifestes([m, dict(m)])
+
+
+def test_manifeste_nouvelle_generation_sans_sha_LEVE():
+    with pytest.raises(PreflightError, match="certifié"):
+        check_manifestes([{"schema_manifeste": 1, "artefact": {},
+                           "parametres": {}}])
+
+
 def test_manifestes_LEVENT_non_certifies():
     # la faute de la nuit du 04→05/08 : 93 manifestes false, blanchis par un script
     with pytest.raises(PreflightError, match="provenance"):
