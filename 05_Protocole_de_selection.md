@@ -263,11 +263,12 @@ passe pas les épreuves et **il ne peut jamais être « retenu »** : il ne sert
 de **plancher**. Un premier candidat qui n'apporte rien par-dessus la masse
 brute n'apporte rien.
 
-**Les quatre conditions, toutes obligatoires :**
+**Les cinq conditions, toutes obligatoires :**
 
 | condition | règle |
 |---|---|
 | **unité de calcul** | le **JOUR**, jamais l'observation. Les fenêtres se recouvrent, et l'ignorer fausse l'incertitude — dans le mauvais sens. |
+| **plancher d'observations** | **n observations par jour ≥ 100 × la taille du bloc de contrôle.** Ajouté le 05/08/2026 sur mesure d'ÉS (`journal/es-rapport-20260805.md` §3) : l'estimateur partiel dérive vers le haut en ~k/n — +0,15 de biais à 20 contrôles pour 300 observations. Le harnais **refuse** É4 sous ce plancher, il ne prévient pas. |
 | **règle de décision** | **Benjamini-Hochberg à 10 % sur la collection des candidats tranche, seul** (`ADR-001`). La statistique d'entrée est la **p-value du test de Student** (bilatéral) sur les coefficients journaliers ; l'**IC 95 %** est **publié**, il ne décide pas. |
 | **contrôle négatif** | la grandeur doit sortir de sa bande nulle, tirée par **décalage circulaire**. Jamais par permutation i.i.d. : la permutation détruit l'autocorrélation des fenêtres recouvrantes et déclare significatif ce qui ne l'est pas. |
 | **réplication** | **même signe sur deux symboles.** Un effet qui n'apparaît que sur un symbole est un sur-ajustement. |
@@ -321,11 +322,16 @@ Chaque candidat, retenu ou éliminé, laisse une ligne dans
 `journal/registre-des-grandeurs.md` :
 
 ```
-nom · date · épreuve où il tombe · le CHIFFRE qui l'a fait tomber · qui l'a proposé
+date · nom · état · épreuve · LE CHIFFRE · périmètre · qui l'a proposée
 ```
 
-⚠️ **Ce fichier n'existe pas encore** : il est à créer **au premier candidat
-déposé**, et **aucun calcul ne se fait avant** son existence.
+*(Format aligné le 05/08/2026 sur celui du registre, qui est exécuté par
+`harnais/registre.py` — décision D7 de `chantiers/C9-harnais.md`. Une version
+antérieure de cette ligne portait cinq champs ; le registre en a toujours eu
+sept.)*
+
+Le fichier existe depuis le 05/08/2026, avec sa déclaration de candidats et
+ses états. **Aucun calcul ne se fait avant qu'un candidat n'y ait sa ligne.**
 
 **Aucune élimination sur une opinion.** Chacune porte son chiffre. Si on s'est
 trompé, on sait exactement pourquoi on l'avait sorti, et on peut rouvrir — par

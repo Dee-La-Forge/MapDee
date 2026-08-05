@@ -61,6 +61,15 @@ def test_e4_REFUSE_sans_prealables():
         e4([np.zeros(3)], [np.zeros(3)], None)
 
 
+def test_e4_REFUSE_sous_le_plancher_k_sur_n():
+    # 05 §4, ajout du 05/08 : n_obs/jour >= 100 x taille du bloc. Ici 300 obs
+    # pour 5 controles (plancher 500) : refus attendu, avec le chiffre.
+    x = [np.random.default_rng(1).normal(size=300) for _ in range(3)]
+    bloc = [np.random.default_rng(2).normal(size=(300, 5)) for _ in range(3)]
+    with pytest.raises(RefusEpreuve, match="plancher"):
+        e4(x, x, bloc, prealables_leves=True)
+
+
 def test_e4_mecanique_sur_synthetique():
     """Sur synthétique (ÉS), préalables levés : la mécanique complète tourne —
     coefficients par jour, Student, IC publié."""

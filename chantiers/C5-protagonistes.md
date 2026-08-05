@@ -1,5 +1,16 @@
 # C5 — Les protagonistes
 
+> **Verdict des garde-fous §6, rendu le 05/08/2026 sur les 18 jours-symboles**
+> (`journal/c5/gardefous-18-jours-symboles.json`) : cinq grandeurs
+> utilisables, **une DÉGÉNÉRÉE — `replacements_par_palier`** (plus de 60 % des
+> portefeuilles à une seule valeur : la médiane poste une fois par palier).
+> Elle n'entre dans aucun classement en l'état ; sa définition devra être
+> conditionnée (par exemple aux seuls portefeuilles multi-postes) **par
+> révision datée de ce protocole, avant tout classement**. Deux observations
+> consignées sans conclusion : `vie_med_ms` à médiane nulle et `ratio_fill` à
+> médiane 1 — le tissu de fond est fait d'ordres qui meurent ou se
+> remplissent instantanément.
+
 > **Protocole PRÉ-ENREGISTRÉ.** Écrit et commité **avant** le premier calcul.
 > Aucune donnée n'a été regardée à l'écriture de ce document. Les seuils
 > ci-dessous ne se renégocient pas après avoir vu un résultat : un seuil déplacé

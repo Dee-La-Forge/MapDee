@@ -125,5 +125,16 @@ def e4(candidat_par_jour: list[np.ndarray], cible_par_jour: list[np.ndarray],
     coefs = []
     for i, (x, y) in enumerate(zip(candidat_par_jour, cible_par_jour)):
         bloc = None if bloc_par_jour is None else bloc_par_jour[i]
+        # Plancher d'observations, `05` §4 (ajouté le 05/08/2026 sur mesure
+        # d'ÉS) : l'estimateur partiel dérive en ~k/n — à 300 obs pour 20
+        # contrôles, +0,15 de biais. On refuse, on n'avertit pas.
+        if bloc is not None:
+            b = np.atleast_2d(np.asarray(bloc))
+            k = b.shape[1] if b.shape[0] == len(x) else b.shape[0]
+            if len(x) < 100 * max(k, 1):
+                raise RefusEpreuve(
+                    f"É4 refusée : jour {i} porte {len(x)} observations pour "
+                    f"un bloc de {k} contrôles — le plancher d'`05` §4 exige "
+                    f"n ≥ {100 * k} (dérive k/n mesurée à ÉS).")
         coefs.append(spearman_partiel(x, y, bloc))
     return {"coefs_jour": coefs, **student_jours(np.array(coefs))}
