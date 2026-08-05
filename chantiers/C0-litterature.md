@@ -151,6 +151,26 @@ rétrécit toujours à la lecture.
 5. **Files et position** : Moallemi & Yuan ; Huang, Lehalle & Rosenbaum
    (modèle queue-réactif — c'est l'option de montée en gamme de D3/C9).
 
+## 5 bis. Familles signalées par Meddy (06/08/2026) — pointage contre le catalogue
+
+Passage en revue d'une liste de ~25 familles : la majorité est déjà au
+catalogue sous son représentant fondu (files d'attente → B1/B5/E1 ·
+percolation → D2 · phénomènes critiques/susceptibilité → D1/A5/F5 ·
+information/spectral → C1 · Mori-Zwanzig → A5 · Lévy/fBm → C3 ·
+Ising/SOC → D1/D2 — voir Annexe B de `03`). **Trois absences réelles, à
+instruire ici avant toute fiche** :
+
+1. **science des réseaux sur les wallets** (centralité, communautés, motifs)
+   — côté vérité, prolongement du bloc E, nourri par C5 ;
+2. **information mutuelle / transfert d'entropie comme features** (la
+   métrique du banc reste celle d'`ADR-001`) ;
+3. **écart à un carnet de référence** (maximum d'entropie, distance de
+   Wasserstein) — risque de redite élevé avec C1/C2, É0 tranchera.
+
+Entrée au banc uniquement par fiche complète (ligne « à l'exécution »
+obligatoire), et tout ajout **rouvre le compte D10 et le dit**. La TDA reste
+écartée, porte ouverte au premier énoncé actionnable.
+
 **Règle de sortie du chantier** : une définition de B7 ne se ferme que quand sa
 forme est adossée à une source **relue**, sa constante à une mesure du jour de
 banc, et sa ligne écrite dans le document qui la porte (`03` ou C3) — dans cet
