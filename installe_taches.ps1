@@ -30,8 +30,18 @@ $a = New-ScheduledTaskAction -Execute 'powershell.exe' `
         -WorkingDirectory 'C:\Users\DyBoo\Desktop\-MapDee-'
 $t = New-ScheduledTaskTrigger -AtStartup
 $t.Delay = 'PT2M'   # laisser les disques monter
-Register-ScheduledTask -TaskName 'GON-MapDee-construction-reprise' `
-    -Action $a -Trigger $t -Principal $p -Settings $s -Force | Out-Null
+# -ErrorAction Stop : la premiere version affichait « OK » apres un Acces
+# refuse — un installeur qui annonce un succes qu'il n'a pas obtenu est pire
+# que pas d'installeur (demontre le 05/08, en session non elevee).
+try {
+    Register-ScheduledTask -TaskName 'GON-MapDee-construction-reprise' `
+        -Action $a -Trigger $t -Principal $p -Settings $s -Force -ErrorAction Stop | Out-Null
+} catch {
+    Write-Error ("ECHEC : $($_.Exception.Message) — l'enregistrement S4U exige " +
+                 "une console ELEVEE (clic droit PowerShell > executer en tant " +
+                 "qu'administrateur). Rien n'est installe.")
+    exit 1
+}
 Write-Host "OK : GON-MapDee-construction-reprise (au demarrage + 2 min, S4U $compte)"
 Write-Host "     test sans risque : Start-ScheduledTask 'GON-MapDee-construction-reprise'"
 Write-Host "     -> si une construction tourne deja, le script refuse et sort."

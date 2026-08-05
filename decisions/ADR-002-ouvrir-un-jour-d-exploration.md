@@ -1,6 +1,9 @@
 # ADR-002 — Ce que veut dire « ouvrir un jour d'exploration »
 
-**Date** : 2026-08-05 · **Statut** : **PROPOSÉ** — à trancher par Meddy
+**Date** : 2026-08-05 · **Statut** : **ACCEPTÉE le 05/08/2026** — sur
+délégation explicite de Meddy (« prends les meilleures décisions pour le
+projet », même jour), la décision proposée ci-dessous étant acceptée telle
+quelle, sans modification. Révocable par lui comme toute ADR.
 **Origine** : audit de Meddy du 05/08, constat I.1.
 
 ---

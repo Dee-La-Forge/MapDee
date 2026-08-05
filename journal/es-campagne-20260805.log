@@ -1,0 +1,35 @@
+[      0s] préflight : {'protocole_hash': '6979467'} — protocole gelé, campagne lancée
+[      0s] volet 1/4 — bras nul (32 carnets, 3 règles de lieu)
+[     91s]   32 carnets nuls fabriqués
+[     93s]   nul[leurre] : moy=0.4414 FP=1.000 passe=False
+[     96s]   nul[recharge] : moy=0.5747 FP=1.000 passe=False
+[     98s]   nul[absorption] : moy=-0.1337 FP=0.001 passe=False
+[     98s] volet 2/4 — plancher de détection (3 mécanismes × 5 amplitudes × 8 jours)
+[    120s]   leurre amp=0.5 : 0.4987 (écartés 0)
+[    144s]   leurre amp=1.0 : 0.5102 (écartés 0)
+[    167s]   leurre amp=2.0 : 0.5245 (écartés 0)
+[    190s]   leurre amp=4.0 : 0.5417 (écartés 0)
+[    213s]   leurre amp=8.0 : 0.558 (écartés 0)
+[    235s]   recharge amp=0.5 : 0.5708 (écartés 0)
+[    257s]   recharge amp=1.0 : 0.6052 (écartés 0)
+[    280s]   recharge amp=2.0 : 0.6513 (écartés 0)
+[    304s]   recharge amp=4.0 : 0.6783 (écartés 0)
+[    328s]   recharge amp=8.0 : 0.693 (écartés 0)
+[    352s]   absorption amp=0.5 : 0.3627 (écartés 0)
+[    375s]   absorption amp=1.0 : 0.3804 (écartés 0)
+[    396s]   absorption amp=2.0 : 0.4217 (écartés 0)
+[    417s]   absorption amp=4.0 : 0.4902 (écartés 0)
+[    438s]   absorption amp=8.0 : 0.5605 (écartés 0)
+[    438s]   PLANCHER leurre : 0.5
+[    438s]   PLANCHER recharge : 0.5
+[    438s]   PLANCHER absorption : 0.5
+[    438s] volet 3/4 — stabilité du Spearman partiel (ADR-001, incertitude n° 1)
+[    438s]   bloc k=0 : {'moyenne': 0.2515, 'ecart_type': 0.0545}
+[    438s]   bloc k=1 : {'moyenne': 0.2602, 'ecart_type': 0.0544}
+[    439s]   bloc k=2 : {'moyenne': 0.2608, 'ecart_type': 0.0537}
+[    439s]   bloc k=5 : {'moyenne': 0.2851, 'ecart_type': 0.054}
+[    440s]   bloc k=10 : {'moyenne': 0.3254, 'ecart_type': 0.0557}
+[    441s]   bloc k=20 : {'moyenne': 0.3994, 'ecart_type': 0.0568}
+[    441s] volet 4/4 — puissance en jours
+[    442s]   jours requis à 80 % : {'d=0.5': 34, 'd=1.0': 10, 'd=1.5': 6, 'd=2.0': 5}
+[    442s] terminé — C:\Users\DyBoo\Desktop\-MapDee-\journal\es-campagne-20260805.json

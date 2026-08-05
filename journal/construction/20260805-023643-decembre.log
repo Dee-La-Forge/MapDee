@@ -1,0 +1,34 @@
+﻿02:36:43  === reconstruction decembre 2025 ===
+02:36:43  reglage deep : DEEP_MS=250  DEEP_BAND=0.10
+02:36:43  symboles     : BTC, ETH
+02:36:43  git          : 3e039b9  sale=True
+02:36:43  --- BTC  01-07  phase=deep ---
+=== lot : 7 jours, BTC, phase=deep ===
+[1/7] 20251201 : deja fait, saute.
+[2/7] === BTC 20251202 (328 Gio libres) ===
+  extraction : 24 fichiers de statuts, 24 de diffs en 136s
+  statuts 00h : 3,865,733 (cumul 3,865,733) [table deja ecrite]
+  statuts 01h : 5,448,699 (cumul 9,314,432) [table deja ecrite]
+  statuts 02h : 3,903,676 (cumul 13,218,108) [table deja ecrite]
+python.exe : Traceback (most recent call last):
+Au caractère C:\Users\DyBoo\Desktop\-MapDee-\construire_decembre.ps1:105 : 5
++     & $PY construit/lot.py --coin $coin --jours 20251201..20251207 -- ...
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Traceback (most recent call last)::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  File "C:\Users\DyBoo\Desktop\-MapDee-\_recupere\construit\lot.py", line 151, in <module>
+    r = lot(expanse(a.jours), a.coin, a.phase, a.min_libre_gio,
+  File "C:\Users\DyBoo\Desktop\-MapDee-\_recupere\construit\lot.py", line 117, in lot
+    s = build(j, coin, phase)
+  File "C:\Users\DyBoo\Desktop\-MapDee-\_recupere\construit\jour.py", line 490, in build
+    st = np.sort(read_statuses(f), order="ts")
+  File "C:\Users\DyBoo\Desktop\-MapDee-\_recupere\construit\openbook.py", line 98, in read_statuses
+    raw = gzip.open(path, "rb").read()
+  File "C:\Python\Python310\lib\gzip.py", line 301, in read
+    return self._buffer.read(size)
+  File "C:\Python\Python310\lib\_compression.py", line 118, in readall
+    while data := self.read(sys.maxsize):
+  File "C:\Python\Python310\lib\gzip.py", line 507, in read
+    raise EOFError("Compressed file ended before the "
+EOFError: Compressed file ended before the end-of-stream marker was reached

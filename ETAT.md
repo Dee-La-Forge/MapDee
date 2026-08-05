@@ -8,7 +8,7 @@
 
 ---
 
-## 1. LES BLOCAGES — deux restants sur neuf : B2 (arbitrage de Meddy) et B7 (définitions)
+## 1. LES BLOCAGES — un restant sur neuf : B7 (définitions — mur, contact, bande)
 
 > **Révision du 05/08/2026.** Une version antérieure listait dix blocages, dont
 > **deux étaient déjà résolus par le commit qui les écrivait** — « le plan n'est
@@ -26,7 +26,7 @@ documents eux-mêmes comme des conditions d'arrêt.
 | # | ce qui bloque | conséquence |
 |---|---|---|
 | ~~**B1**~~ | ~~**La métrique d'É4 n'existe nulle part**~~ — **LEVÉ le 05/08** : `ADR-001` **ACCEPTÉE**. La métrique est la **corrélation de rang partielle**, bloc de contrôle **gelé par tour** commun à É2/É4, **BH à 10 % sur les candidats seuls** tranche, p-value de Student en entrée, IC publié. `05` est mis à jour. | le sommet du harnais existe : É4 devient calculable et mécanisable dès que C3 est gelé |
-| **B2** | **Trois documents donnent trois réponses à « que puis-je lancer ? »** | `05` §2 dit rien · `05` §9 et `06` V1 disent jusqu'à É2 · `06` V2 dit jusqu'à É3. **La bonne réponse est « rien »** : É0 et É2 touchent du marché, et aucun jour d'exploration ne s'ouvre avant C3 gelé. ⚠️ **Cette réponse est elle-même contestée** (audit du 05/08, I.1) : lue littéralement, elle interdit C5 — lancé — **et C2, qui doit précéder C3**. Arbitrage ouvert : `decisions/ADR-002`. |
+| ~~**B2**~~ | ~~**Trois documents donnent trois réponses à « que puis-je lancer ? »**~~ — **LEVÉ le 05/08** : `ADR-002` **ACCEPTÉE** (délégation de Meddy). La réponse canonique : interdits, (1) toute mesure **référençant la cible** avant C3 gelé, (2) toute lecture **sans protocole pré-enregistré**. Le reste est lisible, consommation actée. C5 et C2 légitimes ; **É0/É2 légitimes sur périmètre de fiche** ; É3/É4 attendent C3 ; la réserve reste intouchable. `06` §10 réécrit dans ces termes. | le banc réel n'attend plus que : fin de construction, méthode admise par ÉS, et C3 pour É3/É4 |
 | ~~**B3**~~ | ~~**`ADR-000` ne nomme pas le jour de banc d'instrument**~~ — **LEVÉ le 05/08**, addendum à l'ADR : la convention complète y est transcrite, C2 est débloqué. *Réserve : le banc d'instrument n'est porté par aucune garde de code, il tient par discipline.* | `05` en fait une condition d'arrêt explicite → C2 bloqué → C3 → C4 → le banc. Le jour n'est nommé que dans un **commentaire de script**. |
 | ~~**B4**~~ | ~~**`journal/registre-des-grandeurs.md` n'existe pas**~~ — **LEVÉ le 05/08** : créé, avec ses états, son format de ligne et l'emplacement du nombre de candidats à déclarer avant le premier calcul | `05` §5 : « aucun calcul ne se fait avant » son existence |
 | ~~**B5**~~ | ~~**Les fiches de `03` n'ont pas les lignes qu'`05` exige**~~ — **LEVÉ le 05/08** : les 16 fiches A1-D2 portent `coût` (**estimation a priori, marquée comme telle**, corrigée à la première exécution) et `périmètre minimal` — deux périmètres nommés en tête de registre, **J3** (9-11 déc.) par défaut, **J8** (9-16 déc.) pour les grandeurs d'événements rares, jamais la réserve. *Réserve : le bloc E n'a toujours pas de fiches au format d'`05` — c'est la régularisation C5, déjà en §4.* | — |
@@ -180,7 +180,10 @@ Tout le reste attend soit la construction, soit les définitions.
    vers `journal/c5/`, puis calculer les garde-fous §6 **sur les 18
    jours-symboles ensemble** (la reprise ne les imprime que sur 14-16) — aucun
    classement sans eux ;
-5. **`ADR-002`** — attend **l'arbitrage de Meddy** (B2) ;
+5. ~~**`ADR-002`**~~ — **ACCEPTÉE le 05/08** sur délégation (B2 levé) ; dans
+   la même délégation : **`ADR-004`** (amplitude plausible = 2,0× le
+   voisinage) et **`ADR-003`** (structure de la cible fixée, gel après C2 sur
+   le jour de banc) ;
 6. ~~**C0** et la **spécification de C9**~~ — **OUVERTS le 05/08, livrables
    rendus** : `chantiers/C9-harnais.md` (spec de bout en bout — les douze
    décisions recensées : D1/D2/D7 transcrites du code, D3/D4/D8/D9 en

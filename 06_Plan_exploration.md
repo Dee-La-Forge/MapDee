@@ -540,7 +540,12 @@ fin de phase coûte la phase.
 
 * aucun entraînement de modèle — la table se fige d'abord ;
 * aucune mesure sur la réserve, ni construction, ni lecture ;
-* aucun jour d'exploration ouvert avant que C3 ne soit gelé et commité ;
+* aucune mesure **qui référence la cible** sur un jour d'exploration avant que
+  C3 ne soit gelé et commité, et aucune lecture **sans protocole pré-enregistré
+  commité avant le premier calcul** — c'est la formulation d'`ADR-002`
+  (acceptée le 05/08/2026), qui remplace « aucun jour d'exploration ouvert » :
+  la version large interdisait C2, donc rendait C3 inatteignable. Un jour
+  regardé reste **consommé** ;
 * aucun candidat testé sans sa fiche ;
 * **aucune conclusion négative sans son plancher de détection** ;
 * **aucun mécanisme retenu sans son verdict de traversée.** Un mécanisme qui ne
