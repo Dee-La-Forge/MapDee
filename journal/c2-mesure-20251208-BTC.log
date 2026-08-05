@@ -1,0 +1,5 @@
+[    0s] manifeste certifié (ef4ff4f6dc38…), commit 0531a3f, sale=True
+[ 3325s] S1 : M = 484.67 (quantile 0.99 du ratio masse/voisinage, préfixe 25000) — S2 : P = 6.0 photos (médiane, 46,512 épisodes)
+[ 3325s] S5 : {'fenetre_1': 0.0, 'fenetre_4': 4.9e-05, 'fenetre_16': 0.000245, 'fenetre_64': 0.001031}
+[ 3792s] S4 : bande d'étude = 50.26215% (99.9% de 460,290 exécutions)
+[ 3792s] terminé — C:\Users\DyBoo\Desktop\-MapDee-\journal\c2-mesure-20251208-BTC.json
