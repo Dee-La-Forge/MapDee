@@ -1,0 +1,80 @@
+{
+ "vie_med_ms": {
+  "champ": "vie_med_ms",
+  "n": 178942,
+  "min": 0.0,
+  "p05": 0.0,
+  "p25": 0.0,
+  "med": 0.0,
+  "p75": 45109.25,
+  "p95": 35405299.97499997,
+  "max": 4225403422.0,
+  "part_a_la_mediane": 0.5751807848353098,
+  "verdict": "utilisable"
+ },
+ "taille_p99_sur_med": {
+  "champ": "taille_p99_sur_med",
+  "n": 165732,
+  "min": 1.0,
+  "p05": 1.0,
+  "p25": 1.0,
+  "med": 1.0052048415641002,
+  "p75": 1.9044328993064072,
+  "p95": 7.767494859401057,
+  "max": 1381556.24,
+  "part_a_la_mediane": 7.240605314604301e-05,
+  "verdict": "utilisable"
+ },
+ "part_ask": {
+  "champ": "part_ask",
+  "n": 182381,
+  "min": 0.0,
+  "p05": 0.0,
+  "p25": 0.25,
+  "med": 0.5,
+  "p75": 0.6842105263157895,
+  "p95": 1.0,
+  "max": 1.0,
+  "part_a_la_mediane": 0.17727723830881506,
+  "verdict": "utilisable"
+ },
+ "ratio_fill": {
+  "champ": "ratio_fill",
+  "n": 182381,
+  "min": 0.0,
+  "p05": 0.0,
+  "p25": 0.48717948717948717,
+  "med": 1.0,
+  "p75": 1.0,
+  "p95": 1.0,
+  "max": 149.0,
+  "part_a_la_mediane": 0.45446071685098777,
+  "verdict": "utilisable"
+ },
+ "replacements_par_palier": {
+  "champ": "replacements_par_palier",
+  "n": 182381,
+  "min": 1.0,
+  "p05": 1.0,
+  "p25": 1.0,
+  "med": 1.0,
+  "p75": 1.0,
+  "p95": 2.0,
+  "max": 2599.0,
+  "part_a_la_mediane": 0.7808488822848871,
+  "verdict": "DEGENERE \u2014 plus de 60 % a une seule valeur"
+ },
+ "taux_annulation": {
+  "champ": "taux_annulation",
+  "n": 178942,
+  "min": 0.0,
+  "p05": 0.0,
+  "p25": 0.0,
+  "med": 0.0,
+  "p75": 0.5,
+  "p95": 0.9983266969015795,
+  "max": 1.0,
+  "part_a_la_mediane": 0.5152563400431425,
+  "verdict": "utilisable"
+ }
+}

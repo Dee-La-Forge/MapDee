@@ -2,3 +2,21 @@
   -> 54,132,027 enregistrements, 10,623 portefeuilles, 742.5s
   20251214 ETH : 24 fichiers horaires en 419s
   -> 30,741,646 enregistrements, 5,471 portefeuilles, 478.0s
+  20251215 BTC : 24 fichiers horaires en 762s
+  -> 94,199,640 enregistrements, 15,322 portefeuilles, 962.4s
+  20251215 ETH : 24 fichiers horaires en 519s
+  -> 66,578,404 enregistrements, 8,556 portefeuilles, 651.3s
+  20251216 BTC : 24 fichiers horaires en 791s
+  -> 94,487,414 enregistrements, 13,102 portefeuilles, 966.2s
+  20251216 ETH : 24 fichiers horaires en 545s
+  -> 68,492,614 enregistrements, 7,743 portefeuilles, 711.6s
+
+=== GARDE-FOUS §6 — avant tout classement ===
+  vie_med_ms                 n= 59787  p05=           0  med=           0  p95=    4.31e+07   utilisable
+  taille_p99_sur_med         n= 55304  p05=           1  med=       1.005  p95=       7.603   utilisable
+  part_ask                   n= 60817  p05=           0  med=         0.5  p95=           1   utilisable
+  ratio_fill                 n= 60817  p05=           0  med=           1  p95=        1.25   utilisable
+  replacements_par_palier    n= 60817  p05=           1  med=           1  p95=           2   DEGENERE — plus de 60 % a une seule valeur
+  taux_annulation            n= 59787  p05=           0  med=           0  p95=      0.9983   utilisable
+
+AUCUN CLASSEMENT N'EST PRODUIT ICI — protocole C5 §6.
