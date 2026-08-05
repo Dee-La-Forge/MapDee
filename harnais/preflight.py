@@ -25,7 +25,8 @@ EXPLORATION = {f"202512{d:02d}" for d in range(9, 17)}
 #: d'arbre propre, sinon le préflight s'interbloque (audit I.5).
 SORTIES_DECLAREES = ("journal/construction/", "journal/registre-des-grandeurs.md",
                     "journal/c5/", "chantiers/c5_",   # C5 écrit à côté de sa recette (ETAT §3)
-                    "journal/es-campagne-")           # la campagne ÉS écrit son log et son JSON
+                    "journal/es-campagne-",           # la campagne ÉS écrit son log et son JSON
+                    "journal/c8-3-")                  # C8.3 écrit le sien pendant sa mesure
 
 PROTOCOLES = ("05_Protocole_de_selection.md", "03_EconoPhysique.md",
               "decisions/ADR-001-la-metrique-de-E4.md")

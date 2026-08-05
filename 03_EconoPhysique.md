@@ -463,14 +463,95 @@ ne sont pas pour autant à jeter — elles **fabriquent la vérité** contre laq
 tout le reste s'entraîne. Le confondre serait l'erreur la plus coûteuse du
 projet.
 
-| fiche | mesure | usage |
-|---|---|---|
-| **E1 · position en file** | rang d'un ordre dans la queue de son palier | vérité : qui sera servi |
-| **E2 · âge et modifications** | durée de vie, nombre de reposts d'un `oid` | vérité : distinguer un ordre patient d'un ordre nerveux |
-| **E3 · fragmentation** | combien d'ordres composent un mur | vérité : un mur d'un seul acteur n'est pas un mur de dix |
-| **E4 · dominance** | part du premier porteur dans la masse du mur | vérité : typage du mur |
-| **E5 · flux par acteur** | OFI restreint aux acteurs dominants, ou aux nouveaux entrants | vérité : qui pousse |
-| **E6 · persistance d'identité** | un acteur se retrouve-t-il d'un jour à l'autre | vérité : stabilité de la population |
+*(Fiches au format d'`05` §1 depuis le 05/08/2026 — régularisation exigée par
+`06` avant tout résultat C5 ; une version antérieure ne portait qu'un tableau
+résumé. La ligne « à l'exécution » est structurellement vide dans ce bloc :
+c'est sa définition, pas un oubli — la voie de sortie est l'observable de
+substitution, en tête de bloc.)*
+
+### E1 · Position en file
+
+- **mesure** — le rang d'un ordre dans la queue de son palier.
+- **définition** — position FIFO reconstruite par rejeu du cycle de vie des
+  `oid` au palier, à chaque instant.
+- **observable** — le L4 complet : `oid`, cycle de vie, ordre d'arrivée.
+- **à l'exécution** — aucune directement : **fabrique la vérité** (qui sera
+  servi, et donc quelle masse affichée est réellement atteignable).
+- **É1** — ❌ fabrique la vérité seulement.
+- **redite** — aucune côté vérité.
+- **coût** — estimé : rejeu ordre par ordre — **heures** par jour-symbole ;
+  c'est la grandeur la plus chère du bloc.
+- **périmètre minimal** — **J3**.
+
+### E2 · Âge et modifications
+
+- **mesure** — durée de vie et nombre de reposts d'un `oid`.
+- **définition** — `timestampDiff` des statuts terminaux, et chaînage des
+  reposts au même palier par le même porteur.
+- **observable** — les statuts d'ordres du L4 (la source de C5).
+- **à l'exécution** — aucune directement : **fabrique la vérité** (patient
+  contre nerveux — C5 a montré une médiane de vie NULLE : le tissu de fond
+  meurt instantanément).
+- **É1** — ❌.
+- **redite** — avec B1 version ordre, volontairement : c'est sa vérité.
+- **coût** — mesuré par C5 étape 1 : **~10-20 min** par jour-symbole.
+- **périmètre minimal** — **J3**.
+
+### E3 · Fragmentation
+
+- **mesure** — combien d'ordres, et de porteurs, composent un mur.
+- **définition** — compte d'`oid` et d'`userId` distincts au palier, à
+  l'instant du jugement du mur.
+- **observable** — statuts L4 joints au carnet reconstruit.
+- **à l'exécution** — aucune directement : **fabrique la vérité** (un mur
+  d'un acteur n'est pas un mur de dix).
+- **É1** — ❌. *(La colonne `n` de `deep` en est l'ombre publique — compte
+  d'ordres sans identité : premier candidat d'observable de substitution.)*
+- **redite** — faible.
+- **coût** — estimé : jointure statuts × paliers — **dizaines de minutes**
+  par jour-symbole.
+- **périmètre minimal** — **J3**.
+
+### E4 · Dominance
+
+- **mesure** — la part du premier porteur dans la masse du mur.
+- **définition** — max sur les `userId` de (masse portée / masse du palier),
+  à l'instant du jugement.
+- **observable** — comme E3.
+- **à l'exécution** — aucune directement : **fabrique la vérité** (typage du
+  mur — c'est la grandeur de vérité centrale du produit).
+- **É1** — ❌.
+- **redite** — E3 en est le dénominateur ; à mesurer entre elles.
+- **coût** — estimé : même jointure qu'E3 — **dizaines de minutes**.
+- **périmètre minimal** — **J3**.
+
+### E5 · Flux par acteur
+
+- **mesure** — l'OFI restreint aux acteurs dominants, ou aux nouveaux
+  entrants.
+- **définition** — A1 recalculé sur le sous-ensemble des événements portés
+  par les `userId` sélectionnés par E4.
+- **observable** — statuts L4 signés par porteur.
+- **à l'exécution** — aucune directement : **fabrique la vérité** (qui
+  pousse).
+- **É1** — ❌.
+- **redite** — avec A1 par construction — c'est sa décomposition.
+- **coût** — estimé : **minutes** une fois E4 payée.
+- **périmètre minimal** — **J3**.
+
+### E6 · Persistance d'identité
+
+- **mesure** — un acteur se retrouve-t-il d'un jour à l'autre ?
+- **définition** — recouvrement des ensembles d'`userId` actifs entre jours,
+  pondéré par l'activité.
+- **observable** — les `userId` des statuts, sur plusieurs jours.
+- **à l'exécution** — aucune directement : **fabrique la vérité** (stabilité
+  de la population — condition de tout typage qui prétend généraliser).
+- **É1** — ❌.
+- **redite** — aucune.
+- **coût** — estimé : ensembles par jour puis intersections — **minutes**.
+- **périmètre minimal** — **J8** : la persistance est une grandeur
+  inter-jours, trois jours ne donnent que deux transitions. Déclaré d'avance.
 
 **Le point dur, à écrire avant de mesurer** : *annuler beaucoup n'est pas un
 signe* — c'est le métier d'un teneur de marché. Un discriminant qui désigne les
