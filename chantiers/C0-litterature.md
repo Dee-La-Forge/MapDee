@@ -254,7 +254,13 @@ théories** :
     impression post-trade), mais son hedging traverse nos carnets — pour
     A1/A3 il apparaîtra comme choc de flux sans cause visible : c'est la
     case « résidu » du typage (`05` §9.3) qui l'attrapera, on ne
-    l'inventera pas.
+    l'inventera pas. **Sur la « détection » (06/08)** : le hors-carnet ne
+    se détecte pas, il s'infère — par COMPOSITION de familles déjà
+    instruites (n° 9 métaordres, n° 20 allumage, résidus d'A5, case
+    résidu) — un « détecteur de dark » séparé serait une redite qu'É0
+    fondrait. Le seul levier matériel neuf : **capturer les bandes de
+    blocs drapeautés** (Deribit/Paradigm, OKX) — un flux de plus au
+    recorder, décision de production **chez Meddy**.
 
 Entrée au banc uniquement par fiche complète (ligne « à l'exécution »
 obligatoire), et tout ajout **rouvre le compte D10 et le dit**. La TDA reste
