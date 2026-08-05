@@ -1,4 +1,4 @@
-# Reconstruction de decembre 2025 — 24 jours x 2 symboles.
+# Reconstruction de decembre 2025 - 24 jours x 2 symboles.
 #
 # POURQUOI CE FICHIER EST DANS LE DEPOT. Le lot precedent a ete lance par un
 # script qui n'existe plus, et dont le log est dans `.gitignore`. Il est mort
@@ -16,13 +16,13 @@
 #   * il inscrit le reglage `deep` dans l'environnement, et chaque artefact
 #     produit porte desormais son manifeste (`empreinte.py`).
 #
-# PERIMETRE — `decisions/ADR-000`, acceptee le 04/08/2026 avant ce lancement.
+# PERIMETRE - `decisions/ADR-000`, acceptee le 04/08/2026 avant ce lancement.
 # (La numerotation des ADR de MapDee repart de zero : les ADR-001 a 021 sont
 # ceux des depots morts, archives dans `_recupere/lab/04-decisions/`.)
 #   01-07  certification consommee -> `--phase deep` seulement
 #   08     banc d'instrument
 #   09-16  exploration
-#   17-23  RESERVE — absente de la liste, et `lot.py` la refuserait
+#   17-23  RESERVE - absente de la liste, et `lot.py` la refuserait
 #   24-31  exploration
 #
 # REGLAGE `deep` : passe en parametre, mesure sur le banc (jour 08) le
@@ -30,16 +30,16 @@
 
 # REGLAGE ARRETE LE 04/08/2026.
 #
-# DeepMs = 250 — MESURE. L'emission de `deep` est imbriquee sous la porte de
+# DeepMs = 250 - MESURE. L'emission de `deep` est imbriquee sous la porte de
 #   `hl_book` : a 250 ms elle sort a CHAQUE photo du carnet (verifie,
 #   deep_snaps == book_snaps a l'unite). Descendre plus bas ne donne rien de
 #   plus sans toucher `SNAP_MIN_MS`, qui porte sa propre justification.
 #
-# DeepBand = 0.10 — DECISION, pas mesure. C'est le SEUL choix irreversible de
+# DeepBand = 0.10 - DECISION, pas mesure. C'est le SEUL choix irreversible de
 #   la construction : on retrecit toujours a la lecture, on n'elargit jamais
 #   sans refaire les 48 constructions. Et la bande d'etude autour de laquelle
 #   on serait tente de retrecir est une HYPOTHESE heritee d'un ADR sans
-#   autorite — la graver serait graver l'hypothese.
+#   autorite - la graver serait graver l'hypothese.
 #   Cout assume : ~2x le temps de rejeu et ~42 Go, contre ~15 Go en etroit.
 #   Contrepartie : une vue etroite se derive de la large en quelques minutes,
 #   l'inverse est impossible.
@@ -49,20 +49,20 @@ param(
     [string[]]$Coins  = @("BTC", "ETH")
 )
 
-# INTERPRETEUR EXPLICITE, jamais `python` du PATH. Le journal du 04/08 (§4.9)
+# INTERPRETEUR EXPLICITE, jamais `python` du PATH. Le journal du 04/08 (4.9)
 # rapporte qu'une iteration precedente a du tourner sous Anaconda 3.12
-# (pyarrow 16.1 / pandas 2.1.1 / numpy 1.26.2) faute de pyarrow sous 3.10 —
+# (pyarrow 16.1 / pandas 2.1.1 / numpy 1.26.2) faute de pyarrow sous 3.10 -
 # et c'est cet environnement-la que decrivait le premier `requirements.txt`.
 # Aujourd'hui `python` resout bien vers 3.10.7 et aucun Anaconda n'est
 # installe (verifie le 04/08/2026), mais un PATH est une variable de session :
 # une construction de 32 h ne doit pas dependre de son ordre.
 $PY = "C:\Python\Python310\python.exe"
 
-# ⚠️ DEFAUT CORRIGE LE 05/08/2026, demontre par execution lors de l'audit.
+#  DEFAUT CORRIGE LE 05/08/2026, demontre par execution lors de l'audit.
 # Si `$PY` n'existe pas, `&` leve une CommandNotFoundException : le programme
-# n'est JAMAIS lance, donc `$LASTEXITCODE` n'est pas mis a jour — il vaut encore
+# n'est JAMAIS lance, donc `$LASTEXITCODE` n'est pas mis a jour - il vaut encore
 # 0, herite de la commande precedente. Les deux blocs passaient, le script
-# imprimait « termine », code de sortie 0, ET RIEN N'ETAIT CONSTRUIT. Pire, le
+# imprimait " termine ", code de sortie 0, ET RIEN N'ETAIT CONSTRUIT. Pire, le
 # message d'erreur ne partait pas dans le journal.
 # Un controle qui ne peut pas echouer ne protege pas.
 if (-not (Test-Path $PY)) {
@@ -72,7 +72,7 @@ if (-not (Test-Path $PY)) {
 
 # INSTANCE UNIQUE (05/08/2026). Ce script est desormais relance par une tache
 # planifiee au demarrage. Deux `lot.py` concurrents ecriraient les memes
-# artefacts — le meme risque que le singleton du recorder previent. Un refus
+# artefacts - le meme risque que le singleton du recorder previent. Un refus
 # ici rend la tache inoffensive quoi qu'il arrive, y compris un lancement
 # manuel pendant qu'une construction tourne.
 $dejaLa = Get-CimInstance Win32_Process -Filter "Name='python.exe'" |
@@ -105,7 +105,7 @@ function Note($m) {
 
 # PRIORITE BASSE, HERITEE PAR LES ENFANTS (C8.4, 05/08/2026). La construction
 # partage la machine avec l'enregistreur de production, et la fenetre de
-# capture simultanee HL/Binance ne se rattrape jamais — une construction, si.
+# capture simultanee HL/Binance ne se rattrape jamais - une construction, si.
 # Le diagnostic du 05/08 a montre Binance en resync 5 fois en 40 min pendant
 # que la construction tournait : le recorder etait affame de CPU. Les processus
 # python lances par `&` heritent de la classe de priorite de ce shell.
@@ -124,21 +124,25 @@ foreach ($coin in $Coins) {
     Note "--- $coin  01-07  phase=deep ---"
     & $PY construit/lot.py --coin $coin --jours 20251201..20251207 --phase deep 2>&1 |
         Out-File $log -Append -Encoding utf8
-    if ($LASTEXITCODE -ne 0) { Note "ECHEC sur 01-07 $coin (code $LASTEXITCODE) — arret"; exit 1 }
+    if ($LASTEXITCODE -ne 0) { Note "ECHEC sur 01-07 $coin (code $LASTEXITCODE) - arret"; exit 1 }
 
     Note "--- $coin  08-16  phase=all  (TRANCHE 1 SEULE) ---"
     & $PY construit/lot.py --coin $coin --jours 20251208..20251216 2>&1 |
         Out-File $log -Append -Encoding utf8
-    if ($LASTEXITCODE -ne 0) { Note "ECHEC sur 08-31 $coin (code $LASTEXITCODE) — arret"; exit 1 }
+    if ($LASTEXITCODE -ne 0) { Note "ECHEC sur 08-31 $coin (code $LASTEXITCODE) - arret"; exit 1 }
 }
 
-# VERIFICATION DE COMPLETUDE (05/08/2026). Le run de 02:44 a imprime
-# « termine » apres avoir SAUTE les deux lots 08-16 — cause non prouvee
-# (hypothese : le script a ete edite pendant qu'il tournait ; regle adoptee :
-# ne plus JAMAIS editer un script en cours d'execution). Un « termine » qui
-# ne verifie pas ce qui existe sur le disque est un mensonge en puissance :
-# celui-ci compte les artefacts deep attendus et echoue bruyamment s'il en
-# manque un seul.
+# VERIFICATION DE COMPLETUDE (05/08/2026). Les runs de 02:44 et 14:00 ont
+# imprime " termine " apres avoir SAUTE les deux lots 08-16. CAUSE PROUVEE
+# par reproduction minimale : ce fichier etait UTF-8 SANS BOM et portait des
+# tirets cadratins dans des chaines ; powershell -File sans BOM lit en ANSI,
+# le cadratin devient trois octets dont un GUILLEMET FERMANT (cp1252) qui
+# terminait la chaine "ECHEC ... arret" et avalait le bloc 08-16 dans un
+# parse mutile. Le verificateur [Parser]::ParseFile lisait UTF-8 par defaut
+# et disait " parse OK " - verifier desormais dans l'ENCODAGE DU MOTEUR.
+# REGLE ABSOLUE, deja payee deux fois cette nuit : ASCII PUR dans les .ps1.
+# Et un " termine " qui ne verifie pas ce qui existe sur le disque est un
+# mensonge en puissance : celui-ci compte les artefacts et echoue bruyamment.
 $manquants = @()
 foreach ($coin in $Coins) {
     foreach ($j in 1..16) {
