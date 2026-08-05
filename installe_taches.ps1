@@ -7,15 +7,20 @@
 # Optionnel : .\installe_taches.ps1 -AvecSauvegarde installe AUSSI la
 # sauvegarde quotidienne du store (decision laissee ouverte le 05/08/2026).
 #
-# Pourquoi S4U : meme raison que le recorder (C8.4) — la tache tourne apres un
+# ASCII PUR, VOLONTAIREMENT : PowerShell 5.1 lit les .ps1 sans BOM en ANSI ;
+# un tiret cadratin UTF-8 devient trois octets cp1252 dont un guillemet
+# fermant, qui termine les chaines en plein vol. Demontre le 05/08 sur la
+# premiere version de ce fichier.
+#
+# Pourquoi S4U : meme raison que le recorder (C8.4), la tache tourne apres un
 # redemarrage MEME SANS session ouverte, sans mot de passe stocke. Le nom de
 # compte doit etre QUALIFIE (machine\utilisateur), le nom nu echoue en
-# 0x80070534 — appris le 05/08.
+# 0x80070534, appris le 05/08.
 #
 # Pourquoi c'est inoffensif : construire_decembre.ps1 porte depuis le
-# 05/08/2026 un refus d'instance (deux lot.py concurrents ecriraient les memes
-# artefacts). La tache peut donc se declencher a tout moment sans risque —
-# y compris pour un test manuel via Start-ScheduledTask.
+# 05/08/2026 un refus d'instance (deux lot.py concurrents ecriraient les
+# memes artefacts). La tache peut donc se declencher a tout moment sans
+# risque, y compris pour un test manuel via Start-ScheduledTask.
 param([switch]$AvecSauvegarde)
 
 $compte = "$env:COMPUTERNAME\$env:USERNAME"
@@ -30,16 +35,14 @@ $a = New-ScheduledTaskAction -Execute 'powershell.exe' `
         -WorkingDirectory 'C:\Users\DyBoo\Desktop\-MapDee-'
 $t = New-ScheduledTaskTrigger -AtStartup
 $t.Delay = 'PT2M'   # laisser les disques monter
-# -ErrorAction Stop : la premiere version affichait « OK » apres un Acces
-# refuse — un installeur qui annonce un succes qu'il n'a pas obtenu est pire
-# que pas d'installeur (demontre le 05/08, en session non elevee).
+# -ErrorAction Stop : la premiere version affichait OK apres un Acces
+# refuse. Un installeur qui annonce un succes qu'il n'a pas obtenu est pire
+# que pas d'installeur.
 try {
     Register-ScheduledTask -TaskName 'GON-MapDee-construction-reprise' `
         -Action $a -Trigger $t -Principal $p -Settings $s -Force -ErrorAction Stop | Out-Null
 } catch {
-    Write-Error ("ECHEC : $($_.Exception.Message) — l'enregistrement S4U exige " +
-                 "une console ELEVEE (clic droit PowerShell > executer en tant " +
-                 "qu'administrateur). Rien n'est installe.")
+    Write-Error ("ECHEC : $($_.Exception.Message) - l'enregistrement S4U exige une console ELEVEE (clic droit PowerShell > executer en tant qu'administrateur). Rien n'est installe.")
     exit 1
 }
 Write-Host "OK : GON-MapDee-construction-reprise (au demarrage + 2 min, S4U $compte)"
@@ -51,9 +54,14 @@ if ($AvecSauvegarde) {
     $a2 = New-ScheduledTaskAction -Execute 'powershell.exe' `
             -Argument '-NoProfile -ExecutionPolicy Bypass -File "C:\Users\DyBoo\Desktop\-MapDee-\sauvegarde_store.ps1"'
     $t2 = New-ScheduledTaskTrigger -Daily -At '02:20'
-    Register-ScheduledTask -TaskName 'GON-store-sauvegarde' `
-        -Action $a2 -Trigger $t2 -Principal $p -Settings $s -Force | Out-Null
-    Write-Host "OK : GON-store-sauvegarde (quotidienne 02:20 -> H:\Sauvegardes\GON-store)"
+    try {
+        Register-ScheduledTask -TaskName 'GON-store-sauvegarde' `
+            -Action $a2 -Trigger $t2 -Principal $p -Settings $s -Force -ErrorAction Stop | Out-Null
+        Write-Host "OK : GON-store-sauvegarde (quotidienne 02:20 -> H:\Sauvegardes\GON-store)"
+    } catch {
+        Write-Error "ECHEC sauvegarde : $($_.Exception.Message)"
+        exit 1
+    }
 }
 
 Get-ScheduledTask -TaskName 'GON-*' | Select-Object TaskName, State |
