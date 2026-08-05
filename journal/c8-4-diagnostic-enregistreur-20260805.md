@@ -74,29 +74,35 @@ de limite d'exécution + les trous écrits avec leur durée.
    jamais ; une construction, si.
 2. **Outil de santé** : `chantiers/c8_capture_sante.py` — la complétude se
    mesure en une commande, plus jamais à l'impression.
+3. **Principal de tâche → S4U**, appliqué et prouvé — §6.
 
-## 6. La réparation qui t'attend — une commande, bloquée pour moi
+## 6. S4U — appliqué par Meddy, prouvé en conditions réelles le 05/08 ~03:25
 
-**Le talon d'Achille restant** : la tâche tourne en `InteractiveToken` — après
-un redémarrage, la capture attend qu'une session s'ouvre. Un reboot nocturne
-(mise à jour, plantage) qui reste sur l'écran de verrouillage = capture morte
-jusqu'au matin. Le passage à **S4U** (exécution sans session, sans mot de passe
-stocké) règle ça ; la modification de tâche planifiée m'est bloquée par les
-permissions. À lancer toi-même :
+**Le talon d'Achille est fermé.** La tâche tournait en `InteractiveToken` —
+après un redémarrage, la capture attendait qu'une session s'ouvre ; un reboot
+nocturne resté sur l'écran de verrouillage = capture morte jusqu'au matin.
+Meddy a passé le principal à **S4U** (exécution sans session ouverte, sans mot
+de passe stocké — compte local, donc éligible ; le nom doit être **qualifié**,
+`DESKTOP-QEKF2R8\DyBoo`, le nom nu échoue en `0x80070534`).
 
-```
-! powershell -Command "Set-ScheduledTask -TaskName 'GON-detect-recorder-P1' -Principal (New-ScheduledTaskPrincipal -UserId $env:USERNAME -LogonType S4U -RunLevel Limited)"
-```
+**La preuve, en deux temps, parce qu'une réparation non prouvée n'en est pas
+une :**
 
-Test non destructif ensuite (ne touche pas la capture en cours — le verrou
-fait sortir la nouvelle instance immédiatement) :
+1. le démarrage à la demande sur tâche vivante est refusé par `IgnoreNew`
+   **avant** de lancer le processus — ce test-là ne prouve rien ;
+2. test réel, autorisé par Meddy (« fait-le toi ») : recorder tué
+   (`Stop-Process -Force`, simulant le crash dur du 04/08), tâche relancée.
+   L'instance S4U a démarré, vu le battement du mort encore frais et s'est
+   retirée proprement (`[singleton] … battement il y a 7 s`) ; 90 s plus tard
+   (`STALE_S`), le verrou orphelin a été **volé** et le recorder est reparti —
+   **PID en session 0** (session de service, plus la session interactive),
+   14/14 flux synchronisés. Coût du test : **~2 min de trou**, marquées dans
+   l'archive du 05/08.
 
-```
-! powershell -Command "Start-ScheduledTask -TaskName 'GON-detect-recorder-P1'; Start-Sleep 5; Get-Content 'C:\Users\DyBoo\Desktop\LaForge\GON-TV\sandbox\detect\recorder\recorder.log' -Tail 2"
-```
-
-Attendu : `[singleton] un recorder tourne déjà` — preuve que le démarrage S4U
-fonctionne, sans avoir tué quoi que ce soit.
+Propriété opérationnelle acquise : après tout redémarrage — session ouverte ou
+non — la capture revient en **≤ 5 min** (déclencheur périodique), et après un
+crash brutal du processus, en **≤ 90 s + 5 min** au pire (péremption du verrou
+puis relance).
 
 ## 7. Recommandations restantes — décisions chez toi
 
