@@ -174,9 +174,13 @@ et **les 16 candidats sont déposés au registre** (préflight passé, hash
 inscrit), chacun en attente des données de son périmètre. Ce qui manque au
 banc n'est plus du banc : les artefacts J3/J8 (construction, ~2 j), C3 pour
 É3/É4 (gel après C2 sur le jour de banc), le rejeu événementiel + ADR D12
-pour É3, et **les extracteurs de séries** (fiche → série par jour depuis les
-artefacts) — la seule pièce de code restante, à écrire et tester sur
-synthétique avant l'arrivée des données.
+pour É3, ~~et les extracteurs de séries~~ — **FAITS le 05/08 ~06 h**
+(`harnais/extracteurs.py`, 64 tests) : dix séries extractibles (A1, A4, B1,
+B2, B5, C1, C2, C3, D1, T0), sept absences motivées (A2/B4 → B7, A3/B3/D2 →
+flux exécuté à brancher sur les transactions agrégées — interface prête,
+A5 → calibration, A6 → coût Hawkes). Lecture en flux, un jour réel ne se
+charge jamais entier. Dès que la construction livre J3 : brancher le flux
+exécuté, puis `boucle.tour(series)` — É0 tournera pour de vrai.
 
 Tout le reste attend soit la construction, soit les définitions.
 
