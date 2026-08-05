@@ -1,0 +1,15 @@
+[      0s] préflight : {'protocole_hash': '4800507'} — protocole gelé, campagne lancée
+[      0s] volet 1/4 — bras nul (32 carnets, 3 règles de lieu)
+[    241s]   32 carnets nuls fabriqués
+[    251s]   nul[leurre] : moy=0.1311 FP=0.324 passe=False
+[    260s]   nul[recharge] : moy=0.0843 FP=0.228 passe=False
+[    270s]   nul[absorption] : moy=-0.26 FP=0.000 passe=False
+[    270s] volet 2/4 — plancher de détection (3 mécanismes × 5 amplitudes × 8 jours)
+[    335s]   leurre amp=0.5 : 0.0029 (écartés 0)
+[    390s]   leurre amp=1.0 : 0.0029 (écartés 0)
+[    447s]   leurre amp=2.0 : 0.0029 (écartés 0)
+[    504s]   leurre amp=4.0 : 0.0029 (écartés 0)
+[    564s]   leurre amp=8.0 : 0.0029 (écartés 0)
+[    623s]   recharge amp=0.5 : 0.1458 (écartés 0)
+[    685s]   recharge amp=1.0 : 0.1458 (écartés 0)
+[    742s]   recharge amp=2.0 : 0.1458 (écartés 0)

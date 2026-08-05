@@ -50,6 +50,11 @@ SCHEMA_VERITE = pa.schema([
 
 DEEP_BAND = 0.10   # nappe large — le réglage arrêté de la construction
 DEEP_LOT = 400     # photos par groupe de lignes, comme la production
+CHAUFFE_PAS = 300  # pas non émis avant la première photo. Le remplissage
+                   # initial est loin de l'état stationnaire du flux ZI
+                   # (constante de temps ~67 pas) : sans chauffe, toutes les
+                   # masses près du mid RAMPENT pendant le run — c'est le
+                   # second défaut qui a invalidé la première campagne ÉS.
 
 
 @dataclass
@@ -96,6 +101,17 @@ class _Livre:
     def mediane_locale(self, cote: int) -> float:
         v = [m for m in self.mag[cote].values() if m > 0]
         return float(np.median(v)) if v else 50_000.0
+
+    def mediane_voisinage(self, cote: int, k: int, demi: int = 20) -> float:
+        """La médiane de la LOCALITÉ du palier — ±`demi` paliers, même côté.
+
+        C'est elle que D4 appelle « masse médiane locale ». La médiane de toute
+        la nappe ±10 % est dominée par des milliers de paliers lointains quasi
+        vides : une injection dimensionnée dessus est de la poussière — le
+        défaut qui a invalidé la première campagne ÉS du 05/08/2026.
+        """
+        v = [m for kk, m in self.mag[cote].items() if abs(kk - k) <= demi and m > 0]
+        return float(np.median(v)) if v else self.mediane_locale(cote)
 
     def _depose(self, cote: int, k: int, m: float, n_ordres: int = 1) -> None:
         self.mag[cote][k] = self.mag[cote].get(k, 0.0) + m
@@ -165,7 +181,7 @@ def _applique_injections(livre: _Livre, injections: list[Injection],
             if cible is None:
                 cible = inj._k = (k0 + inj.dist_paliers if inj.cote == 1
                                   else k0 - inj.dist_paliers)
-                inj._masse = inj.amplitude * livre.mediane_locale(inj.cote)
+                inj._masse = inj.amplitude * livre.mediane_voisinage(inj.cote, cible)
                 livre._depose(inj.cote, cible, inj._masse)
             # le prix s'approche -> retrait TOTAL, jamais exécuté
             if abs(cible - k0) <= inj.approche_paliers:
@@ -179,7 +195,7 @@ def _applique_injections(livre: _Livre, injections: list[Injection],
             if cible is None:
                 bid, ask = livre.meilleurs()
                 cible = inj._k = (ask if inj.cote == 1 else bid) or k0
-                inj._masse = inj.amplitude * livre.mediane_locale(inj.cote)
+                inj._masse = inj.amplitude * livre.mediane_voisinage(inj.cote, cible)
             # tenue/re-approvisionnement : la masse revient à son niveau
             actuel = livre.mag[inj.cote].get(cible, 0.0)
             if actuel < inj._masse:
@@ -199,6 +215,8 @@ def genere(chemin_obs: Path, chemin_verite: Path, *, graine: int,
                   for i in (injections or [])]
     rng = np.random.Generator(np.random.PCG64(graine))
     livre = _Livre(rng, mid0)
+    for _ in range(CHAUFFE_PAS):
+        livre.pas()
     cols = {c: [] for c in ("t", "coin", "mid", "bs", "k", "mag", "n")}
     vcols = {c: [] for c in ("t", "k", "mecanisme", "amplitude")}
     w = pq.ParquetWriter(chemin_obs, SCHEMA_DEEP, compression="zstd")

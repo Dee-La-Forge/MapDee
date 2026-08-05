@@ -66,6 +66,29 @@ def test_la_verite_recoupe_l_observable(tmp_path):
     assert not manquants, f"vérité sans trace observable : {manquants[:5]}"
 
 
+def test_l_injection_est_visible_pas_de_la_poussiere(tmp_path):
+    """Leçon de la première campagne ÉS (annulée pour vice d'instrument) :
+    une injection dimensionnée sur la médiane de toute la nappe est de la
+    poussière. À graine égale, avant/après ne diffèrent qu'au dépôt à T0 —
+    il doit se voir, largement."""
+    sans = _gen(tmp_path, "sans", graine=21, **COURT)
+    avec = _gen(tmp_path, "avec", graine=21,
+                injections=[Injection("absorption", 5.0, 20.0, amplitude=8.0)],
+                **COURT)
+    v = pq.read_table(avec[1]).to_pydict()
+    k_star, t0 = v["k"][0], min(v["t"])
+
+    def mag_a(chemin, t, k):
+        o = pq.read_table(chemin, columns=["t", "k", "mag"]).to_pydict()
+        for tt, kk, m in zip(o["t"], o["k"], o["mag"]):
+            if tt == t and kk == k:
+                return float(m)
+        return 0.0
+
+    m_sans, m_avec = mag_a(sans[0], t0, k_star), mag_a(avec[0], t0, k_star)
+    assert m_avec >= 3 * max(m_sans, 1.0), (m_sans, m_avec)
+
+
 def test_le_leurre_est_retire_jamais_execute(tmp_path):
     """La signature du leurre : présent, puis retiré — sa vérité s'arrête."""
     _, ver, _ = _gen(tmp_path, "a", graine=5,
