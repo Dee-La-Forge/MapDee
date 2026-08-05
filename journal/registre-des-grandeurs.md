@@ -23,8 +23,8 @@ fraction ressort « significative » sans aucun phénomène, mécaniquement.
 
 | | |
 |---|---|
-| **candidats déclarés** | *à remplir avant le premier calcul* |
-| **date de la déclaration** | — |
+| **candidats déclarés** | **16** — A1-A6, B1-B5, C1-C3, D1-D2. Le **témoin trivial est hors compte** : il n'est pas un test, il ne peut pas être retenu (`05` §4, décision D10 de `chantiers/C9-harnais.md`) |
+| **date de la déclaration** | **05/08/2026** — validée par Meddy, avant tout calcul de banc |
 | **source** | `03_EconoPhysique.md`, partie I |
 | **procédure de contrôle** | taux de fausses découvertes à 10 %, Benjamini-Hochberg, sur l'ensemble des **candidats** jugés à É4 — **et eux seuls** : résolutions et symboles sont des conjonctions internes, pas des tests (`decisions/ADR-001`, II.3). *Corrigé le 05/08/2026 : une version antérieure de cette ligne écrivait « résolutions et symboles compris », à rebours de l'ADR qu'elle citait — aucune ligne de mesure n'existait encore.* |
 
@@ -69,7 +69,7 @@ date · nom · état · épreuve · LE CHIFFRE · périmètre · qui l'a propos�
 
 | date | nom | état | épreuve | chiffre | périmètre | proposée par |
 |---|---|---|---|---|---|---|
-| — | *(vide — aucun candidat déposé)* | — | — | — | — | — |
+| 2026-08-05 | T0 · masse brute au palier | témoin trivial | — | — | J3 | le protocole (`05` §4), déclaré avant tout calcul |
 
 ---
 

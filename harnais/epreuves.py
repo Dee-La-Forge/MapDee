@@ -1,0 +1,129 @@
+"""P3 — les épreuves. Seuils TRANSCRITS d'`05` §4 et d'`ADR-001` ; zéro
+jugement, zéro paramètre libre au moment du verdict.
+
+É3 et É4 REFUSENT de s'exécuter tant que leurs préalables manquent — le
+harnais ne les simule pas (`chantiers/C9-harnais.md` §5) : un squelette qui
+rendrait un verdict approximatif serait pire que pas de verdict.
+"""
+from __future__ import annotations
+
+from dataclasses import dataclass
+
+import numpy as np
+
+from harnais.stats import spearman, spearman_partiel, student_jours
+
+SEUIL_E0_DOUBLON = 0.90
+SEUIL_E2_SURVEILLANCE = 0.50
+SEUIL_E2_DOUBLON_PRESUME = 0.70
+SEUIL_E3_RANG = 0.60
+
+
+class RefusEpreuve(RuntimeError):
+    """L'épreuve ne PEUT pas être rendue — préalable manquant. Pas un échec du
+    candidat : un refus du harnais, avec sa raison."""
+
+
+@dataclass
+class Verdict:
+    epreuve: str
+    passe: bool
+    chiffre: float | None
+    etat_suivant: str
+    detail: str = ""
+
+
+# --- É0 — doublon interne ----------------------------------------------------
+
+def e0(candidat: np.ndarray, deja_la: dict[str, np.ndarray],
+       couts: dict[str, float] | None = None,
+       cout_candidat: float = float("inf")) -> Verdict:
+    """`|ρ| ≥ 0,90` contre un candidat déjà déposé → même objet, on garde le
+    moins cher (`05` §4)."""
+    for nom, serie in deja_la.items():
+        rho = spearman(candidat, serie)
+        if abs(rho) >= SEUIL_E0_DOUBLON:
+            moins_cher = (couts or {}).get(nom, 0.0) <= cout_candidat
+            return Verdict("É0", False, rho, "éliminée",
+                           f"même objet que {nom} (|ρ|={abs(rho):.3f} ≥ 0,90) — "
+                           f"on garde le moins cher"
+                           + (f" : {nom}" if moins_cher else " : le candidat"))
+    return Verdict("É0", True, None, "É1", "aucun doublon interne")
+
+
+# --- É1 — admissible au produit (papier, la fiche répond) --------------------
+
+def e1(fiche: dict) -> Verdict:
+    """Quatre questions, règles cas par cas d'`05` §4. La fiche porte les
+    réponses (ligne É1 remplie à la fiche, pas après)."""
+    for cle in ("sans_l4", "traverse_binance", "navigateur"):
+        if cle not in fiche:
+            raise RefusEpreuve(f"fiche incomplète : ligne {cle!r} absente — "
+                               f"pas de fiche, pas de test (`05` §1)")
+    if not fiche["sans_l4"]:
+        return Verdict("É1", False, None, "réorientée",
+                       "exige le L4 → fabrique la vérité, sort du banc d'affichage")
+    if not fiche["traverse_binance"]:
+        return Verdict("É1", False, None, "éliminée", "ne traverse pas vers Binance")
+    if not fiche["navigateur"] and not fiche.get("version_simplifiee_demontree", False):
+        return Verdict("É1", False, None, "éliminée",
+                       "ne tourne pas dans un navigateur, sans version simplifiée démontrée")
+    # « survit à la dégradation » n'est pas une porte : elle EXIGE une mesure
+    # avant É4 — portée au détail, jamais éliminatoire ici.
+    return Verdict("É1", True, None, "É2",
+                   "admissible" + ("" if fiche.get("degradation_mesuree")
+                                   else " — mesure de dégradation due avant É4"))
+
+
+# --- É2 — redite contre le bloc retenu (témoin inclus dès le départ) ---------
+
+def e2(candidat: np.ndarray, bloc_retenu: dict[str, np.ndarray]) -> Verdict:
+    if not bloc_retenu:
+        raise RefusEpreuve("bloc de référence vide — le témoin trivial doit y "
+                           "être dès le départ (`05` §4, correction I.7)")
+    pire, pire_nom = 0.0, ""
+    for nom, serie in bloc_retenu.items():
+        rho = abs(spearman(candidat, serie))
+        if rho > pire:
+            pire, pire_nom = rho, nom
+    if pire >= SEUIL_E2_DOUBLON_PRESUME:
+        return Verdict("É2", True, pire, "doublon présumé",
+                       f"|ρ|={pire:.3f} ≥ 0,70 contre {pire_nom} — ne survit "
+                       f"qu'en passant É4 avec un apport significatif")
+    if pire >= SEUIL_E2_SURVEILLANCE:
+        return Verdict("É2", True, pire, "sous surveillance",
+                       f"|ρ|={pire:.3f} dans [0,50 ; 0,70) contre {pire_nom}")
+    return Verdict("É2", True, pire, "É3", f"|ρ| max = {pire:.3f} < 0,50")
+
+
+# --- É3 / É4 — refus tant que les préalables manquent ------------------------
+
+def e3(*_args, **_kw) -> Verdict:
+    raise RefusEpreuve(
+        "É3 refusée : (1) le rejeu événementiel n'existe pas (`05` §9.1) ; "
+        "(2) l'échelle la plus fine est contestée — ADR D12 requise avant le "
+        "premier passage (audit I.9). Rien ici ne code 100 ms en dur.")
+
+
+def e4_refus() -> None:
+    raise RefusEpreuve(
+        "É4 refusée : (1) la cible n'a pas de définition opératoire — C3 non "
+        "gelé (`ADR-001`) ; (2) la fraction de paires intra-unité n'a jamais "
+        "été mesurée (`05` §9.4) — sans elle l'IC ne vaut rien.")
+
+
+def e4(candidat_par_jour: list[np.ndarray], cible_par_jour: list[np.ndarray],
+       bloc_par_jour: list[np.ndarray] | None, *, prealables_leves: bool = False) -> dict:
+    """La mécanique d'É4 (`ADR-001`) — exécutable sur SYNTHÉTIQUE (ÉS) où la
+    vérité tient lieu de cible. Sur données réelles : refus tant que
+    `prealables_leves` n'est pas démontré par le préflight.
+
+    Rend le coefficient partiel par jour + Student (p décide via BH, IC publié).
+    """
+    if not prealables_leves:
+        e4_refus()
+    coefs = []
+    for i, (x, y) in enumerate(zip(candidat_par_jour, cible_par_jour)):
+        bloc = None if bloc_par_jour is None else bloc_par_jour[i]
+        coefs.append(spearman_partiel(x, y, bloc))
+    return {"coefs_jour": coefs, **student_jours(np.array(coefs))}

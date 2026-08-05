@@ -148,11 +148,19 @@ il vaut mieux l'apprendre en semaine 1 qu'en P7.
 décrites dans le protocole mais **n'ont pas de fiche au format d'`05`**, ce que
 `06` interdit. À régulariser avant d'en tirer un résultat.
 
-**C9 — le harnais.** `06` le déclare **le chantier primordial**. **Spécifié de
-bout en bout le 05/08** : `chantiers/C9-harnais.md` — architecture (préflight
-en tête), contrats des quatre pièces, seuils transcrits d'`05`/`ADR-001`, les
-douze décisions recensées avec leur statut (§1). La construction du code peut
-démarrer sur P0/P1/P2 dès l'arbitrage des PROPOSÉ.
+**C9 — le harnais.** Spécifié le 05/08 (`chantiers/C9-harnais.md`), décisions
+D3/D4/D8/D9/D10 **validées par Meddy le jour même**, et **le code existe** :
+paquet `harnais/` — préflight (chaque contrôle lève, et la suite prouve qu'il
+peut lever), générateur synthétique (schéma `deep` transcrit, vérité séparée,
+déterminisme octet par octet), registre (ajout seul), épreuves É0/É1/É2
+mécaniques + refus explicites d'É3 (D12 ouverte) et É4 (C3 non gelé), grille
+promue hors archive (D2), garde-fous d'`05` §3, stats du banc (Spearman
+partiel, Student, BH). **54/54 tests**, dont grille et schéma vérifiés bit à
+bit contre un artefact `deep` réel. La déclaration D10 est au registre (16
+candidats + témoin T0 hors compte, fiche dans `03`).
+**Prochaine étape : la campagne ÉS** — bras nul, plancher de détection par
+mécanisme, stabilité du Spearman partiel quand le bloc grandit (incertitude
+n° 1 d'`ADR-001`) — et son chiffre de puissance en jours.
 
 Tout le reste attend soit la construction, soit les définitions.
 

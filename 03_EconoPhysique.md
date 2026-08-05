@@ -434,6 +434,27 @@ d'une série.
 
 ---
 
+# T. Le témoin trivial — hors compte, jamais retenable
+
+### T0 · Masse brute au palier
+
+Exigé par `05` §4 : le premier candidat se juge contre un témoin déclaré
+d'avance, jamais contre le vide. Il entre dans le bloc de contrôle dès le
+départ (É2 et É4), **ne passe pas les épreuves, ne peut jamais être retenu**,
+et il est **hors du compte des 16 candidats** (D10).
+
+- **mesure** — la masse affichée au palier, telle quelle. Volontairement pauvre.
+- **définition** — `mag(k, t)`, la colonne de `deep`, sans transformation.
+- **observable** — le carnet dans la bande. Rien d'autre.
+- **à l'exécution** — aucune : c'est un plancher, pas une grandeur du produit.
+- **É1** — ✅ traverse trivialement (sans objet : jamais retenable).
+- **redite** — c'est lui, la redite-étalon : tout candidat corrélé `≥ 0,70` à
+  T0 est une redite de présence (É2, correction du 05/08).
+- **coût** — nul : une lecture de colonne.
+- **périmètre minimal** — **J3**.
+
+---
+
 # E. Les protagonistes — ce qui ne traverse pas
 
 **Tout ce bloc est marqué ❌.** Aucune de ces grandeurs n'existera jamais à
