@@ -1,0 +1,924 @@
+﻿14:08:49  === reconstruction decembre 2025 ===
+14:08:49  reglage deep : DEEP_MS=250  DEEP_BAND=0.10
+14:08:49  symboles     : BTC, ETH
+14:08:49  git          : 00c74f8  sale=True
+14:08:49  --- BTC  01-07  phase=deep ---
+=== lot : 7 jours, BTC, phase=deep ===
+[1/7] 20251201 : deja fait, saute.
+[2/7] 20251202 : deja fait, saute.
+[3/7] 20251203 : deja fait, saute.
+[4/7] 20251204 : deja fait, saute.
+[5/7] 20251205 : deja fait, saute.
+[6/7] 20251206 : deja fait, saute.
+[7/7] 20251207 : deja fait, saute.
+
+=== 0 fabriques, 7 deja faits, sur 7 demandes, en 0.0 min ===
+14:08:49  --- BTC  08-16  phase=all  (TRANCHE 1 SEULE) ---
+=== lot : 9 jours, BTC, phase=all ===
+[1/9] === BTC 20251208 (310 Gio libres) ===
+  extraction : 24 fichiers de statuts, 24 de diffs en 407s
+  statuts 00h : 4,057,067 (cumul 4,057,067) [table deja ecrite]
+  statuts 01h : 5,206,251 (cumul 9,263,318) [table deja ecrite]
+  statuts 02h : 3,833,976 (cumul 13,097,294) [table deja ecrite]
+  statuts 03h : 2,960,264 (cumul 16,057,558) [table deja ecrite]
+  statuts 04h : 2,881,202 (cumul 18,938,760) [table deja ecrite]
+  statuts 05h : 2,640,284 (cumul 21,579,044) [table deja ecrite]
+  statuts 06h : 2,395,908 (cumul 23,974,952) [table deja ecrite]
+  statuts 07h : 2,709,204 (cumul 26,684,156) [table deja ecrite]
+  statuts 08h : 2,678,094 (cumul 29,362,250) [table deja ecrite]
+  statuts 09h : 3,489,918 (cumul 32,852,168) [table deja ecrite]
+  statuts 10h : 2,274,196 (cumul 35,126,364) [table deja ecrite]
+  statuts 11h : 2,394,805 (cumul 37,521,169) [table deja ecrite]
+  statuts 12h : 2,781,130 (cumul 40,302,299) [table deja ecrite]
+  statuts 13h : 4,231,382 (cumul 44,533,681) [table deja ecrite]
+  statuts 14h : 7,433,636 (cumul 51,967,317) [table deja ecrite]
+  statuts 15h : 8,760,681 (cumul 60,727,998) [table deja ecrite]
+  statuts 16h : 6,174,082 (cumul 66,902,080) [table deja ecrite]
+  statuts 17h : 4,998,944 (cumul 71,901,024) [table deja ecrite]
+  statuts 18h : 4,797,118 (cumul 76,698,142) [table deja ecrite]
+  statuts 19h : 4,467,001 (cumul 81,165,143) [table deja ecrite]
+  statuts 20h : 4,211,241 (cumul 85,376,384) [table deja ecrite]
+  statuts 21h : 3,345,328 (cumul 88,721,712) [table deja ecrite]
+  statuts 22h : 2,668,795 (cumul 91,390,507) [table deja ecrite]
+  statuts 23h : 3,081,685 (cumul 94,472,192) [table deja ecrite]
+  -> hl_orders : 94,472,192 lignes en 765.7s
+  diffs 07/16h (chauffe) : 2,731,433 ┬À ordres 2,777 ┬À prix 1075/684 ┬À photos 0
+  diffs 07/17h (chauffe) : 4,104,166 ┬À ordres 4,833 ┬À prix 1585/1403 ┬À photos 0
+  diffs 07/18h (chauffe) : 3,217,928 ┬À ordres 6,727 ┬À prix 2048/1641 ┬À photos 0
+  diffs 07/19h (chauffe) : 2,080,039 ┬À ordres 7,051 ┬À prix 2156/1631 ┬À photos 0
+  diffs 07/20h (chauffe) : 1,748,810 ┬À ordres 7,332 ┬À prix 2122/1653 ┬À photos 0
+  diffs 07/21h (chauffe) : 2,884,192 ┬À ordres 6,465 ┬À prix 1771/2035 ┬À photos 0
+  diffs 07/22h (chauffe) : 4,225,464 ┬À ordres 6,685 ┬À prix 1745/2280 ┬À photos 0
+  diffs 07/23h (chauffe) : 3,082,122 ┬À ordres 7,058 ┬À prix 1965/2143 ┬À photos 0
+  diffs 08/00h : 2,957,534 ┬À ordres 7,648 ┬À prix 2133/2191 ┬À photos 5,209
+  diffs 08/01h : 3,553,757 ┬À ordres 7,554 ┬À prix 2328/1907 ┬À photos 10,785
+  diffs 08/02h : 2,813,622 ┬À ordres 8,057 ┬À prix 2380/1949 ┬À photos 15,840
+  diffs 08/03h : 2,290,828 ┬À ordres 8,603 ┬À prix 2588/2077 ┬À photos 20,546
+  diffs 08/04h : 2,249,040 ┬À ordres 8,920 ┬À prix 2747/1945 ┬À photos 25,195
+  diffs 08/05h : 2,127,966 ┬À ordres 9,053 ┬À prix 2803/1919 ┬À photos 29,720
+  diffs 08/06h : 1,961,181 ┬À ordres 8,673 ┬À prix 2755/2008 ┬À photos 34,059
+  diffs 08/07h : 2,174,307 ┬À ordres 8,411 ┬À prix 2889/1925 ┬À photos 38,686
+  diffs 08/08h : 2,119,832 ┬À ordres 8,656 ┬À prix 2953/1905 ┬À photos 43,176
+  diffs 08/09h : 2,553,142 ┬À ordres 8,313 ┬À prix 2916/1833 ┬À photos 47,980
+  diffs 08/10h : 1,819,258 ┬À ordres 8,892 ┬À prix 3192/1972 ┬À photos 52,362
+  diffs 08/11h : 1,910,660 ┬À ordres 9,257 ┬À prix 3149/2155 ┬À photos 56,643
+  diffs 08/12h : 2,131,411 ┬À ordres 9,549 ┬À prix 3264/2266 ┬À photos 61,091
+  diffs 08/13h : 3,015,217 ┬À ordres 9,425 ┬À prix 3292/2269 ┬À photos 66,127
+  diffs 08/14h : 4,577,967 ┬À ordres 9,621 ┬À prix 3233/2505 ┬À photos 72,406
+  diffs 08/15h : 5,518,421 ┬À ordres 10,171 ┬À prix 3223/2849 ┬À photos 79,287
+  diffs 08/16h : 4,177,610 ┬À ordres 10,738 ┬À prix 3710/2666 ┬À photos 85,276
+  diffs 08/17h : 3,655,100 ┬À ordres 10,617 ┬À prix 3748/2601 ┬À photos 91,111
+  diffs 08/18h : 3,702,649 ┬À ordres 10,381 ┬À prix 3598/2727 ┬À photos 97,166
+  diffs 08/19h : 3,469,412 ┬À ordres 10,827 ┬À prix 3716/2690 ┬À photos 102,748
+  diffs 08/20h : 3,287,455 ┬À ordres 10,950 ┬À prix 3865/2740 ┬À photos 108,233
+  diffs 08/21h : 2,625,240 ┬À ordres 10,764 ┬À prix 4009/2474 ┬À photos 113,141
+  diffs 08/22h : 2,135,592 ┬À ordres 11,147 ┬À prix 3990/2681 ┬À photos 117,561
+  diffs 08/23h : 2,405,781 ┬À ordres 11,433 ┬À prix 4098/2748 ┬À photos 122,191
+  -> hl_book : 2,443,820 lignes ┬À 122,191 photos en 3914.3s
+  -> deep : 438,889,806 lignes ┬À 122,191 photos ┬À 998.2 Mo (3592 paliers/photo)
+     hl_book : manifeste reconstitue remplace par une provenance reelle
+  -> manifestes : 2 ecrits
+[1/9] 20251208 OK ÔÇö 1 fabriques
+[2/9] === BTC 20251209 (307 Gio libres) ===
+  extraction : 24 fichiers de statuts, 24 de diffs en 1264s
+  statuts 00h : 3,018,351 (cumul 3,018,351) [table deja ecrite]
+  statuts 01h : 3,722,857 (cumul 6,741,208) [table deja ecrite]
+  statuts 02h : 3,016,302 (cumul 9,757,510) [table deja ecrite]
+  statuts 03h : 2,996,388 (cumul 12,753,898) [table deja ecrite]
+  statuts 04h : 2,581,709 (cumul 15,335,607) [table deja ecrite]
+  statuts 05h : 2,966,496 (cumul 18,302,103) [table deja ecrite]
+  statuts 06h : 2,706,718 (cumul 21,008,821) [table deja ecrite]
+  statuts 07h : 2,546,570 (cumul 23,555,391) [table deja ecrite]
+  statuts 08h : 2,165,572 (cumul 25,720,963) [table deja ecrite]
+  statuts 09h : 2,096,307 (cumul 27,817,270) [table deja ecrite]
+  statuts 10h : 2,741,144 (cumul 30,558,414) [table deja ecrite]
+  statuts 11h : 2,372,159 (cumul 32,930,573) [table deja ecrite]
+  statuts 12h : 2,516,220 (cumul 35,446,793) [table deja ecrite]
+  statuts 13h : 3,409,453 (cumul 38,856,246) [table deja ecrite]
+  statuts 14h : 5,907,604 (cumul 44,763,850) [table deja ecrite]
+  statuts 15h : 9,267,093 (cumul 54,030,943) [table deja ecrite]
+  statuts 16h : 8,645,151 (cumul 62,676,094) [table deja ecrite]
+  statuts 17h : 5,781,794 (cumul 68,457,888) [table deja ecrite]
+  statuts 18h : 4,312,818 (cumul 72,770,706) [table deja ecrite]
+  statuts 19h : 3,858,758 (cumul 76,629,464) [table deja ecrite]
+  statuts 20h : 5,833,385 (cumul 82,462,849) [table deja ecrite]
+  statuts 21h : 4,087,443 (cumul 86,550,292) [table deja ecrite]
+  statuts 22h : 3,735,585 (cumul 90,285,877) [table deja ecrite]
+  statuts 23h : 2,413,572 (cumul 92,699,449) [table deja ecrite]
+  -> hl_orders : 92,699,449 lignes en 2200.1s
+  diffs 08/16h (chauffe) : 4,177,610 ┬À ordres 4,546 ┬À prix 1674/865 ┬À photos 0
+  diffs 08/17h (chauffe) : 3,655,100 ┬À ordres 4,873 ┬À prix 1750/946 ┬À photos 0
+  diffs 08/18h (chauffe) : 3,702,649 ┬À ordres 4,709 ┬À prix 1687/1112 ┬À photos 0
+  diffs 08/19h (chauffe) : 3,469,412 ┬À ordres 5,325 ┬À prix 1788/1180 ┬À photos 0
+  diffs 08/20h (chauffe) : 3,287,455 ┬À ordres 5,653 ┬À prix 1933/1373 ┬À photos 0
+  diffs 08/21h (chauffe) : 2,625,240 ┬À ordres 5,790 ┬À prix 2058/1214 ┬À photos 0
+  diffs 08/22h (chauffe) : 2,135,592 ┬À ordres 6,350 ┬À prix 2139/1507 ┬À photos 0
+  diffs 08/23h (chauffe) : 2,405,781 ┬À ordres 6,658 ┬À prix 2299/1578 ┬À photos 0
+  diffs 09/00h : 2,354,855 ┬À ordres 7,077 ┬À prix 2335/1826 ┬À photos 4,617
+  diffs 09/01h : 2,796,392 ┬À ordres 7,273 ┬À prix 2304/1872 ┬À photos 9,565
+  diffs 09/02h : 2,343,878 ┬À ordres 7,749 ┬À prix 2364/2071 ┬À photos 14,132
+  diffs 09/03h : 2,312,268 ┬À ordres 8,347 ┬À prix 2621/2045 ┬À photos 18,717
+  diffs 09/04h : 2,043,315 ┬À ordres 8,204 ┬À prix 2592/2006 ┬À photos 23,134
+  diffs 09/05h : 2,342,713 ┬À ordres 8,270 ┬À prix 2725/2010 ┬À photos 27,736
+  diffs 09/06h : 2,173,493 ┬À ordres 8,118 ┬À prix 2773/1951 ┬À photos 32,191
+  diffs 09/07h : 2,066,867 ┬À ordres 7,963 ┬À prix 2847/1787 ┬À photos 36,631
+  diffs 09/08h : 1,779,454 ┬À ordres 7,876 ┬À prix 2818/1801 ┬À photos 40,830
+  diffs 09/09h : 1,682,345 ┬À ordres 8,254 ┬À prix 2726/1991 ┬À photos 45,139
+  diffs 09/10h : 2,146,495 ┬À ordres 8,345 ┬À prix 2777/1905 ┬À photos 49,569
+  diffs 09/11h : 1,894,288 ┬À ordres 8,715 ┬À prix 2905/1839 ┬À photos 53,742
+  diffs 09/12h : 1,953,202 ┬À ordres 8,898 ┬À prix 3118/1734 ┬À photos 57,647
+  diffs 09/13h : 2,595,001 ┬À ordres 9,257 ┬À prix 3164/1895 ┬À photos 62,563
+  diffs 09/14h : 3,923,229 ┬À ordres 8,760 ┬À prix 2932/1815 ┬À photos 68,230
+  diffs 09/15h : 5,455,532 ┬À ordres 8,548 ┬À prix 3537/1622 ┬À photos 75,252
+  diffs 09/16h : 5,138,625 ┬À ordres 9,152 ┬À prix 3687/2186 ┬À photos 82,207
+  diffs 09/17h : 3,839,423 ┬À ordres 10,324 ┬À prix 3928/2533 ┬À photos 88,152
+  diffs 09/18h : 3,073,655 ┬À ordres 10,606 ┬À prix 3896/2554 ┬À photos 93,431
+  diffs 09/19h : 2,848,680 ┬À ordres 11,361 ┬À prix 3926/2738 ┬À photos 98,508
+  diffs 09/20h : 3,868,109 ┬À ordres 11,126 ┬À prix 3741/2948 ┬À photos 104,351
+  diffs 09/21h : 2,946,269 ┬À ordres 10,717 ┬À prix 3730/3104 ┬À photos 109,541
+  diffs 09/22h : 2,666,174 ┬À ordres 12,141 ┬À prix 3925/3204 ┬À photos 114,432
+  diffs 09/23h : 1,951,795 ┬À ordres 12,385 ┬À prix 3987/3273 ┬À photos 118,722
+  -> hl_book : 2,374,440 lignes ┬À 118,722 photos en 4700.1s
+  -> deep : 437,827,796 lignes ┬À 118,722 photos ┬À 997.8 Mo (3688 paliers/photo)
+     hl_book : manifeste reconstitue remplace par une provenance reelle
+  -> manifestes : 2 ecrits
+[2/9] 20251209 OK ÔÇö 2 fabriques
+[3/9] === BTC 20251210 (303 Gio libres) ===
+  extraction : 24 fichiers de statuts, 24 de diffs en 596s
+  statuts 00h : 3,161,225 (cumul 3,161,225) [table deja ecrite]
+  statuts 01h : 3,063,205 (cumul 6,224,430) [table deja ecrite]
+  statuts 02h : 2,710,974 (cumul 8,935,404) [table deja ecrite]
+  statuts 03h : 1,900,239 (cumul 10,835,643) [table deja ecrite]
+  statuts 04h : 2,287,003 (cumul 13,122,646) [table deja ecrite]
+  statuts 05h : 1,924,533 (cumul 15,047,179) [table deja ecrite]
+  statuts 06h : 1,818,696 (cumul 16,865,875) [table deja ecrite]
+  statuts 07h : 1,836,990 (cumul 18,702,865) [table deja ecrite]
+  statuts 08h : 2,097,686 (cumul 20,800,551) [table deja ecrite]
+  statuts 09h : 2,260,638 (cumul 23,061,189) [table deja ecrite]
+  statuts 10h : 4,234,233 (cumul 27,295,422) [table deja ecrite]
+  statuts 11h : 3,236,386 (cumul 30,531,808) [table deja ecrite]
+  statuts 12h : 2,732,923 (cumul 33,264,731) [table deja ecrite]
+  statuts 13h : 2,554,797 (cumul 35,819,528) [table deja ecrite]
+  statuts 14h : 4,872,486 (cumul 40,692,014) [table deja ecrite]
+  statuts 15h : 5,128,608 (cumul 45,820,622) [table deja ecrite]
+  statuts 16h : 4,822,743 (cumul 50,643,365) [table deja ecrite]
+  statuts 17h : 3,830,513 (cumul 54,473,878) [table deja ecrite]
+  statuts 18h : 5,234,498 (cumul 59,708,376) [table deja ecrite]
+  statuts 19h : 9,595,266 (cumul 69,303,642) [table deja ecrite]
+  statuts 20h : 8,941,566 (cumul 78,245,208) [table deja ecrite]
+  statuts 21h : 5,583,580 (cumul 83,828,788) [table deja ecrite]
+  statuts 22h : 3,935,329 (cumul 87,764,117) [table deja ecrite]
+  statuts 23h : 2,820,384 (cumul 90,584,501) [table deja ecrite]
+  -> hl_orders : 90,584,501 lignes en 1036.8s
+  diffs 09/16h (chauffe) : 5,138,625 ┬À ordres 5,784 ┬À prix 1787/1749 ┬À photos 0
+  diffs 09/17h (chauffe) : 3,839,423 ┬À ordres 7,350 ┬À prix 2309/2118 ┬À photos 0
+  diffs 09/18h (chauffe) : 3,073,655 ┬À ordres 7,840 ┬À prix 2390/2180 ┬À photos 0
+  diffs 09/19h (chauffe) : 2,848,680 ┬À ordres 8,665 ┬À prix 2457/2377 ┬À photos 0
+  diffs 09/20h (chauffe) : 3,868,109 ┬À ordres 8,575 ┬À prix 2402/2601 ┬À photos 0
+  diffs 09/21h (chauffe) : 2,946,269 ┬À ordres 8,205 ┬À prix 2458/2762 ┬À photos 0
+  diffs 09/22h (chauffe) : 2,666,174 ┬À ordres 9,669 ┬À prix 2689/2866 ┬À photos 0
+  diffs 09/23h (chauffe) : 1,951,795 ┬À ordres 9,949 ┬À prix 2794/2937 ┬À photos 0
+  diffs 10/00h : 2,403,007 ┬À ordres 10,633 ┬À prix 2679/3164 ┬À photos 4,694
+  diffs 10/01h : 2,341,163 ┬À ordres 10,739 ┬À prix 2865/3150 ┬À photos 9,353
+  diffs 10/02h : 2,135,556 ┬À ordres 11,056 ┬À prix 3110/3098 ┬À photos 13,778
+  diffs 10/03h : 1,608,812 ┬À ordres 11,141 ┬À prix 3120/3173 ┬À photos 17,826
+  diffs 10/04h : 1,855,193 ┬À ordres 11,183 ┬À prix 3210/3048 ┬À photos 22,018
+  diffs 10/05h : 1,598,078 ┬À ordres 11,323 ┬À prix 3212/3066 ┬À photos 25,995
+  diffs 10/06h : 1,580,541 ┬À ordres 11,703 ┬À prix 3266/3055 ┬À photos 29,956
+  diffs 10/07h : 1,562,315 ┬À ordres 11,027 ┬À prix 3189/3005 ┬À photos 33,913
+  diffs 10/08h : 1,747,075 ┬À ordres 11,002 ┬À prix 3089/3131 ┬À photos 38,017
+  diffs 10/09h : 1,813,842 ┬À ordres 10,898 ┬À prix 3067/3012 ┬À photos 42,254
+  diffs 10/10h : 3,000,165 ┬À ordres 10,574 ┬À prix 2861/3222 ┬À photos 47,283
+  diffs 10/11h : 2,473,698 ┬À ordres 10,042 ┬À prix 2742/3157 ┬À photos 52,015
+  diffs 10/12h : 2,129,366 ┬À ordres 9,959 ┬À prix 2710/3145 ┬À photos 56,514
+  diffs 10/13h : 2,021,839 ┬À ordres 10,374 ┬À prix 2792/3102 ┬À photos 60,970
+  diffs 10/14h : 3,356,067 ┬À ordres 10,599 ┬À prix 2881/3316 ┬À photos 66,326
+  diffs 10/15h : 3,492,748 ┬À ordres 11,199 ┬À prix 3151/3303 ┬À photos 72,022
+  diffs 10/16h : 3,303,089 ┬À ordres 11,589 ┬À prix 3234/3450 ┬À photos 77,374
+  diffs 10/17h : 2,768,531 ┬À ordres 12,152 ┬À prix 3608/3493 ┬À photos 82,237
+  diffs 10/18h : 3,459,038 ┬À ordres 12,498 ┬À prix 3756/3616 ┬À photos 87,655
+  diffs 10/19h : 5,263,330 ┬À ordres 13,073 ┬À prix 3837/3644 ┬À photos 95,059
+  diffs 10/20h : 5,132,751 ┬À ordres 11,659 ┬À prix 3409/3565 ┬À photos 102,208
+  diffs 10/21h : 3,681,971 ┬À ordres 13,026 ┬À prix 3591/3842 ┬À photos 107,824
+  diffs 10/22h : 2,703,008 ┬À ordres 13,051 ┬À prix 3658/3867 ┬À photos 112,690
+  diffs 10/23h : 2,180,285 ┬À ordres 12,915 ┬À prix 3455/3847 ┬À photos 117,154
+  -> hl_book : 2,343,080 lignes ┬À 117,154 photos en 4453.4s
+  -> deep : 503,523,226 lignes ┬À 117,154 photos ┬À 1338.5 Mo (4298 paliers/photo)
+     hl_book : manifeste reconstitue remplace par une provenance reelle
+  -> manifestes : 2 ecrits
+[3/9] 20251210 OK ÔÇö 3 fabriques
+        nettoye work/20251209
+[4/9] === BTC 20251211 (301 Gio libres) ===
+  extraction : 24 fichiers de statuts, 24 de diffs en 710s
+  statuts 00h : 4,332,089 (cumul 4,332,089) [table deja ecrite]
+  statuts 01h : 5,223,239 (cumul 9,555,328) [table deja ecrite]
+  statuts 02h : 5,853,711 (cumul 15,409,039) [table deja ecrite]
+  statuts 03h : 5,381,999 (cumul 20,791,038) [table deja ecrite]
+  statuts 04h : 3,486,370 (cumul 24,277,408) [table deja ecrite]
+  statuts 05h : 2,374,551 (cumul 26,651,959) [table deja ecrite]
+  statuts 06h : 2,439,009 (cumul 29,090,968) [table deja ecrite]
+  statuts 07h : 2,132,986 (cumul 31,223,954) [table deja ecrite]
+  statuts 08h : 2,508,550 (cumul 33,732,504) [table deja ecrite]
+  statuts 09h : 2,495,008 (cumul 36,227,512) [table deja ecrite]
+  statuts 10h : 1,998,661 (cumul 38,226,173) [table deja ecrite]
+  statuts 11h : 1,684,712 (cumul 39,910,885) [table deja ecrite]
+  statuts 12h : 2,051,252 (cumul 41,962,137) [table deja ecrite]
+  statuts 13h : 2,762,708 (cumul 44,724,845) [table deja ecrite]
+  statuts 14h : 6,181,475 (cumul 50,906,320) [table deja ecrite]
+  statuts 15h : 7,875,030 (cumul 58,781,350) [table deja ecrite]
+  statuts 16h : 5,963,417 (cumul 64,744,767) [table deja ecrite]
+  statuts 17h : 4,374,017 (cumul 69,118,784) [table deja ecrite]
+  statuts 18h : 5,326,836 (cumul 74,445,620) [table deja ecrite]
+  statuts 19h : 5,322,645 (cumul 79,768,265) [table deja ecrite]
+  statuts 20h : 5,041,949 (cumul 84,810,214) [table deja ecrite]
+  statuts 21h : 7,094,413 (cumul 91,904,627) [table deja ecrite]
+  statuts 22h : 4,955,891 (cumul 96,860,518) [table deja ecrite]
+  statuts 23h : 3,816,206 (cumul 100,676,724) [table deja ecrite]
+  -> hl_orders : 100,676,724 lignes en 1211.6s
+  diffs 10/16h (chauffe) : 3,303,089 ┬À ordres 4,055 ┬À prix 1033/1062 ┬À photos 0
+  diffs 10/17h (chauffe) : 2,768,531 ┬À ordres 5,012 ┬À prix 1551/1347 ┬À photos 0
+  diffs 10/18h (chauffe) : 3,459,038 ┬À ordres 6,029 ┬À prix 2080/1706 ┬À photos 0
+  diffs 10/19h (chauffe) : 5,263,330 ┬À ordres 6,949 ┬À prix 2289/1861 ┬À photos 0
+  diffs 10/20h (chauffe) : 5,132,751 ┬À ordres 6,742 ┬À prix 2092/2030 ┬À photos 0
+  diffs 10/21h (chauffe) : 3,681,971 ┬À ordres 8,329 ┬À prix 2408/2344 ┬À photos 0
+  diffs 10/22h (chauffe) : 2,703,008 ┬À ordres 8,592 ┬À prix 2580/2358 ┬À photos 0
+  diffs 10/23h (chauffe) : 2,180,285 ┬À ordres 8,577 ┬À prix 2451/2368 ┬À photos 0
+  diffs 11/00h : 3,020,403 ┬À ordres 8,501 ┬À prix 2378/2531 ┬À photos 5,170
+  diffs 11/01h : 3,630,474 ┬À ordres 9,112 ┬À prix 2454/2744 ┬À photos 10,846
+  diffs 11/02h : 3,969,780 ┬À ordres 8,788 ┬À prix 2417/2946 ┬À photos 16,759
+  diffs 11/03h : 3,704,849 ┬À ordres 9,225 ┬À prix 2576/3060 ┬À photos 22,552
+  diffs 11/04h : 2,674,173 ┬À ordres 9,982 ┬À prix 2718/3179 ┬À photos 27,548
+  diffs 11/05h : 1,939,704 ┬À ordres 10,313 ┬À prix 2857/3236 ┬À photos 31,890
+  diffs 11/06h : 1,984,137 ┬À ordres 10,464 ┬À prix 2862/3282 ┬À photos 36,313
+  diffs 11/07h : 1,791,778 ┬À ordres 10,947 ┬À prix 2925/3414 ┬À photos 40,641
+  diffs 11/08h : 2,068,909 ┬À ordres 11,553 ┬À prix 2961/3568 ┬À photos 45,093
+  diffs 11/09h : 2,024,859 ┬À ordres 11,571 ┬À prix 3081/3645 ┬À photos 49,401
+  diffs 11/10h : 1,697,958 ┬À ordres 11,849 ┬À prix 3143/3758 ┬À photos 53,441
+  diffs 11/11h : 1,492,272 ┬À ordres 11,985 ┬À prix 3149/3761 ┬À photos 57,314
+  diffs 11/12h : 1,726,139 ┬À ordres 11,687 ┬À prix 3002/3755 ┬À photos 61,396
+  diffs 11/13h : 2,119,044 ┬À ordres 11,916 ┬À prix 3097/3636 ┬À photos 65,756
+  diffs 11/14h : 3,880,279 ┬À ordres 11,370 ┬À prix 2943/3805 ┬À photos 71,593
+  diffs 11/15h : 5,005,858 ┬À ordres 11,364 ┬À prix 3227/3710 ┬À photos 78,183
+  diffs 11/16h : 4,040,770 ┬À ordres 11,684 ┬À prix 3480/3530 ┬À photos 84,088
+  diffs 11/17h : 3,106,158 ┬À ordres 11,455 ┬À prix 3288/3478 ┬À photos 89,257
+  diffs 11/18h : 3,541,931 ┬À ordres 11,411 ┬À prix 3497/3309 ┬À photos 94,926
+  diffs 11/19h : 3,593,310 ┬À ordres 11,793 ┬À prix 3476/3453 ┬À photos 100,627
+  diffs 11/20h : 3,487,405 ┬À ordres 12,499 ┬À prix 3740/2967 ┬À photos 106,204
+  diffs 11/21h : 4,449,371 ┬À ordres 11,628 ┬À prix 3804/2601 ┬À photos 112,742
+  diffs 11/22h : 3,332,620 ┬À ordres 11,651 ┬À prix 4055/2875 ┬À photos 118,187
+  diffs 11/23h : 2,752,746 ┬À ordres 11,424 ┬À prix 4134/2686 ┬À photos 123,215
+  -> hl_book : 2,464,300 lignes ┬À 123,215 photos en 4165.8s
+  -> deep : 520,211,062 lignes ┬À 123,215 photos ┬À 1421.9 Mo (4222 paliers/photo)
+     hl_book : manifeste reconstitue remplace par une provenance reelle
+  -> manifestes : 2 ecrits
+[4/9] 20251211 OK ÔÇö 4 fabriques
+        nettoye work/20251210
+[5/9] === BTC 20251212 (299 Gio libres) ===
+  extraction : 24 fichiers de statuts, 24 de diffs en 674s
+  statuts 00h : 3,356,231 (cumul 3,356,231) [table deja ecrite]
+  statuts 01h : 3,838,811 (cumul 7,195,042) [table deja ecrite]
+  statuts 02h : 3,261,716 (cumul 10,456,758) [table deja ecrite]
+  statuts 03h : 2,574,734 (cumul 13,031,492) [table deja ecrite]
+  statuts 04h : 1,858,105 (cumul 14,889,597) [table deja ecrite]
+  statuts 05h : 1,940,630 (cumul 16,830,227) [table deja ecrite]
+  statuts 06h : 2,045,596 (cumul 18,875,823) [table deja ecrite]
+  statuts 07h : 1,855,287 (cumul 20,731,110) [table deja ecrite]
+  statuts 08h : 2,124,583 (cumul 22,855,693) [table deja ecrite]
+  statuts 09h : 2,101,372 (cumul 24,957,065) [table deja ecrite]
+  statuts 10h : 1,976,353 (cumul 26,933,418) [table deja ecrite]
+  statuts 11h : 1,722,090 (cumul 28,655,508) [table deja ecrite]
+  statuts 12h : 1,898,986 (cumul 30,554,494) [table deja ecrite]
+  statuts 13h : 2,011,065 (cumul 32,565,559) [table deja ecrite]
+  statuts 14h : 5,186,075 (cumul 37,751,634) [table deja ecrite]
+  statuts 15h : 8,783,854 (cumul 46,535,488) [table deja ecrite]
+  statuts 16h : 8,283,444 (cumul 54,818,932) [table deja ecrite]
+  statuts 17h : 4,661,415 (cumul 59,480,347) [table deja ecrite]
+  statuts 18h : 3,595,269 (cumul 63,075,616) [table deja ecrite]
+  statuts 19h : 4,226,680 (cumul 67,302,296) [table deja ecrite]
+  statuts 20h : 3,736,628 (cumul 71,038,924) [table deja ecrite]
+  statuts 21h : 2,068,027 (cumul 73,106,951) [table deja ecrite]
+  statuts 22h : 1,578,648 (cumul 74,685,599) [table deja ecrite]
+  statuts 23h : 1,558,504 (cumul 76,244,103) [table deja ecrite]
+  -> hl_orders : 76,244,103 lignes en 1014.5s
+  diffs 11/16h (chauffe) : 4,040,770 ┬À ordres 3,871 ┬À prix 1395/810 ┬À photos 0
+  diffs 11/17h (chauffe) : 3,106,158 ┬À ordres 4,193 ┬À prix 1388/858 ┬À photos 0
+  diffs 11/18h (chauffe) : 3,541,931 ┬À ordres 5,068 ┬À prix 1618/1208 ┬À photos 0
+  diffs 11/19h (chauffe) : 3,593,310 ┬À ordres 5,838 ┬À prix 1650/1642 ┬À photos 0
+  diffs 11/20h (chauffe) : 3,487,405 ┬À ordres 6,835 ┬À prix 1955/1365 ┬À photos 0
+  diffs 11/21h (chauffe) : 4,449,371 ┬À ordres 7,534 ┬À prix 2168/1638 ┬À photos 0
+  diffs 11/22h (chauffe) : 3,332,620 ┬À ordres 7,630 ┬À prix 2488/1935 ┬À photos 0
+  diffs 11/23h (chauffe) : 2,752,746 ┬À ordres 7,493 ┬À prix 2581/1793 ┬À photos 0
+  diffs 12/00h : 2,545,070 ┬À ordres 6,959 ┬À prix 2238/2218 ┬À photos 4,846
+  diffs 12/01h : 2,724,438 ┬À ordres 8,279 ┬À prix 2678/2232 ┬À photos 9,917
+  diffs 12/02h : 2,450,124 ┬À ordres 8,250 ┬À prix 2671/2110 ┬À photos 14,655
+  diffs 12/03h : 2,005,998 ┬À ordres 8,813 ┬À prix 2742/2409 ┬À photos 18,966
+  diffs 12/04h : 1,538,278 ┬À ordres 8,781 ┬À prix 2743/2317 ┬À photos 22,947
+  diffs 12/05h : 1,629,749 ┬À ordres 8,965 ┬À prix 2802/2333 ┬À photos 26,997
+  diffs 12/06h : 1,733,033 ┬À ordres 9,101 ┬À prix 2798/2429 ┬À photos 31,113
+  diffs 12/07h : 1,585,847 ┬À ordres 9,093 ┬À prix 2790/2456 ┬À photos 35,045
+  diffs 12/08h : 1,770,151 ┬À ordres 9,429 ┬À prix 2746/2575 ┬À photos 39,157
+  diffs 12/09h : 1,725,840 ┬À ordres 9,381 ┬À prix 2778/2493 ┬À photos 43,237
+  diffs 12/10h : 1,635,107 ┬À ordres 9,258 ┬À prix 2654/2506 ┬À photos 47,248
+  diffs 12/11h : 1,498,891 ┬À ordres 9,022 ┬À prix 2630/2465 ┬À photos 51,139
+  diffs 12/12h : 1,606,894 ┬À ordres 9,135 ┬À prix 2812/2421 ┬À photos 55,076
+  diffs 12/13h : 1,667,647 ┬À ordres 9,331 ┬À prix 2671/2605 ┬À photos 59,084
+  diffs 12/14h : 3,426,367 ┬À ordres 9,279 ┬À prix 2917/2602 ┬À photos 64,396
+  diffs 12/15h : 5,227,965 ┬À ordres 7,967 ┬À prix 2349/2748 ┬À photos 71,410
+  diffs 12/16h : 5,118,634 ┬À ordres 9,283 ┬À prix 2791/2931 ┬À photos 78,217
+  diffs 12/17h : 3,070,675 ┬À ordres 9,647 ┬À prix 2838/2988 ┬À photos 82,297
+  diffs 12/18h : 2,569,571 ┬À ordres 12,369 ┬À prix 3087/3255 ┬À photos 82,299
+  diffs 12/19h : 3,122,896 ┬À ordres 13,211 ┬À prix 3231/3327 ┬À photos 82,339
+  diffs 12/20h : 2,862,490 ┬À ordres 13,355 ┬À prix 3235/3350 ┬À photos 82,378
+  diffs 12/21h : 1,748,992 ┬À ordres 13,371 ┬À prix 3227/3323 ┬À photos 82,430
+  diffs 12/22h : 1,402,482 ┬À ordres 13,274 ┬À prix 3372/3380 ┬À photos 82,433
+  diffs 12/23h : 1,398,078 ┬À ordres 13,461 ┬À prix 3284/3456 ┬À photos 82,447
+  -> hl_book : 1,648,940 lignes ┬À 82,447 photos en 2770.8s
+  -> deep : 303,813,657 lignes ┬À 82,447 photos ┬À 625.9 Mo (3685 paliers/photo)
+     hl_book : manifeste reconstitue remplace par une provenance reelle
+  -> manifestes : 2 ecrits
+[5/9] 20251212 OK ÔÇö 5 fabriques
+        nettoye work/20251211
+[6/9] === BTC 20251213 (298 Gio libres) ===
+  extraction : 24 fichiers de statuts, 24 de diffs en 780s
+  statuts 00h : 1,348,149 (cumul 1,348,149) [table deja ecrite]
+  statuts 01h : 1,160,105 (cumul 2,508,254) [table deja ecrite]
+  statuts 02h : 1,145,451 (cumul 3,653,705) [table deja ecrite]
+  statuts 03h : 1,157,970 (cumul 4,811,675) [table deja ecrite]
+  statuts 04h : 1,097,450 (cumul 5,909,125) [table deja ecrite]
+  statuts 05h : 1,047,132 (cumul 6,956,257) [table deja ecrite]
+  statuts 06h : 1,021,953 (cumul 7,978,210) [table deja ecrite]
+  statuts 07h : 1,053,700 (cumul 9,031,910) [table deja ecrite]
+  statuts 08h : 1,769,020 (cumul 10,800,930) [table deja ecrite]
+  statuts 09h : 1,310,018 (cumul 12,110,948) [table deja ecrite]
+  statuts 10h : 1,295,392 (cumul 13,406,340) [table deja ecrite]
+  statuts 11h : 1,290,930 (cumul 14,697,270) [table deja ecrite]
+  statuts 12h : 1,370,406 (cumul 16,067,676) [table deja ecrite]
+  statuts 13h : 1,462,030 (cumul 17,529,706) [table deja ecrite]
+  statuts 14h : 1,944,243 (cumul 19,473,949) [table deja ecrite]
+  statuts 15h : 1,530,448 (cumul 21,004,397) [table deja ecrite]
+  statuts 16h : 1,456,330 (cumul 22,460,727) [table deja ecrite]
+  statuts 17h : 1,303,465 (cumul 23,764,192) [table deja ecrite]
+  statuts 18h : 1,161,735 (cumul 24,925,927) [table deja ecrite]
+  statuts 19h : 1,095,457 (cumul 26,021,384) [table deja ecrite]
+  statuts 20h : 1,099,776 (cumul 27,121,160) [table deja ecrite]
+  statuts 21h : 1,736,989 (cumul 28,858,149) [table deja ecrite]
+  statuts 22h : 1,509,653 (cumul 30,367,802) [table deja ecrite]
+  statuts 23h : 1,342,354 (cumul 31,710,156) [table deja ecrite]
+  -> hl_orders : 31,710,156 lignes en 937.0s
+  diffs 12/16h (chauffe) : 5,118,634 ┬À ordres 4,406 ┬À prix 1443/1068 ┬À photos 0
+  diffs 12/17h (chauffe) : 3,070,675 ┬À ordres 5,021 ┬À prix 1580/1229 ┬À photos 0
+  diffs 12/18h (chauffe) : 2,569,571 ┬À ordres 7,831 ┬À prix 1869/1591 ┬À photos 0
+  diffs 12/19h (chauffe) : 3,122,896 ┬À ordres 8,768 ┬À prix 2150/1705 ┬À photos 0
+  diffs 12/20h (chauffe) : 2,862,490 ┬À ordres 9,210 ┬À prix 2165/1916 ┬À photos 0
+  diffs 12/21h (chauffe) : 1,748,992 ┬À ordres 9,827 ┬À prix 2366/2139 ┬À photos 0
+  diffs 12/22h (chauffe) : 1,402,482 ┬À ordres 9,746 ┬À prix 2528/2212 ┬À photos 0
+  diffs 12/23h (chauffe) : 1,398,078 ┬À ordres 10,018 ┬À prix 2436/2308 ┬À photos 0
+  diffs 13/00h : 1,210,789 ┬À ordres 9,661 ┬À prix 2491/2309 ┬À photos 4
+  diffs 13/01h : 1,061,729 ┬À ordres 9,693 ┬À prix 2462/2256 ┬À photos 53
+  diffs 13/02h : 1,043,692 ┬À ordres 9,873 ┬À prix 2540/2285 ┬À photos 53
+  diffs 13/03h : 1,071,140 ┬À ordres 9,973 ┬À prix 2675/2343 ┬À photos 60
+  diffs 13/04h : 1,017,813 ┬À ordres 10,098 ┬À prix 2721/2333 ┬À photos 60
+  diffs 13/05h : 987,953 ┬À ordres 10,071 ┬À prix 2636/2331 ┬À photos 60
+  diffs 13/06h : 959,646 ┬À ordres 10,061 ┬À prix 2639/2337 ┬À photos 60
+  diffs 13/07h : 998,192 ┬À ordres 10,183 ┬À prix 2629/2349 ┬À photos 60
+  diffs 13/08h : 1,464,420 ┬À ordres 10,043 ┬À prix 2747/2419 ┬À photos 60
+  diffs 13/09h : 1,165,534 ┬À ordres 10,304 ┬À prix 2757/2432 ┬À photos 60
+  diffs 13/10h : 1,160,171 ┬À ordres 10,182 ┬À prix 2786/2386 ┬À photos 60
+  diffs 13/11h : 1,162,308 ┬À ordres 10,372 ┬À prix 2656/2402 ┬À photos 60
+  diffs 13/12h : 1,221,428 ┬À ordres 10,415 ┬À prix 2676/2485 ┬À photos 60
+  diffs 13/13h : 1,277,882 ┬À ordres 10,624 ┬À prix 2611/2468 ┬À photos 62
+  diffs 13/14h : 1,576,619 ┬À ordres 10,642 ┬À prix 2623/2611 ┬À photos 78
+  diffs 13/15h : 1,328,349 ┬À ordres 10,679 ┬À prix 2635/2565 ┬À photos 82
+  diffs 13/16h : 1,276,614 ┬À ordres 10,942 ┬À prix 2712/2591 ┬À photos 84
+  diffs 13/17h : 1,177,895 ┬À ordres 10,817 ┬À prix 2800/2477 ┬À photos 84
+  diffs 13/18h : 1,063,072 ┬À ordres 10,843 ┬À prix 2789/2436 ┬À photos 84
+  diffs 13/19h : 1,021,024 ┬À ordres 10,959 ┬À prix 2741/2429 ┬À photos 90
+  diffs 13/20h : 1,012,421 ┬À ordres 10,924 ┬À prix 2768/2515 ┬À photos 90
+  diffs 13/21h : 1,455,357 ┬À ordres 10,992 ┬À prix 2815/2425 ┬À photos 90
+  diffs 13/22h : 1,305,508 ┬À ordres 11,277 ┬À prix 2876/2548 ┬À photos 116
+  diffs 13/23h : 1,218,923 ┬À ordres 11,212 ┬À prix 2834/2492 ┬À photos 172
+  -> hl_book : 3,440 lignes ┬À 172 photos en 733.7s
+  -> deep : 567,659 lignes ┬À 172 photos ┬À 1.6 Mo (3300 paliers/photo)
+     hl_book : manifeste reconstitue remplace par une provenance reelle
+  -> manifestes : 2 ecrits
+[6/9] 20251213 OK ÔÇö 6 fabriques
+        nettoye work/20251212
+[7/9] === BTC 20251214 (299 Gio libres) ===
+  extraction : 24 fichiers de statuts, 24 de diffs en 887s
+  statuts 00h : 1,595,582 (cumul 1,595,582) [table deja ecrite]
+  statuts 01h : 1,301,855 (cumul 2,897,437) [table deja ecrite]
+  statuts 02h : 1,115,232 (cumul 4,012,669) [table deja ecrite]
+  statuts 03h : 945,947 (cumul 4,958,616) [table deja ecrite]
+  statuts 04h : 1,146,423 (cumul 6,105,039) [table deja ecrite]
+  statuts 05h : 1,280,835 (cumul 7,385,874) [table deja ecrite]
+  statuts 06h : 1,089,948 (cumul 8,475,822) [table deja ecrite]
+  statuts 07h : 1,030,349 (cumul 9,506,171) [table deja ecrite]
+  statuts 08h : 1,076,734 (cumul 10,582,905) [table deja ecrite]
+  statuts 09h : 1,193,747 (cumul 11,776,652) [table deja ecrite]
+  statuts 10h : 1,709,435 (cumul 13,486,087) [table deja ecrite]
+  statuts 11h : 4,514,856 (cumul 18,000,943) [table deja ecrite]
+  statuts 12h : 3,268,393 (cumul 21,269,336) [table deja ecrite]
+  statuts 13h : 2,678,856 (cumul 23,948,192) [table deja ecrite]
+  statuts 14h : 3,110,278 (cumul 27,058,470) [table deja ecrite]
+  statuts 15h : 2,621,718 (cumul 29,680,188) [table deja ecrite]
+  statuts 16h : 3,190,278 (cumul 32,870,466) [table deja ecrite]
+  statuts 17h : 3,388,191 (cumul 36,258,657) [table deja ecrite]
+  statuts 18h : 2,446,144 (cumul 38,704,801) [table deja ecrite]
+  statuts 19h : 2,408,056 (cumul 41,112,857) [table deja ecrite]
+  statuts 20h : 2,643,705 (cumul 43,756,562) [table deja ecrite]
+  statuts 21h : 2,374,734 (cumul 46,131,296) [table deja ecrite]
+  statuts 22h : 3,272,575 (cumul 49,403,871) [table deja ecrite]
+  statuts 23h : 4,728,156 (cumul 54,132,027) [table deja ecrite]
+  -> hl_orders : 54,132,027 lignes en 1152.6s
+  diffs 13/16h (chauffe) : 1,276,614 ┬À ordres 2,308 ┬À prix 555/437 ┬À photos 0
+  diffs 13/17h (chauffe) : 1,177,895 ┬À ordres 2,892 ┬À prix 848/582 ┬À photos 0
+  diffs 13/18h (chauffe) : 1,063,072 ┬À ordres 3,003 ┬À prix 877/595 ┬À photos 0
+  diffs 13/19h (chauffe) : 1,021,024 ┬À ordres 3,199 ┬À prix 904/658 ┬À photos 0
+  diffs 13/20h (chauffe) : 1,012,421 ┬À ordres 3,204 ┬À prix 925/670 ┬À photos 0
+  diffs 13/21h (chauffe) : 1,455,357 ┬À ordres 3,599 ┬À prix 1146/757 ┬À photos 0
+  diffs 13/22h (chauffe) : 1,305,508 ┬À ordres 3,945 ┬À prix 1250/942 ┬À photos 0
+  diffs 13/23h (chauffe) : 1,218,923 ┬À ordres 3,965 ┬À prix 1265/891 ┬À photos 0
+  diffs 14/00h : 1,386,792 ┬À ordres 4,567 ┬À prix 1506/975 ┬À photos 3,983
+  diffs 14/01h : 1,178,923 ┬À ordres 5,228 ┬À prix 1817/1193 ┬À photos 7,819
+  diffs 14/02h : 1,042,130 ┬À ordres 5,542 ┬À prix 1842/1324 ┬À photos 11,562
+  diffs 14/03h : 914,241 ┬À ordres 5,650 ┬À prix 1812/1379 ┬À photos 15,152
+  diffs 14/04h : 1,059,415 ┬À ordres 5,696 ┬À prix 1763/1422 ┬À photos 18,931
+  diffs 14/05h : 1,168,088 ┬À ordres 5,739 ┬À prix 1831/1404 ┬À photos 22,771
+  diffs 14/06h : 1,026,093 ┬À ordres 5,950 ┬À prix 1813/1588 ┬À photos 26,478
+  diffs 14/07h : 977,768 ┬À ordres 6,368 ┬À prix 2027/1725 ┬À photos 30,106
+  diffs 14/08h : 1,016,489 ┬À ordres 6,617 ┬À prix 1939/1785 ┬À photos 33,790
+  diffs 14/09h : 1,096,021 ┬À ordres 6,676 ┬À prix 1942/1803 ┬À photos 37,512
+  diffs 14/10h : 1,465,790 ┬À ordres 6,565 ┬À prix 1959/1924 ┬À photos 41,497
+  diffs 14/11h : 3,090,004 ┬À ordres 5,529 ┬À prix 1876/1803 ┬À photos 47,001
+  diffs 14/12h : 2,467,455 ┬À ordres 6,161 ┬À prix 2071/1722 ┬À photos 52,052
+  diffs 14/13h : 2,100,356 ┬À ordres 6,886 ┬À prix 2391/1711 ┬À photos 56,616
+  diffs 14/14h : 2,344,051 ┬À ordres 6,979 ┬À prix 2330/1772 ┬À photos 61,413
+  diffs 14/15h : 2,062,544 ┬À ordres 7,248 ┬À prix 2275/1871 ┬À photos 65,946
+  diffs 14/16h : 2,402,518 ┬À ordres 7,664 ┬À prix 2685/1868 ┬À photos 70,796
+  diffs 14/17h : 2,515,469 ┬À ordres 7,932 ┬À prix 2880/1947 ┬À photos 75,807
+  diffs 14/18h : 1,940,247 ┬À ordres 8,372 ┬À prix 3060/1915 ┬À photos 80,289
+  diffs 14/19h : 1,961,510 ┬À ordres 8,381 ┬À prix 2860/2073 ┬À photos 84,756
+  diffs 14/20h : 2,043,331 ┬À ordres 8,677 ┬À prix 2927/2110 ┬À photos 89,286
+  diffs 14/21h : 1,899,209 ┬À ordres 9,042 ┬À prix 3081/2136 ┬À photos 93,779
+  diffs 14/22h : 2,406,656 ┬À ordres 8,826 ┬À prix 3145/2157 ┬À photos 98,600
+  diffs 14/23h : 3,307,136 ┬À ordres 9,058 ┬À prix 3152/2333 ┬À photos 104,292
+  -> hl_book : 2,085,840 lignes ┬À 104,292 photos en 2179.3s
+  -> deep : 297,718,160 lignes ┬À 104,292 photos ┬À 505.6 Mo (2855 paliers/photo)
+     hl_book : manifeste reconstitue remplace par une provenance reelle
+  -> manifestes : 2 ecrits
+[7/9] 20251214 OK ÔÇö 7 fabriques
+        nettoye work/20251213
+[8/9] === BTC 20251215 (298 Gio libres) ===
+  extraction : 24 fichiers de statuts, 24 de diffs en 803s
+  statuts 00h : 3,946,801 (cumul 3,946,801) [table deja ecrite]
+  statuts 01h : 4,227,781 (cumul 8,174,582) [table deja ecrite]
+  statuts 02h : 3,834,967 (cumul 12,009,549) [table deja ecrite]
+  statuts 03h : 2,590,189 (cumul 14,599,738) [table deja ecrite]
+  statuts 04h : 2,431,849 (cumul 17,031,587) [table deja ecrite]
+  statuts 05h : 1,874,596 (cumul 18,906,183) [table deja ecrite]
+  statuts 06h : 2,050,905 (cumul 20,957,088) [table deja ecrite]
+  statuts 07h : 2,334,878 (cumul 23,291,966) [table deja ecrite]
+  statuts 08h : 2,109,286 (cumul 25,401,252) [table deja ecrite]
+  statuts 09h : 2,172,449 (cumul 27,573,701) [table deja ecrite]
+  statuts 10h : 2,369,480 (cumul 29,943,181) [table deja ecrite]
+  statuts 11h : 1,308,935 (cumul 31,252,116) [table deja ecrite]
+  statuts 12h : 2,166,109 (cumul 33,418,225) [table deja ecrite]
+  statuts 13h : 3,043,700 (cumul 36,461,925) [table deja ecrite]
+  statuts 14h : 7,284,049 (cumul 43,745,974) [table deja ecrite]
+  statuts 15h : 10,221,257 (cumul 53,967,231) [table deja ecrite]
+  statuts 16h : 7,666,354 (cumul 61,633,585) [table deja ecrite]
+  statuts 17h : 6,419,063 (cumul 68,052,648) [table deja ecrite]
+  statuts 18h : 6,363,468 (cumul 74,416,116) [table deja ecrite]
+  statuts 19h : 5,966,313 (cumul 80,382,429) [table deja ecrite]
+  statuts 20h : 5,254,572 (cumul 85,637,001) [table deja ecrite]
+  statuts 21h : 3,475,859 (cumul 89,112,860) [table deja ecrite]
+  statuts 22h : 2,334,361 (cumul 91,447,221) [table deja ecrite]
+  statuts 23h : 2,752,419 (cumul 94,199,640) [table deja ecrite]
+  -> hl_orders : 94,199,640 lignes en 1249.9s
+  diffs 14/16h (chauffe) : 2,402,518 ┬À ordres 3,996 ┬À prix 1492/781 ┬À photos 0
+  diffs 14/17h (chauffe) : 2,515,469 ┬À ordres 4,670 ┬À prix 1792/980 ┬À photos 0
+  diffs 14/18h (chauffe) : 1,940,247 ┬À ordres 5,261 ┬À prix 2016/1013 ┬À photos 0
+  diffs 14/19h (chauffe) : 1,961,510 ┬À ordres 5,341 ┬À prix 1897/1169 ┬À photos 0
+  diffs 14/20h (chauffe) : 2,043,331 ┬À ordres 5,767 ┬À prix 2021/1216 ┬À photos 0
+  diffs 14/21h (chauffe) : 1,899,209 ┬À ordres 6,176 ┬À prix 2238/1245 ┬À photos 0
+  diffs 14/22h (chauffe) : 2,406,656 ┬À ordres 6,209 ┬À prix 2395/1285 ┬À photos 0
+  diffs 14/23h (chauffe) : 3,307,136 ┬À ordres 6,814 ┬À prix 2588/1496 ┬À photos 0
+  diffs 15/00h : 2,977,853 ┬À ordres 7,541 ┬À prix 2797/1517 ┬À photos 5,077
+  diffs 15/01h : 3,032,582 ┬À ordres 7,771 ┬À prix 2982/1383 ┬À photos 9,988
+  diffs 15/02h : 2,886,324 ┬À ordres 8,067 ┬À prix 3113/1501 ┬À photos 14,829
+  diffs 15/03h : 2,140,395 ┬À ordres 8,592 ┬À prix 3260/1738 ┬À photos 19,355
+  diffs 15/04h : 2,029,350 ┬À ordres 8,626 ┬À prix 3376/1621 ┬À photos 23,627
+  diffs 15/05h : 1,645,577 ┬À ordres 9,085 ┬À prix 3458/1824 ┬À photos 27,681
+  diffs 15/06h : 1,742,637 ┬À ordres 9,297 ┬À prix 3380/1880 ┬À photos 31,734
+  diffs 15/07h : 1,970,109 ┬À ordres 9,426 ┬À prix 3371/1946 ┬À photos 35,985
+  diffs 15/08h : 1,805,699 ┬À ordres 9,735 ┬À prix 3445/1993 ┬À photos 40,066
+  diffs 15/09h : 1,829,127 ┬À ordres 9,464 ┬À prix 3516/1919 ┬À photos 44,189
+  diffs 15/10h : 2,004,722 ┬À ordres 9,971 ┬À prix 3510/1990 ┬À photos 48,481
+  diffs 15/11h : 1,161,363 ┬À ordres 9,936 ┬À prix 3474/2092 ┬À photos 51,522
+  diffs 15/12h : 1,882,330 ┬À ordres 11,182 ┬À prix 3583/2232 ┬À photos 53,688
+  diffs 15/13h : 2,497,040 ┬À ordres 13,590 ┬À prix 3664/2482 ┬À photos 53,688
+  diffs 15/14h : 4,491,439 ┬À ordres 11,937 ┬À prix 3297/2630 ┬À photos 53,688
+  diffs 15/15h : 6,013,824 ┬À ordres 13,998 ┬À prix 4149/3031 ┬À photos 53,688
+  diffs 15/16h : 5,061,345 ┬À ordres 14,954 ┬À prix 4049/3229 ┬À photos 53,688
+  diffs 15/17h : 4,459,063 ┬À ordres 15,731 ┬À prix 4126/3547 ┬À photos 53,688
+  diffs 15/18h : 4,318,563 ┬À ordres 14,543 ┬À prix 4222/3191 ┬À photos 53,688
+  diffs 15/19h : 4,185,881 ┬À ordres 14,795 ┬À prix 4392/3230 ┬À photos 53,688
+  diffs 15/20h : 3,825,886 ┬À ordres 14,428 ┬À prix 4287/3256 ┬À photos 53,688
+  diffs 15/21h : 2,692,872 ┬À ordres 15,369 ┬À prix 4475/3301 ┬À photos 53,688
+  diffs 15/22h : 1,916,835 ┬À ordres 15,808 ┬À prix 4592/3312 ┬À photos 53,688
+  diffs 15/23h : 2,221,235 ┬À ordres 15,682 ┬À prix 4724/3238 ┬À photos 53,688
+  -> hl_book : 1,073,760 lignes ┬À 53,688 photos en 1981.4s
+  -> deep : 178,406,254 lignes ┬À 53,688 photos ┬À 339.6 Mo (3323 paliers/photo)
+     hl_book : manifeste reconstitue remplace par une provenance reelle
+  -> manifestes : 2 ecrits
+[8/9] 20251215 OK ÔÇö 8 fabriques
+        nettoye work/20251214
+[9/9] === BTC 20251216 (296 Gio libres) ===
+  extraction : 24 fichiers de statuts, 24 de diffs en 945s
+  statuts 00h : 3,209,620 (cumul 3,209,620) [table deja ecrite]
+  statuts 01h : 4,119,761 (cumul 7,329,381) [table deja ecrite]
+  statuts 02h : 3,452,894 (cumul 10,782,275) [table deja ecrite]
+  statuts 03h : 3,477,551 (cumul 14,259,826) [table deja ecrite]
+  statuts 04h : 3,325,934 (cumul 17,585,760) [table deja ecrite]
+  statuts 05h : 2,835,924 (cumul 20,421,684) [table deja ecrite]
+  statuts 06h : 2,238,212 (cumul 22,659,896) [table deja ecrite]
+  statuts 07h : 3,080,402 (cumul 25,740,298) [table deja ecrite]
+  statuts 08h : 2,538,015 (cumul 28,278,313) [table deja ecrite]
+  statuts 09h : 2,170,019 (cumul 30,448,332) [table deja ecrite]
+  statuts 10h : 3,949,229 (cumul 34,397,561) [table deja ecrite]
+  statuts 11h : 3,356,264 (cumul 37,753,825) [table deja ecrite]
+  statuts 12h : 3,321,614 (cumul 41,075,439) [table deja ecrite]
+  statuts 13h : 6,857,925 (cumul 47,933,364) [table deja ecrite]
+  statuts 14h : 9,154,008 (cumul 57,087,372) [table deja ecrite]
+  statuts 15h : 8,362,577 (cumul 65,449,949) [table deja ecrite]
+  statuts 16h : 6,864,203 (cumul 72,314,152) [table deja ecrite]
+  statuts 17h : 4,422,387 (cumul 76,736,539) [table deja ecrite]
+  statuts 18h : 4,157,645 (cumul 80,894,184) [table deja ecrite]
+  statuts 19h : 3,863,463 (cumul 84,757,647) [table deja ecrite]
+  statuts 20h : 3,621,037 (cumul 88,378,684) [table deja ecrite]
+  statuts 21h : 2,067,006 (cumul 90,445,690) [table deja ecrite]
+  statuts 22h : 1,950,099 (cumul 92,395,789) [table deja ecrite]
+  statuts 23h : 2,091,625 (cumul 94,487,414) [table deja ecrite]
+  -> hl_orders : 94,487,414 lignes en 1410.1s
+  diffs 15/16h (chauffe) : 5,061,345 ┬À ordres 5,823 ┬À prix 1896/1219 ┬À photos 0
+  diffs 15/17h (chauffe) : 4,459,063 ┬À ordres 7,361 ┬À prix 2365/1594 ┬À photos 0
+  diffs 15/18h (chauffe) : 4,318,563 ┬À ordres 6,820 ┬À prix 2589/1321 ┬À photos 0
+  diffs 15/19h (chauffe) : 4,185,881 ┬À ordres 7,250 ┬À prix 2756/1393 ┬À photos 0
+  diffs 15/20h (chauffe) : 3,825,886 ┬À ordres 6,905 ┬À prix 2670/1423 ┬À photos 0
+  diffs 15/21h (chauffe) : 2,692,872 ┬À ordres 7,869 ┬À prix 2902/1511 ┬À photos 0
+  diffs 15/22h (chauffe) : 1,916,835 ┬À ordres 8,350 ┬À prix 3061/1523 ┬À photos 0
+  diffs 15/23h (chauffe) : 2,221,235 ┬À ordres 8,411 ┬À prix 3283/1487 ┬À photos 0
+  diffs 16/00h : 2,487,446 ┬À ordres 8,851 ┬À prix 3081/2014 ┬À photos 4,622
+  diffs 16/01h : 3,072,997 ┬À ordres 9,137 ┬À prix 3237/1937 ┬À photos 9,640
+  diffs 16/02h : 2,651,885 ┬À ordres 9,274 ┬À prix 3315/1965 ┬À photos 14,384
+  diffs 16/03h : 2,743,288 ┬À ordres 9,050 ┬À prix 3253/2032 ┬À photos 19,237
+  diffs 16/04h : 2,584,143 ┬À ordres 9,432 ┬À prix 3317/2114 ┬À photos 24,042
+  diffs 16/05h : 2,284,105 ┬À ordres 9,816 ┬À prix 3516/2053 ┬À photos 28,639
+  diffs 16/06h : 1,890,990 ┬À ordres 10,179 ┬À prix 3640/2042 ┬À photos 32,831
+  diffs 16/07h : 2,398,022 ┬À ordres 9,962 ┬À prix 3424/2248 ┬À photos 37,540
+  diffs 16/08h : 2,079,669 ┬À ordres 10,665 ┬À prix 3672/2443 ┬À photos 42,137
+  diffs 16/09h : 1,786,191 ┬À ordres 10,948 ┬À prix 3760/2463 ┬À photos 46,420
+  diffs 16/10h : 2,860,479 ┬À ordres 10,421 ┬À prix 3913/2157 ┬À photos 51,395
+  diffs 16/11h : 2,607,972 ┬À ordres 10,543 ┬À prix 4033/2007 ┬À photos 56,281
+  diffs 16/12h : 2,580,190 ┬À ordres 10,697 ┬À prix 4041/2112 ┬À photos 61,175
+  diffs 16/13h : 4,440,504 ┬À ordres 11,264 ┬À prix 3865/3024 ┬À photos 67,450
+  diffs 16/14h : 5,510,819 ┬À ordres 11,758 ┬À prix 4529/2443 ┬À photos 74,409
+  diffs 16/15h : 5,296,064 ┬À ordres 11,974 ┬À prix 4742/2353 ┬À photos 81,182
+  diffs 16/16h : 4,611,770 ┬À ordres 12,596 ┬À prix 4690/2590 ┬À photos 87,226
+  diffs 16/17h : 3,211,574 ┬À ordres 12,884 ┬À prix 4628/2744 ┬À photos 92,466
+  diffs 16/18h : 3,063,458 ┬À ordres 12,985 ┬À prix 4838/2539 ┬À photos 97,501
+  diffs 16/19h : 2,965,441 ┬À ordres 13,926 ┬À prix 4847/2645 ┬À photos 102,605
+  diffs 16/20h : 2,773,813 ┬À ordres 13,105 ┬À prix 4662/2688 ┬À photos 107,616
+  diffs 16/21h : 1,747,090 ┬À ordres 12,817 ┬À prix 4702/2520 ┬À photos 111,957
+  diffs 16/22h : 1,642,309 ┬À ordres 13,006 ┬À prix 4650/2557 ┬À photos 116,113
+  diffs 16/23h : 1,807,472 ┬À ordres 13,590 ┬À prix 4844/2780 ┬À photos 120,433
+  -> hl_book : 2,408,660 lignes ┬À 120,433 photos en 3541.5s
+  -> deep : 474,196,065 lignes ┬À 120,433 photos ┬À 1152.5 Mo (3937 paliers/photo)
+     hl_book : manifeste reconstitue remplace par une provenance reelle
+  -> manifestes : 2 ecrits
+[9/9] 20251216 OK ÔÇö 9 fabriques
+        nettoye work/20251215
+
+=== 9 fabriques, 0 deja faits, sur 9 demandes, en 658.2 min ===
+  20251208 20251209 20251210 20251211 20251212 20251213 20251214 20251215 20251216
+01:06:59  --- ETH  01-07  phase=deep ---
+=== lot : 7 jours, ETH, phase=deep ===
+[1/7] 20251201 : deja fait, saute.
+[2/7] 20251202 : deja fait, saute.
+[3/7] 20251203 : deja fait, saute.
+[4/7] 20251204 : deja fait, saute.
+[5/7] 20251205 : deja fait, saute.
+[6/7] 20251206 : deja fait, saute.
+[7/7] 20251207 : deja fait, saute.
+
+=== 0 fabriques, 7 deja faits, sur 7 demandes, en 0.0 min ===
+01:06:59  --- ETH  08-16  phase=all  (TRANCHE 1 SEULE) ---
+=== lot : 9 jours, ETH, phase=all ===
+[1/9] === ETH 20251208 (294 Gio libres) ===
+  extraction : 24 fichiers de statuts, 24 de diffs en 240s
+  statuts 00h : 2,165,551 (cumul 2,165,551) [table deja ecrite]
+  statuts 01h : 3,188,223 (cumul 5,353,774) [table deja ecrite]
+  statuts 02h : 1,990,584 (cumul 7,344,358) [table deja ecrite]
+  statuts 03h : 1,494,440 (cumul 8,838,798) [table deja ecrite]
+  statuts 04h : 1,689,888 (cumul 10,528,686) [table deja ecrite]
+  statuts 05h : 1,349,913 (cumul 11,878,599) [table deja ecrite]
+  statuts 06h : 1,180,839 (cumul 13,059,438) [table deja ecrite]
+  statuts 07h : 1,337,559 (cumul 14,396,997) [table deja ecrite]
+  statuts 08h : 1,291,252 (cumul 15,688,249) [table deja ecrite]
+  statuts 09h : 2,261,149 (cumul 17,949,398) [table deja ecrite]
+  statuts 10h : 1,278,904 (cumul 19,228,302) [table deja ecrite]
+  statuts 11h : 1,363,504 (cumul 20,591,806) [table deja ecrite]
+  statuts 12h : 1,561,828 (cumul 22,153,634) [table deja ecrite]
+  statuts 13h : 2,511,571 (cumul 24,665,205) [table deja ecrite]
+  statuts 14h : 4,358,021 (cumul 29,023,226) [table deja ecrite]
+  statuts 15h : 4,952,053 (cumul 33,975,279) [table deja ecrite]
+  statuts 16h : 3,843,474 (cumul 37,818,753) [table deja ecrite]
+  statuts 17h : 3,254,824 (cumul 41,073,577) [table deja ecrite]
+  statuts 18h : 3,238,424 (cumul 44,312,001) [table deja ecrite]
+  statuts 19h : 3,119,142 (cumul 47,431,143) [table deja ecrite]
+  statuts 20h : 2,447,788 (cumul 49,878,931) [table deja ecrite]
+  statuts 21h : 1,912,785 (cumul 51,791,716) [table deja ecrite]
+  statuts 22h : 1,071,288 (cumul 52,863,004) [table deja ecrite]
+  statuts 23h : 1,502,326 (cumul 54,365,330) [table deja ecrite]
+  -> hl_orders : 54,365,330 lignes en 442.0s
+  diffs 07/16h (chauffe) : 2,267,406 ┬À ordres 2,358 ┬À prix 932/485 ┬À photos 0
+  diffs 07/17h (chauffe) : 2,920,288 ┬À ordres 3,884 ┬À prix 1092/1000 ┬À photos 0
+  diffs 07/18h (chauffe) : 2,033,532 ┬À ordres 4,877 ┬À prix 1383/967 ┬À photos 0
+  diffs 07/19h (chauffe) : 1,065,661 ┬À ordres 4,752 ┬À prix 1346/811 ┬À photos 0
+  diffs 07/20h (chauffe) : 816,197 ┬À ordres 5,350 ┬À prix 1495/969 ┬À photos 0
+  diffs 07/21h (chauffe) : 1,746,939 ┬À ordres 5,870 ┬À prix 1317/1914 ┬À photos 0
+  diffs 07/22h (chauffe) : 3,115,362 ┬À ordres 5,330 ┬À prix 1337/1789 ┬À photos 0
+  diffs 07/23h (chauffe) : 1,905,261 ┬À ordres 5,457 ┬À prix 1407/1721 ┬À photos 0
+  diffs 08/00h : 1,732,216 ┬À ordres 6,218 ┬À prix 1544/1664 ┬À photos 5,254
+  diffs 08/01h : 2,394,042 ┬À ordres 5,811 ┬À prix 1617/1455 ┬À photos 11,120
+  diffs 08/02h : 1,612,937 ┬À ordres 6,397 ┬À prix 1765/1564 ┬À photos 16,260
+  diffs 08/03h : 1,222,289 ┬À ordres 5,155 ┬À prix 1728/1200 ┬À photos 21,011
+  diffs 08/04h : 1,358,875 ┬À ordres 6,110 ┬À prix 1921/1489 ┬À photos 25,759
+  diffs 08/05h : 1,108,835 ┬À ordres 6,484 ┬À prix 1936/1633 ┬À photos 30,353
+  diffs 08/06h : 1,007,131 ┬À ordres 5,910 ┬À prix 1924/1354 ┬À photos 34,784
+  diffs 08/07h : 1,133,978 ┬À ordres 5,888 ┬À prix 1942/1288 ┬À photos 39,349
+  diffs 08/08h : 1,120,380 ┬À ordres 6,012 ┬À prix 2030/1266 ┬À photos 43,759
+  diffs 08/09h : 1,795,858 ┬À ordres 5,683 ┬À prix 2050/1219 ┬À photos 48,777
+  diffs 08/10h : 1,079,332 ┬À ordres 5,700 ┬À prix 2085/1259 ┬À photos 53,214
+  diffs 08/11h : 1,130,942 ┬À ordres 5,573 ┬À prix 2041/1145 ┬À photos 57,684
+  diffs 08/12h : 1,292,025 ┬À ordres 6,002 ┬À prix 2149/1233 ┬À photos 62,259
+  diffs 08/13h : 2,025,425 ┬À ordres 6,079 ┬À prix 2129/1286 ┬À photos 67,541
+  diffs 08/14h : 3,038,570 ┬À ordres 6,145 ┬À prix 2155/1365 ┬À photos 73,496
+  diffs 08/15h : 3,609,628 ┬À ordres 6,610 ┬À prix 2307/1374 ┬À photos 80,240
+  diffs 08/16h : 3,008,437 ┬À ordres 7,225 ┬À prix 2535/1355 ┬À photos 86,288
+  diffs 08/17h : 2,606,717 ┬À ordres 6,654 ┬À prix 2409/1277 ┬À photos 92,045
+  diffs 08/18h : 2,572,583 ┬À ordres 6,734 ┬À prix 2392/1325 ┬À photos 97,891
+  diffs 08/19h : 2,526,102 ┬À ordres 7,270 ┬À prix 2595/1394 ┬À photos 103,569
+  diffs 08/20h : 2,005,930 ┬À ordres 7,842 ┬À prix 2722/1369 ┬À photos 108,837
+  diffs 08/21h : 1,555,195 ┬À ordres 8,097 ┬À prix 2575/1653 ┬À photos 113,721
+  diffs 08/22h : 912,967 ┬À ordres 8,314 ┬À prix 2546/1734 ┬À photos 117,940
+  diffs 08/23h : 1,269,573 ┬À ordres 7,981 ┬À prix 2465/1780 ┬À photos 122,548
+  -> hl_book : 2,450,960 lignes ┬À 122,548 photos en 1809.9s
+  -> deep : 296,487,275 lignes ┬À 122,548 photos ┬À 465.1 Mo (2419 paliers/photo)
+     hl_book : manifeste reconstitue remplace par une provenance reelle
+  -> manifestes : 2 ecrits
+[1/9] 20251208 OK ÔÇö 1 fabriques
+[2/9] === ETH 20251209 (293 Gio libres) ===
+  extraction : 24 fichiers de statuts, 24 de diffs en 343s
+  statuts 00h : 1,790,045 (cumul 1,790,045) [table deja ecrite]
+  statuts 01h : 2,444,958 (cumul 4,235,003) [table deja ecrite]
+  statuts 02h : 1,662,397 (cumul 5,897,400) [table deja ecrite]
+  statuts 03h : 1,624,568 (cumul 7,521,968) [table deja ecrite]
+  statuts 04h : 1,524,353 (cumul 9,046,321) [table deja ecrite]
+  statuts 05h : 1,696,564 (cumul 10,742,885) [table deja ecrite]
+  statuts 06h : 1,547,817 (cumul 12,290,702) [table deja ecrite]
+  statuts 07h : 1,448,876 (cumul 13,739,578) [table deja ecrite]
+  statuts 08h : 1,315,210 (cumul 15,054,788) [table deja ecrite]
+  statuts 09h : 1,278,483 (cumul 16,333,271) [table deja ecrite]
+  statuts 10h : 1,657,452 (cumul 17,990,723) [table deja ecrite]
+  statuts 11h : 1,407,967 (cumul 19,398,690) [table deja ecrite]
+  statuts 12h : 1,843,564 (cumul 21,242,254) [table deja ecrite]
+  statuts 13h : 2,384,844 (cumul 23,627,098) [table deja ecrite]
+  statuts 14h : 3,403,450 (cumul 27,030,548) [table deja ecrite]
+  statuts 15h : 6,100,435 (cumul 33,130,983) [table deja ecrite]
+  statuts 16h : 5,797,527 (cumul 38,928,510) [table deja ecrite]
+  statuts 17h : 4,436,936 (cumul 43,365,446) [table deja ecrite]
+  statuts 18h : 2,668,804 (cumul 46,034,250) [table deja ecrite]
+  statuts 19h : 2,311,206 (cumul 48,345,456) [table deja ecrite]
+  statuts 20h : 3,768,334 (cumul 52,113,790) [table deja ecrite]
+  statuts 21h : 2,969,690 (cumul 55,083,480) [table deja ecrite]
+  statuts 22h : 2,856,448 (cumul 57,939,928) [table deja ecrite]
+  statuts 23h : 1,787,916 (cumul 59,727,844) [table deja ecrite]
+  -> hl_orders : 59,727,844 lignes en 623.8s
+  diffs 08/16h (chauffe) : 3,008,437 ┬À ordres 3,347 ┬À prix 990/428 ┬À photos 0
+  diffs 08/17h (chauffe) : 2,606,717 ┬À ordres 3,134 ┬À prix 869/459 ┬À photos 0
+  diffs 08/18h (chauffe) : 2,572,583 ┬À ordres 3,396 ┬À prix 1023/480 ┬À photos 0
+  diffs 08/19h (chauffe) : 2,526,102 ┬À ordres 3,975 ┬À prix 1251/605 ┬À photos 0
+  diffs 08/20h (chauffe) : 2,005,930 ┬À ordres 4,588 ┬À prix 1385/676 ┬À photos 0
+  diffs 08/21h (chauffe) : 1,555,195 ┬À ordres 5,000 ┬À prix 1245/1092 ┬À photos 0
+  diffs 08/22h (chauffe) : 912,967 ┬À ordres 5,274 ┬À prix 1251/1172 ┬À photos 0
+  diffs 08/23h (chauffe) : 1,269,573 ┬À ordres 4,956 ┬À prix 1152/1210 ┬À photos 0
+  diffs 09/00h : 1,513,310 ┬À ordres 5,282 ┬À prix 1129/1366 ┬À photos 4,762
+  diffs 09/01h : 1,992,446 ┬À ordres 4,598 ┬À prix 1380/917 ┬À photos 9,936
+  diffs 09/02h : 1,408,065 ┬À ordres 4,810 ┬À prix 1404/958 ┬À photos 14,558
+  diffs 09/03h : 1,356,507 ┬À ordres 5,262 ┬À prix 1690/909 ┬À photos 19,072
+  diffs 09/04h : 1,297,893 ┬À ordres 5,724 ┬À prix 1656/991 ┬À photos 23,567
+  diffs 09/05h : 1,399,742 ┬À ordres 5,952 ┬À prix 1710/970 ┬À photos 28,152
+  diffs 09/06h : 1,305,125 ┬À ordres 5,787 ┬À prix 1771/907 ┬À photos 32,657
+  diffs 09/07h : 1,237,901 ┬À ordres 5,711 ┬À prix 1805/903 ┬À photos 37,155
+  diffs 09/08h : 1,122,475 ┬À ordres 5,617 ┬À prix 1788/937 ┬À photos 41,453
+  diffs 09/09h : 1,110,048 ┬À ordres 5,736 ┬À prix 1703/926 ┬À photos 45,847
+  diffs 09/10h : 1,367,014 ┬À ordres 5,558 ┬À prix 1697/861 ┬À photos 50,340
+  diffs 09/11h : 1,189,622 ┬À ordres 5,676 ┬À prix 1797/806 ┬À photos 54,652
+  diffs 09/12h : 1,510,572 ┬À ordres 5,593 ┬À prix 1865/847 ┬À photos 58,775
+  diffs 09/13h : 1,976,366 ┬À ordres 5,686 ┬À prix 1857/890 ┬À photos 64,076
+  diffs 09/14h : 2,666,416 ┬À ordres 5,750 ┬À prix 1932/1021 ┬À photos 69,784
+  diffs 09/15h : 4,405,573 ┬À ordres 5,674 ┬À prix 2270/950 ┬À photos 76,846
+  diffs 09/16h : 4,114,259 ┬À ordres 6,127 ┬À prix 2452/1196 ┬À photos 83,902
+  diffs 09/17h : 3,269,893 ┬À ordres 7,377 ┬À prix 2679/1460 ┬À photos 90,113
+  diffs 09/18h : 2,120,265 ┬À ordres 8,148 ┬À prix 2780/1577 ┬À photos 95,273
+  diffs 09/19h : 1,883,374 ┬À ordres 8,422 ┬À prix 2729/1877 ┬À photos 100,281
+  diffs 09/20h : 2,910,300 ┬À ordres 8,825 ┬À prix 2773/2009 ┬À photos 106,127
+  diffs 09/21h : 2,321,807 ┬À ordres 8,709 ┬À prix 2691/1978 ┬À photos 111,503
+  diffs 09/22h : 2,272,136 ┬À ordres 8,395 ┬À prix 2739/1827 ┬À photos 116,886
+  diffs 09/23h : 1,475,024 ┬À ordres 9,167 ┬À prix 2749/1881 ┬À photos 121,548
+  -> hl_book : 2,430,960 lignes ┬À 121,548 photos en 1976.0s
+  -> deep : 268,761,676 lignes ┬À 121,548 photos ┬À 488.3 Mo (2211 paliers/photo)
+     hl_book : manifeste reconstitue remplace par une provenance reelle
+  -> manifestes : 2 ecrits
+[2/9] 20251209 OK ÔÇö 2 fabriques
+[3/9] === ETH 20251210 (293 Gio libres) ===
+  extraction : 24 fichiers de statuts, 24 de diffs en 344s
+  statuts 00h : 2,134,468 (cumul 2,134,468) [table deja ecrite]
+  statuts 01h : 2,145,356 (cumul 4,279,824) [table deja ecrite]
+  statuts 02h : 1,611,121 (cumul 5,890,945) [table deja ecrite]
+  statuts 03h : 1,172,754 (cumul 7,063,699) [table deja ecrite]
+  statuts 04h : 1,479,091 (cumul 8,542,790) [table deja ecrite]
+  statuts 05h : 1,186,935 (cumul 9,729,725) [table deja ecrite]
+  statuts 06h : 967,958 (cumul 10,697,683) [table deja ecrite]
+  statuts 07h : 995,488 (cumul 11,693,171) [table deja ecrite]
+  statuts 08h : 1,317,594 (cumul 13,010,765) [table deja ecrite]
+  statuts 09h : 1,587,010 (cumul 14,597,775) [table deja ecrite]
+  statuts 10h : 2,973,741 (cumul 17,571,516) [table deja ecrite]
+  statuts 11h : 2,138,804 (cumul 19,710,320) [table deja ecrite]
+  statuts 12h : 1,659,377 (cumul 21,369,697) [table deja ecrite]
+  statuts 13h : 1,948,798 (cumul 23,318,495) [table deja ecrite]
+  statuts 14h : 3,651,026 (cumul 26,969,521) [table deja ecrite]
+  statuts 15h : 3,983,309 (cumul 30,952,830) [table deja ecrite]
+  statuts 16h : 3,566,680 (cumul 34,519,510) [table deja ecrite]
+  statuts 17h : 3,219,187 (cumul 37,738,697) [table deja ecrite]
+  statuts 18h : 3,844,454 (cumul 41,583,151) [table deja ecrite]
+  statuts 19h : 6,757,362 (cumul 48,340,513) [table deja ecrite]
+  statuts 20h : 6,061,742 (cumul 54,402,255) [table deja ecrite]
+  statuts 21h : 4,101,360 (cumul 58,503,615) [table deja ecrite]
+  statuts 22h : 2,665,443 (cumul 61,169,058) [table deja ecrite]
+  statuts 23h : 1,965,275 (cumul 63,134,333) [table deja ecrite]
+  -> hl_orders : 63,134,333 lignes en 606.4s
+  diffs 09/16h (chauffe) : 4,114,259 ┬À ordres 3,994 ┬À prix 1198/1020 ┬À photos 0
+  diffs 09/17h (chauffe) : 3,269,893 ┬À ordres 5,292 ┬À prix 1495/1306 ┬À photos 0
+  diffs 09/18h (chauffe) : 2,120,265 ┬À ordres 6,231 ┬À prix 1742/1427 ┬À photos 0
+  diffs 09/19h (chauffe) : 1,883,374 ┬À ordres 6,574 ┬À prix 1710/1734 ┬À photos 0
+  diffs 09/20h (chauffe) : 2,910,300 ┬À ordres 7,008 ┬À prix 1779/1868 ┬À photos 0
+  diffs 09/21h (chauffe) : 2,321,807 ┬À ordres 6,944 ┬À prix 1732/1833 ┬À photos 0
+  diffs 09/22h (chauffe) : 2,272,136 ┬À ordres 6,772 ┬À prix 1856/1679 ┬À photos 0
+  diffs 09/23h (chauffe) : 1,475,024 ┬À ordres 7,551 ┬À prix 1879/1735 ┬À photos 0
+  diffs 10/00h : 1,774,963 ┬À ordres 7,628 ┬À prix 1970/1795 ┬À photos 4,889
+  diffs 10/01h : 1,736,135 ┬À ordres 7,624 ┬À prix 2039/1762 ┬À photos 9,846
+  diffs 10/02h : 1,330,537 ┬À ordres 7,353 ┬À prix 1989/1709 ┬À photos 14,369
+  diffs 10/03h : 969,992 ┬À ordres 7,597 ┬À prix 2045/1796 ┬À photos 18,527
+  diffs 10/04h : 1,198,622 ┬À ordres 7,700 ┬À prix 2142/1783 ┬À photos 22,941
+  diffs 10/05h : 983,977 ┬À ordres 7,790 ┬À prix 2142/1782 ┬À photos 27,119
+  diffs 10/06h : 820,819 ┬À ordres 8,056 ┬À prix 2225/1756 ┬À photos 31,188
+  diffs 10/07h : 831,637 ┬À ordres 8,062 ┬À prix 2261/1724 ┬À photos 35,233
+  diffs 10/08h : 1,096,496 ┬À ordres 8,260 ┬À prix 2236/1864 ┬À photos 39,458
+  diffs 10/09h : 1,271,431 ┬À ordres 8,229 ┬À prix 2367/1738 ┬À photos 43,899
+  diffs 10/10h : 2,308,131 ┬À ordres 8,197 ┬À prix 2282/1950 ┬À photos 49,203
+  diffs 10/11h : 1,706,294 ┬À ordres 8,231 ┬À prix 2374/1872 ┬À photos 54,043
+  diffs 10/12h : 1,393,704 ┬À ordres 8,211 ┬À prix 2336/1922 ┬À photos 58,736
+  diffs 10/13h : 1,641,355 ┬À ordres 8,521 ┬À prix 2443/1928 ┬À photos 63,511
+  diffs 10/14h : 2,851,046 ┬À ordres 9,616 ┬À prix 2516/2271 ┬À photos 69,172
+  diffs 10/15h : 3,117,164 ┬À ordres 9,136 ┬À prix 2542/2153 ┬À photos 75,001
+  diffs 10/16h : 2,829,303 ┬À ordres 9,103 ┬À prix 2633/2152 ┬À photos 80,782
+  diffs 10/17h : 2,574,816 ┬À ordres 9,326 ┬À prix 2856/2080 ┬À photos 86,307
+  diffs 10/18h : 2,948,490 ┬À ordres 9,571 ┬À prix 3124/2067 ┬À photos 92,183
+  diffs 10/19h : 4,725,688 ┬À ordres 10,256 ┬À prix 3017/2068 ┬À photos 99,792
+  diffs 10/20h : 4,316,395 ┬À ordres 9,643 ┬À prix 2774/2170 ┬À photos 107,157
+  diffs 10/21h : 3,100,104 ┬À ordres 9,860 ┬À prix 2761/2388 ┬À photos 113,185
+  diffs 10/22h : 2,089,304 ┬À ordres 10,134 ┬À prix 2846/2443 ┬À photos 118,329
+  diffs 10/23h : 1,628,848 ┬À ordres 10,181 ┬À prix 2749/2356 ┬À photos 123,091
+  -> hl_book : 2,461,820 lignes ┬À 123,091 photos en 2399.9s
+  -> deep : 399,980,933 lignes ┬À 123,091 photos ┬À 765.1 Mo (3249 paliers/photo)
+     hl_book : manifeste reconstitue remplace par une provenance reelle
+  -> manifestes : 2 ecrits
+[3/9] 20251210 OK ÔÇö 3 fabriques
+        nettoye work/20251209
+[4/9] === ETH 20251211 (291 Gio libres) ===
+  extraction : 24 fichiers de statuts, 24 de diffs en 383s
+  statuts 00h : 3,270,299 (cumul 3,270,299) [table deja ecrite]
+  statuts 01h : 3,862,338 (cumul 7,132,637) [table deja ecrite]
+  statuts 02h : 4,129,445 (cumul 11,262,082) [table deja ecrite]
+  statuts 03h : 3,749,246 (cumul 15,011,328) [table deja ecrite]
+  statuts 04h : 2,414,378 (cumul 17,425,706) [table deja ecrite]
+  statuts 05h : 1,435,229 (cumul 18,860,935) [table deja ecrite]
+  statuts 06h : 1,478,273 (cumul 20,339,208) [table deja ecrite]
+  statuts 07h : 1,206,546 (cumul 21,545,754) [table deja ecrite]
+  statuts 08h : 1,857,944 (cumul 23,403,698) [table deja ecrite]
+  statuts 09h : 1,608,316 (cumul 25,012,014) [table deja ecrite]
+  statuts 10h : 1,260,249 (cumul 26,272,263) [table deja ecrite]
+  statuts 11h : 1,081,735 (cumul 27,353,998) [table deja ecrite]
+  statuts 12h : 1,559,078 (cumul 28,913,076) [table deja ecrite]
+  statuts 13h : 1,578,384 (cumul 30,491,460) [table deja ecrite]
+  statuts 14h : 3,736,992 (cumul 34,228,452) [table deja ecrite]
+  statuts 15h : 5,111,189 (cumul 39,339,641) [table deja ecrite]
+  statuts 16h : 3,898,221 (cumul 43,237,862) [table deja ecrite]
+  statuts 17h : 2,755,170 (cumul 45,993,032) [table deja ecrite]
+  statuts 18h : 3,112,054 (cumul 49,105,086) [table deja ecrite]
+  statuts 19h : 3,314,738 (cumul 52,419,824) [table deja ecrite]
+  statuts 20h : 2,845,767 (cumul 55,265,591) [table deja ecrite]
+  statuts 21h : 4,079,256 (cumul 59,344,847) [table deja ecrite]
+  statuts 22h : 2,502,624 (cumul 61,847,471) [table deja ecrite]
+  statuts 23h : 1,807,445 (cumul 63,654,916) [table deja ecrite]
+  -> hl_orders : 63,654,916 lignes en 627.0s
+  diffs 10/16h (chauffe) : 2,829,303 ┬À ordres 3,115 ┬À prix 658/612 ┬À photos 0
+  diffs 10/17h (chauffe) : 2,574,816 ┬À ordres 3,826 ┬À prix 1203/671 ┬À photos 0
+  diffs 10/18h (chauffe) : 2,948,490 ┬À ordres 5,046 ┬À prix 1789/930 ┬À photos 0
+  diffs 10/19h (chauffe) : 4,725,688 ┬À ordres 6,250 ┬À prix 1763/1139 ┬À photos 0
+  diffs 10/20h (chauffe) : 4,316,395 ┬À ordres 6,108 ┬À prix 1702/1267 ┬À photos 0
+  diffs 10/21h (chauffe) : 3,100,104 ┬À ordres 6,474 ┬À prix 1767/1530 ┬À photos 0
+  diffs 10/22h (chauffe) : 2,089,304 ┬À ordres 6,784 ┬À prix 1890/1596 ┬À photos 0
+  diffs 10/23h (chauffe) : 1,628,848 ┬À ordres 6,917 ┬À prix 1812/1567 ┬À photos 0
+  diffs 11/00h : 2,572,019 ┬À ordres 6,377 ┬À prix 1715/1432 ┬À photos 5,625
+  diffs 11/01h : 2,952,202 ┬À ordres 6,221 ┬À prix 1646/1460 ┬À photos 11,591
+  diffs 11/02h : 3,203,824 ┬À ordres 6,597 ┬À prix 1677/1602 ┬À photos 17,750
+  diffs 11/03h : 2,928,123 ┬À ordres 6,177 ┬À prix 1803/1566 ┬À photos 23,555
+  diffs 11/04h : 1,973,462 ┬À ordres 6,633 ┬À prix 1940/1843 ┬À photos 28,707
+  diffs 11/05h : 1,255,620 ┬À ordres 6,938 ┬À prix 1990/1888 ┬À photos 33,166
+  diffs 11/06h : 1,308,476 ┬À ordres 7,373 ┬À prix 2047/1958 ┬À photos 37,657
+  diffs 11/07h : 1,057,119 ┬À ordres 8,014 ┬À prix 2093/2034 ┬À photos 41,908
+  diffs 11/08h : 1,583,101 ┬À ordres 8,587 ┬À prix 2259/2181 ┬À photos 46,630
+  diffs 11/09h : 1,395,933 ┬À ordres 8,446 ┬À prix 2270/2158 ┬À photos 51,186
+  diffs 11/10h : 1,102,264 ┬À ordres 8,456 ┬À prix 2239/2220 ┬À photos 55,505
+  diffs 11/11h : 962,563 ┬À ordres 8,640 ┬À prix 2218/2287 ┬À photos 59,716
+  diffs 11/12h : 1,350,513 ┬À ordres 8,709 ┬À prix 2251/2270 ┬À photos 64,269
+  diffs 11/13h : 1,359,949 ┬À ordres 8,648 ┬À prix 2179/2285 ┬À photos 68,820
+  diffs 11/14h : 2,837,743 ┬À ordres 7,723 ┬À prix 2048/2221 ┬À photos 74,501
+  diffs 11/15h : 3,894,263 ┬À ordres 8,814 ┬À prix 2219/2429 ┬À photos 81,109
+  diffs 11/16h : 3,109,395 ┬À ordres 8,781 ┬À prix 2254/2396 ┬À photos 87,224
+  diffs 11/17h : 2,295,705 ┬À ordres 8,815 ┬À prix 2288/2411 ┬À photos 92,736
+  diffs 11/18h : 2,494,639 ┬À ordres 8,079 ┬À prix 2403/2224 ┬À photos 98,399
+  diffs 11/19h : 2,686,803 ┬À ordres 8,364 ┬À prix 2353/2265 ┬À photos 104,140
+  diffs 11/20h : 2,228,925 ┬À ordres 8,376 ┬À prix 2553/2205 ┬À photos 109,519
+  diffs 11/21h : 3,040,091 ┬À ordres 7,930 ┬À prix 2469/1963 ┬À photos 115,623
+  diffs 11/22h : 1,958,569 ┬À ordres 7,858 ┬À prix 2418/2007 ┬À photos 120,786
+  diffs 11/23h : 1,460,730 ┬À ordres 8,133 ┬À prix 2483/2060 ┬À photos 125,527
+  -> hl_book : 2,510,540 lignes ┬À 125,527 photos en 1987.4s
+  -> deep : 328,568,887 lignes ┬À 125,527 photos ┬À 547.1 Mo (2618 paliers/photo)
+     hl_book : manifeste reconstitue remplace par une provenance reelle
+  -> manifestes : 2 ecrits
+[4/9] 20251211 OK ÔÇö 4 fabriques
+        nettoye work/20251210
+[5/9] === ETH 20251212 (290 Gio libres) ===
+  extraction : 24 fichiers de statuts, 24 de diffs en 391s
+  statuts 00h : 1,959,371 (cumul 1,959,371) [table deja ecrite]
+  statuts 01h : 2,619,387 (cumul 4,578,758) [table deja ecrite]
+  statuts 02h : 2,239,024 (cumul 6,817,782) [table deja ecrite]
+  statuts 03h : 1,700,503 (cumul 8,518,285) [table deja ecrite]
+  statuts 04h : 1,145,766 (cumul 9,664,051) [table deja ecrite]
+  statuts 05h : 1,275,669 (cumul 10,939,720) [table deja ecrite]
+  statuts 06h : 1,259,656 (cumul 12,199,376) [table deja ecrite]
+  statuts 07h : 1,120,303 (cumul 13,319,679) [table deja ecrite]
+  statuts 08h : 1,250,848 (cumul 14,570,527) [table deja ecrite]
+  statuts 09h : 1,392,638 (cumul 15,963,165) [table deja ecrite]
+  statuts 10h : 1,211,808 (cumul 17,174,973) [table deja ecrite]
+  statuts 11h : 1,217,720 (cumul 18,392,693) [table deja ecrite]
+  statuts 12h : 1,300,480 (cumul 19,693,173) [table deja ecrite]
+  statuts 13h : 1,164,581 (cumul 20,857,754) [table deja ecrite]
+  statuts 14h : 3,229,009 (cumul 24,086,763) [table deja ecrite]
+  statuts 15h : 6,892,794 (cumul 30,979,557) [table deja ecrite]
+  statuts 16h : 5,248,791 (cumul 36,228,348) [table deja ecrite]
+  statuts 17h : 3,060,974 (cumul 39,289,322) [table deja ecrite]
+  statuts 18h : 2,173,546 (cumul 41,462,868) [table deja ecrite]
+  statuts 19h : 2,657,938 (cumul 44,120,806) [table deja ecrite]
+  statuts 20h : 2,347,974 (cumul 46,468,780) [table deja ecrite]
+  statuts 21h : 1,231,048 (cumul 47,699,828) [table deja ecrite]
+  statuts 22h : 872,482 (cumul 48,572,310) [table deja ecrite]
+  statuts 23h : 662,330 (cumul 49,234,640) [table deja ecrite]
+  -> hl_orders : 49,234,640 lignes en 597.9s
+  diffs 11/16h (chauffe) : 3,109,395 ┬À ordres 2,820 ┬À prix 635/489 ┬À photos 0
+  diffs 11/17h (chauffe) : 2,295,705 ┬À ordres 3,091 ┬À prix 736/611 ┬À photos 0
+  diffs 11/18h (chauffe) : 2,494,639 ┬À ordres 2,938 ┬À prix 905/638 ┬À photos 0
+  diffs 11/19h (chauffe) : 2,686,803 ┬À ordres 3,390 ┬À prix 975/725 ┬À photos 0
+  diffs 11/20h (chauffe) : 2,228,925 ┬À ordres 3,652 ┬À prix 1306/712 ┬À photos 0
+  diffs 11/21h (chauffe) : 3,040,091 ┬À ordres 4,313 ┬À prix 1465/881 ┬À photos 0
+  diffs 11/22h (chauffe) : 1,958,569 ┬À ordres 4,258 ┬À prix 1426/945 ┬À photos 0
+  diffs 11/23h (chauffe) : 1,460,730 ┬À ordres 4,551 ┬À prix 1505/1013 ┬À photos 0
+  diffs 12/00h : 1,559,242 ┬À ordres 4,341 ┬À prix 1423/1079 ┬À photos 4,856
+  diffs 12/01h : 2,114,177 ┬À ordres 5,565 ┬À prix 1661/1493 ┬À photos 10,254
+  diffs 12/02h : 1,779,954 ┬À ordres 5,708 ┬À prix 1768/1512 ┬À photos 15,282
+  diffs 12/03h : 1,418,235 ┬À ordres 5,846 ┬À prix 1757/1603 ┬À photos 19,981
+  diffs 12/04h : 960,391 ┬À ordres 5,946 ┬À prix 1785/1640 ┬À photos 24,262
+  diffs 12/05h : 1,061,896 ┬À ordres 5,938 ┬À prix 1751/1719 ┬À photos 28,637
+  diffs 12/06h : 1,023,068 ┬À ordres 5,968 ┬À prix 1751/1607 ┬À photos 32,907
+  diffs 12/07h : 911,465 ┬À ordres 5,825 ┬À prix 1669/1659 ┬À photos 37,145
+  diffs 12/08h : 1,053,511 ┬À ordres 5,999 ┬À prix 1700/1716 ┬À photos 41,405
+  diffs 12/09h : 1,153,850 ┬À ordres 6,124 ┬À prix 1785/1704 ┬À photos 45,815
+  diffs 12/10h : 999,554 ┬À ordres 6,284 ┬À prix 1794/1750 ┬À photos 50,050
+  diffs 12/11h : 1,048,466 ┬À ordres 6,291 ┬À prix 1823/1715 ┬À photos 54,266
+  diffs 12/12h : 1,131,272 ┬À ordres 6,075 ┬À prix 1792/1556 ┬À photos 58,566
+  diffs 12/13h : 1,031,177 ┬À ordres 6,258 ┬À prix 1877/1608 ┬À photos 62,859
+  diffs 12/14h : 2,554,380 ┬À ordres 6,478 ┬À prix 1983/1625 ┬À photos 68,176

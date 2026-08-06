@@ -1,0 +1,27 @@
+﻿14:00:20  === reconstruction decembre 2025 ===
+14:00:20  reglage deep : DEEP_MS=250  DEEP_BAND=0.10
+14:00:20  symboles     : BTC, ETH
+14:00:20  git          : 7ccf4f9  sale=True
+14:00:21  --- BTC  01-07  phase=deep ---
+=== lot : 7 jours, BTC, phase=deep ===
+[1/7] 20251201 : deja fait, saute.
+[2/7] 20251202 : deja fait, saute.
+[3/7] 20251203 : deja fait, saute.
+[4/7] 20251204 : deja fait, saute.
+[5/7] 20251205 : deja fait, saute.
+[6/7] 20251206 : deja fait, saute.
+[7/7] 20251207 : deja fait, saute.
+
+=== 0 fabriques, 7 deja faits, sur 7 demandes, en 0.0 min ===
+14:00:21  --- ETH  01-07  phase=deep ---
+=== lot : 7 jours, ETH, phase=deep ===
+[1/7] 20251201 : deja fait, saute.
+[2/7] 20251202 : deja fait, saute.
+[3/7] 20251203 : deja fait, saute.
+[4/7] 20251204 : deja fait, saute.
+[5/7] 20251205 : deja fait, saute.
+[6/7] 20251206 : deja fait, saute.
+[7/7] 20251207 : deja fait, saute.
+
+=== 0 fabriques, 7 deja faits, sur 7 demandes, en 0.0 min ===
+14:00:21  TERMINE INCOMPLET : 18 artefact(s) manquant(s) - 20251208 BTC, 20251209 BTC, 20251210 BTC, 20251211 BTC, 20251212 BTC, 20251213 BTC, 20251214 BTC, 20251215 BTC, 20251216 BTC, 20251208 ETH, 20251209 ETH, 20251210 ETH, 20251211 ETH, 20251212 ETH, 20251213 ETH, 20251214 ETH, 20251215 ETH, 20251216 ETH
