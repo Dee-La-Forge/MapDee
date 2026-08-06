@@ -128,8 +128,6 @@ def charge(chemin_deep: Path, dist_max: float = 0.005) -> SeriesJour:
     m_nom = re.match(r"deep_(\d{8})_(BTC|ETH)\.parquet$", Path(chemin_deep).name)
     if m_nom:
         s.jour, s.coin = m_nom.group(1), m_nom.group(2)
-    M_mur = B7[s.coin]["M"] if s.coin else None
-    bande_b7 = B7[s.coin]["bande"] if s.coin else None
     s.t = photos
     s.mid = np.empty(n)
     s.bs = np.empty(n)
@@ -147,6 +145,31 @@ def charge(chemin_deep: Path, dist_max: float = 0.005) -> SeriesJour:
         s.k_mur[cote] = np.full(n, np.nan)
         s.mag_mur[cote] = np.full(n, np.nan)
         s.a2_devant[cote] = np.zeros(n)
+    # --- LES MURS : lus du cache `murs_light`, jamais recalculés ici --------
+    # Les murs sont une propriété du JOUR, pas du tir (leçon du 06/08 : la
+    # v1 les calculait dans charge — 5 à 31 min par fichier à CHAQUE tir —
+    # et une borne de coût posée à la bande d'étude a DÉGÉNÉRÉ A2/B4 :
+    # 25 photos à mur sur 118 722, mesuré. Le cache couvre la PLEINE bande
+    # d'analyse ±0,5 %, fidèle à la fiche, construit et manifesté une fois
+    # par `chantiers/construit_murs_cache.py`).
+    s.murs_ok = False
+    if s.coin:
+        cache_murs = (DEPOT / "data" / "openbook" / "murs_light" / "parts"
+                      / f"murs_{s.jour}_{s.coin}.parquet")
+        if cache_murs.exists():
+            tb_m = pq.read_table(cache_murs)
+            t_m = tb_m["t"].to_numpy()
+            if len(t_m) == n and np.array_equal(t_m, photos):
+                for cote, kc, mc in ((0, "k_mur_bid", "mag_mur_bid"),
+                                     (1, "k_mur_ask", "mag_mur_ask")):
+                    s.k_mur[cote] = tb_m[kc].to_numpy().astype(np.float64)
+                    s.mag_mur[cote] = tb_m[mc].to_numpy().astype(np.float64)
+                s.murs_ok = True
+            else:
+                raise RuntimeError(
+                    f"cache murs_light désaligné pour {s.jour} {s.coin} "
+                    f"({len(t_m)} photos contre {n}) — reconstruire le cache, "
+                    f"jamais deviner")
     s.profil = np.zeros((n, NB_BINS))
     s.m_k0 = np.zeros(n)     # masse au palier du mid — DIAGNOSTIC (audit F10) :
                              # exclue des stocks et des flux, incluse au profil
@@ -175,33 +198,6 @@ def charge(chemin_deep: Path, dist_max: float = 0.005) -> SeriesJour:
         ici_k0 = mm[kk == k0]
         s.m_k0[i] = float(ici_k0[0]) if ici_k0.size else 0.0
 
-        # --- LE MUR LE PLUS PROCHE, par côté (B7, `03` bloc du 06/08) -------
-        # ratio = mag / médiane(voisinage ±0,05 % du mid), mur si ≥ M.
-        # Balayage DEPUIS le mid vers l'extérieur, arrêt au premier mur, et
-        # BORNÉ À LA BANDE D'ÉTUDE de B7 (S4″ : 99,9 % du flux exécuté vit
-        # dans ±0,0925 %/±0,1451 % — au-delà, pas de contact mesurable, et
-        # les murs d'A2 sont « ceux qui encadrent le prix »). Sans la borne,
-        # un côté sans mur descendait toute la bande d'analyse : ~700
-        # médianes/photo, 31 min par jour-symbole — mesuré le 06/08, tir
-        # arrêté. Causal : cette photo seule.
-        if M_mur is not None:
-            ordre_k = np.argsort(kk)
-            kks, mms = kk[ordre_k], mm[ordre_k]
-            demi_k = max(1, round(DEMI_VOISINAGE_REL * mid / bs))
-            portee = bande_b7 * mid / bs          # en paliers
-            i0 = int(np.searchsorted(kks, k0))
-            for cote, indices in ((0, range(i0 - 1, -1, -1)),
-                                  (1, range(i0 + (1 if i0 < len(kks) and kks[i0] == k0 else 0), len(kks)))):
-                for j in indices:
-                    if abs(int(kks[j]) - k0) > portee:
-                        break         # hors bande d'étude : pas de contact
-                    a = int(np.searchsorted(kks, kks[j] - demi_k, side="left"))
-                    b = int(np.searchsorted(kks, kks[j] + demi_k, side="right"))
-                    med = float(np.median(mms[a:b])) if b > a else np.nan
-                    if med > 0 and mms[j] / med >= M_mur:
-                        s.k_mur[cote][i] = kks[j]
-                        s.mag_mur[cote][i] = mms[j]
-                        break
 
         # transitions palier à palier contre la photo précédente — FLUX
         # comptés uniquement pour les paliers INTÉRIEURS sous le mid COURANT
@@ -377,6 +373,11 @@ def a2_ofi_mur(s: SeriesJour) -> np.ndarray:
     symbole (jour synthétique) : NaN — les constantes B7 sont par symbole."""
     if s.coin is None:
         return np.full(len(s.t), np.nan)
+    if not s.murs_ok:
+        raise FileNotFoundError(
+            f"cache murs_light absent pour {s.jour} {s.coin} — construire "
+            f"d'abord chantiers/construit_murs_cache.py (A2 exige le mur "
+            f"le plus proche, pleine bande, fiche + B7)")
     x = s.a2_devant[0] - s.a2_devant[1]
     x[0] = np.nan
     return x
@@ -392,6 +393,10 @@ def b4_absorption(s: SeriesJour) -> np.ndarray:
     n = len(s.t)
     if s.coin is None:
         return np.full(n, np.nan)
+    if not s.murs_ok:
+        raise FileNotFoundError(
+            f"cache murs_light absent pour {s.jour} {s.coin} — construire "
+            f"d'abord chantiers/construit_murs_cache.py")
     cache = (DEPOT / "data" / "openbook" / "trades_light" / "parts"
              / f"trades_{s.jour}_{s.coin}.parquet")
     if not cache.exists():
