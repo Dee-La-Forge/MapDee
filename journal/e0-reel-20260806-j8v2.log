@@ -1,0 +1,111 @@
+=== inventaire du périmètre ===
+  J3 : 6/6 jour-symboles — manquants : aucun
+  J8 : 15/15 jour-symboles — manquants : aucun
+  candidats prêts (9) : A1 · OFI, A4 · microprice, B1 · hazard rate (version palier), B2 · résilience, B5 · premier passage, C1 · concentration, C2 · forme et courbure, C3 · diffusion anormale, D1 · ralentissement critique
+  sans extracteur (7) : attente motivée, voir ABSENTS
+[     0s] préflight : {'protocole_hash': '5418d3b'}
+[     0s]   extraction 20251209 BTC (1.05 Go)…
+[   103s]   extraction 20251209 ETH (0.51 Go)…
+[   179s]   extraction 20251210 BTC (1.40 Go)…
+[   284s]   extraction 20251210 ETH (0.80 Go)…
+[   377s]   extraction 20251211 BTC (1.49 Go)…
+[   488s]   extraction 20251211 ETH (0.57 Go)…
+[   560s]   extraction 20251209 BTC (1.05 Go)…
+C:\Users\DyBoo\Desktop\-MapDee-\harnais\extracteurs.py:197: RuntimeWarning: All-NaN slice encountered
+  out[i] = np.nanmedian(x[i - w:i])
+[   699s]   extraction 20251209 ETH (0.51 Go)…
+[   796s]   extraction 20251210 BTC (1.40 Go)…
+[   925s]   extraction 20251210 ETH (0.80 Go)…
+[  1072s]   extraction 20251211 BTC (1.49 Go)…
+[  1226s]   extraction 20251211 ETH (0.57 Go)…
+[  1330s]   extraction 20251212 BTC (0.66 Go)…
+[  1431s]   extraction 20251212 ETH (0.32 Go)…
+[  1506s]   extraction 20251213 ETH (0.15 Go)…
+[  1551s]   extraction 20251214 BTC (0.53 Go)…
+[  1666s]   extraction 20251214 ETH (0.26 Go)…
+[  1751s]   extraction 20251215 BTC (0.36 Go)…
+[  1806s]   extraction 20251215 ETH (0.18 Go)…
+[  1858s]   extraction 20251216 BTC (1.21 Go)…
+[  1977s]   extraction 20251216 ETH (0.44 Go)…
+  AVERTISSEMENT (ADR-007) : le périmètre contient des jours DÉGRADÉS (12/13/15, ≈44-75 % de couverture) — tout verdict J8 de ce tir est PROVISOIRE tant qu'ADR-007 n'est pas tranchée : si le plancher accepté les exclut, les candidats jugés repassent (`05` §7).
+[  2082s] === diagnostics d'audit, publiés avant É0 ===
+  masse au palier du mid (exclue des stocks) 20251209 BTC : 0.729%
+  masse au palier du mid (exclue des stocks) 20251209 ETH : 0.458%
+  masse au palier du mid (exclue des stocks) 20251210 BTC : 0.728%
+  masse au palier du mid (exclue des stocks) 20251210 ETH : 0.459%
+  masse au palier du mid (exclue des stocks) 20251211 BTC : 0.742%
+  masse au palier du mid (exclue des stocks) 20251211 ETH : 0.543%
+  masse au palier du mid (exclue des stocks) 20251209 BTC : 0.729%
+  masse au palier du mid (exclue des stocks) 20251209 ETH : 0.458%
+  masse au palier du mid (exclue des stocks) 20251210 BTC : 0.728%
+  masse au palier du mid (exclue des stocks) 20251210 ETH : 0.459%
+  masse au palier du mid (exclue des stocks) 20251211 BTC : 0.742%
+  masse au palier du mid (exclue des stocks) 20251211 ETH : 0.543%
+  masse au palier du mid (exclue des stocks) 20251212 BTC : 0.705%
+  masse au palier du mid (exclue des stocks) 20251212 ETH : 0.574%
+  masse au palier du mid (exclue des stocks) 20251213 ETH : 0.665%
+  masse au palier du mid (exclue des stocks) 20251214 BTC : 0.782%
+  masse au palier du mid (exclue des stocks) 20251214 ETH : 0.715%
+  masse au palier du mid (exclue des stocks) 20251215 BTC : 0.778%
+  masse au palier du mid (exclue des stocks) 20251215 ETH : 0.723%
+  masse au palier du mid (exclue des stocks) 20251216 BTC : 0.747%
+  masse au palier du mid (exclue des stocks) 20251216 ETH : 0.203%
+  ρ(|Δmid|, A1 · OFI) = -0.014   <- entanglement mécanique avec le prix, à garder pour É4
+  ρ(|Δmid|, A4 · microprice) = -0.034   <- entanglement mécanique avec le prix, à garder pour É4
+  ρ(|Δmid|, B1 · hazard rate (version palier)) = +0.116   <- entanglement mécanique avec le prix, à garder pour É4
+  ρ(|Δmid|, B2 · résilience) = -0.040   <- entanglement mécanique avec le prix, à garder pour É4
+  ρ(|Δmid|, B5 · premier passage) = -0.694   <- entanglement mécanique avec le prix, à garder pour É4
+  ρ(|Δmid|, C1 · concentration) = -0.017   <- entanglement mécanique avec le prix, à garder pour É4
+  ρ(|Δmid|, C2 · forme et courbure) = -0.013   <- entanglement mécanique avec le prix, à garder pour É4
+  ρ(|Δmid|, C3 · diffusion anormale) = -0.060   <- entanglement mécanique avec le prix, à garder pour É4
+  ρ(|Δmid|, D1 · ralentissement critique) = +0.035   <- entanglement mécanique avec le prix, à garder pour É4
+  ρ(|Δmid|, _T0_J3) = +0.104   <- entanglement mécanique avec le prix, à garder pour É4
+  ρ(|Δmid|, _T0_J8) = +0.125   <- entanglement mécanique avec le prix, à garder pour É4
+[  2084s] === matrice É0 (|ρ| par paire, intra-périmètre) ===
+  |ρ|(A1, A4) = 0.157
+  |ρ|(A1, B1) = 0.006
+  |ρ|(A1, B2) = 0.020
+  |ρ|(A1, B5) = 0.006
+  |ρ|(A1, C1) = 0.017
+  |ρ|(A1, C2) = 0.001
+  |ρ|(A1, C3) = 0.004
+  |ρ|(A4, B1) = 0.003
+  |ρ|(A4, B2) = 0.010
+  |ρ|(A4, B5) = 0.019
+  |ρ|(A4, C1) = 0.043
+  |ρ|(A4, C2) = 0.011
+  |ρ|(A4, C3) = 0.001
+  |ρ|(B1, B2) = 0.060
+  |ρ|(B1, B5) = 0.147
+  |ρ|(B1, C1) = 0.076
+  |ρ|(B1, C2) = 0.001
+  |ρ|(B1, C3) = 0.003
+  |ρ|(B2, B5) = 0.020
+  |ρ|(B2, C1) = 0.050
+  |ρ|(B2, C2) = 0.026
+  |ρ|(B2, C3) = 0.026
+  |ρ|(B5, C1) = 0.160
+  |ρ|(B5, C2) = 0.048
+  |ρ|(B5, C3) = 0.113
+  |ρ|(C1, C2) = 0.258
+  |ρ|(C1, C3) = 0.085
+  |ρ|(C2, C3) = 0.005
+  matrice écrite : journal\e0-matrice-20260806-153320.json (28 paires)
+[  2089s] séries alignées : 727,059 à 1,520,113 observations
+[  2094s] === LE PREMIER TOUR DE BANC RÉEL ===
+  A1 · OFI                               É3               REFUS : É3 refusée : (1) le rejeu événementiel n'existe pas (`05` §9.1) ; (2) l'échelle la plus fine est contestée — ADR D12 requise avant le premier passage (audit I.9). Rien ici ne code 100 ms en dur.
+  A2 · OFI localisé au mur               déposée          en attente des données du périmètre J3 (construction en cours)
+  A3 · flux signé e/r/a                  déposée          en attente des données du périmètre J3 (construction en cours)
+  A4 · microprice                        É3               REFUS : É3 refusée : (1) le rejeu événementiel n'existe pas (`05` §9.1) ; (2) l'échelle la plus fine est contestée — ADR D12 requise avant le premier passage (audit I.9). Rien ici ne code 100 ms en dur.
+  A5 · propagateur                       déposée          en attente des données du périmètre J3 (construction en cours)
+  A6 · auto-excitation (Hawkes)          déposée          en attente des données du périmètre J3 (construction en cours)
+  B1 · hazard rate (version palier)      É3               REFUS : É3 refusée : (1) le rejeu événementiel n'existe pas (`05` §9.1) ; (2) l'échelle la plus fine est contestée — ADR D12 requise avant le premier passage (audit I.9). Rien ici ne code 100 ms en dur.
+  B2 · résilience                        É3               REFUS : É3 refusée : (1) le rejeu événementiel n'existe pas (`05` §9.1) ; (2) l'échelle la plus fine est contestée — ADR D12 requise avant le premier passage (audit I.9). Rien ici ne code 100 ms en dur.
+  B3 · réapprovisionnement (iceberg)     déposée          en attente des données du périmètre J3 (construction en cours)
+  B4 · absorption au contact             déposée          en attente des données du périmètre J8 (construction en cours)
+  B5 · premier passage                   É3               REFUS : É3 refusée : (1) le rejeu événementiel n'existe pas (`05` §9.1) ; (2) l'échelle la plus fine est contestée — ADR D12 requise avant le premier passage (audit I.9). Rien ici ne code 100 ms en dur.
+  C1 · concentration                     É3               REFUS : É3 refusée : (1) le rejeu événementiel n'existe pas (`05` §9.1) ; (2) l'échelle la plus fine est contestée — ADR D12 requise avant le premier passage (audit I.9). Rien ici ne code 100 ms en dur.
+  C2 · forme et courbure                 É3               REFUS : É3 refusée : (1) le rejeu événementiel n'existe pas (`05` §9.1) ; (2) l'échelle la plus fine est contestée — ADR D12 requise avant le premier passage (audit I.9). Rien ici ne code 100 ms en dur.
+  C3 · diffusion anormale                É3               REFUS : É3 refusée : (1) le rejeu événementiel n'existe pas (`05` §9.1) ; (2) l'échelle la plus fine est contestée — ADR D12 requise avant le premier passage (audit I.9). Rien ici ne code 100 ms en dur.
+  D1 · ralentissement critique           É3               REFUS : É3 refusée : (1) le rejeu événementiel n'existe pas (`05` §9.1) ; (2) l'échelle la plus fine est contestée — ADR D12 requise avant le premier passage (audit I.9). Rien ici ne code 100 ms en dur.
+  D2 · cascades                          déposée          en attente des données du périmètre J8 (construction en cours)
