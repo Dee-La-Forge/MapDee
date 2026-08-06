@@ -139,6 +139,28 @@ def test_garde_bande_atteinte_et_avant_le_refus_C3(reg_vierge, monkeypatch):
     assert etat2 == "É4" and "REFUS" in raison2 and "C3 non gelé" in raison2
 
 
+def test_bh_refuse_la_vague_partielle(reg_vierge, monkeypatch):
+    """`05` §multiplicité, protection 1 : le compte est déclaré AVANT. Si
+    seuls les J3 sont mesurables, BH ne tourne PAS sur eux — deux familles
+    de 8 à q=10 % au lieu d'une de 16 seraient la fuite exacte que les
+    vagues empêchent, produite toute seule au rythme des tours."""
+    from harnais import boucle as B
+    from harnais.epreuves import Verdict
+    monkeypatch.setattr(B, "e3", lambda *a, **k: Verdict(
+        "É3", True, 0.99, "É4", "stub de test : rejeu fictif"))
+    rng = np.random.default_rng(31)
+    series = {n: rng.normal(size=3000)
+              for n in FICHES if FICHES[n]["perimetre"] == "J3"}
+    rapport = tour(series=series, bloc={TEMOIN: rng.normal(size=3000)},
+                   chemin=reg_vierge)
+    arrives = [n for n, (e, _) in rapport.items() if e == "É4"]
+    assert arrives, rapport
+    for n in arrives:
+        assert "VAGUE COMPLÈTE" in rapport[n][1]
+    # et rien n'est écrit : pas une seule ligne É4 au registre
+    assert not [l for l in lire(reg_vierge) if l["epreuve"] == "É4"]
+
+
 def test_e3_sans_chiffre_est_refuse_jamais_enregistre(reg_vierge, monkeypatch):
     """Un É3 qui rendrait un verdict sans nombre est REFUSÉ — pas écrit au
     registre avec une opinion en colonne chiffre."""
@@ -170,15 +192,24 @@ def test_retenue_est_atteignable_et_bh_tranche_la_vague(reg_vierge, monkeypatch)
                    "p_value": 0.001 if i == 0 else 0.9,
                    "ic95": (0.1, 0.9)})(next(appels)))
     rng = np.random.default_rng(21)
+    t0 = rng.normal(size=3000)
     series = {n: rng.normal(size=3000) for n in FICHES}
-    rapport = tour(series=series, bloc={TEMOIN: rng.normal(size=3000)},
-                   chemin=reg_vierge)
+    # un doublon présumé fabriqué : C1 à ρ≈0,73 du témoin — `05` É2 : « une
+    # barre, pas une porte fermée » — il doit TRAVERSER jusqu'à É4, pas
+    # rester garé (4e arête, attrapée le 06/08)
+    c1 = "C1 · concentration"
+    series[c1] = 0.75 * t0 + np.sqrt(1 - 0.75 ** 2) * rng.normal(size=3000)
+    rapport = tour(series=series, bloc={TEMOIN: t0}, chemin=reg_vierge)
 
     etats = [e for e, _ in rapport.values()]
     assert "retenue" in etats           # la porte de sortie EXISTE
     assert etats.count("retenue") == 1  # BH : seul p=0,001 passe à q=0,10
     retenue = next(n for n, (e, _) in rapport.items() if e == "retenue")
     assert "bloc de référence" in rapport[retenue][1]
+    # le doublon présumé a bien été JUGÉ à É4 (par BH), pas garé à É2
+    assert rapport[c1][0] in ("retenue", "éliminée") and "BH" in rapport[c1][1]
+    historique = [l["etat"] for l in lire(reg_vierge) if l["nom"] == c1]
+    assert "doublon présumé" in historique   # le drapeau d'É2 reste écrit
     # chaque ligne d'É4 au registre porte son chiffre complet, jamais du texte
     lignes_e4 = [l for l in lire(reg_vierge) if l["epreuve"] == "É4"]
     assert lignes_e4

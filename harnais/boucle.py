@@ -30,6 +30,18 @@ from harnais.stats import benjamini_hochberg, spearman
 
 ORDRE = ("É0", "É1", "É2", "É3", "É4")
 
+#: Les états d'où l'on ne bouge plus. « sous surveillance » et « doublon
+#: présumé » n'en font PAS partie : `05` É2 — « c'est une barre, pas une
+#: porte fermée » — ils continuent vers É3 puis É4, où l'apport net est
+#: exigé PAR CONSTRUCTION : le coefficient d'É4 est PARTIEL, contrôlé sur
+#: le bloc — un candidat qui redit le bloc s'y effondre de lui-même. Le
+#: drapeau d'É2 reste au registre, dans l'histoire du candidat.
+ETATS_TERMINAUX = ("éliminée", "réorientée", "retenue")
+
+#: L'épreuve suivante quand l'état n'est pas déjà un nom d'épreuve.
+PROCHAINE = {"déposée": "É0", "sous surveillance": "É3",
+             "doublon présumé": "É3"}
+
 
 def _aujourdhui() -> str:
     return _dt.date.today().isoformat()
@@ -89,10 +101,9 @@ def _avance_un(nom: str, series: dict[str, "np.ndarray"] | None,
     f = FICHES[nom]
     while True:
         etat = etat_courant(nom, chemin)
-        if etat in ("éliminée", "réorientée", "retenue",
-                    "sous surveillance", "doublon présumé"):
-            return etat, "état terminal ou en attente d'É4"
-        epreuve = "É0" if etat == "déposée" else etat
+        if etat in ETATS_TERMINAUX:
+            return etat, "état terminal"
+        epreuve = PROCHAINE.get(etat, etat)
         if epreuve == "É0":
             if not series or nom not in series:
                 return etat, ("en attente des données du périmètre "
@@ -166,8 +177,10 @@ def _avance_un(nom: str, series: dict[str, "np.ndarray"] | None,
             registre.ajouter(_aujourdhui(), nom, v.etat_suivant, "É2",
                              f"ρmax={v.chiffre:.3f}", f["perimetre"],
                              signataire, chemin)
-            if v.etat_suivant != "É3":
-                return v.etat_suivant, v.detail
+            # aucun état d'É2 n'est terminal : « sous surveillance » et
+            # « doublon présumé » CONTINUENT vers É3 (`05` É2 — « une
+            # barre, pas une porte fermée ») — la boucle les réachemine
+            # via PROCHAINE, le drapeau reste écrit au registre
         elif epreuve == "É3":
             # lève tant que rejeu absent + D12 ouverte. Le jour où É3 rend
             # un verdict, la machine ÉCRIT l'état suivant — sans cette
@@ -247,6 +260,25 @@ def tour(series: dict | None = None, bloc: dict | None = None,
     en_e4 = [nom for nom in FICHES if nom not in pollues
              and etat_courant(nom, chemin) == "É4"]
     if en_e4:
+        # BARRIÈRE DE VAGUE (`05` §multiplicité, protection 1 : « le nombre
+        # de candidats est déclaré AVANT le premier calcul ») : BH ne tourne
+        # que lorsque CHAQUE candidat de la vague gelée est terminal ou à
+        # É4. Sinon le dénominateur serait émergent — deux familles de 8 à
+        # q=10 % au lieu d'une de 16, la fuite exacte que les vagues
+        # empêchent, produite toute seule au rythme des tours. Un BH
+        # partiel voulu = une NOUVELLE vague, déclarée avec son compte.
+        en_chemin = {n: (etat_courant(n, chemin) or "déposée")
+                     for n in FICHES}
+        en_chemin = {n: e for n, e in en_chemin.items()
+                     if e not in ETATS_TERMINAUX and e != "É4"}
+        if en_chemin:
+            detail = ", ".join(f"{n} ({e})" for n, e in en_chemin.items())
+            for nom in en_e4:
+                rapport[nom] = ("É4", (
+                    "REFUS : BH exige la VAGUE COMPLÈTE — compte déclaré "
+                    f"avant, vague gelée à {len(FICHES)} ; un BH partiel "
+                    f"serait une famille non déclarée. En chemin : {detail}"))
+            return rapport
         try:
             verifie_bande_e0(paires_bande)
             resultats = {nom: e4([], [], None) for nom in en_e4}
@@ -256,7 +288,8 @@ def tour(series: dict | None = None, bloc: dict | None = None,
                 r = resultats[nom]
                 chiffre = (f"coef={r['moyenne']:.3f}, p={r['p_value']:.4f}, "
                            f"IC95=[{r['ic95'][0]:.3f} ; {r['ic95'][1]:.3f}], "
-                           f"BH 10 % sur {len(en_e4)} candidats")
+                           f"BH 10 % sur {len(en_e4)} jugés à É4 "
+                           f"(vague de {len(FICHES)})")
                 etat_f = "retenue" if retenu[nom] else "éliminée"
                 registre.ajouter(_aujourdhui(), nom, etat_f, "É4", chiffre,
                                  FICHES[nom]["perimetre"], signataire, chemin)
