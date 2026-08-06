@@ -241,6 +241,7 @@ Tout le reste attend soit la construction, soit les définitions.
 | **intrication mécanique séries ↔ \|Δmid\|** — résiduel après marge intérieure, publié au tir | audit F9 + diagnostics `e0_reel` | lecture obligatoire au premier É4 (la cible EST le déplacement) |
 | **puissance : 8 jours ne voient que d ≳ 1,2** | rapport ÉS §3 | arbitrage tranche 2 (chez Meddy) |
 | **typage annulé/mangé/rechargé** — 2ᵉ passe sur le jour de banc, protocole séparé à écrire | `C2-observation.md` §4 | écrire ce protocole après C2, avant la passe |
+| **les mesures de dégradation dues avant É4** — la question É1 « survit-elle à la dégradation ? » n'élimine pas mais **exige une mesure** : due pour chaque ⚠️ de la vague 1 ET pour les 7 familles à ligne écrite de la vague 2 (audit du 06/08) | `05` §4 + table C0 §5 quater | mesurer sur le régime d'affichage réel, avant le premier É4 de chaque candidat concerné |
 | micro-dettes assumées : `n` du générateur non décrémenté sur annulation partielle · saut de `bs` aux frontières `nice()` (générateur) · double extraction des jours J3 partagés dans `e0_reel` | cette table | au premier besoin réel, pas avant |
 
 ## 5. Les décisions qui n'appartiennent pas au co-chercheur
