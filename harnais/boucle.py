@@ -177,9 +177,18 @@ def _avance_un(nom: str, series: dict[str, "np.ndarray"] | None,
             # un garde-fou doit pouvoir échouer, ÊTRE APPELÉ, et être
             # vérifié capable d'échouer — `00` §8, les trois conditions)
             v = e3()
+            # la colonne chiffre reçoit LE NOMBRE d'É3 (concordance de rang
+            # entre résolutions, barre 0,60) — jamais v.detail : « aucune
+            # décision sur une opinion » (registre). La même correction
+            # qu'É0 deux tours plus tôt, attrapée par Meddy le 06/08.
+            if v.chiffre is None:
+                raise RefusEpreuve(
+                    "É3 a rendu un verdict sans chiffre — le registre "
+                    "n'accepte pas une opinion en colonne chiffre, "
+                    "l'implémentation d'É3 doit porter son nombre")
             registre.ajouter(_aujourdhui(), nom, v.etat_suivant, "É3",
-                             v.detail or "—", f["perimetre"], signataire,
-                             chemin)
+                             f"rang={v.chiffre:.3f}", f["perimetre"],
+                             signataire, chemin)
             if not v.passe:
                 return v.etat_suivant, v.detail
         elif epreuve == "É4":

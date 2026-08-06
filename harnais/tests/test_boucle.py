@@ -120,6 +120,12 @@ def test_garde_bande_atteinte_et_avant_le_refus_C3(reg_vierge, monkeypatch):
     rapport = jeu(True, 11, reg_vierge)
     etat, raison = rapport[a1]
     assert etat == "É4" and "0,70 ; 0,90" in raison and "C3" not in raison
+    # et la ligne d'É3 au registre porte SON NOMBRE, jamais du texte
+    # (« aucune décision sur une opinion » — correction du 06/08, la même
+    # qu'É0 deux tours plus tôt)
+    lignes_e3 = [l for l in lire(reg_vierge) if l["epreuve"] == "É3"]
+    assert lignes_e3
+    assert all(l["chiffre"] == "rang=0.990" for l in lignes_e3)
     # 2) sans paire en bande : la garde se tait, e4 refuse sur C3 —
     #    la garde est donc bien passée en premier
     reg2 = reg_vierge.parent / "registre_vierge_2.md"
@@ -131,6 +137,21 @@ def test_garde_bande_atteinte_et_avant_le_refus_C3(reg_vierge, monkeypatch):
     rapport2 = jeu(False, 12, reg2)
     etat2, raison2 = rapport2[a1]
     assert etat2 == "É4" and "REFUS" in raison2 and "C3 non gelé" in raison2
+
+
+def test_e3_sans_chiffre_est_refuse_jamais_enregistre(reg_vierge, monkeypatch):
+    """Un É3 qui rendrait un verdict sans nombre est REFUSÉ — pas écrit au
+    registre avec une opinion en colonne chiffre."""
+    from harnais import boucle as B
+    from harnais.epreuves import Verdict
+    monkeypatch.setattr(B, "e3", lambda *a, **k: Verdict(
+        "É3", True, None, "É4", "opinion sans nombre"))
+    rng = np.random.default_rng(2)
+    series = {n: rng.normal(size=3000) for n in FICHES}
+    rapport = tour(series=series, bloc={TEMOIN: rng.normal(size=3000)},
+                   chemin=reg_vierge)
+    assert any("sans chiffre" in raison for _, raison in rapport.values())
+    assert not [l for l in lire(reg_vierge) if l["epreuve"] == "É3"]
 
 
 def test_bloc_par_perimetre_le_temoin_du_bon_perimetre(reg):
