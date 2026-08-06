@@ -40,6 +40,31 @@ def test_une_adr_declaree_leve_le_blocage(monkeypatch):
                           ("a", "c", 0.85)])       # l'autre bloque toujours
 
 
+def test_alignement_defaillant_bloque_et_aucune_adr_n_exempte(monkeypatch):
+    """Une paire à périmètre égal et longueurs inégales est un défaut
+    d'instrument : |ρ| incalculable BLOQUE É4 — il ne disparaît pas de la
+    garde au moment précis où la donnée est suspecte."""
+    with pytest.raises(RefusEpreuve) as exc:
+        verifie_bande_e0([("a", "b", float("nan"))])
+    assert "alignement défaillant" in str(exc.value)
+    # une ADR arbitre une corrélation, jamais un instrument cassé
+    monkeypatch.setattr(epreuves, "PAIRES_SOUS_ADR", {frozenset(("a", "b"))})
+    with pytest.raises(RefusEpreuve):
+        verifie_bande_e0([("a", "b", float("nan"))])
+
+
+def test_paires_bande_porte_le_defaut_d_alignement():
+    """Longueurs inégales à périmètre égal : la paire entre dans le matériau
+    de la garde avec |ρ|=NaN, elle n'est pas tue par un continue."""
+    rng = np.random.default_rng(7)
+    j3 = [n for n in FICHES if FICHES[n]["perimetre"] == "J3"][:2]
+    series = {j3[0]: rng.normal(size=500), j3[1]: rng.normal(size=400)}
+    paires = _paires_bande(series)
+    assert len(paires) == 1
+    a, b, r = paires[0]
+    assert {a, b} == set(j3) and not np.isfinite(r)
+
+
 def test_paires_bande_intra_perimetre_seulement():
     """Le matériau de la garde : toutes les paires intra-périmètre, jamais
     une paire inter-périmètres, jamais une clé hors fiches (_T0_*)."""

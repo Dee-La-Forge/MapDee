@@ -66,8 +66,14 @@ def _paires_bande(series: dict[str, "np.ndarray"] | None
     paires = []
     for i, a in enumerate(vivants):
         for b in vivants[i + 1:]:
-            if (FICHES[a]["perimetre"] != FICHES[b]["perimetre"]
-                    or len(series[a]) != len(series[b])):
+            if FICHES[a]["perimetre"] != FICHES[b]["perimetre"]:
+                continue
+            if len(series[a]) != len(series[b]):
+                # le MÊME défaut qu'É0 nomme « alignement défaillant en
+                # amont » : la garde ne le tait pas, elle le porte — un
+                # |ρ| incalculable BLOQUE É4 (une paire suspecte est ce
+                # que la garde doit voir en premier, pas perdre de vue)
+                paires.append((a, b, float("nan")))
                 continue
             paires.append((a, b, abs(spearman(series[a], series[b]))))
     return paires
@@ -164,7 +170,18 @@ def _avance_un(nom: str, series: dict[str, "np.ndarray"] | None,
             if v.etat_suivant != "É3":
                 return v.etat_suivant, v.detail
         elif epreuve == "É3":
-            e3()   # lève toujours à ce jour : rejeu absent, D12 ouverte
+            # lève tant que rejeu absent + D12 ouverte. Le jour où É3 rend
+            # un verdict, la machine ÉCRIT l'état suivant — sans cette
+            # écriture, "É4" était un état inatteignable et la garde de
+            # bande du dessous du code mort (2e post-scriptum du 06/08 :
+            # un garde-fou doit pouvoir échouer, ÊTRE APPELÉ, et être
+            # vérifié capable d'échouer — `00` §8, les trois conditions)
+            v = e3()
+            registre.ajouter(_aujourdhui(), nom, v.etat_suivant, "É3",
+                             v.detail or "—", f["perimetre"], signataire,
+                             chemin)
+            if not v.passe:
+                return v.etat_suivant, v.detail
         elif epreuve == "É4":
             # la garde de bande AVANT le refus C3 : placée après, elle
             # serait du code mort tant que C3 bloque — une garde qui ne

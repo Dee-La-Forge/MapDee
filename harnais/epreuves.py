@@ -118,6 +118,14 @@ def verifie_bande_e0(paires: list[tuple[str, str, float]]) -> None:
     """REFUSE É4 tant qu'une paire intra-périmètre siège dans
     [0,70 ; 0,90) — sous la barre de fusion d'É0, au-dessus du doublon
     présumé d'É2 — sans ADR déclarée dans PAIRES_SOUS_ADR."""
+    cassees = [(a, b) for a, b, r in paires if not np.isfinite(r)]
+    if cassees:
+        raise RefusEpreuve(
+            f"É4 refusée : {len(cassees)} paire(s) intra-périmètre à "
+            f"l'alignement défaillant (|ρ| incalculable, longueurs inégales "
+            f"à périmètre égal) : "
+            + " ; ".join(f"({a}, {b})" for a, b in cassees)
+            + " — une ADR n'exempte pas un défaut d'instrument.")
     bloquantes = [(a, b, r) for a, b, r in paires
                   if SEUIL_E2_DOUBLON_PRESUME <= r < SEUIL_E0_DOUBLON
                   and frozenset((a, b)) not in PAIRES_SOUS_ADR]

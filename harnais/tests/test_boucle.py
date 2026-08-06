@@ -92,6 +92,47 @@ def test_banc_complet_sur_series_synthetiques(reg_vierge):
             assert l["chiffre"] not in ("", "—", "-")
 
 
+def test_garde_bande_atteinte_et_avant_le_refus_C3(reg_vierge, monkeypatch):
+    """`00` §8, les trois conditions : la garde de bande peut échouer (ses
+    tests unitaires), est vérifiée capable d'échouer (idem) — ici on prouve
+    la troisième : elle est APPELÉE. Avant le 2e post-scriptum du 06/08,
+    aucun `registre.ajouter` n'écrivait "É4" : la branche était
+    inatteignable et la garde du code mort. On stubbe É3 (rejeu fictif de
+    test) pour conduire les candidats jusqu'à la branche É4, et on vérifie
+    l'ordre : la garde lève AVANT le refus C3 d'e4 — l'ordre n'est plus un
+    commentaire, il est vérifié."""
+    from harnais import boucle as B
+    from harnais.epreuves import Verdict
+    monkeypatch.setattr(B, "e3", lambda *a, **k: Verdict(
+        "É3", True, 0.99, "É4", "stub de test : rejeu fictif"))
+    a1, a4 = "A1 · OFI", "A4 · microprice"
+
+    def jeu(avec_bande: bool, graine: int, chemin):
+        rng = np.random.default_rng(graine)
+        series = {n: rng.normal(size=3000) for n in FICHES}
+        if avec_bande:   # ρ de Spearman ~0,86 : dans [0,70 ; 0,90)
+            series[a4] = (0.87 * series[a1]
+                          + np.sqrt(1 - 0.87 ** 2) * rng.normal(size=3000))
+        return tour(series=series, bloc={TEMOIN: rng.normal(size=3000)},
+                    chemin=chemin)
+
+    # 1) une paire dans la bande : c'est la GARDE qui refuse É4, pas C3
+    rapport = jeu(True, 11, reg_vierge)
+    etat, raison = rapport[a1]
+    assert etat == "É4" and "0,70 ; 0,90" in raison and "C3" not in raison
+    # 2) sans paire en bande : la garde se tait, e4 refuse sur C3 —
+    #    la garde est donc bien passée en premier
+    reg2 = reg_vierge.parent / "registre_vierge_2.md"
+    shutil.copy(reg_vierge, reg2)   # copie AVANT usage : reg_vierge a évolué
+    # (on repart d'un registre neuf, pas de celui où tout le monde est à É4)
+    reg2.write_text(reg_vierge.read_text(encoding="utf-8").split("| 2026")[0]
+                    + "| 2026-08-05 | T0 · masse brute au palier | témoin "
+                    "trivial | — | — | J3 | protocole |\n", encoding="utf-8")
+    rapport2 = jeu(False, 12, reg2)
+    etat2, raison2 = rapport2[a1]
+    assert etat2 == "É4" and "REFUS" in raison2 and "C3 non gelé" in raison2
+
+
 def test_bloc_par_perimetre_le_temoin_du_bon_perimetre(reg):
     """Dette T0-J8 fermée : un candidat J8 passe É2 contre SON témoin, plus
     de refus de longueur."""
