@@ -17,11 +17,12 @@
 ## 1. Le leurre (spoofing / layering)
 
 **Ce que dit le droit** — la seule définition qui fasse autorité hors
-académie : le Dodd-Frank Act (§747, 7 U.S.C. §6c(a)(5)(C)) définit le spoofing
+académie : le Dodd-Frank Act (§747, 7 U.S.C. §6c(a)(5)(C) — **réf. de mémoire, à
+vérifier** ; un texte de loi se contrôle en une minute) définit le spoofing
 comme *« bidding or offering with the intent to cancel the bid or offer before
 execution »* — l'**intention d'annuler avant exécution**, pas l'annulation
 elle-même. Le règlement européen MAR (596/2014, annexe II et règlement délégué
-2016/522) liste les indicateurs du layering : ordres **sans intention
+2016/522 — **réf. de mémoire, à vérifier**) liste les indicateurs du layering : ordres **sans intention
 d'exécution**, à des prix étagés, **du côté opposé** à l'ordre qu'on veut faire
 exécuter, annulés après l'exécution de celui-ci.
 
@@ -155,15 +156,19 @@ rétrécit toujours à la lecture.
 ## 5 pré. LES RÈGLES DU CHANTIER — écrites le 06/08 AVANT tout balayage supplémentaire
 (audit externe du 06/08, critiques 1-3 — toutes fondées)
 
-* **Tarissement** : un balayage se clôt quand il ne produit **plus aucune
-  famille dont la ligne « à l'exécution » peut être ÉCRITE** — le critère qui
+* **Tarissement** : le chantier se clôt après **DEUX balayages consécutifs**
+  ne produisant **aucune famille dont la ligne « à l'exécution » peut être
+  ÉCRITE** (un balayage sec peut avoir mal cherché — audit du 06/08) — le critère qui
   a écarté des disciplines entières dans `03`. « J'ai fait N balayages »
   n'est pas un critère (`06` §7).
 * **Compte par vagues** : la **vague 1 = 16 candidats, gelée le 05/08** —
   aucune famille de C0 n'y entre, jamais. Les familles instruites ici
   forment la **vague 2**, dont le compte gèlera **avant son premier calcul**,
-  à la clôture de C0 par tarissement — pas au jour du dernier É4. Le nombre
-  de vagues est publié avec tout résultat.
+  à la clôture de C0 par tarissement — pas au jour du dernier É4.
+  **Le FDR est contrôlé PAR VAGUE (q = 10 % chacune), PAS globalement** :
+  avec W vagues, le taux global attendu dérive vers ~W × 10 % — ce nombre
+  et W sont publiés avec tout résultat (audit du 06/08, reste n° 1 :
+  déclarer vaut mieux que diluer).
 * **Pas de ligne, pas de compte** : une famille sans ligne « à l'exécution »
   écrite **ici** n'entre dans aucun compte et ne coûte de puissance à
   personne. « É0 tranchera » n'est pas une ligne — c'est un report qui
@@ -200,8 +205,9 @@ physique**, absents de la liste de Meddy comme du catalogue :
    propagation — le retard est le rabais ;
 7. **l'horloge volume** (temps-transaction) — transversal, aussi un axe de
    robustesse pour É3 ;
-8. **DMD/Koopman** (identification de dynamique — risque assumé de
-   « sonologie 2.0 », É2 jugera) ;
+8. **DMD/Koopman** — **SANS LIGNE « à l'exécution » écrite → hors compte** ;
+   et c'est nommément la famille déjà payée une fois (sonologie). Elle
+   n'entrera qu'avec une ligne, pas avec une promesse ;
 9. côté vérité : **inventaire des teneurs** (E7 naturel) et **métaordres /
    loi en racine carrée** — exigent l'identité, notre avantage comparatif.
 
@@ -279,11 +285,51 @@ théories** :
     périmètre au cadre G**, avec son propre marqueur d'événement
     exogène si un jour on veut le compter. **Sur la « détection » (06/08)** : le hors-carnet ne
     se détecte pas, il s'infère — par COMPOSITION de familles déjà
-    instruites (n° 9 métaordres, n° 20 allumage, résidus d'A5, case
-    résidu) — un « détecteur de dark » séparé serait une redite qu'É0
+    instruites (n° 9 métaordres, n° 20 allumage, résidus d'A5) et du
+    marqueur exogène du cadre G — PAS de la case résidu du typage,
+    corrigé deux fois le 06/08 — un « détecteur de dark » séparé serait une redite qu'É0
     fondrait. Le seul levier matériel neuf : **capturer les bandes de
     blocs drapeautés** (Deribit/Paradigm, OKX) — un flux de plus au
     recorder, décision de production **chez Meddy**.
+
+## 5 quater. L'ÉTAT DU COMPTE DE LA VAGUE 2 — la population entière, marquée
+(audit du 06/08, reste n° 2 : « par marque, pas par déduction du lecteur »)
+
+**Cette table fait foi.** Le compte de la vague 2 = les familles [LIGNE
+ÉCRITE] au moment du gel — les autres n'y entrent pas, quel que soit leur
+intérêt, tant que leur ligne n'est pas écrite ici.
+
+| n° | famille | statut | ligne « à l'exécution » |
+|---|---|---|---|
+| 1 | réseaux de wallets | **VÉRITÉ — hors compte** | fabrique la vérité, ne s'affiche pas |
+| 2 | information mutuelle en feature | **SANS LIGNE — hors compte** | — |
+| 3 | écart à un carnet de référence | **SANS LIGNE — hors compte** | — |
+| 4 | PIN/VPIN, Kyle, spreads | **LIGNE ÉCRITE** | un flux informé élevé annonce le déplacement — ne pas poster contre lui, traverser avant |
+| 5 | perpétuels (funding, OI, liquidations) | **LIGNE ÉCRITE** | une grappe de liquidations devant soi = coût de traversée explosif et accélération mécanique — réduire, ou traverser avant la grappe |
+| 6 | lead-lag inter-venues/symboles | **LIGNE ÉCRITE** | poster/retirer sur la place retardataire avant la propagation — le retard est le rabais |
+| 7 | horloge volume | **MÉTHODE/ROBUSTESSE — hors compte** | axe d'É3, pas une grandeur |
+| 8 | DMD/Koopman | **SANS LIGNE — hors compte** | — (sonologie déjà payée) |
+| 9 | inventaire des teneurs · métaordres | **VÉRITÉ — hors compte** | fabrique la vérité |
+| 10 | flux rejeté (5 capteurs) | **LIGNE ÉCRITE** | l'agression insatisfaite et le stress de marge annoncent le mouvement et les cascades — poster du côté de la demande non servie, jamais sur le chemin des marges à bout |
+| 11 | divergence oracle/carnet | **LIGNE ÉCRITE** | l'écart oracle-carnet précède les liquidations mécaniques — ne pas poster sur leur chemin |
+| 12 | taille moyenne d'ordre au palier | **LIGNE ÉCRITE** | un mur de 3 ordres se retire d'un bloc, un mur de 300 fond — le risque de poster derrière n'est pas le même |
+| 13 | wash/self-fills · cadences | **VÉRITÉ — hors compte** | fabrique la vérité |
+| 14 | intensité de messages (stuffing) | **SANS LIGNE — hors compte** | — |
+| 15 | CUSUM/SPRT | **MÉTHODE — hors compte** | outillage de détection, pas une grandeur |
+| 16 | copules de queue | **SANS LIGNE — hors compte** | — |
+| 17 | saisonnalité intrajournalière | **CONTRÔLE F — hors compte par nature** | — |
+| 18 | stop-hunting (via `triggered`) | **LIGNE ÉCRITE** | une poussée vers une grappe de stops connue annonce l'accélération — ne pas poster sur le chemin, traverser avant le déclenchement |
+| 19 | consensus des 7 places | **LIGNE ÉCRITE** | une venue décrochée du consensus se recale — le sens du recalage est connu d'avance |
+| 20 | allumage de momentum | **LIGNE ÉCRITE** | une rafale sans grappes devant s'éteint, avec grappes elle s'emballe — suivre ou fondre selon la carte |
+| 21 | prix ronds | **LIGNE ÉCRITE** | les murs aux prix ronds attirent et tiennent autrement — le coût de poster derrière change avec le palier |
+| 22 | asymétrie du temps / Zumbach | **SANS LIGNE — hors compte** | — |
+| 23 | mémoire longue des signes | **LIGNE ÉCRITE** | une persistance de signes élevée signale un métaordre en cours — l'impact continue, traverser tôt coûte moins |
+| 24 | contexte (cadre G) | **CADRE — hors compte par nature** | conditionneurs, pas candidats |
+| 25 | part sombre locale | **LIGNE ÉCRITE** | là où la part sombre est haute, la taille traversable dépasse l'affiché — le carnet ment par défaut, en mieux |
+
+**Compte provisoire de la vague 2 : 12 familles à ligne écrite** (4, 5, 6,
+10, 11, 12, 18, 19, 20, 21, 23, 25). Gel au tarissement de C0, avant tout
+calcul de vague 2 — et É0 en fondra probablement.
 
 Entrée au banc uniquement par fiche complète (ligne « à l'exécution »
 obligatoire), et tout ajout **rouvre le compte D10 et le dit**. La TDA reste
