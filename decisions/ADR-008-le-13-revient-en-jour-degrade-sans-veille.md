@@ -33,3 +33,16 @@ corruption venait de la CHAUFFE, héritée du soir empoisonné du 12
 5. La vérification d'acceptation du rebâti : `book_croise == 0` attendu
    sur les deux manifestes — un rebâti qui croise encore réfuterait
    l'anatomie et rouvrirait cette ADR.
+
+---
+
+**Addendum du 06/08, AVANT toute photo émise (le rebâti est en phase
+statuts, vérifié au log) — la bande de couverture, déclarée d'avance.**
+Attente dérivée, pas devinée : naïve = 16 h/24 = 66,7 % ; pondérée par
+l'activité depuis les cumuls horaires du 20251214 (même profil week-end,
+publiés au log du 06/08) = (104 234 − 30 612)/104 234 = **70,6 %** des
+photos au-delà de h07, côté ETH. **Bande d'acceptation : chaque symbole
+rebâti doit sortir entre 60 % et 80 % des photos du 20251214 du même
+symbole. Hors bande = REFUS** : le jour ne rentre pas dans J8 et cette
+ADR rouvre — quel que soit le sens du dépassement, un excès serait aussi
+suspect qu'un déficit. S'ajoute à `book_croise == 0`, inchangé.
