@@ -268,10 +268,19 @@ résultats négatifs : un négatif produit par un instrument non audité n'est p
 un résultat.
 
 `_recupere/` est du matériel importé de dépôts morts, conservé parce que le
-reconstruire coûterait des semaines. **Ce n'est ni une bibliothèque du projet ni
-une dépendance : c'est une réserve de pièces détachées.** Rien n'en sort sans
-avoir été relu. Ses ADR n'ont **aucune autorité** ici — les ADR de MapDee vivent
-dans `decisions/` et repartent de zéro.
+reconstruire coûterait des semaines. La doctrine voulait que ce ne soit
+« ni une bibliothèque ni une dépendance : une réserve de pièces détachées » —
+**cette phrase était fausse en pratique, et elle est corrigée le 06/08/2026**
+(audit) : `_recupere/construit/` **est la dépendance d'exécution de la
+construction** — le lanceur s'y place et y exécute l'instrument de mesure du
+projet. État transitoire, tracé et borné : le chantier **C10**
+(`chantiers/C10-promotion-instrument.md`) sort ce code de l'archive pour le
+rendre auditable et testé comme le reste — la grille a déjà fait le trajet
+(D2). D'ici là, la règle « on n'audite pas l'archive » **ne s'applique pas à
+`construit/`** : ce qui mesure se lit, se teste et se répare. Le reste de
+l'archive garde son statut : rien n'en sort sans avoir été relu, et ses ADR
+n'ont **aucune autorité** ici — les ADR de MapDee vivent dans `decisions/`
+et repartent de zéro.
 
 Ce qui vaut d'être repris de l'itération précédente n'est pas un résultat, c'est
 une **discipline** : des seuils pré-enregistrés jamais baissés, des audits
