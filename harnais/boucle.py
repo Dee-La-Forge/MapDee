@@ -80,6 +80,7 @@ def _avance_un(nom: str, series: dict[str, "np.ndarray"] | None,
             # Égalité de coût : l'ordre de déclaration de `03` tranche.
             ordre_decl = list(FICHES)
             tombe = False
+            rho_max, plus_proche = 0.0, None
             for autre in ordre_decl:
                 if (autre == nom or autre not in series
                         or etat_courant(autre, chemin) in ("éliminée", "réorientée")):
@@ -97,6 +98,8 @@ def _avance_un(nom: str, series: dict[str, "np.ndarray"] | None,
                         f"{nom} {len(series[nom])} contre {autre} "
                         f"{len(series[autre])} : alignement défaillant en amont")
                 rho = spearman(series[nom], series[autre])
+                if abs(rho) > rho_max:
+                    rho_max, plus_proche = abs(rho), autre
                 # la décision est UNE fonction, testée : epreuves.e0_duel
                 duel = e0_duel(rho, f["cout_rang"], FICHES[autre]["cout_rang"],
                                ordre_decl.index(nom), ordre_decl.index(autre))
@@ -113,9 +116,13 @@ def _avance_un(nom: str, series: dict[str, "np.ndarray"] | None,
                     break
             if tombe:
                 return "éliminée", "doublon interne (É0)"
-            registre.ajouter(_aujourdhui(), nom, "É1", "É0", "aucun doublon "
-                             "parmi les vivants", f["perimetre"], signataire,
-                             chemin)
+            # note du 06/08 au rapport (N1) : la ligne de passage porte SON
+            # nombre — le ρ le plus haut rencontré et contre qui — plus
+            # jamais un « aucun doublon » nu dont le fondement a été jeté
+            registre.ajouter(_aujourdhui(), nom, "É1", "É0",
+                             (f"ρmax={rho_max:.3f} contre {plus_proche}"
+                              if plus_proche else "seul dans son périmètre"),
+                             f["perimetre"], signataire, chemin)
         elif epreuve == "É1":
             v = e1(f["e1"])
             registre.ajouter(_aujourdhui(), nom, v.etat_suivant, "É1",

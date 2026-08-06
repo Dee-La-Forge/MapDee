@@ -195,6 +195,23 @@ def main() -> None:
             print(f"  ρ(|Δmid|, {nom}) = {_sp(x, dmid[per]):+.3f}"
                   f"   <- entanglement mécanique avec le prix, à garder pour É4")
 
+    # É0 à ciel ouvert (note du 06/08 au rapport, N1/N2) : la matrice
+    # complète des |ρ| intra-périmètre est PUBLIÉE avant tout verdict — un
+    # chiffre qui fonde un verdict doit lui survivre. La bande 0,70-0,90
+    # (« distincts » pour É0, « doublon probable » à l'échelle d'É2) est
+    # marquée : visible ici, traitée par ADR si elle se peuple, jamais par
+    # renégociation. Diagnostic — le verdict reste celui de la boucle.
+    vivants = sorted(n for n in series if n in FICHES)
+    print(f"[{time.time()-t0:6.0f}s] === matrice É0 (|ρ| par paire, intra-périmètre) ===")
+    for i, na in enumerate(vivants):
+        for nb in vivants[i + 1:]:
+            if perimetre_de[na] != perimetre_de[nb]:
+                continue
+            r = abs(_sp(series[na], series[nb]))
+            bande = ("   <- BANDE 0,70-0,90 : sous la barre de fusion, "
+                     "au-dessus du doublon probable d'É2" if 0.70 <= r < 0.90 else "")
+            print(f"  |ρ|({na.split(' ·')[0]}, {nb.split(' ·')[0]}) = {r:.3f}{bande}")
+
     n_obs = {n: int(np.isfinite(x).sum()) for n, x in series.items()}
     print(f"[{time.time()-t0:6.0f}s] séries alignées : "
           f"{min(n_obs.values()):,} à {max(n_obs.values()):,} observations")
