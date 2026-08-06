@@ -161,6 +161,36 @@ def test_bh_refuse_la_vague_partielle(reg_vierge, monkeypatch):
     assert not [l for l in lire(reg_vierge) if l["epreuve"] == "É4"]
 
 
+def test_les_vagues_sont_jugees_separement(reg_vierge, monkeypatch):
+    """Le champ `vague` porte le mécanisme : une fiche de vague 2 encore en
+    chemin ne gèle PAS le BH de la vague 1 — et le BH de la vague 1 se
+    calcule sur SES membres, jamais sur la fusion des familles déclarées."""
+    from harnais import boucle as B
+    from harnais.epreuves import Verdict
+    monkeypatch.setattr(B, "FICHES", {
+        **FICHES, "Z1 · fiche de vague 2 (test)":
+        dict(perimetre="J3", vague=2, cout_rang=99)})
+    monkeypatch.setattr(B, "e3", lambda *a, **k: Verdict(
+        "É3", True, 0.99, "É4", "stub de test : rejeu fictif"))
+    appels = iter(range(100))
+    monkeypatch.setattr(B, "e4", lambda *a, **k: (
+        lambda i: {"n_jours": 3, "moyenne": 0.5 if i == 0 else 0.01,
+                   "p_value": 0.001 if i == 0 else 0.9,
+                   "ic95": (0.1, 0.9)})(next(appels)))
+    rng = np.random.default_rng(41)
+    series = {n: rng.normal(size=3000) for n in FICHES}   # Z1 : pas de série
+    rapport = B.tour(series=series, bloc={TEMOIN: rng.normal(size=3000)},
+                     chemin=reg_vierge)
+    # la vague 1 est jugée malgré Z1 (vague 2) en attente de données
+    assert any(e == "retenue" for e, _ in rapport.values())
+    lignes_e4 = [l for l in lire(reg_vierge) if l["epreuve"] == "É4"]
+    assert lignes_e4
+    for l in lignes_e4:
+        assert "vague 1, 16 déclarés" in l["chiffre"]
+    # et Z1 n'a pas été jugée : elle attend, dans sa vague à elle
+    assert rapport["Z1 · fiche de vague 2 (test)"][0] == "déposée"
+
+
 def test_e3_sans_chiffre_est_refuse_jamais_enregistre(reg_vierge, monkeypatch):
     """Un É3 qui rendrait un verdict sans nombre est REFUSÉ — pas écrit au
     registre avec une opinion en colonne chiffre."""

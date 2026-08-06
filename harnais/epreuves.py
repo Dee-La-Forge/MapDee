@@ -155,13 +155,27 @@ def e4_refus() -> None:
 
 
 def e4(candidat_par_jour: list[np.ndarray], cible_par_jour: list[np.ndarray],
-       bloc_par_jour: list[np.ndarray] | None, *, prealables_leves: bool = False) -> dict:
+       bloc_par_jour: list[np.ndarray] | None, *, prealables_leves: bool = False,
+       n_bloc_retenu: int = 0) -> dict:
     """La mécanique d'É4 (`ADR-001`) — exécutable sur SYNTHÉTIQUE (ÉS) où la
     vérité tient lieu de cible. Sur données réelles : refus tant que
     `prealables_leves` n'est pas démontré par le préflight.
 
+    `n_bloc_retenu` : combien de grandeurs le registre compte au bloc retenu.
     Rend le coefficient partiel par jour + Student (p décide via BH, IC publié).
     """
+    # La dégénérescence de spearman_partiel en Spearman simple (bloc vide)
+    # est RÉSERVÉE au premier candidat (`ADR-001`). Si le registre compte un
+    # bloc retenu et qu'on ne le passe pas, un « doublon présumé » serait
+    # jugé SANS PÉNALITÉ, silencieusement — le code aurait l'air de faire
+    # ce que « le partiel fait le travail » promet, sans le faire. On
+    # refuse : la garantie, pas l'argument (garde du même moule que k/n).
+    if n_bloc_retenu > 0 and bloc_par_jour is None:
+        raise RefusEpreuve(
+            f"É4 refusée : le registre compte {n_bloc_retenu} grandeur(s) au "
+            f"bloc retenu mais bloc_par_jour est None — la dégénérescence en "
+            f"Spearman simple est réservée au bloc VIDE ; sans le bloc, un "
+            f"doublon présumé serait jugé sans pénalité.")
     if not prealables_leves:
         e4_refus()
     coefs = []

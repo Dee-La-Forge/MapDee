@@ -65,6 +65,23 @@ def test_paires_bande_porte_le_defaut_d_alignement():
     assert {a, b} == set(j3) and not np.isfinite(r)
 
 
+def test_e4_refuse_de_juger_sans_le_bloc_retenu():
+    """La dégénérescence de spearman_partiel (bloc None → Spearman simple)
+    est réservée au bloc VIDE. Si le registre compte un bloc retenu et
+    qu'on ne le passe pas, un doublon présumé serait jugé sans pénalité —
+    e4 refuse : la garantie, pas l'argument."""
+    from harnais.epreuves import e4
+    with pytest.raises(RefusEpreuve) as exc:
+        e4([np.arange(300.)], [np.arange(300.)], None,
+           prealables_leves=True, n_bloc_retenu=2)
+    assert "sans pénalité" in str(exc.value)
+    # bloc vide déclaré vide : la dégénérescence est LÉGITIME (1er candidat)
+    r = e4([np.random.default_rng(0).normal(size=300) for _ in range(3)],
+           [np.random.default_rng(1).normal(size=300) for _ in range(3)],
+           None, prealables_leves=True, n_bloc_retenu=0)
+    assert "p_value" in r
+
+
 def test_paires_bande_intra_perimetre_seulement():
     """Le matériau de la garde : toutes les paires intra-périmètre, jamais
     une paire inter-périmètres, jamais une clé hors fiches (_T0_*)."""

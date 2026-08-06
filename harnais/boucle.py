@@ -260,46 +260,69 @@ def tour(series: dict | None = None, bloc: dict | None = None,
     en_e4 = [nom for nom in FICHES if nom not in pollues
              and etat_courant(nom, chemin) == "É4"]
     if en_e4:
-        # BARRIÈRE DE VAGUE (`05` §multiplicité, protection 1 : « le nombre
-        # de candidats est déclaré AVANT le premier calcul ») : BH ne tourne
-        # que lorsque CHAQUE candidat de la vague gelée est terminal ou à
-        # É4. Sinon le dénominateur serait émergent — deux familles de 8 à
-        # q=10 % au lieu d'une de 16, la fuite exacte que les vagues
-        # empêchent, produite toute seule au rythme des tours. Un BH
-        # partiel voulu = une NOUVELLE vague, déclarée avec son compte.
-        en_chemin = {n: (etat_courant(n, chemin) or "déposée")
-                     for n in FICHES}
-        en_chemin = {n: e for n, e in en_chemin.items()
-                     if e not in ETATS_TERMINAUX and e != "É4"}
-        if en_chemin:
-            detail = ", ".join(f"{n} ({e})" for n, e in en_chemin.items())
-            for nom in en_e4:
-                rapport[nom] = ("É4", (
-                    "REFUS : BH exige la VAGUE COMPLÈTE — compte déclaré "
-                    f"avant, vague gelée à {len(FICHES)} ; un BH partiel "
-                    f"serait une famille non déclarée. En chemin : {detail}"))
-            return rapport
+        # la garde de bande lève AVANT toute vague : c'est le dernier point
+        # où la multiplicité de BH peut encore être fausse
         try:
             verifie_bande_e0(paires_bande)
-            resultats = {nom: e4([], [], None) for nom in en_e4}
-            retenu = benjamini_hochberg(
-                {n: r["p_value"] for n, r in resultats.items()})
-            for nom in en_e4:
-                r = resultats[nom]
-                chiffre = (f"coef={r['moyenne']:.3f}, p={r['p_value']:.4f}, "
-                           f"IC95=[{r['ic95'][0]:.3f} ; {r['ic95'][1]:.3f}], "
-                           f"BH 10 % sur {len(en_e4)} jugés à É4 "
-                           f"(vague de {len(FICHES)})")
-                etat_f = "retenue" if retenu[nom] else "éliminée"
-                registre.ajouter(_aujourdhui(), nom, etat_f, "É4", chiffre,
-                                 FICHES[nom]["perimetre"], signataire, chemin)
-                rapport[nom] = (etat_f,
-                                "a passé les cinq épreuves — entre au bloc "
-                                "de référence d'É2" if retenu[nom] else
-                                "non retenue par BH — p trop haut pour la vague")
         except RefusEpreuve as e:
             for nom in en_e4:
                 rapport[nom] = ("É4", f"REFUS : {e}")
+            return rapport
+        # le bloc retenu tel que le REGISTRE le compte — passé à e4, qui
+        # refuse si on prétend juger sans lui (dégénérescence réservée au
+        # bloc vide, ADR-001)
+        n_bloc = sum(1 for n in FICHES
+                     if etat_courant(n, chemin) == "retenue")
+        # PAR VAGUE (`05` protection 1 + registre : « vague 1 gelée à 16,
+        # son BH se calcule sur 16 ») : chaque vague déclarée a SA barrière
+        # et SON BH. Sans le champ `vague`, le jour où la vague 2 serait
+        # transcrite, BH aurait fondu les deux familles déclarées en une —
+        # ce que le découpage en vagues a été écrit pour empêcher.
+        for vague in sorted({FICHES[n]["vague"] for n in en_e4}):
+            membres = [n for n in FICHES if FICHES[n]["vague"] == vague]
+            vag_e4 = [n for n in en_e4 if FICHES[n]["vague"] == vague]
+            # BARRIÈRE : BH ne tourne que lorsque CHAQUE candidat de CETTE
+            # vague est terminal ou à É4 — sinon le dénominateur serait
+            # émergent (deux familles de 8 à q=10 % au lieu d'une de 16),
+            # la fuite exacte que les vagues empêchent, produite toute
+            # seule au rythme des tours. Un BH partiel voulu = une NOUVELLE
+            # vague, déclarée avec son compte.
+            en_chemin = {n: e for n in membres
+                         if (e := (etat_courant(n, chemin) or "déposée"))
+                         not in ETATS_TERMINAUX and e != "É4"}
+            if en_chemin:
+                detail = ", ".join(f"{n} ({e})" for n, e in en_chemin.items())
+                for nom in vag_e4:
+                    rapport[nom] = ("É4", (
+                        f"REFUS : BH exige la VAGUE COMPLÈTE — vague "
+                        f"{vague} gelée à {len(membres)}, compte déclaré "
+                        f"avant ; un BH partiel serait une famille non "
+                        f"déclarée. En chemin : {detail}"))
+                continue
+            try:
+                resultats = {nom: e4([], [], None, n_bloc_retenu=n_bloc)
+                             for nom in vag_e4}
+                retenu = benjamini_hochberg(
+                    {n: r["p_value"] for n, r in resultats.items()})
+                for nom in vag_e4:
+                    r = resultats[nom]
+                    chiffre = (f"coef={r['moyenne']:.3f}, "
+                               f"p={r['p_value']:.4f}, "
+                               f"IC95=[{r['ic95'][0]:.3f} ; {r['ic95'][1]:.3f}], "
+                               f"BH 10 % sur {len(vag_e4)} jugés à É4 "
+                               f"(vague {vague}, {len(membres)} déclarés)")
+                    etat_f = "retenue" if retenu[nom] else "éliminée"
+                    registre.ajouter(_aujourdhui(), nom, etat_f, "É4",
+                                     chiffre, FICHES[nom]["perimetre"],
+                                     signataire, chemin)
+                    rapport[nom] = (etat_f,
+                                    "a passé les cinq épreuves — entre au "
+                                    "bloc de référence d'É2" if retenu[nom]
+                                    else "non retenue par BH — p trop haut "
+                                    "pour la vague")
+            except RefusEpreuve as e:
+                for nom in vag_e4:
+                    rapport[nom] = ("É4", f"REFUS : {e}")
     return rapport
 
 
