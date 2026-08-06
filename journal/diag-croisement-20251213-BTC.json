@@ -1,0 +1,12 @@
+{
+ "jour": "20251213",
+ "coin": "BTC",
+ "n_lignes": 28238479,
+ "premier_croisement": null,
+ "n_echantillons_croises": 0,
+ "oids_union": 0,
+ "jaccard_moyen": null,
+ "verdict": "AUCUN CROISEMENT ÉCHANTILLONNÉ",
+ "duree_s": 184.7,
+ "echantillons": []
+}

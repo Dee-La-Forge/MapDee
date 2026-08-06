@@ -1,0 +1,116 @@
+=== diag croisement 20251213 ETH ===
+  h00 : 587,869 lignes ETH · carnet 1,738 ordres · échantillons croisés 0
+  h01 : 501,268 lignes ETH · carnet 2,024 ordres · échantillons croisés 0
+  h02 : 534,498 lignes ETH · carnet 2,377 ordres · échantillons croisés 0
+  h03 : 471,336 lignes ETH · carnet 2,497 ordres · échantillons croisés 0
+  h04 : 409,100 lignes ETH · carnet 2,569 ordres · échantillons croisés 0
+  h05 : 363,610 lignes ETH · carnet 2,745 ordres · échantillons croisés 0
+  h06 : 369,645 lignes ETH · carnet 2,833 ordres · échantillons croisés 0
+  h07 : 334,434 lignes ETH · carnet 2,896 ordres · échantillons croisés 0
+  h08 : 1,190,720 lignes ETH · carnet 3,108 ordres · échantillons croisés 0
+  h09 : 743,599 lignes ETH · carnet 3,289 ordres · échantillons croisés 0
+  h10 : 728,922 lignes ETH · carnet 3,327 ordres · échantillons croisés 0
+  h11 : 595,718 lignes ETH · carnet 3,318 ordres · échantillons croisés 0
+  h12 : 643,632 lignes ETH · carnet 3,285 ordres · échantillons croisés 0
+  h13 : 815,617 lignes ETH · carnet 3,397 ordres · échantillons croisés 0
+  h14 : 1,015,480 lignes ETH · carnet 3,396 ordres · échantillons croisés 0
+  h15 : 944,111 lignes ETH · carnet 3,668 ordres · échantillons croisés 0
+  h16 : 841,494 lignes ETH · carnet 3,463 ordres · échantillons croisés 0
+  h17 : 581,460 lignes ETH · carnet 3,766 ordres · échantillons croisés 0
+  h18 : 517,490 lignes ETH · carnet 3,807 ordres · échantillons croisés 0
+  h19 : 429,071 lignes ETH · carnet 3,956 ordres · échantillons croisés 0
+  h20 : 384,899 lignes ETH · carnet 3,887 ordres · échantillons croisés 0
+  h21 : 897,408 lignes ETH · carnet 4,025 ordres · échantillons croisés 0
+  h22 : 728,902 lignes ETH · carnet 3,944 ordres · échantillons croisés 0
+  h23 : 646,884 lignes ETH · carnet 3,920 ordres · échantillons croisés 0
+
+=== VERDICT 20251213 ETH : AUCUN CROISEMENT ÉCHANTILLONNÉ
+    union oids = 0 · Jaccard moyen = None · premier croisement : None
+    écrit : journal\diag-croisement-20251213-ETH.json
+=== diag croisement 20251213 BTC ===
+  h00 : 1,210,789 lignes BTC · carnet 1,999 ordres · échantillons croisés 0
+  h01 : 1,061,729 lignes BTC · carnet 2,367 ordres · échantillons croisés 0
+  h02 : 1,043,692 lignes BTC · carnet 2,947 ordres · échantillons croisés 0
+  h03 : 1,071,140 lignes BTC · carnet 3,098 ordres · échantillons croisés 0
+  h04 : 1,017,813 lignes BTC · carnet 3,239 ordres · échantillons croisés 0
+  h05 : 987,953 lignes BTC · carnet 3,425 ordres · échantillons croisés 0
+  h06 : 959,646 lignes BTC · carnet 3,464 ordres · échantillons croisés 0
+  h07 : 998,192 lignes BTC · carnet 3,598 ordres · échantillons croisés 0
+  h08 : 1,464,420 lignes BTC · carnet 3,591 ordres · échantillons croisés 0
+  h09 : 1,165,534 lignes BTC · carnet 3,873 ordres · échantillons croisés 0
+  h10 : 1,160,171 lignes BTC · carnet 4,221 ordres · échantillons croisés 0
+  h11 : 1,162,308 lignes BTC · carnet 4,428 ordres · échantillons croisés 0
+  h12 : 1,221,428 lignes BTC · carnet 4,478 ordres · échantillons croisés 0
+  h13 : 1,277,882 lignes BTC · carnet 4,742 ordres · échantillons croisés 0
+  h14 : 1,576,619 lignes BTC · carnet 4,867 ordres · échantillons croisés 0
+  h15 : 1,328,349 lignes BTC · carnet 4,954 ordres · échantillons croisés 0
+  h16 : 1,276,614 lignes BTC · carnet 5,228 ordres · échantillons croisés 0
+  h17 : 1,177,895 lignes BTC · carnet 5,327 ordres · échantillons croisés 0
+  h18 : 1,063,072 lignes BTC · carnet 5,378 ordres · échantillons croisés 0
+  h19 : 1,021,024 lignes BTC · carnet 5,532 ordres · échantillons croisés 0
+  h20 : 1,012,421 lignes BTC · carnet 5,508 ordres · échantillons croisés 0
+  h21 : 1,455,357 lignes BTC · carnet 5,665 ordres · échantillons croisés 0
+  h22 : 1,305,508 lignes BTC · carnet 5,992 ordres · échantillons croisés 0
+  h23 : 1,218,923 lignes BTC · carnet 5,985 ordres · échantillons croisés 0
+
+=== VERDICT 20251213 BTC : AUCUN CROISEMENT ÉCHANTILLONNÉ
+    union oids = 0 · Jaccard moyen = None · premier croisement : None
+    écrit : journal\diag-croisement-20251213-BTC.json
+=== diag croisement 20251212 ETH ===
+  h00 : 1,559,242 lignes ETH · carnet 2,123 ordres · échantillons croisés 0
+  h01 : 2,114,177 lignes ETH · carnet 3,482 ordres · échantillons croisés 0
+  h02 : 1,779,954 lignes ETH · carnet 3,842 ordres · échantillons croisés 0
+  h03 : 1,418,235 lignes ETH · carnet 4,052 ordres · échantillons croisés 0
+  h04 : 960,391 lignes ETH · carnet 4,166 ordres · échantillons croisés 0
+  h05 : 1,061,896 lignes ETH · carnet 4,173 ordres · échantillons croisés 0
+  h06 : 1,023,068 lignes ETH · carnet 4,327 ordres · échantillons croisés 0
+  h07 : 911,465 lignes ETH · carnet 4,198 ordres · échantillons croisés 0
+  h08 : 1,053,511 lignes ETH · carnet 4,391 ordres · échantillons croisés 0
+  h09 : 1,153,850 lignes ETH · carnet 4,524 ordres · échantillons croisés 0
+  h10 : 999,554 lignes ETH · carnet 4,768 ordres · échantillons croisés 0
+  h11 : 1,048,466 lignes ETH · carnet 4,790 ordres · échantillons croisés 0
+  h12 : 1,131,272 lignes ETH · carnet 4,667 ordres · échantillons croisés 0
+  h13 : 1,031,177 lignes ETH · carnet 4,891 ordres · échantillons croisés 0
+  h14 : 2,554,380 lignes ETH · carnet 5,115 ordres · échantillons croisés 0
+  h15 : 4,939,819 lignes ETH · carnet 4,818 ordres · échantillons croisés 0
+  h16 : 4,040,708 lignes ETH · carnet 6,225 ordres · échantillons croisés 0
+  h17 : 2,417,745 lignes ETH · carnet 6,271 ordres · échantillons croisés 0
+  h18 : 1,819,605 lignes ETH · carnet 8,215 ordres · échantillons croisés 91
+  h19 : 2,266,476 lignes ETH · carnet 8,273 ordres · échantillons croisés 202
+  h20 : 2,025,257 lignes ETH · carnet 8,380 ordres · échantillons croisés 302
+  h21 : 1,099,521 lignes ETH · carnet 8,511 ordres · échantillons croisés 357
+  h22 : 788,833 lignes ETH · carnet 8,571 ordres · échantillons croisés 396
+  h23 : 618,484 lignes ETH · carnet 8,672 ordres · échantillons croisés 427
+
+=== VERDICT 20251212 ETH : IRRÉCUPÉRABLE (critère pré-enregistré) : le chevauchement churne — flux incohérent, défaut amont
+    union oids = 137,865 · Jaccard moyen = 0.6973 · premier croisement : h18 (ligne 31,200,000)
+    écrit : journal\diag-croisement-20251212-ETH.json
+=== diag croisement 20251212 BTC ===
+  h00 : 2,545,070 lignes BTC · carnet 3,258 ordres · échantillons croisés 0
+  h01 : 2,724,438 lignes BTC · carnet 4,786 ordres · échantillons croisés 0
+  h02 : 2,450,124 lignes BTC · carnet 5,010 ordres · échantillons croisés 0
+  h03 : 2,005,998 lignes BTC · carnet 5,749 ordres · échantillons croisés 0
+  h04 : 1,538,278 lignes BTC · carnet 5,747 ordres · échantillons croisés 0
+  h05 : 1,629,749 lignes BTC · carnet 5,977 ordres · échantillons croisés 0
+  h06 : 1,733,033 lignes BTC · carnet 6,153 ordres · échantillons croisés 0
+  h07 : 1,585,847 lignes BTC · carnet 6,154 ordres · échantillons croisés 0
+  h08 : 1,770,151 lignes BTC · carnet 6,625 ordres · échantillons croisés 0
+  h09 : 1,725,840 lignes BTC · carnet 6,592 ordres · échantillons croisés 0
+  h10 : 1,635,107 lignes BTC · carnet 6,845 ordres · échantillons croisés 0
+  h11 : 1,498,891 lignes BTC · carnet 6,688 ordres · échantillons croisés 0
+  h12 : 1,606,894 lignes BTC · carnet 6,941 ordres · échantillons croisés 0
+  h13 : 1,667,647 lignes BTC · carnet 7,156 ordres · échantillons croisés 0
+  h14 : 3,426,367 lignes BTC · carnet 7,138 ordres · échantillons croisés 0
+  h15 : 5,227,965 lignes BTC · carnet 6,675 ordres · échantillons croisés 0
+  h16 : 5,118,634 lignes BTC · carnet 8,099 ordres · échantillons croisés 0
+  h17 : 3,070,675 lignes BTC · carnet 8,480 ordres · échantillons croisés 0
+  h18 : 2,569,571 lignes BTC · carnet 11,231 ordres · échantillons croisés 128
+  h19 : 3,122,896 lignes BTC · carnet 12,084 ordres · échantillons croisés 284
+  h20 : 2,862,490 lignes BTC · carnet 12,240 ordres · échantillons croisés 427
+  h21 : 1,748,992 lignes BTC · carnet 12,360 ordres · échantillons croisés 514
+  h22 : 1,402,482 lignes BTC · carnet 12,263 ordres · échantillons croisés 584
+  h23 : 1,398,078 lignes BTC · carnet 12,478 ordres · échantillons croisés 653
+
+=== VERDICT 20251212 BTC : IRRÉCUPÉRABLE (critère pré-enregistré) : le chevauchement churne — flux incohérent, défaut amont
+    union oids = 152,219 · Jaccard moyen = 0.7694 · premier croisement : h18 (ligne 42,980,000)
+    écrit : journal\diag-croisement-20251212-BTC.json
