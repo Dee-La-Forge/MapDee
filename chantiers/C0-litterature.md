@@ -310,26 +310,31 @@ intérêt, tant que leur ligne n'est pas écrite ici.
 | 7 | horloge volume | **MÉTHODE/ROBUSTESSE — hors compte** | axe d'É3, pas une grandeur |
 | 8 | DMD/Koopman | **SANS LIGNE — hors compte** | — (sonologie déjà payée) |
 | 9 | inventaire des teneurs · métaordres | **VÉRITÉ — hors compte** | fabrique la vérité |
-| 10 | flux rejeté (5 capteurs) | **LIGNE ÉCRITE** | l'agression insatisfaite et le stress de marge annoncent le mouvement et les cascades — poster du côté de la demande non servie, jamais sur le chemin des marges à bout |
+| 10 | flux rejeté (5 capteurs) | **VÉRITÉ — hors compte** (reclassé à É1, audit du 06/08 : « les bourses ne publient jamais ce flux » — donc Binance non plus ; c'est la meilleure trouvaille du chantier, ET une trouvaille de fabrique de vérité) | — |
 | 11 | divergence oracle/carnet | **LIGNE ÉCRITE** | l'écart oracle-carnet précède les liquidations mécaniques — ne pas poster sur leur chemin |
-| 12 | taille moyenne d'ordre au palier | **LIGNE ÉCRITE** | un mur de 3 ordres se retire d'un bloc, un mur de 300 fond — le risque de poster derrière n'est pas le même |
+| 12 | taille moyenne d'ordre au palier | **VÉRITÉ — hors compte** (reclassé à É1 : `FAITS` §9 porte déjà le verdict — « utilisable pour fabriquer la vérité, non affichable », `n` absent de la profondeur Binance. Réouverture possible par le test d'équivalence de `FAITS` §9.2 — une heure, zéro donnée de marché) | — |
 | 13 | wash/self-fills · cadences | **VÉRITÉ — hors compte** | fabrique la vérité |
 | 14 | intensité de messages (stuffing) | **SANS LIGNE — hors compte** | — |
 | 15 | CUSUM/SPRT | **MÉTHODE — hors compte** | outillage de détection, pas une grandeur |
 | 16 | copules de queue | **SANS LIGNE — hors compte** | — |
 | 17 | saisonnalité intrajournalière | **CONTRÔLE F — hors compte par nature** | — |
-| 18 | stop-hunting (via `triggered`) | **LIGNE ÉCRITE** | une poussée vers une grappe de stops connue annonce l'accélération — ne pas poster sur le chemin, traverser avant le déclenchement |
+| 18 | stop-hunting (via `triggered`) | **SOUS CONDITION — hors compte** (É1 : `triggered` est un code Hyperliquid, Binance ne publie pas ses déclenchements — « une approximation non démontrée compte comme ne traverse pas », C8 §3) | (ligne écrite, en attente de la démonstration Binance) |
 | 19 | consensus des 7 places | **LIGNE ÉCRITE** | une venue décrochée du consensus se recale — le sens du recalage est connu d'avance |
-| 20 | allumage de momentum | **LIGNE ÉCRITE** | une rafale sans grappes devant s'éteint, avec grappes elle s'emballe — suivre ou fondre selon la carte |
+| 20 | allumage de momentum | **SOUS CONDITION — hors compte** (même dépendance à `triggered` que la n° 18 — la « carte des grappes » n'existe pas côté Binance sans démonstration) | (ligne écrite, même condition) |
 | 21 | prix ronds | **LIGNE ÉCRITE** | les murs aux prix ronds attirent et tiennent autrement — le coût de poster derrière change avec le palier |
 | 22 | asymétrie du temps / Zumbach | **SANS LIGNE — hors compte** | — |
 | 23 | mémoire longue des signes | **LIGNE ÉCRITE** | une persistance de signes élevée signale un métaordre en cours — l'impact continue, traverser tôt coûte moins |
 | 24 | contexte (cadre G) | **CADRE — hors compte par nature** | conditionneurs, pas candidats |
 | 25 | part sombre locale | **LIGNE ÉCRITE** | là où la part sombre est haute, la taille traversable dépasse l'affiché — le carnet ment par défaut, en mieux |
 
-**Compte provisoire de la vague 2 : 12 familles à ligne écrite** (4, 5, 6,
-10, 11, 12, 18, 19, 20, 21, 23, 25). Gel au tarissement de C0, avant tout
-calcul de vague 2 — et É0 en fondra probablement.
+**Compte FERME de la vague 2 : 8 familles** (4, 5, 6, 11, 19, 21, 23, 25) —
+É1 passé sur la population le 06/08 (audit) : les n° 10 et 12 sont de la
+fabrique de vérité, les n° 18 et 20 attendent leur démonstration de
+traversée (« une approximation non démontrée compte comme ne traverse
+pas »). Douze au lieu de huit aurait resserré le seuil BH de chaque
+candidat d'un tiers, pour des familles qui ne traverseront jamais. Gel au
+tarissement de C0, avant tout calcul de vague 2 — et É0 en fondra
+peut-être encore.
 
 Entrée au banc uniquement par fiche complète (ligne « à l'exécution »
 obligatoire), et tout ajout **rouvre le compte D10 et le dit**. La TDA reste
