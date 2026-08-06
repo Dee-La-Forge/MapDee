@@ -129,6 +129,7 @@ def charge(chemin_deep: Path, dist_max: float = 0.005) -> SeriesJour:
     if m_nom:
         s.jour, s.coin = m_nom.group(1), m_nom.group(2)
     M_mur = B7[s.coin]["M"] if s.coin else None
+    bande_b7 = B7[s.coin]["bande"] if s.coin else None
     s.t = photos
     s.mid = np.empty(n)
     s.bs = np.empty(n)
@@ -176,17 +177,24 @@ def charge(chemin_deep: Path, dist_max: float = 0.005) -> SeriesJour:
 
         # --- LE MUR LE PLUS PROCHE, par côté (B7, `03` bloc du 06/08) -------
         # ratio = mag / médiane(voisinage ±0,05 % du mid), mur si ≥ M.
-        # Balayage DEPUIS le mid vers l'extérieur, arrêt au premier mur —
-        # c'est ce qui rend le coût vivable (« il faut d'abord situer le
-        # mur — le vrai coût est là », fiche A2). Causal : cette photo seule.
+        # Balayage DEPUIS le mid vers l'extérieur, arrêt au premier mur, et
+        # BORNÉ À LA BANDE D'ÉTUDE de B7 (S4″ : 99,9 % du flux exécuté vit
+        # dans ±0,0925 %/±0,1451 % — au-delà, pas de contact mesurable, et
+        # les murs d'A2 sont « ceux qui encadrent le prix »). Sans la borne,
+        # un côté sans mur descendait toute la bande d'analyse : ~700
+        # médianes/photo, 31 min par jour-symbole — mesuré le 06/08, tir
+        # arrêté. Causal : cette photo seule.
         if M_mur is not None:
             ordre_k = np.argsort(kk)
             kks, mms = kk[ordre_k], mm[ordre_k]
             demi_k = max(1, round(DEMI_VOISINAGE_REL * mid / bs))
+            portee = bande_b7 * mid / bs          # en paliers
             i0 = int(np.searchsorted(kks, k0))
             for cote, indices in ((0, range(i0 - 1, -1, -1)),
                                   (1, range(i0 + (1 if i0 < len(kks) and kks[i0] == k0 else 0), len(kks)))):
                 for j in indices:
+                    if abs(int(kks[j]) - k0) > portee:
+                        break         # hors bande d'étude : pas de contact
                     a = int(np.searchsorted(kks, kks[j] - demi_k, side="left"))
                     b = int(np.searchsorted(kks, kks[j] + demi_k, side="right"))
                     med = float(np.median(mms[a:b])) if b > a else np.nan
