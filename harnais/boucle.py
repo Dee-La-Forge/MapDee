@@ -268,11 +268,6 @@ def tour(series: dict | None = None, bloc: dict | None = None,
             for nom in en_e4:
                 rapport[nom] = ("É4", f"REFUS : {e}")
             return rapport
-        # le bloc retenu tel que le REGISTRE le compte — passé à e4, qui
-        # refuse si on prétend juger sans lui (dégénérescence réservée au
-        # bloc vide, ADR-001)
-        n_bloc = sum(1 for n in FICHES
-                     if etat_courant(n, chemin) == "retenue")
         # PAR VAGUE (`05` protection 1 + registre : « vague 1 gelée à 16,
         # son BH se calcule sur 16 ») : chaque vague déclarée a SA barrière
         # et SON BH. Sans le champ `vague`, le jour où la vague 2 serait
@@ -299,6 +294,13 @@ def tour(series: dict | None = None, bloc: dict | None = None,
                         f"avant ; un BH partiel serait une famille non "
                         f"déclarée. En chemin : {detail}"))
                 continue
+            # le bloc retenu tel que le REGISTRE le compte À CET INSTANT —
+            # recalculé PAR vague, après les écritures de la précédente :
+            # figé avant la boucle, une vague 2 jugée dans le même tour
+            # aurait reçu le compte d'AVANT la vague 1, et la garde
+            # n_bloc_retenu>0 ne l'aurait pas vu (attrapé le 06/08)
+            n_bloc = sum(1 for n in FICHES
+                         if etat_courant(n, chemin) == "retenue")
             try:
                 resultats = {nom: e4([], [], None, n_bloc_retenu=n_bloc)
                              for nom in vag_e4}

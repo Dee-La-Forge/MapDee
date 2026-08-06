@@ -191,6 +191,40 @@ def test_les_vagues_sont_jugees_separement(reg_vierge, monkeypatch):
     assert rapport["Z1 · fiche de vague 2 (test)"][0] == "déposée"
 
 
+def test_n_bloc_se_recalcule_entre_les_vagues(reg_vierge, monkeypatch):
+    """Figé avant la boucle des vagues, n_bloc aurait donné à la vague 2 le
+    compte d'AVANT la vague 1 — et la garde n_bloc_retenu>0 n'aurait rien
+    vu : Spearman simple avec un bloc de deux grandeurs, en silence. On
+    capture ce que e4 reçoit : 0 pour la vague 1, 1 pour la vague 2 (jugée
+    après qu'une retenue de vague 1 est écrite)."""
+    from harnais import boucle as B
+    from harnais.epreuves import Verdict
+    z1 = "Z1 · fiche de vague 2 (test)"
+    monkeypatch.setattr(B, "FICHES", {
+        **FICHES, z1: dict(perimetre="J3", vague=2, cout_rang=99,
+                           e1=dict(sans_l4=True, traverse_binance=True,
+                                   navigateur=True))})
+    monkeypatch.setattr(B, "e3", lambda *a, **k: Verdict(
+        "É3", True, 0.99, "É4", "stub de test : rejeu fictif"))
+    recus, appels = [], iter(range(100))
+    def e4_stub(*a, **k):
+        recus.append(k.get("n_bloc_retenu"))
+        i = next(appels)
+        return {"n_jours": 3, "moyenne": 0.5 if i == 0 else 0.01,
+                "p_value": 0.001 if i == 0 else 0.9, "ic95": (0.1, 0.9)}
+    monkeypatch.setattr(B, "e4", e4_stub)
+    rng = np.random.default_rng(51)
+    series = {n: rng.normal(size=3000) for n in FICHES}
+    series[z1] = rng.normal(size=3000)
+    rapport = B.tour(series=series, bloc={TEMOIN: rng.normal(size=3000)},
+                     chemin=reg_vierge)
+    assert any(e == "retenue" for e, _ in rapport.values())
+    assert rapport[z1][0] == "éliminée" and "BH" in rapport[z1][1]
+    # la vague 1 a été jugée à bloc 0 ; la vague 2 au compte D'APRÈS
+    assert recus[:-1] == [0] * (len(recus) - 1)
+    assert recus[-1] == 1
+
+
 def test_e3_sans_chiffre_est_refuse_jamais_enregistre(reg_vierge, monkeypatch):
     """Un É3 qui rendrait un verdict sans nombre est REFUSÉ — pas écrit au
     registre avec une opinion en colonne chiffre."""

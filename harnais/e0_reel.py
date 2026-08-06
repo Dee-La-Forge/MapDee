@@ -85,7 +85,8 @@ def candidats_prets(etat: dict) -> list[str]:
     return prets
 
 
-def series_du_perimetre(noms: list[str], t0: float) -> dict[str, np.ndarray]:
+def series_du_perimetre(noms: list[str], t0: float,
+                        retenus: list[str] = ()) -> dict[str, np.ndarray]:
     """Extrait et concatène, par candidat, sur SON périmètre. Une passe
     `charge()` par jour-symbole, partagée entre tous les candidats du même
     périmètre."""
@@ -93,10 +94,16 @@ def series_du_perimetre(noms: list[str], t0: float) -> dict[str, np.ndarray]:
     for nom in noms:
         par_perimetre.setdefault(FICHES[nom]["perimetre"], []).append(nom)
     # le témoin s'extrait sur CHAQUE périmètre présent (dette T0-J8 fermée
-    # le 06/08) : une clé par périmètre, consommée en bloc_par_perimetre
+    # le 06/08) : une clé par périmètre, consommée en bloc_par_perimetre.
+    # Les candidats RETENUS au registre s'extraient de même : `05` —
+    # « retenue » = « entre dans le bloc de référence d'É2 pour les
+    # suivantes » — c'est ici que la grandeur retenue existe sur le
+    # périmètre de celles qu'elle contrôlera (5e arête, 06/08).
     temoins = {per: f"_T0_{per}" for per in par_perimetre}
+    cles_bloc = {(per, nom): f"_BLOC_{per}::{nom}"
+                 for per in par_perimetre for nom in retenus}
     series: dict[str, list[np.ndarray]] = {
-        n: [] for n in noms + list(temoins.values())}
+        n: [] for n in noms + list(temoins.values()) + list(cles_bloc.values())}
     diag: dict[str, list] = {"part_k0": [], "absdmid": {p: [] for p in par_perimetre}}
     for per, membres in par_perimetre.items():
         for j in JOURS[per]:
@@ -110,6 +117,8 @@ def series_du_perimetre(noms: list[str], t0: float) -> dict[str, np.ndarray]:
                 for nom in membres:
                     series[nom].append(EXTRACTEURS[nom](s))
                 series[temoins[per]].append(EXTRACTEURS[TEMOIN](s))
+                for nom in retenus:
+                    series[cles_bloc[(per, nom)]].append(EXTRACTEURS[nom](s))
                 # diagnostics de l'audit du 05-06/08, publiés avant tout É0 :
                 # la part de masse au palier du mid (exclue des stocks/flux),
                 # et |Δmid| pour la corrélation mécanique de chaque série
@@ -119,6 +128,32 @@ def series_du_perimetre(noms: list[str], t0: float) -> dict[str, np.ndarray]:
                 dm = np.abs(np.diff(s.mid, prepend=np.nan))
                 diag["absdmid"][per].append(dm)
     return ({n: np.concatenate(v) for n, v in series.items() if v}, diag)
+
+
+def perimetre_d_une_cle(n: str) -> str:
+    """Le périmètre déclaré d'une clé de série — candidat, témoin (_T0_)
+    ou grandeur retenue au bloc (_BLOC_<per>::<nom>)."""
+    if n in FICHES:
+        return FICHES[n]["perimetre"]
+    if n.startswith("_BLOC_"):
+        return n[len("_BLOC_"):].split("::", 1)[0]
+    return n.split("_T0_")[-1]
+
+
+def construit_blocs(series: dict[str, np.ndarray]
+                    ) -> dict[str, dict[str, np.ndarray]]:
+    """Le bloc de référence PAR périmètre : le témoin T0 + chaque candidat
+    `retenue` extrait sur ce périmètre. C'est ICI que la phrase de `05`
+    (« entre dans le bloc de référence d'É2 pour les suivantes ») se
+    réalise — avant le 06/08, personne ne l'y mettait et le bloc serait
+    resté le témoin seul, indéfiniment. Consomme les clés de `series`."""
+    blocs: dict[str, dict[str, np.ndarray]] = {}
+    for cle in [k for k in series if k.startswith("_T0_")]:
+        blocs.setdefault(cle.split("_T0_")[-1], {})[TEMOIN] = series.pop(cle)
+    for cle in [k for k in series if k.startswith("_BLOC_")]:
+        per, nom = cle[len("_BLOC_"):].split("::", 1)
+        blocs.setdefault(per, {})[nom] = series.pop(cle)
+    return blocs
 
 
 def aligne(series: dict[str, np.ndarray],
@@ -171,10 +206,19 @@ def main() -> None:
                    chemins_manifestes=chemins)
     print(f"[{time.time()-t0:6.0f}s] préflight : {pf}")
 
-    brut, diag = series_du_perimetre(prets, t0)
-    perimetre_de = {n: (FICHES[n]["perimetre"] if n in FICHES
-                        else n.split("_T0_")[-1])
-                    for n in brut}
+    # les retenus du registre entrent au bloc — un retenu sans extracteur
+    # rendrait le bloc incomplet : refus, pas un bloc silencieusement ampute
+    retenus = [n for n in FICHES if boucle.etat_courant(n) == "retenue"]
+    sans_ext = [n for n in retenus if n not in EXTRACTEURS]
+    if sans_ext:
+        raise SystemExit(f"candidat(s) retenu(s) sans extracteur : {sans_ext}"
+                         f" — le bloc d'É2 serait incomplet, refus")
+    if retenus:
+        print(f"  bloc retenu ({len(retenus)}) : {', '.join(retenus)} — "
+              f"extraits sur chaque périmètre, entrent au bloc d'É2")
+
+    brut, diag = series_du_perimetre(prets, t0, retenus)
+    perimetre_de = {n: perimetre_d_une_cle(n) for n in brut}
     # |Δmid| entre dans l'alignement de son périmètre (même index commun),
     # puis en sort : c'est un diagnostic, jamais un candidat
     for per, morceaux in diag["absdmid"].items():
@@ -230,10 +274,7 @@ def main() -> None:
     n_obs = {n: int(np.isfinite(x).sum()) for n, x in series.items()}
     print(f"[{time.time()-t0:6.0f}s] séries alignées : "
           f"{min(n_obs.values()):,} à {max(n_obs.values()):,} observations")
-    bloc_par_perimetre = {per: {TEMOIN: series.pop(cle)}
-                          for per, cle in
-                          {n.split("_T0_")[-1]: n for n in list(series)
-                           if n.startswith("_T0_")}.items()}
+    bloc_par_perimetre = construit_blocs(series)
 
     # LIMITE CONNUE, écrite d'avance : le témoin T0 est extrait sur J3 — les
     # candidats J8 (D1) auront besoin d'un T0 sur J8 pour LEUR É2 ; la garde
