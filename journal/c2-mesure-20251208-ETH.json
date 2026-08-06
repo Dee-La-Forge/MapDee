@@ -1,0 +1,22 @@
+{
+ "jour": "20251208",
+ "coin": "ETH",
+ "photos": 122561,
+ "manifeste_sha12": "7ac6ebcd7271",
+ "S1_M": 175.24145518019677,
+ "S1_quantile": 0.99,
+ "S2_P_photos": 4.0,
+ "S2_episodes": 34010,
+ "S3": "PARTIEL — variante topologique et coïncidence exigent la jointure photo-à-photo deep×exécutions : 2e passe, protocole inchangé, après ETH",
+ "S4_bande": 0.9970538337455213,
+ "S4_n_executions": 288350,
+ "S4_approximation_declaree": "mid horaire = médiane des prix exécutés de l'heure",
+ "S5_paires_intra_unite": {
+  "fenetre_1": 0.0,
+  "fenetre_4": 4.9e-05,
+  "fenetre_16": 0.000245,
+  "fenetre_64": 0.001028
+ },
+ "S6": "lu du journal de construction : ~80 min le jour de banc BTC, phase all — voir 06 §8",
+ "duree_s": 1346.4
+}

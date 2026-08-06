@@ -1,0 +1,5 @@
+[    0s] manifeste certifié (7ac6ebcd7271…), commit 2c8700e, sale=True
+[ 1072s] S1 : M = 175.24 (quantile 0.99 du ratio masse/voisinage, préfixe 25000) — S2 : P = 4.0 photos (médiane, 34,010 épisodes)
+[ 1072s] S5 : {'fenetre_1': 0.0, 'fenetre_4': 4.9e-05, 'fenetre_16': 0.000245, 'fenetre_64': 0.001028}
+[ 1346s] S4 : bande d'étude = 99.70538% (99.9% de 288,350 exécutions)
+[ 1346s] terminé — C:\Users\DyBoo\Desktop\-MapDee-\journal\c2-mesure-20251208-ETH.json
