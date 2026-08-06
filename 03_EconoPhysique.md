@@ -41,7 +41,9 @@ suivantes sont le pré-tri, fait sur papier, avant toute dépense.
 * **J3** — les trois premiers jours d'exploration de la tranche 1 : **9, 10,
   11 décembre 2025**, BTC et ETH. Le défaut.
 * **J8** — les huit jours d'exploration de la tranche 1 : **9 à 16 décembre
-  2025**, BTC et ETH. Réservé aux grandeurs d'événements rares ou de régime,
+  2025**, BTC et ETH — **moins `20251213 ETH`, trou d'archive documenté le
+  06/08/2026** (journée ETH croisée de bout en bout, 0 photo valide —
+  `journal/2026-08-06_eth-20251213-irreconstructible.md`) : 15 jour-symboles. Réservé aux grandeurs d'événements rares ou de régime,
   qui n'auraient aucun contenu sur trois jours — le choix se justifie dans la
   fiche, d'avance.
 

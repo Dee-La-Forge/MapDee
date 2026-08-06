@@ -48,6 +48,11 @@ PARTS = DEPOT / "data" / "openbook" / "deep" / "parts"
 JOURS = {"J3": [f"202512{d:02d}" for d in range(9, 12)],
          "J8": [f"202512{d:02d}" for d in range(9, 17)]}
 COINS = ("BTC", "ETH")
+#: Trous d'archive DOCUMENTÉS (journal/2026-08-06_eth-20251213-*.md) :
+#: la journée ETH du 13 est croisée de bout en bout (15,2 M carnets croisés,
+#: 0 photo valide) — J8 est amendé, ce n'est pas un périmètre ajusté après
+#: résultat, c'est une impossibilité matérielle constatée avant tout calcul.
+TROUS_ARCHIVE = {("20251213", "ETH")}
 DIST_MAX = 0.005
 
 
@@ -59,6 +64,8 @@ def inventaire() -> dict:
         presents, manquants = [], []
         for j in jours:
             for c in COINS:
+                if (j, c) in TROUS_ARCHIVE:
+                    continue          # trou documenté : ni présent ni manquant
                 p = PARTS / f"deep_{j}_{c}.parquet"
                 m = PARTS / f"deep_{j}_{c}.parquet.manifest.json"
                 (presents if p.exists() and m.exists() else manquants).append(f"{j} {c}")
@@ -94,6 +101,8 @@ def series_du_perimetre(noms: list[str], t0: float) -> dict[str, np.ndarray]:
     for per, membres in par_perimetre.items():
         for j in JOURS[per]:
             for c in COINS:
+                if (j, c) in TROUS_ARCHIVE:
+                    continue
                 chemin = PARTS / f"deep_{j}_{c}.parquet"
                 print(f"[{time.time()-t0:6.0f}s]   extraction {j} {c} "
                       f"({chemin.stat().st_size/1e9:.2f} Go)…", flush=True)
