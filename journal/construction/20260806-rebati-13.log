@@ -1,0 +1,112 @@
+=== BTC 20251213 ===
+  extraction : 24 fichiers de statuts, 24 de diffs en 553s
+  statuts 00h : 1,348,149 (cumul 1,348,149) [table deja ecrite]
+  statuts 01h : 1,160,105 (cumul 2,508,254) [table deja ecrite]
+  statuts 02h : 1,145,451 (cumul 3,653,705) [table deja ecrite]
+  statuts 03h : 1,157,970 (cumul 4,811,675) [table deja ecrite]
+  statuts 04h : 1,097,450 (cumul 5,909,125) [table deja ecrite]
+  statuts 05h : 1,047,132 (cumul 6,956,257) [table deja ecrite]
+  statuts 06h : 1,021,953 (cumul 7,978,210) [table deja ecrite]
+  statuts 07h : 1,053,700 (cumul 9,031,910) [table deja ecrite]
+  statuts 08h : 1,769,020 (cumul 10,800,930) [table deja ecrite]
+  statuts 09h : 1,310,018 (cumul 12,110,948) [table deja ecrite]
+  statuts 10h : 1,295,392 (cumul 13,406,340) [table deja ecrite]
+  statuts 11h : 1,290,930 (cumul 14,697,270) [table deja ecrite]
+  statuts 12h : 1,370,406 (cumul 16,067,676) [table deja ecrite]
+  statuts 13h : 1,462,030 (cumul 17,529,706) [table deja ecrite]
+  statuts 14h : 1,944,243 (cumul 19,473,949) [table deja ecrite]
+  statuts 15h : 1,530,448 (cumul 21,004,397) [table deja ecrite]
+  statuts 16h : 1,456,330 (cumul 22,460,727) [table deja ecrite]
+  statuts 17h : 1,303,465 (cumul 23,764,192) [table deja ecrite]
+  statuts 18h : 1,161,735 (cumul 24,925,927) [table deja ecrite]
+  statuts 19h : 1,095,457 (cumul 26,021,384) [table deja ecrite]
+  statuts 20h : 1,099,776 (cumul 27,121,160) [table deja ecrite]
+  statuts 21h : 1,736,989 (cumul 28,858,149) [table deja ecrite]
+  statuts 22h : 1,509,653 (cumul 30,367,802) [table deja ecrite]
+  statuts 23h : 1,342,354 (cumul 31,710,156) [table deja ecrite]
+  -> hl_orders : 31,710,156 lignes en 644.4s
+  diffs 13/00h (chauffe) : 1,210,789 · ordres 1,999 · prix 467/361 · photos 0
+  diffs 13/01h (chauffe) : 1,061,729 · ordres 2,367 · prix 617/396 · photos 0
+  diffs 13/02h (chauffe) : 1,043,692 · ordres 2,947 · prix 847/587 · photos 0
+  diffs 13/03h (chauffe) : 1,071,140 · ordres 3,098 · prix 968/594 · photos 0
+  diffs 13/04h (chauffe) : 1,017,813 · ordres 3,239 · prix 1045/582 · photos 0
+  diffs 13/05h (chauffe) : 987,953 · ordres 3,425 · prix 1084/688 · photos 0
+  diffs 13/06h (chauffe) : 959,646 · ordres 3,464 · prix 1084/699 · photos 0
+  diffs 13/07h (chauffe) : 998,192 · ordres 3,598 · prix 1101/735 · photos 0
+  diffs 13/08h : 1,464,420 · ordres 3,591 · prix 1186/790 · photos 4,004
+  diffs 13/09h : 1,165,534 · ordres 3,873 · prix 1261/832 · photos 7,836
+  diffs 13/10h : 1,160,171 · ordres 4,221 · prix 1218/1080 · photos 11,594
+  diffs 13/11h : 1,162,308 · ordres 4,428 · prix 1213/1216 · photos 15,304
+  diffs 13/12h : 1,221,428 · ordres 4,478 · prix 1227/1304 · photos 19,085
+  diffs 13/13h : 1,277,882 · ordres 4,742 · prix 1216/1354 · photos 22,906
+  diffs 13/14h : 1,576,619 · ordres 4,867 · prix 1218/1476 · photos 27,007
+  diffs 13/15h : 1,328,349 · ordres 4,954 · prix 1271/1432 · photos 30,912
+  diffs 13/16h : 1,276,614 · ordres 5,228 · prix 1358/1472 · photos 34,798
+  diffs 13/17h : 1,177,895 · ordres 5,327 · prix 1461/1500 · photos 38,580
+  diffs 13/18h : 1,063,072 · ordres 5,378 · prix 1475/1482 · photos 42,266
+  diffs 13/19h : 1,021,024 · ordres 5,532 · prix 1508/1511 · photos 45,913
+  diffs 13/20h : 1,012,421 · ordres 5,508 · prix 1490/1552 · photos 49,547
+  diffs 13/21h : 1,455,357 · ordres 5,665 · prix 1644/1521 · photos 53,559
+  diffs 13/22h : 1,305,508 · ordres 5,992 · prix 1717/1680 · photos 57,510
+  diffs 13/23h : 1,218,923 · ordres 5,985 · prix 1739/1617 · photos 61,387
+  -> hl_book : 1,227,740 lignes · 61,387 photos en 560.3s
+  -> deep : 119,558,766 lignes · 61,387 photos · 179.1 Mo (1948 paliers/photo)
+  -> manifestes : 2 ecrits
+
+jour=20251213 · coin=BTC · heures=24 · n_temps_approx=116378 · orders=31710156 · t_statuts_s=644.4 · chauffe=SANS VEILLE (force, GON_SANS_VEILLE=1, ADR-008) — 8 h du jour en chauffe · book_croise=0 · book_hors_heure=6 · book_rows=1227740 · book_snaps=61387 · t_book_s=560.3 · deep_rows=119558766 · deep_snaps=61387 · deep_mo=179.1 · manifestes=2
+=== ETH 20251213 ===
+  extraction : 24 fichiers de statuts, 24 de diffs en 0s
+  statuts 00h : 644,138 (cumul 644,138) [table deja ecrite]
+  statuts 01h : 546,235 (cumul 1,190,373) [table deja ecrite]
+  statuts 02h : 575,636 (cumul 1,766,009) [table deja ecrite]
+  statuts 03h : 512,366 (cumul 2,278,375) [table deja ecrite]
+  statuts 04h : 441,918 (cumul 2,720,293) [table deja ecrite]
+  statuts 05h : 390,101 (cumul 3,110,394) [table deja ecrite]
+  statuts 06h : 402,065 (cumul 3,512,459) [table deja ecrite]
+  statuts 07h : 359,169 (cumul 3,871,628) [table deja ecrite]
+  statuts 08h : 1,401,050 (cumul 5,272,678) [table deja ecrite]
+  statuts 09h : 821,637 (cumul 6,094,315) [table deja ecrite]
+  statuts 10h : 809,857 (cumul 6,904,172) [table deja ecrite]
+  statuts 11h : 649,571 (cumul 7,553,743) [table deja ecrite]
+  statuts 12h : 705,346 (cumul 8,259,089) [table deja ecrite]
+  statuts 13h : 913,543 (cumul 9,172,632) [table deja ecrite]
+  statuts 14h : 1,165,519 (cumul 10,338,151) [table deja ecrite]
+  statuts 15h : 1,049,691 (cumul 11,387,842) [table deja ecrite]
+  statuts 16h : 937,852 (cumul 12,325,694) [table deja ecrite]
+  statuts 17h : 636,652 (cumul 12,962,346) [table deja ecrite]
+  statuts 18h : 565,990 (cumul 13,528,336) [table deja ecrite]
+  statuts 19h : 456,646 (cumul 13,984,982) [table deja ecrite]
+  statuts 20h : 413,371 (cumul 14,398,353) [table deja ecrite]
+  statuts 21h : 1,055,016 (cumul 15,453,369) [table deja ecrite]
+  statuts 22h : 805,715 (cumul 16,259,084) [table deja ecrite]
+  statuts 23h : 705,630 (cumul 16,964,714) [table deja ecrite]
+  -> hl_orders : 16,964,714 lignes en 50.5s
+  diffs 13/00h (chauffe) : 587,869 · ordres 1,738 · prix 409/204 · photos 0
+  diffs 13/01h (chauffe) : 501,268 · ordres 2,024 · prix 576/244 · photos 0
+  diffs 13/02h (chauffe) : 534,498 · ordres 2,377 · prix 680/327 · photos 0
+  diffs 13/03h (chauffe) : 471,336 · ordres 2,497 · prix 736/332 · photos 0
+  diffs 13/04h (chauffe) : 409,100 · ordres 2,569 · prix 772/316 · photos 0
+  diffs 13/05h (chauffe) : 363,610 · ordres 2,745 · prix 810/322 · photos 0
+  diffs 13/06h (chauffe) : 369,645 · ordres 2,833 · prix 920/327 · photos 0
+  diffs 13/07h (chauffe) : 334,434 · ordres 2,896 · prix 908/332 · photos 0
+  diffs 13/08h : 1,190,720 · ordres 3,108 · prix 970/521 · photos 4,481
+  diffs 13/09h : 743,599 · ordres 3,289 · prix 1001/532 · photos 8,586
+  diffs 13/10h : 728,922 · ordres 3,327 · prix 1084/539 · photos 12,669
+  diffs 13/11h : 595,718 · ordres 3,318 · prix 1012/578 · photos 16,572
+  diffs 13/12h : 643,632 · ordres 3,285 · prix 988/651 · photos 20,526
+  diffs 13/13h : 815,617 · ordres 3,397 · prix 1010/743 · photos 24,603
+  diffs 13/14h : 1,015,480 · ordres 3,396 · prix 982/784 · photos 28,876
+  diffs 13/15h : 944,111 · ordres 3,668 · prix 945/806 · photos 33,161
+  diffs 13/16h : 841,494 · ordres 3,463 · prix 927/833 · photos 37,345
+  diffs 13/17h : 581,460 · ordres 3,766 · prix 1005/860 · photos 41,195
+  diffs 13/18h : 517,490 · ordres 3,807 · prix 1035/860 · photos 45,031
+  diffs 13/19h : 429,071 · ordres 3,956 · prix 1076/882 · photos 48,766
+  diffs 13/20h : 384,899 · ordres 3,887 · prix 1057/848 · photos 52,434
+  diffs 13/21h : 897,408 · ordres 4,025 · prix 1197/843 · photos 56,601
+  diffs 13/22h : 728,902 · ordres 3,944 · prix 1214/828 · photos 60,736
+  diffs 13/23h : 646,884 · ordres 3,920 · prix 1109/874 · photos 64,789
+  -> hl_book : 1,295,780 lignes · 64,789 photos en 351.0s
+  -> deep : 91,240,163 lignes · 64,789 photos · 140.3 Mo (1408 paliers/photo)
+  -> manifestes : 2 ecrits
+
+jour=20251213 · coin=ETH · heures=24 · n_temps_approx=85741 · orders=16964714 · t_statuts_s=50.5 · chauffe=SANS VEILLE (force, GON_SANS_VEILLE=1, ADR-008) — 8 h du jour en chauffe · book_croise=0 · book_hors_heure=8 · book_rows=1295780 · book_snaps=64789 · t_book_s=351.0 · deep_rows=91240163 · deep_snaps=64789 · deep_mo=140.3 · manifestes=2

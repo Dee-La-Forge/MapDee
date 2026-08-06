@@ -49,14 +49,14 @@ PARTS = DEPOT / "data" / "openbook" / "deep" / "parts"
 JOURS = {"J3": [f"202512{d:02d}" for d in range(9, 12)],
          "J8": [f"202512{d:02d}" for d in range(9, 17)]}
 COINS = ("BTC", "ETH")
-#: Trous d'archive DOCUMENTÉS (journal/2026-08-06_eth-20251213-*.md et
-#: journal/2026-08-06_couverture-j8-*.md) : la journée du 13 est croisée
-#: des DEUX côtés — ETH 0 photo (refusée par l'instrument), BTC 172 photos
-#: (≈0,14 %, passée par la garde binaire : un trou de facto). J8 est
-#: amendé à 14 jour-symboles — impossibilité matérielle constatée avant
-#: tout calcul, jamais un périmètre ajusté après résultat. Les jours
-#: DÉGRADÉS (12 et 15, ≈44-75 %) restent : dégradation documentée ≠ trou.
-TROUS_ARCHIVE = {("20251213", "ETH"), ("20251213", "BTC")}
+#: Exclusions du périmètre J8, chacune avec sa raison DATÉE :
+#: * 20251213 BTC — rebâti sain (croise=0) mais HORS BANDE ADR-008 :
+#:   58,9 % du 14 < plancher 60 % déclaré avant le résultat. Refusé par
+#:   sa propre règle ; ré-arbitrage éventuel = décision de Meddy, par ADR.
+#: (20251213 ETH est REVENU le 06/08 : rebâti sans veille, croise=0,
+#: 62,2 % — dans la bande, jour dégradé documenté, ADR-008.)
+#: J8 = 15 jour-symboles, dont 5 dégradés (12×2, 13 ETH, 15×2).
+TROUS_ARCHIVE = {("20251213", "BTC")}
 DIST_MAX = 0.005
 
 
@@ -298,9 +298,9 @@ def main() -> None:
     dmid = {per: series.pop(f"_absdmid_{per}")
             for per in diag["absdmid"] if f"_absdmid_{per}" in series}
 
-    if any(j in ("20251212", "20251215") for j in jours_utiles):
+    if any(j in ("20251212", "20251213", "20251215") for j in jours_utiles):
         print("  AVERTISSEMENT (ADR-007) : le périmètre contient des jours "
-              "DÉGRADÉS (12 et/ou 15, ≈44-75 % de couverture) — tout verdict "
+              "DÉGRADÉS (12/13/15, ≈44-75 % de couverture) — tout verdict "
               "J8 de ce tir est PROVISOIRE tant qu'ADR-007 n'est pas "
               "tranchée : si le plancher accepté les exclut, les candidats "
               "jugés repassent (`05` §7).")

@@ -59,3 +59,14 @@ Ce qui est affaibli : pour BTC, un lecteur pouvait extrapoler ~88 % du
 rythme du 14 depuis h08-h12 — la bande reste opposable, sa
 « pré-déclaration » l'est moins. La leçon est déjà en mémoire
 permanente ; elle vient de servir contre son propre auteur.
+
+**Résultat du 06/08 — la bande a tranché, contre son auteur pour moitié.**
+ETH : croise=0, 64 789 photos = **62,2 %** du 14 → DANS LA BANDE, accepté,
+entre dans J8 en jour dégradé. BTC : croise=0, carnet sain, 61 387 photos
+= **58,9 %** du 14 → **HORS BANDE, REFUSÉ** — à 1,1 point du plancher,
+et la règle déclarée ne se renégocie pas après le résultat. Le fichier
+rebâti reste sur disque (sain, manifesté « SANS VEILLE ») mais HORS J8.
+**L'ADR rouvre pour BTC seul** : l'accepter définitivement hors J8, ou
+ré-arbitrer la bande — ce qui serait une renégociation assumée, par ADR
+nouvelle, jamais silencieuse — appartient à Meddy. J8 ré-déclaré :
+**15 jour-symboles, dont 5 dégradés**. D1 repasse (05 §7).
