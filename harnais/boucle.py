@@ -57,7 +57,8 @@ def depose_manquants(chemin: Path = registre.CHEMIN) -> list[str]:
 
 def _avance_un(nom: str, series: dict[str, "np.ndarray"] | None,
                bloc: dict[str, "np.ndarray"] | None,
-               chemin: Path, signataire: str = "la boucle") -> tuple[str, str]:
+               chemin: Path, signataire: str = "la boucle",
+               bloc_par_perimetre: dict[str, dict] | None = None) -> tuple[str, str]:
     """Avance UN candidat tant que l'épreuve suivante est exécutable.
     Rend (état final, raison d'arrêt)."""
     f = FICHES[nom]
@@ -122,6 +123,10 @@ def _avance_un(nom: str, series: dict[str, "np.ndarray"] | None,
             if not v.passe:
                 return v.etat_suivant, v.detail
         elif epreuve == "É2":
+            # le témoin doit vivre sur LE périmètre du candidat (dette T0-J8,
+            # fermée le 06/08) : bloc par périmètre s'il est fourni
+            if bloc_par_perimetre is not None:
+                bloc = bloc_par_perimetre.get(f["perimetre"])
             if not series or nom not in series or not bloc:
                 return etat, ("É2 en attente : données du périmètre et bloc "
                               "de référence (témoin T0 compris)")
@@ -141,7 +146,9 @@ def _avance_un(nom: str, series: dict[str, "np.ndarray"] | None,
 
 def tour(series: dict | None = None, bloc: dict | None = None,
          chemin: Path = registre.CHEMIN,
-         hash_protocole: str | None = None) -> dict[str, tuple[str, str]]:
+         hash_protocole: str | None = None,
+         bloc_par_perimetre: dict[str, dict] | None = None
+         ) -> dict[str, tuple[str, str]]:
     """Un tour de banc : dépose les manquants puis avance chaque candidat
     aussi loin que les préalables le permettent. Rend {nom: (état, raison)}."""
     # le hash du protocole signe CHAQUE ligne du run (audit F5 — il etait
@@ -157,8 +164,8 @@ def tour(series: dict | None = None, bloc: dict | None = None,
                 pollues[n] = ("REFUS : série polluée (NaN/inf) — corriger "
                               "l'extraction ou l'alignement en amont")
                 series = {k: v for k, v in series.items() if k != n}
-    if bloc:
-        for n, x in bloc.items():
+    for b in ([bloc] if bloc else []) + list((bloc_par_perimetre or {}).values()):
+        for n, x in b.items():
             if not np.isfinite(x).all():
                 raise RefusEpreuve(f"bloc de référence pollué (NaN/inf) : {n}")
     depose_manquants(chemin)
@@ -168,7 +175,8 @@ def tour(series: dict | None = None, bloc: dict | None = None,
             rapport[nom] = (etat_courant(nom, chemin) or "?", pollues[nom])
             continue
         try:
-            rapport[nom] = _avance_un(nom, series, bloc, chemin, signataire)
+            rapport[nom] = _avance_un(nom, series, bloc, chemin, signataire,
+                                      bloc_par_perimetre)
         except RefusEpreuve as e:
             rapport[nom] = (etat_courant(nom, chemin) or "?", f"REFUS : {e}")
     return rapport

@@ -17,6 +17,25 @@ def reg(tmp_path):
     return c
 
 
+@pytest.fixture
+def reg_vierge(tmp_path):
+    """Un registre neuf : le VRAI registre porte désormais le premier tour
+    réel (les candidats y sont à É3) — les tests de machine complète partent
+    d'un état vierge, pas d'une copie du réel qui évolue."""
+    c = tmp_path / "registre_vierge.md"
+    lignes = [
+        "# Registre (test)",
+        "",
+        "| date | nom | état | épreuve | chiffre | périmètre | proposée par |",
+        "|---|---|---|---|---|---|---|",
+        "| 2026-08-05 | T0 · masse brute au palier | témoin trivial | — | — "
+        "| J3 | protocole |",
+        "",
+    ]
+    c.write_text("\n".join(lignes), encoding="utf-8")
+    return c
+
+
 def test_depot_complete_et_idempotent(reg):
     # le vrai registre peut déjà porter des candidats (le banc est ouvert
     # depuis le 05/08) : on teste la complétude et l'idempotence, pas un
@@ -30,15 +49,16 @@ def test_depot_complete_et_idempotent(reg):
     assert len(lire(reg)) == n_lignes    # et sans écriture fantôme
 
 
-def test_sans_donnees_tout_le_monde_attend_E0(reg):
-    rapport = tour(series=None, chemin=reg)
+def test_sans_donnees_tout_le_monde_attend_E0(reg_vierge):
+    rapport = tour(series=None, chemin=reg_vierge)
     assert len(rapport) == 16
     for nom, (etat, raison) in rapport.items():
         assert etat == "déposée"
         assert "attente des données" in raison
 
 
-def test_banc_complet_sur_series_synthetiques(reg):
+def test_banc_complet_sur_series_synthetiques(reg_vierge):
+    reg = reg_vierge
     rng = np.random.default_rng(0)
     base = rng.normal(size=3000)
     series = {}
@@ -70,3 +90,21 @@ def test_banc_complet_sur_series_synthetiques(reg):
     for l in lire(reg):
         if l["etat"] in ("éliminée", "doublon présumé", "sous surveillance"):
             assert l["chiffre"] not in ("", "—", "-")
+
+
+def test_bloc_par_perimetre_le_temoin_du_bon_perimetre(reg):
+    """Dette T0-J8 fermée : un candidat J8 passe É2 contre SON témoin, plus
+    de refus de longueur."""
+    rng = np.random.default_rng(9)
+    series = {}
+    for nom, f in FICHES.items():
+        n = 3000 if f["perimetre"] == "J3" else 8000
+        series[nom] = rng.normal(size=n)
+    blocs = {"J3": {TEMOIN: rng.normal(size=3000)},
+             "J8": {TEMOIN: rng.normal(size=8000)}}
+    rapport = tour(series=series, bloc_par_perimetre=blocs, chemin=reg)
+    # les J8 atteignent É3 (refus rejeu) au lieu de bloquer à É2
+    for nom, f in FICHES.items():
+        if f["perimetre"] == "J8":
+            etat, raison = rapport[nom]
+            assert etat in ("É3", "éliminée"), (nom, etat, raison)

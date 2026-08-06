@@ -83,10 +83,13 @@ def series_du_perimetre(noms: list[str], t0: float) -> dict[str, np.ndarray]:
     `charge()` par jour-symbole, partagée entre tous les candidats du même
     périmètre."""
     par_perimetre: dict[str, list[str]] = {}
-    for nom in noms + [TEMOIN]:
-        per = FICHES[nom]["perimetre"] if nom in FICHES else "J3"
-        par_perimetre.setdefault(per, []).append(nom)
-    series: dict[str, list[np.ndarray]] = {n: [] for n in noms + [TEMOIN]}
+    for nom in noms:
+        par_perimetre.setdefault(FICHES[nom]["perimetre"], []).append(nom)
+    # le témoin s'extrait sur CHAQUE périmètre présent (dette T0-J8 fermée
+    # le 06/08) : une clé par périmètre, consommée en bloc_par_perimetre
+    temoins = {per: f"_T0_{per}" for per in par_perimetre}
+    series: dict[str, list[np.ndarray]] = {
+        n: [] for n in noms + list(temoins.values())}
     diag: dict[str, list] = {"part_k0": [], "absdmid": {p: [] for p in par_perimetre}}
     for per, membres in par_perimetre.items():
         for j in JOURS[per]:
@@ -97,6 +100,7 @@ def series_du_perimetre(noms: list[str], t0: float) -> dict[str, np.ndarray]:
                 s = charge(chemin, DIST_MAX)
                 for nom in membres:
                     series[nom].append(EXTRACTEURS[nom](s))
+                series[temoins[per]].append(EXTRACTEURS[TEMOIN](s))
                 # diagnostics de l'audit du 05-06/08, publiés avant tout É0 :
                 # la part de masse au palier du mid (exclue des stocks/flux),
                 # et |Δmid| pour la corrélation mécanique de chaque série
@@ -159,7 +163,8 @@ def main() -> None:
     print(f"[{time.time()-t0:6.0f}s] préflight : {pf}")
 
     brut, diag = series_du_perimetre(prets, t0)
-    perimetre_de = {n: (FICHES[n]["perimetre"] if n in FICHES else "J3")
+    perimetre_de = {n: (FICHES[n]["perimetre"] if n in FICHES
+                        else n.split("_T0_")[-1])
                     for n in brut}
     # |Δmid| entre dans l'alignement de son périmètre (même index commun),
     # puis en sort : c'est un diagnostic, jamais un candidat
@@ -184,12 +189,16 @@ def main() -> None:
     n_obs = {n: int(np.isfinite(x).sum()) for n, x in series.items()}
     print(f"[{time.time()-t0:6.0f}s] séries alignées : "
           f"{min(n_obs.values()):,} à {max(n_obs.values()):,} observations")
-    bloc = {TEMOIN: series.pop(TEMOIN)}
+    bloc_par_perimetre = {per: {TEMOIN: series.pop(cle)}
+                          for per, cle in
+                          {n.split("_T0_")[-1]: n for n in list(series)
+                           if n.startswith("_T0_")}.items()}
 
     # LIMITE CONNUE, écrite d'avance : le témoin T0 est extrait sur J3 — les
     # candidats J8 (D1) auront besoin d'un T0 sur J8 pour LEUR É2 ; la garde
     # de longueur d'É2 les laissera en attente propre d'ici là (audit F1).
-    rapport = boucle.tour(series=series, bloc=bloc,
+    rapport = boucle.tour(series=series,
+                          bloc_par_perimetre=bloc_par_perimetre,
                           hash_protocole=pf["protocole_hash"])
     print(f"[{time.time()-t0:6.0f}s] === LE PREMIER TOUR DE BANC RÉEL ===")
     for nom, (etat_f, raison) in rapport.items():
