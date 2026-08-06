@@ -9,3 +9,4 @@ _lot*.log
 # le store du recorder ne vit pas dans le depot
 _recupere/recorder/store/
 chantiers/c5_work/
+chantiers/c2_work/
