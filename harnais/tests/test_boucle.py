@@ -154,6 +154,41 @@ def test_e3_sans_chiffre_est_refuse_jamais_enregistre(reg_vierge, monkeypatch):
     assert not [l for l in lire(reg_vierge) if l["epreuve"] == "É3"]
 
 
+def test_retenue_est_atteignable_et_bh_tranche_la_vague(reg_vierge, monkeypatch):
+    """La 3e arête manquante (06/08) : « retenue » — la porte de sortie du
+    banc, celle qui fait grandir le bloc d'É2. On stubbe É3 et É4 (rejeu et
+    cible fictifs) : la phase collective applique BH sur la vague, écrit
+    `retenue` pour le p qui passe et `éliminée` pour les autres, chaque
+    ligne portant son chiffre complet (coef, p, IC, taille de vague)."""
+    from harnais import boucle as B
+    from harnais.epreuves import Verdict
+    monkeypatch.setattr(B, "e3", lambda *a, **k: Verdict(
+        "É3", True, 0.99, "É4", "stub de test : rejeu fictif"))
+    appels = iter(range(100))
+    monkeypatch.setattr(B, "e4", lambda *a, **k: (
+        lambda i: {"n_jours": 3, "moyenne": 0.5 if i == 0 else 0.01,
+                   "p_value": 0.001 if i == 0 else 0.9,
+                   "ic95": (0.1, 0.9)})(next(appels)))
+    rng = np.random.default_rng(21)
+    series = {n: rng.normal(size=3000) for n in FICHES}
+    rapport = tour(series=series, bloc={TEMOIN: rng.normal(size=3000)},
+                   chemin=reg_vierge)
+
+    etats = [e for e, _ in rapport.values()]
+    assert "retenue" in etats           # la porte de sortie EXISTE
+    assert etats.count("retenue") == 1  # BH : seul p=0,001 passe à q=0,10
+    retenue = next(n for n, (e, _) in rapport.items() if e == "retenue")
+    assert "bloc de référence" in rapport[retenue][1]
+    # chaque ligne d'É4 au registre porte son chiffre complet, jamais du texte
+    lignes_e4 = [l for l in lire(reg_vierge) if l["epreuve"] == "É4"]
+    assert lignes_e4
+    for l in lignes_e4:
+        assert l["chiffre"].startswith("coef=") and "p=" in l["chiffre"]
+        assert l["etat"] in ("retenue", "éliminée")
+    # et les éliminés de la vague le sont par BH, pas par une épreuve ratée
+    assert any(e == "éliminée" and "BH" in r for e, r in rapport.values())
+
+
 def test_bloc_par_perimetre_le_temoin_du_bon_perimetre(reg):
     """Dette T0-J8 fermée : un candidat J8 passe É2 contre SON témoin, plus
     de refus de longueur."""

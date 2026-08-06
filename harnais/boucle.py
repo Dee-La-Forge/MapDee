@@ -26,7 +26,7 @@ from harnais import registre
 from harnais.epreuves import (RefusEpreuve, e0_duel, e1, e2, e3, e4,
                               verifie_bande_e0)
 from harnais.fiches import FICHES, TEMOIN
-from harnais.stats import spearman
+from harnais.stats import benjamini_hochberg, spearman
 
 ORDRE = ("É0", "É1", "É2", "É3", "É4")
 
@@ -82,8 +82,7 @@ def _paires_bande(series: dict[str, "np.ndarray"] | None
 def _avance_un(nom: str, series: dict[str, "np.ndarray"] | None,
                bloc: dict[str, "np.ndarray"] | None,
                chemin: Path, signataire: str = "la boucle",
-               bloc_par_perimetre: dict[str, dict] | None = None,
-               paires_bande: list[tuple[str, str, float]] | None = None
+               bloc_par_perimetre: dict[str, dict] | None = None
                ) -> tuple[str, str]:
     """Avance UN candidat tant que l'épreuve suivante est exécutable.
     Rend (état final, raison d'arrêt)."""
@@ -192,11 +191,11 @@ def _avance_un(nom: str, series: dict[str, "np.ndarray"] | None,
             if not v.passe:
                 return v.etat_suivant, v.detail
         elif epreuve == "É4":
-            # la garde de bande AVANT le refus C3 : placée après, elle
-            # serait du code mort tant que C3 bloque — une garde qui ne
-            # peut pas tirer est décorative
-            verifie_bande_e0(paires_bande or [])
-            e4([], [], None)   # lève : C3 non gelé, paires intra-unité
+            # le verdict d'É4 est COLLECTIF (BH 10 % sur la vague,
+            # ADR-001 II.3) : un candidat seul ne peut pas s'écrire
+            # « retenue », son verdict dépend des p des autres. La phase
+            # vit au niveau du tour — ici on s'arrête proprement.
+            return "É4", "en attente de la phase collective d'É4 (BH par vague)"
         else:
             return etat or "?", f"état inattendu : {etat!r}"
 
@@ -234,9 +233,40 @@ def tour(series: dict | None = None, bloc: dict | None = None,
             continue
         try:
             rapport[nom] = _avance_un(nom, series, bloc, chemin, signataire,
-                                      bloc_par_perimetre, paires_bande)
+                                      bloc_par_perimetre)
         except RefusEpreuve as e:
             rapport[nom] = (etat_courant(nom, chemin) or "?", f"REFUS : {e}")
+
+    # --- É4, la phase COLLECTIVE — la porte de sortie du banc ----------------
+    # Sans cette écriture, « retenue » était un état inatteignable (3e arête
+    # manquante, attrapée par Meddy le 06/08) : le bloc de référence d'É2
+    # n'aurait JAMAIS grandi — É2 aurait mesuré la redite contre la seule
+    # masse brute pour toujours, et la prédiction de N3 (B1 au bloc) serait
+    # restée ouverte à perpétuité. La garde de bande lève ICI, avant e4 :
+    # c'est le dernier point où la multiplicité de BH peut encore être fausse.
+    en_e4 = [nom for nom in FICHES if nom not in pollues
+             and etat_courant(nom, chemin) == "É4"]
+    if en_e4:
+        try:
+            verifie_bande_e0(paires_bande)
+            resultats = {nom: e4([], [], None) for nom in en_e4}
+            retenu = benjamini_hochberg(
+                {n: r["p_value"] for n, r in resultats.items()})
+            for nom in en_e4:
+                r = resultats[nom]
+                chiffre = (f"coef={r['moyenne']:.3f}, p={r['p_value']:.4f}, "
+                           f"IC95=[{r['ic95'][0]:.3f} ; {r['ic95'][1]:.3f}], "
+                           f"BH 10 % sur {len(en_e4)} candidats")
+                etat_f = "retenue" if retenu[nom] else "éliminée"
+                registre.ajouter(_aujourdhui(), nom, etat_f, "É4", chiffre,
+                                 FICHES[nom]["perimetre"], signataire, chemin)
+                rapport[nom] = (etat_f,
+                                "a passé les cinq épreuves — entre au bloc "
+                                "de référence d'É2" if retenu[nom] else
+                                "non retenue par BH — p trop haut pour la vague")
+        except RefusEpreuve as e:
+            for nom in en_e4:
+                rapport[nom] = ("É4", f"REFUS : {e}")
     return rapport
 
 
