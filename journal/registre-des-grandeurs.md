@@ -100,6 +100,30 @@ date · nom · état · épreuve · LE CHIFFRE · périmètre · qui l'a propos�
 | 2026-08-05 | méthode banc-v5 · détecteur leurre | ÉS | ÉS | plancher <= 61x (bas de gamme) — ADMIS (barre 485, ADR-005, unité réelle) | synthétique, 8 graines-jours | C9 harnais @cec7fc0 |
 | 2026-08-05 | méthode banc-v5 · détecteur recharge | ÉS | ÉS | plancher <= 61x (bas de gamme) — ADMIS (barre 485, ADR-005) | synthétique, 8 graines-jours | C9 harnais @cec7fc0 |
 | 2026-08-05 | méthode banc-v5 · détecteur absorption | ÉS | ÉS | REJETÉ au bras nul v5 : centrage instable (μ0 −0,40 vs −0,04 entre lots de graines), FP 64 % | synthétique, 32 nuls neufs | C9 harnais @cec7fc0 |
+| 2026-08-06 | A1 · OFI | É1 | É0 | aucun doublon parmi les vivants | J3 | la boucle @fadde96 |
+| 2026-08-06 | A1 · OFI | É2 | É1 | admissible — mesure de dégradation due avant É4 | J3 | la boucle @fadde96 |
+| 2026-08-06 | A1 · OFI | É3 | É2 | ρmax=0.025 | J3 | la boucle @fadde96 |
+| 2026-08-06 | A4 · microprice | É1 | É0 | aucun doublon parmi les vivants | J3 | la boucle @fadde96 |
+| 2026-08-06 | A4 · microprice | É2 | É1 | admissible — mesure de dégradation due avant É4 | J3 | la boucle @fadde96 |
+| 2026-08-06 | A4 · microprice | É3 | É2 | ρmax=0.094 | J3 | la boucle @fadde96 |
+| 2026-08-06 | B1 · hazard rate (version palier) | É1 | É0 | aucun doublon parmi les vivants | J3 | la boucle @fadde96 |
+| 2026-08-06 | B1 · hazard rate (version palier) | É2 | É1 | admissible — mesure de dégradation due avant É4 | J3 | la boucle @fadde96 |
+| 2026-08-06 | B1 · hazard rate (version palier) | É3 | É2 | ρmax=0.071 | J3 | la boucle @fadde96 |
+| 2026-08-06 | B2 · résilience | É1 | É0 | aucun doublon parmi les vivants | J3 | la boucle @fadde96 |
+| 2026-08-06 | B2 · résilience | É2 | É1 | admissible — mesure de dégradation due avant É4 | J3 | la boucle @fadde96 |
+| 2026-08-06 | B2 · résilience | É3 | É2 | ρmax=0.083 | J3 | la boucle @fadde96 |
+| 2026-08-06 | B5 · premier passage | É1 | É0 | aucun doublon parmi les vivants | J3 | la boucle @fadde96 |
+| 2026-08-06 | B5 · premier passage | É2 | É1 | admissible — mesure de dégradation due avant É4 | J3 | la boucle @fadde96 |
+| 2026-08-06 | B5 · premier passage | É3 | É2 | ρmax=0.179 | J3 | la boucle @fadde96 |
+| 2026-08-06 | C1 · concentration | É1 | É0 | aucun doublon parmi les vivants | J3 | la boucle @fadde96 |
+| 2026-08-06 | C1 · concentration | É2 | É1 | admissible — mesure de dégradation due avant É4 | J3 | la boucle @fadde96 |
+| 2026-08-06 | C1 · concentration | É3 | É2 | ρmax=0.416 | J3 | la boucle @fadde96 |
+| 2026-08-06 | C2 · forme et courbure | É1 | É0 | aucun doublon parmi les vivants | J3 | la boucle @fadde96 |
+| 2026-08-06 | C2 · forme et courbure | É2 | É1 | admissible — mesure de dégradation due avant É4 | J3 | la boucle @fadde96 |
+| 2026-08-06 | C2 · forme et courbure | É3 | É2 | ρmax=0.152 | J3 | la boucle @fadde96 |
+| 2026-08-06 | C3 · diffusion anormale | É1 | É0 | aucun doublon parmi les vivants | J3 | la boucle @fadde96 |
+| 2026-08-06 | C3 · diffusion anormale | É2 | É1 | admissible — mesure de dégradation due avant É4 | J3 | la boucle @fadde96 |
+| 2026-08-06 | C3 · diffusion anormale | É3 | É2 | ρmax=0.088 | J3 | la boucle @fadde96 |
 
 ---
 

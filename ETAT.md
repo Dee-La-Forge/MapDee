@@ -167,6 +167,17 @@ interprétable avec cette méthode. Planchers au registre. Transverses :
 l'estimateur partiel dérive en ~k/n (règle à porter dans `05` : n
 observations/jour ≥ 100 × taille du bloc, avant le premier É4 réel) ; la
 puissance dit **d ≳ 1,2 détectable sur 8 jours, 0,75 avec la tranche 2**.
+**LE PREMIER TOUR DE BANC RÉEL EST RENDU — 06/08, 04 h 22**
+(`journal/e0-rapport-20260806.md`) : sur 727 059 observations réelles
+alignées (J3 complet), **É0 : zéro doublon parmi les huit mesurables** — la
+fusion 300 → 16 tient ; **É2 : les huit passent sous 0,50 contre le témoin**
+(A1 à 0,025, C1 le plus proche à 0,416) — personne ne redit la masse brute ;
+É1 : huit admissibles, huit mesures de dégradation dues. **Les huit sont en
+É3, refusées proprement** : la frontière du banc est désormais le rejeu
+événementiel + l'ADR D12 + le gel de C3. Diagnostic clé publié avant
+verdict : l'intrication |Δmid| est négligeable partout SAUF B5 (−0,69,
+définitionnel — son É4 devra le traiter, c'est écrit d'avance).
+
 **LE BANC EST COMPLET ET CHARGÉ depuis le 05/08 ~05 h 30** : la boucle
 existe (`harnais/boucle.py` — ordre d'`05`, É0 avec départage par coût,
 refus propres, 59 tests), la règle k/n est dans `05` §4 **et** dans le code,
