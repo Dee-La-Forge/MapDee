@@ -922,3 +922,85 @@
   diffs 12/12h : 1,131,272 ┬À ordres 6,075 ┬À prix 1792/1556 ┬À photos 58,566
   diffs 12/13h : 1,031,177 ┬À ordres 6,258 ┬À prix 1877/1608 ┬À photos 62,859
   diffs 12/14h : 2,554,380 ┬À ordres 6,478 ┬À prix 1983/1625 ┬À photos 68,176
+  diffs 12/15h : 4,939,819 ┬À ordres 5,453 ┬À prix 1567/1580 ┬À photos 75,129
+  diffs 12/16h : 4,040,708 ┬À ordres 6,778 ┬À prix 1871/1760 ┬À photos 81,646
+  diffs 12/17h : 2,417,745 ┬À ordres 6,817 ┬À prix 1933/1779 ┬À photos 86,124
+  diffs 12/18h : 1,819,605 ┬À ordres 8,757 ┬À prix 2017/1873 ┬À photos 86,126
+  diffs 12/19h : 2,266,476 ┬À ordres 8,811 ┬À prix 1986/1814 ┬À photos 86,261
+  diffs 12/20h : 2,025,257 ┬À ordres 8,914 ┬À prix 2145/1953 ┬À photos 86,339
+  diffs 12/21h : 1,099,521 ┬À ordres 9,042 ┬À prix 2147/1937 ┬À photos 86,339
+  diffs 12/22h : 788,833 ┬À ordres 9,073 ┬À prix 2195/1954 ┬À photos 86,339
+  diffs 12/23h : 618,484 ┬À ordres 9,173 ┬À prix 2125/1939 ┬À photos 86,339
+  -> hl_book : 1,726,780 lignes ┬À 86,339 photos en 1390.3s
+  -> deep : 197,663,232 lignes ┬À 86,339 photos ┬À 301.3 Mo (2289 paliers/photo)
+     hl_book : manifeste reconstitue remplace par une provenance reelle
+  -> manifestes : 2 ecrits
+[5/9] 20251212 OK ÔÇö 5 fabriques
+        nettoye work/20251211
+[6/9] === ETH 20251213 (290 Gio libres) ===
+  extraction : 24 fichiers de statuts, 24 de diffs en 397s
+  statuts 00h : 644,138 (cumul 644,138)
+  statuts 01h : 546,235 (cumul 1,190,373)
+  statuts 02h : 575,636 (cumul 1,766,009)
+  statuts 03h : 512,366 (cumul 2,278,375)
+  statuts 04h : 441,918 (cumul 2,720,293)
+  statuts 05h : 390,101 (cumul 3,110,394)
+  statuts 06h : 402,065 (cumul 3,512,459)
+  statuts 07h : 359,169 (cumul 3,871,628)
+  statuts 08h : 1,401,050 (cumul 5,272,678)
+  statuts 09h : 821,637 (cumul 6,094,315)
+  statuts 10h : 809,857 (cumul 6,904,172)
+  statuts 11h : 649,571 (cumul 7,553,743)
+  statuts 12h : 705,346 (cumul 8,259,089)
+  statuts 13h : 913,543 (cumul 9,172,632)
+  statuts 14h : 1,165,519 (cumul 10,338,151)
+  statuts 15h : 1,049,691 (cumul 11,387,842)
+  statuts 16h : 937,852 (cumul 12,325,694)
+  statuts 17h : 636,652 (cumul 12,962,346)
+  statuts 18h : 565,990 (cumul 13,528,336)
+  statuts 19h : 456,646 (cumul 13,984,982)
+  statuts 20h : 413,371 (cumul 14,398,353)
+  statuts 21h : 1,055,016 (cumul 15,453,369)
+  statuts 22h : 805,715 (cumul 16,259,084)
+  statuts 23h : 705,630 (cumul 16,964,714)
+  -> hl_orders : 16,964,714 lignes en 505.2s
+  diffs 12/16h (chauffe) : 4,040,708 ┬À ordres 3,985 ┬À prix 1195/720 ┬À photos 0
+  diffs 12/17h (chauffe) : 2,417,745 ┬À ordres 4,188 ┬À prix 1321/814 ┬À photos 0
+  diffs 12/18h (chauffe) : 1,819,605 ┬À ordres 6,212 ┬À prix 1422/934 ┬À photos 0
+  diffs 12/19h (chauffe) : 2,266,476 ┬À ordres 6,282 ┬À prix 1414/872 ┬À photos 0
+  diffs 12/20h (chauffe) : 2,025,257 ┬À ordres 6,470 ┬À prix 1589/1044 ┬À photos 0
+  diffs 12/21h (chauffe) : 1,099,521 ┬À ordres 6,605 ┬À prix 1591/1017 ┬À photos 0
+  diffs 12/22h (chauffe) : 788,833 ┬À ordres 6,677 ┬À prix 1656/1058 ┬À photos 0
+  diffs 12/23h (chauffe) : 618,484 ┬À ordres 6,786 ┬À prix 1594/1028 ┬À photos 0
+  diffs 13/00h : 587,869 ┬À ordres 6,802 ┬À prix 1581/1019 ┬À photos 0
+  diffs 13/01h : 501,268 ┬À ordres 6,927 ┬À prix 1655/1026 ┬À photos 0
+  diffs 13/02h : 534,498 ┬À ordres 7,113 ┬À prix 1683/1090 ┬À photos 0
+  diffs 13/03h : 471,336 ┬À ordres 7,227 ┬À prix 1753/1100 ┬À photos 0
+  diffs 13/04h : 409,100 ┬À ordres 7,065 ┬À prix 1718/1084 ┬À photos 0
+  diffs 13/05h : 363,610 ┬À ordres 7,035 ┬À prix 1671/1076 ┬À photos 0
+  diffs 13/06h : 369,645 ┬À ordres 7,067 ┬À prix 1739/1071 ┬À photos 0
+  diffs 13/07h : 334,434 ┬À ordres 7,095 ┬À prix 1716/1070 ┬À photos 0
+  diffs 13/08h : 1,190,720 ┬À ordres 7,042 ┬À prix 1812/1238 ┬À photos 0
+  diffs 13/09h : 743,599 ┬À ordres 7,204 ┬À prix 1839/1250 ┬À photos 0
+  diffs 13/10h : 728,922 ┬À ordres 7,233 ┬À prix 1922/1271 ┬À photos 0
+  diffs 13/11h : 595,718 ┬À ordres 7,217 ┬À prix 1880/1289 ┬À photos 0
+  diffs 13/12h : 643,632 ┬À ordres 7,180 ┬À prix 1836/1353 ┬À photos 0
+  diffs 13/13h : 815,617 ┬À ordres 7,209 ┬À prix 1818/1425 ┬À photos 0
+  diffs 13/14h : 1,015,480 ┬À ordres 7,207 ┬À prix 1818/1452 ┬À photos 0
+  diffs 13/15h : 944,111 ┬À ordres 7,435 ┬À prix 1779/1470 ┬À photos 0
+  diffs 13/16h : 841,494 ┬À ordres 7,224 ┬À prix 1757/1495 ┬À photos 0
+  diffs 13/17h : 581,460 ┬À ordres 7,515 ┬À prix 1766/1485 ┬À photos 0
+  diffs 13/18h : 517,490 ┬À ordres 7,553 ┬À prix 1808/1486 ┬À photos 0
+  diffs 13/19h : 429,071 ┬À ordres 7,674 ┬À prix 1852/1537 ┬À photos 0
+  diffs 13/20h : 384,899 ┬À ordres 7,524 ┬À prix 1810/1494 ┬À photos 0
+  diffs 13/21h : 897,408 ┬À ordres 7,471 ┬À prix 1770/1499 ┬À photos 0
+  diffs 13/22h : 728,902 ┬À ordres 7,337 ┬À prix 1758/1487 ┬À photos 0
+  diffs 13/23h : 646,884 ┬À ordres 7,311 ┬À prix 1684/1525 ┬À photos 0
+  -> hl_book : 0 lignes ┬À 0 photos en 299.6s
+  -> deep : 0 lignes ┬À 0 photos ┬À 0.0 Mo (0 paliers/photo)
+  -> manifestes : 2 ecrits
+ARRET : 20251213 s'est termine SANS deep complet. 5 jours faits.
+
+=== 5 fabriques, 0 deja faits, sur 9 demandes, en 221.5 min ===
+  20251208 20251209 20251210 20251211 20251212
+04:48:32  ECHEC sur 08-31 ETH (code 1) - arret
