@@ -35,7 +35,9 @@ from pathlib import Path
 from sortedcontainers import SortedList
 
 ICI = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(ICI))
+# `construit` vit sous `_recupere/` (dépendance d'exécution transitoire,
+# `00` §7 — C10 la promeut) : c'est là qu'on l'importe, pas à la racine.
+sys.path.insert(0, str(ICI / "_recupere"))
 
 from construit.openbook import read_diffs                        # noqa: E402
 
