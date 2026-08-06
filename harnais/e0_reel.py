@@ -48,11 +48,14 @@ PARTS = DEPOT / "data" / "openbook" / "deep" / "parts"
 JOURS = {"J3": [f"202512{d:02d}" for d in range(9, 12)],
          "J8": [f"202512{d:02d}" for d in range(9, 17)]}
 COINS = ("BTC", "ETH")
-#: Trous d'archive DOCUMENTÉS (journal/2026-08-06_eth-20251213-*.md) :
-#: la journée ETH du 13 est croisée de bout en bout (15,2 M carnets croisés,
-#: 0 photo valide) — J8 est amendé, ce n'est pas un périmètre ajusté après
-#: résultat, c'est une impossibilité matérielle constatée avant tout calcul.
-TROUS_ARCHIVE = {("20251213", "ETH")}
+#: Trous d'archive DOCUMENTÉS (journal/2026-08-06_eth-20251213-*.md et
+#: journal/2026-08-06_couverture-j8-*.md) : la journée du 13 est croisée
+#: des DEUX côtés — ETH 0 photo (refusée par l'instrument), BTC 172 photos
+#: (≈0,14 %, passée par la garde binaire : un trou de facto). J8 est
+#: amendé à 14 jour-symboles — impossibilité matérielle constatée avant
+#: tout calcul, jamais un périmètre ajusté après résultat. Les jours
+#: DÉGRADÉS (12 et 15, ≈44-75 %) restent : dégradation documentée ≠ trou.
+TROUS_ARCHIVE = {("20251213", "ETH"), ("20251213", "BTC")}
 DIST_MAX = 0.005
 
 

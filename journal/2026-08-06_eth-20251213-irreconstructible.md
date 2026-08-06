@@ -46,3 +46,16 @@ ce qu'elle a ouvert.** Le 04/08 a ouvert le 14 et réfuté la fin du monde ;
 le 13, jamais ouvert, portait le vrai trou. Les compteurs du constructeur
 (`book_croise` par jour, dans chaque manifeste) font désormais ce travail
 jour par jour, mécaniquement.
+
+---
+
+**Addendum du 06/08, plus tard le même jour — la phrase « BTC 20251213 se
+reconstruit normalement » est FAUSSE.** Le manifeste dit 172 photos
+(≈0,14 % d'une journée) pour 28 056 154 carnets croisés : le 13 BTC est un
+trou de facto que la garde binaire de `construit/` (0 photo = refus,
+>0 = compté) a laissé passer. L'affirmation venait du non-échec du lot de
+décembre — un constat documentaire, pas une mesure : le péché exact que la
+note d'à côté reprochait à la vérification du 04/08. J8 est ré-amendé à
+**14 jour-symboles** (« 09-16 moins 20251213 BTC et ETH ») — table
+complète et décisions :
+`journal/2026-08-06_couverture-j8-la-garde-binaire-a-laisse-passer-un-trou.md`.
