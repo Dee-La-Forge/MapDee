@@ -46,3 +46,16 @@ rebâti doit sortir entre 60 % et 80 % des photos du 20251214 du même
 symbole. Hors bande = REFUS** : le jour ne rentre pas dans J8 et cette
 ADR rouvre — quel que soit le sens du dépassement, un excès serait aussi
 suspect qu'un déficit. S'ajoute à `book_croise == 0`, inchangé.
+
+**Correction du 06/08, minutes plus tard — la phrase « AVANT toute photo
+émise, vérifié au log » était FAUSSE.** Le grep de vérification a été
+lancé dans la MÊME commande que l'addendum, sans lecture préalable : au
+moment de la déclaration, BTC avait déjà émis **19 085 photos**
+(h08-h12). Même mécanique que « BTC 13 sain » ce matin — une vérification
+écrite avant d'être lue n'en est pas une. Ce qui reste honnêtement
+pré-déclaré : les comptes FINALS étaient inconnus, l'ETH n'avait pas
+commencé, et ni la bande ni sa dérivation ne s'appuient sur le partiel.
+Ce qui est affaibli : pour BTC, un lecteur pouvait extrapoler ~88 % du
+rythme du 14 depuis h08-h12 — la bande reste opposable, sa
+« pré-déclaration » l'est moins. La leçon est déjà en mémoire
+permanente ; elle vient de servir contre son propre auteur.
