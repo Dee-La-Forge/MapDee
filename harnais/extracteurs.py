@@ -24,10 +24,16 @@ comptés, jamais interpolés.
 """
 from __future__ import annotations
 
+import re
+
 from pathlib import Path
 
 import numpy as np
 import pyarrow.parquet as pq
+
+from harnais.b7 import B7, DEMI_VOISINAGE_REL
+
+DEPOT = Path(__file__).resolve().parent.parent
 
 FENETRE_BASE = 240      # photos — lignes de base glissantes (B1, C3, D1)
 HORIZON_B5 = 240        # photos — plafond de l'âge de niveau (B5, version causale)
@@ -55,6 +61,10 @@ class SeriesJour:
         self.presents_prec = None
         self.recouvre = None         # masse ajoutée aux paliers en retrait net à t-1
         self.profil = None           # (n, NB_BINS) masse par bin de distance
+        self.jour = self.coin = None  # parsés du nom de fichier deep_<j>_<c>
+        self.k_mur = [None, None]    # palier du MUR le plus proche du mid (B7)
+        self.mag_mur = [None, None]  # sa masse — NaN si aucun mur ce côté
+        self.a2_devant = [None, None]  # flux net DEVANT le mur (entre mid et lui)
 
 
 def tronque_series(s: SeriesJour, n: int) -> SeriesJour:
@@ -113,6 +123,12 @@ def charge(chemin_deep: Path, dist_max: float = 0.005) -> SeriesJour:
     n = len(photos)
 
     s = SeriesJour()
+    # identité du jour-symbole, lue du NOM (deep_<jour>_<coin>.parquet) —
+    # None sur un fichier synthétique : les extracteurs B7 rendent alors NaN
+    m_nom = re.match(r"deep_(\d{8})_(BTC|ETH)\.parquet$", Path(chemin_deep).name)
+    if m_nom:
+        s.jour, s.coin = m_nom.group(1), m_nom.group(2)
+    M_mur = B7[s.coin]["M"] if s.coin else None
     s.t = photos
     s.mid = np.empty(n)
     s.bs = np.empty(n)
@@ -126,6 +142,10 @@ def charge(chemin_deep: Path, dist_max: float = 0.005) -> SeriesJour:
     s.disparus = np.zeros(n)
     s.presents_prec = np.zeros(n)
     s.recouvre = np.zeros(n)
+    for cote in (0, 1):
+        s.k_mur[cote] = np.full(n, np.nan)
+        s.mag_mur[cote] = np.full(n, np.nan)
+        s.a2_devant[cote] = np.zeros(n)
     s.profil = np.zeros((n, NB_BINS))
     s.m_k0 = np.zeros(n)     # masse au palier du mid — DIAGNOSTIC (audit F10) :
                              # exclue des stocks et des flux, incluse au profil
@@ -154,6 +174,27 @@ def charge(chemin_deep: Path, dist_max: float = 0.005) -> SeriesJour:
         ici_k0 = mm[kk == k0]
         s.m_k0[i] = float(ici_k0[0]) if ici_k0.size else 0.0
 
+        # --- LE MUR LE PLUS PROCHE, par côté (B7, `03` bloc du 06/08) -------
+        # ratio = mag / médiane(voisinage ±0,05 % du mid), mur si ≥ M.
+        # Balayage DEPUIS le mid vers l'extérieur, arrêt au premier mur —
+        # c'est ce qui rend le coût vivable (« il faut d'abord situer le
+        # mur — le vrai coût est là », fiche A2). Causal : cette photo seule.
+        if M_mur is not None:
+            ordre_k = np.argsort(kk)
+            kks, mms = kk[ordre_k], mm[ordre_k]
+            demi_k = max(1, round(DEMI_VOISINAGE_REL * mid / bs))
+            i0 = int(np.searchsorted(kks, k0))
+            for cote, indices in ((0, range(i0 - 1, -1, -1)),
+                                  (1, range(i0 + (1 if i0 < len(kks) and kks[i0] == k0 else 0), len(kks)))):
+                for j in indices:
+                    a = int(np.searchsorted(kks, kks[j] - demi_k, side="left"))
+                    b = int(np.searchsorted(kks, kks[j] + demi_k, side="right"))
+                    med = float(np.median(mms[a:b])) if b > a else np.nan
+                    if med > 0 and mms[j] / med >= M_mur:
+                        s.k_mur[cote][i] = kks[j]
+                        s.mag_mur[cote][i] = mms[j]
+                        break
+
         # transitions palier à palier contre la photo précédente — FLUX
         # comptés uniquement pour les paliers INTÉRIEURS sous le mid COURANT
         # et différents de k0 : une règle, appliquée partout (audit F9/F10)
@@ -170,6 +211,13 @@ def charge(chemin_deep: Path, dist_max: float = 0.005) -> SeriesJour:
                     continue
                 d = m - prec.get(k, 0.0)
                 cote = 0 if k < k0 else 1
+                # A2 : flux net DEVANT le mur — paliers STRICTEMENT entre le
+                # mid et le mur le plus proche de CE côté, à CETTE photo
+                # (causal : mur du présent, flux présent-contre-passé)
+                km = s.k_mur[cote][i]
+                if km == km:          # non-NaN
+                    if (cote == 0 and km < k < k0) or (cote == 1 and k0 < k < km):
+                        s.a2_devant[cote][i] += d
                 if d > 0:
                     s.add[cote][i] += d
                     if k in retraits_prec:
@@ -312,8 +360,67 @@ def a3_era(s: SeriesJour, e_par_photo: np.ndarray) -> np.ndarray:
                      where=sortant > 0)
 
 
+def a2_ofi_mur(s: SeriesJour) -> np.ndarray:
+    """OFI localisé DEVANT le mur (fiche A2, définitions B7 du 06/08) : flux
+    net des paliers STRICTEMENT entre le mid et le mur le plus proche, bid −
+    ask — le discriminant de la fiche (« celui devant lequel le flux se vide
+    cède le premier »). Choix déclarés : le mur jugé = le plus proche du mid
+    par côté ; photo sans mur d'un côté = contribution 0. Sans identité de
+    symbole (jour synthétique) : NaN — les constantes B7 sont par symbole."""
+    if s.coin is None:
+        return np.full(len(s.t), np.nan)
+    x = s.a2_devant[0] - s.a2_devant[1]
+    x[0] = np.nan
+    return x
+
+
+def b4_absorption(s: SeriesJour) -> np.ndarray:
+    """Absorption au contact (fiche B4 ; contact = première transaction au
+    palier du mur, ADR-010) : masse exécutée sur le mur le plus proche entre
+    deux photos, rapportée à la masse du mur à la photo PRÉCÉDENTE — max des
+    deux côtés, 0 sans contact (série dense, événements rares = pics ;
+    déclaré). Causal : mur et masse de i−1, transactions dans (t[i−1], t[i]].
+    Source : cache certifié `trades_light` (les prix touchés, ADR-009)."""
+    n = len(s.t)
+    if s.coin is None:
+        return np.full(n, np.nan)
+    cache = (DEPOT / "data" / "openbook" / "trades_light" / "parts"
+             / f"trades_{s.jour}_{s.coin}.parquet")
+    if not cache.exists():
+        raise FileNotFoundError(
+            f"cache trades absent : {cache.name} — construire d'abord "
+            f"chantiers/construit_trades_cache.py (B4 exige les prix "
+            f"touchés, ADR-009/010)")
+    tb = pq.read_table(cache, columns=["t_ms", "px", "sz"])
+    tt = tb["t_ms"].to_numpy()
+    px = tb["px"].to_numpy().astype(np.float64)
+    sz = tb["sz"].to_numpy().astype(np.float64)
+    lo = np.searchsorted(tt, s.t[:-1], side="right")
+    hi = np.searchsorted(tt, s.t[1:], side="right")
+    out = np.full(n, np.nan)
+    if n > 1:
+        out[1:] = 0.0
+    for i in range(1, n):
+        a, b = lo[i - 1], hi[i - 1]
+        if a >= b:
+            continue
+        val = 0.0
+        kk_tr = (px[a:b] // s.bs[i - 1]).astype(np.int64)
+        dollars = px[a:b] * sz[a:b]
+        for cote in (0, 1):
+            km, mg = s.k_mur[cote][i - 1], s.mag_mur[cote][i - 1]
+            if km == km and mg > 0:
+                masse = float(dollars[kk_tr == int(km)].sum())
+                if masse > 0:
+                    val = max(val, masse / mg)
+        out[i] = val
+    return out
+
+
 EXTRACTEURS = {
     "A1 · OFI": a1_ofi,
+    "A2 · OFI localisé au mur": a2_ofi_mur,
+    "B4 · absorption au contact": b4_absorption,
     "A4 · microprice": a4_microprice,
     "B1 · hazard rate (version palier)": b1_hazard,
     "B2 · résilience": b2_resilience,
@@ -327,14 +434,12 @@ EXTRACTEURS = {
 
 #: Sans extracteur, avec leur raison — la boucle les laisse en attente.
 ABSENTS = {
-    "A2 · OFI localisé au mur": "attend la définition de « mur » (B7)",
     "A3 · flux signé e/r/a": "attend le flux exécuté par palier (transactions "
                              "agrégées) — interface `a3_era` prête",
     "A5 · propagateur": "attend la calibration hors ligne du noyau",
     "A6 · auto-excitation (Hawkes)": "série = estimation Hawkes (heures) — "
                                      "coût non payé en douce",
     "B3 · réapprovisionnement (iceberg)": "dépend d'A3 (flux exécuté)",
-    "B4 · absorption au contact": "attend la définition de « contact » (B7)",
     "D2 · cascades": "dépend d'A3 (flux exécuté)",
 }
 

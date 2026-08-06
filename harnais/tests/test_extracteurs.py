@@ -30,12 +30,21 @@ def jours():
         shutil.rmtree(d, ignore_errors=True)
 
 
+#: A2/B4 dépendent des constantes B7, qui sont PAR SYMBOLE : sur un jour
+#: synthétique sans identité (coin=None), ils rendent NaN — déclaré dans
+#: leurs docstrings, exercés sur le réel par la garde de causalité du tir.
+SANS_COIN_NAN = {"A2 · OFI localisé au mur", "B4 · absorption au contact"}
+
+
 def test_toutes_les_series_sortent_avec_le_bon_index(jours):
     series = jours["nul"]
     n = len(series["T0 · masse brute au palier"])
     assert n == 600
     for nom, x in series.items():
         assert len(x) == n, nom
+        if nom in SANS_COIN_NAN:
+            assert np.isnan(x).all(), f"{nom} : NaN attendu sans identité de symbole"
+            continue
         assert np.isfinite(x).sum() > 100, f"{nom} : presque tout NaN"
 
 
