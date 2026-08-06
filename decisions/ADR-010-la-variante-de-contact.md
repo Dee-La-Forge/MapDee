@@ -1,7 +1,7 @@
 # ADR-010 — La variante de « contact » : exécution ou meilleure limite
 
-**Statut : EN RÉDACTION** — la décision appartient à Meddy.
-Écrite le 06/08/2026, à la lecture de la 3ᵉ passe C2 (S3″).
+**Statut : ACCEPTÉE** — décision de Meddy, 06/08/2026 (« ADR-010
+validée, ferme B7 »). Écrite le même jour, à la lecture de la 3ᵉ passe.
 
 ## Le fait mesuré
 

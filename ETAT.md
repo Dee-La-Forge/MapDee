@@ -8,7 +8,7 @@
 
 ---
 
-## 1. LES BLOCAGES — un restant sur neuf : B7 (définitions — mur, contact, bande)
+## 1. LES BLOCAGES — ZÉRO restant sur neuf : B7 fermé le 06/08/2026 (C2 trois passes, ADR-009/010 — les trois définitions en bloc dans `03`)
 
 > **Révision du 05/08/2026.** Une version antérieure listait dix blocages, dont
 > **deux étaient déjà résolus par le commit qui les écrivait** — « le plan n'est

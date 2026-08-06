@@ -50,6 +50,28 @@ suivantes sont le pré-tri, fait sur papier, avant toute dépense.
   qui n'auraient aucun contenu sur trois jours — le choix se justifie dans la
   fiche, d'avance.
 
+## Les trois définitions de B7 — FERMÉES EN BLOC le 06/08/2026 (C2, trois passes ; ADR-009/010)
+
+* **MUR** — un palier dont la masse vaut `mag ≥ M′ × médiane(voisinage
+  ±0,05 % du mid, même règle par photo)` et qui persiste ≥ P′ photos.
+  Constantes lues au jour de banc (C2 2ᵉ passe, règle de lecture gelée
+  avant) : **M′ = 423,5 (BTC) / 175,4 (ETH)** (quantile 0,99 du ratio),
+  **P′ = 6 photos = 1,5 s (BTC) / 4 photos = 1 s (ETH)** (médiane).
+* **CONTACT** — la **première transaction dont le prix touche le palier du
+  mur** (variante exécution, ADR-010 : l'événement précoce — les balayages
+  mangent la profondeur avant que le front n'arrive, délai médian −18 s /
+  −8 s — la moins chère, mesurable sans perte). La variante topologique
+  (meilleure limite) reste publiée (C2 3ᵉ passe, S3″), non retenue.
+* **BANDE D'ÉTUDE** — la distance au mid contenant 99,9 % du flux exécuté
+  (C2 3ᵉ passe, S4″, sur les PRIX TOUCHÉS — ADR-009) :
+  **±0,0925 % (BTC) / ±0,1451 % (ETH)**. La bande d'ANALYSE des
+  extracteurs (±0,5 %) reste un superset déclaré — rien ne se renégocie.
+
+Sources : `journal/c2-rapport-20251208-{BTC,ETH}.md` (1ʳᵉ passe),
+`c2-rapport-p2-20251208.md` (mur), `c2-rapport-p3-20251208.md` (contact,
+bande). Ce bloc rend **A2 · OFI localisé au mur** et **B4 · absorption au
+contact** calculables — leurs fiches cessent d'attendre B7.
+
 **Rappel des deux barres** que rien ne contourne. É1 : sans `oid`, sans identité,
 sans cycle de vie, dans un navigateur, et sous la dégradation du démon —
 2 500 ms, filtre `v > médiane`, 500 paliers. É2 : **corrélation de rang**
