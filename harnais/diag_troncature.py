@@ -13,14 +13,22 @@ déplacement qu'introduit une amputation de ce type — la démarche qui a
 produit le plancher k/n : une inquiétude qualitative transformée en
 nombre AVANT de devenir une garde (valeur du plancher : ADR-007, Meddy).
 
-CE QUI EST DÉCLARÉ D'AVANCE :
-* statistique du jour = MOYENNE de la série (l'unité qu'É3/É4/C6
-  agrègent) ; l'écart est publié en unités de l'écart-type complet du
-  jour : delta = (moy_tronquée − moy_complète) / std_complète ;
+CE QUI EST DÉCLARÉ D'AVANCE (justification corrigée avant exécution,
+audit du 06/08 — le script n'avait jamais tourné) :
+* statistique du jour = MOYENNE de la série. C'est un PROXY, pas l'unité
+  d'É4 : É4 agrège des COEFFICIENTS journaliers (corrélation de rang
+  partielle candidat ↔ cible, un par jour) — non calculables tant que C3
+  n'est pas gelé. Une amputation peut laisser la moyenne intacte et
+  déplacer fortement la corrélation si la relation vit dans les heures
+  perdues — précisément les heures actives : CE DIAGNOSTIC NE LE MESURE
+  PAS. Il sera REFAIT sur le coefficient quand C3 sera gelé ;
+* l'écart est publié en unités de l'écart-type complet du jour :
+  delta = (moy_tronquée − moy_complète) / std_complète ;
 * la troncature par index est équivalente à un jour amputé parce que les
-  extracteurs sont CAUSAUX (exigence de l'audit F : B5 réécrit causal,
-  médiane de voisinage en fenêtre arrière) — la valeur à la photo i ne
-  dépend que du passé ;
+  extracteurs sont CAUSAUX — propriété VÉRIFIÉE, pas affirmée : garde
+  permanente (`tests/test_causalite.py`, `00` §3 zéro lookahead) ET
+  contrôle en exécution ici même — un extracteur qui échouerait au
+  contrôle est REFUSÉ du diagnostic, pas moyenné quand même ;
 * tout est publié, y compris les écarts minuscules — pas de tri après
   coup. Sortie : impression + journal/diag-troncature-<date>.json.
 """
@@ -35,7 +43,8 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from harnais.extracteurs import EXTRACTEURS, charge          # noqa: E402
+from harnais.extracteurs import (EXTRACTEURS, charge,        # noqa: E402
+                                 tronque_series)
 
 DEPOT = Path(__file__).resolve().parent.parent
 PARTS = DEPOT / "data" / "openbook" / "deep" / "parts"
@@ -53,8 +62,20 @@ def main() -> None:
         chemin = PARTS / f"deep_{JOUR_PLEIN}_{coin}.parquet"
         print(f"[{time.time()-t0:6.0f}s] charge {JOUR_PLEIN} {coin}…", flush=True)
         s = charge(chemin, DIST_MAX)
+        st = tronque_series(s, coupe)
         for nom, ext in EXTRACTEURS.items():
             x = ext(s)
+            # contrôle de causalité EN EXÉCUTION : si l'extracteur regarde
+            # le futur, delta ne mesure plus une amputation mais aussi la
+            # déformation des valeurs conservées — REFUS, pas un chiffre
+            xc = ext(st)
+            if len(xc) != coupe or not np.allclose(xc, x[:coupe],
+                                                   equal_nan=True):
+                sortie["grandeurs"].setdefault(nom, {})[coin] = {
+                    "REFUS": "extracteur NON CAUSAL — lookahead (`00` §3), "
+                             "delta invalide, à corriger avant tout usage"}
+                print(f"  {coin} {nom:38} REFUS : non causal", flush=True)
+                continue
             fini = np.isfinite(x)
             xf = x[fini]
             xt = x[:coupe][fini[:coupe]]

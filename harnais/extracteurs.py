@@ -57,6 +57,25 @@ class SeriesJour:
         self.profil = None           # (n, NB_BINS) masse par bin de distance
 
 
+def tronque_series(s: SeriesJour, n: int) -> SeriesJour:
+    """Le même jour, coupé aux n premières photos — TOUT attribut indexé
+    par photo est tranché [:n], le reste copié tel quel. Sert la garde de
+    causalité (`00` §3, zéro lookahead) : pour un extracteur causal,
+    ext(tronque(s, n)) == ext(s)[:n] — si l'égalité tombe, l'extracteur
+    regarde le futur et le test/diagnostic REFUSE."""
+    total = len(s.mid)
+    out = SeriesJour()
+    for att, val in vars(s).items():
+        if isinstance(val, list):
+            setattr(out, att, [v[:n] if hasattr(v, "__len__")
+                               and len(v) == total else v for v in val])
+        elif hasattr(val, "__len__") and len(val) == total:
+            setattr(out, att, val[:n])
+        else:
+            setattr(out, att, val)
+    return out
+
+
 def charge(chemin_deep: Path, dist_max: float = 0.005) -> SeriesJour:
     """Une passe sur `deep`, filtrée à ±dist_max du mid LOT PAR LOT — un jour
     réel fait ~400 M lignes, on ne le charge jamais entier. (`pyarrow.dataset`
