@@ -29,7 +29,8 @@ EXPLORATION = {f"202512{d:02d}" for d in range(9, 17)}
 SORTIES_DECLAREES = ("journal/construction/",              # la construction écrit en continu
                     "journal/registre-des-grandeurs.md",   # la boucle écrit pendant le run
                     "journal/e0-reel-",                    # le log du tir É0
-                    "journal/e0-matrice-")                 # la matrice É0 du tir (JSON, 06/08)
+                    "journal/e0-matrice-",                 # la matrice É0 du tir (JSON, 06/08)
+                    "journal/diag-")                       # diagnostics pré-enregistrés (troncature, croisement — 06/08) : leurs sorties tombent pendant la fenêtre du tir
 
 PROTOCOLES = ("05_Protocole_de_selection.md", "03_EconoPhysique.md",
               "decisions/ADR-001-la-metrique-de-E4.md")
