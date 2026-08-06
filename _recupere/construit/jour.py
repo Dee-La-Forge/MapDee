@@ -604,17 +604,29 @@ def build(day: str, coin: str, phase: str = "all") -> dict:
     # sans rien emettre, puis on emet la journee entiere.
     veille = (datetime.strptime(day, "%Y%m%d")
               - timedelta(days=1)).strftime("%Y%m%d")
-    nv = _extract_day(SRC / "book_diffs_202512.tar", f"{veille}/", tmp, "ex*.gz")
+    # GON_SANS_VEILLE=1 (ADR-008, 06/08/2026) : force le mode « premier
+    # jour d'archive ». Raison d'etre : la chauffe herite du carnet de la
+    # veille — si la veille porte une fenetre d'incident (removes perdus,
+    # 20251212 a 18 h), les ordres fantomes empoisonnent le jour ENTIER
+    # avant sa premiere photo. Le 13, au flux propre, sortait a 0 photo
+    # par contagion. Sans veille : 8 h du jour en chauffe, emission
+    # h08-h23, ~66 % de journee — un jour degrade, pas un trou.
+    sans_veille = os.environ.get("GON_SANS_VEILLE", "") == "1"
+    nv = (0 if sans_veille else
+          _extract_day(SRC / "book_diffs_202512.tar", f"{veille}/", tmp, "ex*.gz"))
     if nv:
         plan = ([(veille, h, False) for h in range(24 - WARMUP_H, 24)]
                 + [(day, h, True) for h in range(24)])
         stats["chauffe"] = f"veille {veille} ({WARMUP_H} h)"
     else:
-        # Premier jour de l'archive : la veille n'existe pas. On retombe sur
-        # l'ancien comportement et on le DIT, plutot que de laisser croire a
+        # Premier jour de l'archive (la veille n'existe pas) OU mode force
+        # par GON_SANS_VEILLE : on le DIT, plutot que de laisser croire a
         # une journee complete.
         plan = [(day, h, h >= WARMUP_H) for h in range(24)]
-        stats["chauffe"] = f"AUCUNE veille disponible — {WARMUP_H} h du jour perdues"
+        stats["chauffe"] = (
+            f"SANS VEILLE (force, GON_SANS_VEILLE=1, ADR-008) — "
+            f"{WARMUP_H} h du jour en chauffe" if sans_veille else
+            f"AUCUNE veille disponible — {WARMUP_H} h du jour perdues")
     horloge = 0
     last_snap = 0
     last_deep = 0
