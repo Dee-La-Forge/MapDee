@@ -110,6 +110,19 @@ la taille **absolue** ne se compare pas entre symboles ni entre régimes, d'où
 la forme relative (même logique que `taille_p99_sur_med` des fiches C5).
 **M et P se lisent sur les distributions du jour de banc.**
 
+**Conséquence du quantile, TRANCHÉE EXPLICITEMENT (06/08 — `00` §11.4
+l'interdit d'hériter en silence)** : avec M au quantile 0,99, **1 % des
+paliers sont des murs par construction, tous les jours, sur tous les
+symboles — le NOMBRE de murs n'est jamais un signal.** Seules leur position
+et leur taille relative en portent. Cette phrase se porte à la fermeture de
+B7 dans `03`, et toute fiche qui compte des murs (D2 grappes, n° 21 prix
+ronds, toute lecture « plus de murs qu'hier ») la porte aussi — un rapport
+qui publierait une variation du compte publierait un artefact.
+
+**Et pour É4/réplication** : les constantes étant par symbole (485 BTC,
+175 ETH), un désaccord de signe entre symboles pourra venir **des
+constantes autant que du phénomène** — déclaré ici et dans `05` §4.
+
 ### « contact » — PROPOSÉ
 
 Deux variantes à départager par l'observation (`05` §9.3 en exige la

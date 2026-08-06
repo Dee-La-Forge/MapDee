@@ -271,7 +271,7 @@ brute n'apporte rien.
 | **plancher d'observations** | **n observations par jour ≥ 100 × la taille du bloc de contrôle.** Ajouté le 05/08/2026 sur mesure d'ÉS (`journal/es-rapport-20260805.md` §3) : l'estimateur partiel dérive vers le haut en ~k/n — +0,15 de biais à 20 contrôles pour 300 observations. Le harnais **refuse** É4 sous ce plancher, il ne prévient pas. |
 | **règle de décision** | **Benjamini-Hochberg à 10 % sur la collection des candidats tranche, seul** (`ADR-001`). La statistique d'entrée est la **p-value du test de Student** (bilatéral) sur les coefficients journaliers ; l'**IC 95 %** est **publié**, il ne décide pas. |
 | **contrôle négatif** | la grandeur doit sortir de sa bande nulle, tirée par **décalage circulaire**. Jamais par permutation i.i.d. : la permutation détruit l'autocorrélation des fenêtres recouvrantes et déclare significatif ce qui ne l'est pas. |
-| **réplication** | **même signe sur deux symboles.** Un effet qui n'apparaît que sur un symbole est un sur-ajustement. |
+| **réplication** | **même signe sur deux symboles.** Un effet qui n'apparaît que sur un symbole est un sur-ajustement. *Déclaré le 06/08/2026 (C2)* : les grandeurs conditionnées au « mur » portent des **constantes par symbole** (M : 485 BTC, 175 ETH) — un désaccord de signe pourra venir des constantes autant que du phénomène, et le rapport d'É4 le dit quand c'est le cas. |
 
 **Et la conséquence mécanique, obligatoire** : l'apport doit s'exprimer comme un
 énoncé **falsifiable sur la trajectoire du prix** — où il va, quand, et sous
