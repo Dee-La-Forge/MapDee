@@ -266,6 +266,8 @@ def main() -> None:
     manifestes, chemins = [], []
     for j in jours_utiles:
         for c in COINS:
+            if (j, c) in TROUS_ARCHIVE:
+                continue    # un trou documenté n'a pas de manifeste à charger
             m = PARTS / f"deep_{j}_{c}.parquet.manifest.json"
             manifestes.append(json.loads(m.read_text(encoding="utf-8")))
             chemins.append(m.name)
