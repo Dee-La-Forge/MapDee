@@ -64,10 +64,12 @@ DIST_MAX = 0.005
 #: mi-journée laissait l'après-midi non contrôlé — la moitié qui porte 3 à
 #: 5 fois plus de flux et les motifs rares (carnet croisé, incidents 12/15).
 #: La coupe k attrape toute dépendance d'un indice < k à une donnée ≥ k :
-#: trois coupes aux quarts couvrent les indices < 3n/4 contre chacun de
-#: leurs futurs. Le dernier quart reste incontrôlable par construction —
-#: il n'y a rien après lui à retenir — et c'est écrit, pas caché.
-FRACTIONS_CAUSALITE = (0.25, 0.50, 0.75)
+#: un indice est contrôlé dès qu'une coupe existe APRÈS lui. Quatre coupes
+#: (quarts + 0,95) couvrent ~95 % du jour — le soir compris, deux fois la
+#: zone des incidents réels (le 12 : « incident du soir »). Ce qui reste
+#: hors contrôle est un CHOIX DE COÛT, jamais une limite structurelle —
+#: seul le tout dernier point l'est (rien après lui à retenir).
+FRACTIONS_CAUSALITE = (0.25, 0.50, 0.75, 0.95)
 
 
 def _non_causal(nom: str, x_complet: np.ndarray,
