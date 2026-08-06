@@ -1,0 +1,206 @@
+{
+ "tir": "20260806-071117",
+ "protocole_hash": "02866ab",
+ "n_obs_par_perimetre": {
+  "J8": 1455565,
+  "J3": 727059
+ },
+ "paires": [
+  {
+   "a": "A1 · OFI",
+   "b": "A4 · microprice",
+   "perimetre": "J3",
+   "abs_rho": 0.156948,
+   "bande_0.70-0.90": false
+  },
+  {
+   "a": "A1 · OFI",
+   "b": "B1 · hazard rate (version palier)",
+   "perimetre": "J3",
+   "abs_rho": 0.005503,
+   "bande_0.70-0.90": false
+  },
+  {
+   "a": "A1 · OFI",
+   "b": "B2 · résilience",
+   "perimetre": "J3",
+   "abs_rho": 0.019773,
+   "bande_0.70-0.90": false
+  },
+  {
+   "a": "A1 · OFI",
+   "b": "B5 · premier passage",
+   "perimetre": "J3",
+   "abs_rho": 0.005845,
+   "bande_0.70-0.90": false
+  },
+  {
+   "a": "A1 · OFI",
+   "b": "C1 · concentration",
+   "perimetre": "J3",
+   "abs_rho": 0.017327,
+   "bande_0.70-0.90": false
+  },
+  {
+   "a": "A1 · OFI",
+   "b": "C2 · forme et courbure",
+   "perimetre": "J3",
+   "abs_rho": 0.001171,
+   "bande_0.70-0.90": false
+  },
+  {
+   "a": "A1 · OFI",
+   "b": "C3 · diffusion anormale",
+   "perimetre": "J3",
+   "abs_rho": 0.003749,
+   "bande_0.70-0.90": false
+  },
+  {
+   "a": "A4 · microprice",
+   "b": "B1 · hazard rate (version palier)",
+   "perimetre": "J3",
+   "abs_rho": 0.002852,
+   "bande_0.70-0.90": false
+  },
+  {
+   "a": "A4 · microprice",
+   "b": "B2 · résilience",
+   "perimetre": "J3",
+   "abs_rho": 0.009918,
+   "bande_0.70-0.90": false
+  },
+  {
+   "a": "A4 · microprice",
+   "b": "B5 · premier passage",
+   "perimetre": "J3",
+   "abs_rho": 0.018854,
+   "bande_0.70-0.90": false
+  },
+  {
+   "a": "A4 · microprice",
+   "b": "C1 · concentration",
+   "perimetre": "J3",
+   "abs_rho": 0.043207,
+   "bande_0.70-0.90": false
+  },
+  {
+   "a": "A4 · microprice",
+   "b": "C2 · forme et courbure",
+   "perimetre": "J3",
+   "abs_rho": 0.010522,
+   "bande_0.70-0.90": false
+  },
+  {
+   "a": "A4 · microprice",
+   "b": "C3 · diffusion anormale",
+   "perimetre": "J3",
+   "abs_rho": 0.000934,
+   "bande_0.70-0.90": false
+  },
+  {
+   "a": "B1 · hazard rate (version palier)",
+   "b": "B2 · résilience",
+   "perimetre": "J3",
+   "abs_rho": 0.060132,
+   "bande_0.70-0.90": false
+  },
+  {
+   "a": "B1 · hazard rate (version palier)",
+   "b": "B5 · premier passage",
+   "perimetre": "J3",
+   "abs_rho": 0.147116,
+   "bande_0.70-0.90": false
+  },
+  {
+   "a": "B1 · hazard rate (version palier)",
+   "b": "C1 · concentration",
+   "perimetre": "J3",
+   "abs_rho": 0.076229,
+   "bande_0.70-0.90": false
+  },
+  {
+   "a": "B1 · hazard rate (version palier)",
+   "b": "C2 · forme et courbure",
+   "perimetre": "J3",
+   "abs_rho": 0.001144,
+   "bande_0.70-0.90": false
+  },
+  {
+   "a": "B1 · hazard rate (version palier)",
+   "b": "C3 · diffusion anormale",
+   "perimetre": "J3",
+   "abs_rho": 0.00265,
+   "bande_0.70-0.90": false
+  },
+  {
+   "a": "B2 · résilience",
+   "b": "B5 · premier passage",
+   "perimetre": "J3",
+   "abs_rho": 0.019644,
+   "bande_0.70-0.90": false
+  },
+  {
+   "a": "B2 · résilience",
+   "b": "C1 · concentration",
+   "perimetre": "J3",
+   "abs_rho": 0.049802,
+   "bande_0.70-0.90": false
+  },
+  {
+   "a": "B2 · résilience",
+   "b": "C2 · forme et courbure",
+   "perimetre": "J3",
+   "abs_rho": 0.026485,
+   "bande_0.70-0.90": false
+  },
+  {
+   "a": "B2 · résilience",
+   "b": "C3 · diffusion anormale",
+   "perimetre": "J3",
+   "abs_rho": 0.025881,
+   "bande_0.70-0.90": false
+  },
+  {
+   "a": "B5 · premier passage",
+   "b": "C1 · concentration",
+   "perimetre": "J3",
+   "abs_rho": 0.160009,
+   "bande_0.70-0.90": false
+  },
+  {
+   "a": "B5 · premier passage",
+   "b": "C2 · forme et courbure",
+   "perimetre": "J3",
+   "abs_rho": 0.047541,
+   "bande_0.70-0.90": false
+  },
+  {
+   "a": "B5 · premier passage",
+   "b": "C3 · diffusion anormale",
+   "perimetre": "J3",
+   "abs_rho": 0.113139,
+   "bande_0.70-0.90": false
+  },
+  {
+   "a": "C1 · concentration",
+   "b": "C2 · forme et courbure",
+   "perimetre": "J3",
+   "abs_rho": 0.258117,
+   "bande_0.70-0.90": false
+  },
+  {
+   "a": "C1 · concentration",
+   "b": "C3 · diffusion anormale",
+   "perimetre": "J3",
+   "abs_rho": 0.084795,
+   "bande_0.70-0.90": false
+  },
+  {
+   "a": "C2 · forme et courbure",
+   "b": "C3 · diffusion anormale",
+   "perimetre": "J3",
+   "abs_rho": 0.004733,
+   "bande_0.70-0.90": false
+  }
+ ]
+}

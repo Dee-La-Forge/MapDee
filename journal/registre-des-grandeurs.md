@@ -124,6 +124,9 @@ date · nom · état · épreuve · LE CHIFFRE · périmètre · qui l'a propos�
 | 2026-08-06 | C3 · diffusion anormale | É1 | É0 | aucun doublon parmi les vivants | J3 | la boucle @fadde96 |
 | 2026-08-06 | C3 · diffusion anormale | É2 | É1 | admissible — mesure de dégradation due avant É4 | J3 | la boucle @fadde96 |
 | 2026-08-06 | C3 · diffusion anormale | É3 | É2 | ρmax=0.088 | J3 | la boucle @fadde96 |
+| 2026-08-06 | D1 · ralentissement critique | É1 | É0 | seul dans son périmètre | J8 | la boucle @02866ab |
+| 2026-08-06 | D1 · ralentissement critique | É2 | É1 | admissible — mesure de dégradation due avant É4 | J8 | la boucle @02866ab |
+| 2026-08-06 | D1 · ralentissement critique | É3 | É2 | ρmax=0.007 | J8 | la boucle @02866ab |
 
 ---
 

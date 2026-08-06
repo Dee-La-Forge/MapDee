@@ -1,0 +1,189 @@
+{
+ "jour_plein": "20251214",
+ "coupes": {
+  "BTC": 53688,
+  "ETH": 56216
+ },
+ "grandeurs": {
+  "A1 · OFI": {
+   "BTC": {
+    "moy_complete": -59914.01150644535,
+    "moy_tronquee": -14432.73963283697,
+    "std_complete": 4339082.380773281,
+    "delta_std": 0.0105,
+    "n_complet": 104291,
+    "n_tronque": 53687
+   },
+   "ETH": {
+    "moy_complete": 48246.11382330211,
+    "moy_tronquee": 25642.81227380728,
+    "std_complete": 2053020.054984193,
+    "delta_std": -0.011,
+    "n_complet": 104233,
+    "n_tronque": 56215
+   }
+  },
+  "A4 · microprice": {
+   "BTC": {
+    "moy_complete": -0.10870603459955067,
+    "moy_tronquee": -0.14440421257772632,
+    "std_complete": 1.0632709911750275,
+    "delta_std": -0.0336,
+    "n_complet": 104292,
+    "n_tronque": 53688
+   },
+   "ETH": {
+    "moy_complete": 0.15630578914286622,
+    "moy_tronquee": 0.22708576168693473,
+    "std_complete": 1.3688111084212113,
+    "delta_std": 0.0517,
+    "n_complet": 104234,
+    "n_tronque": 56216
+   }
+  },
+  "B1 · hazard rate (version palier)": {
+   "BTC": {
+    "moy_complete": 0.0009621022783460934,
+    "moy_tronquee": 0.0007466734738108514,
+    "std_complete": 0.003315034761000089,
+    "delta_std": -0.065,
+    "n_complet": 104052,
+    "n_tronque": 53448
+   },
+   "ETH": {
+    "moy_complete": 0.0017871548352901474,
+    "moy_tronquee": 0.0014131605087137847,
+    "std_complete": 0.005240678463694018,
+    "delta_std": -0.0714,
+    "n_complet": 103994,
+    "n_tronque": 55976
+   }
+  },
+  "B2 · résilience": {
+   "BTC": {
+    "moy_complete": 112.28756387215269,
+    "moy_tronquee": 216.40902858141106,
+    "std_complete": 34969.39390383865,
+    "delta_std": 0.003,
+    "n_complet": 104147,
+    "n_tronque": 53603
+   },
+   "ETH": {
+    "moy_complete": 48.42707304039245,
+    "moy_tronquee": 41.11741700100444,
+    "std_complete": 9453.717443095651,
+    "delta_std": -0.0008,
+    "n_complet": 103741,
+    "n_tronque": 55826
+   }
+  },
+  "B5 · premier passage": {
+   "BTC": {
+    "moy_complete": 24.70817232551227,
+    "moy_tronquee": 40.72071451189301,
+    "std_complete": 45.96361238571846,
+    "delta_std": 0.3484,
+    "n_complet": 104291,
+    "n_tronque": 53687
+   },
+   "ETH": {
+    "moy_complete": 12.057985474849616,
+    "moy_tronquee": 18.22056390643067,
+    "std_complete": 24.66419166060245,
+    "delta_std": 0.2499,
+    "n_complet": 104233,
+    "n_tronque": 56215
+   }
+  },
+  "C1 · concentration": {
+   "BTC": {
+    "moy_complete": 0.040024234734947865,
+    "moy_tronquee": 0.04144553323606823,
+    "std_complete": 0.007582147262007792,
+    "delta_std": 0.1875,
+    "n_complet": 104292,
+    "n_tronque": 53688
+   },
+   "ETH": {
+    "moy_complete": 0.04991787835794156,
+    "moy_tronquee": 0.05158850334549043,
+    "std_complete": 0.008306041086783778,
+    "delta_std": 0.2011,
+    "n_complet": 104234,
+    "n_tronque": 56216
+   }
+  },
+  "C2 · forme et courbure": {
+   "BTC": {
+    "moy_complete": 0.19383984013242875,
+    "moy_tronquee": 0.20650127475235586,
+    "std_complete": 0.11234784758405933,
+    "delta_std": 0.1127,
+    "n_complet": 104292,
+    "n_tronque": 53688
+   },
+   "ETH": {
+    "moy_complete": 0.05291830925070516,
+    "moy_tronquee": 0.06637431408132449,
+    "std_complete": 0.11113750926836154,
+    "delta_std": 0.1211,
+    "n_complet": 104234,
+    "n_tronque": 56216
+   }
+  },
+  "C3 · diffusion anormale": {
+   "BTC": {
+    "moy_complete": 1.3278931038341963,
+    "moy_tronquee": 1.3041270791321344,
+    "std_complete": 0.14120527874552125,
+    "delta_std": -0.1683,
+    "n_complet": 102774,
+    "n_tronque": 52170
+   },
+   "ETH": {
+    "moy_complete": 1.3295484459341882,
+    "moy_tronquee": 1.3428601269666787,
+    "std_complete": 0.12246454657551283,
+    "delta_std": 0.1087,
+    "n_complet": 103863,
+    "n_tronque": 55845
+   }
+  },
+  "D1 · ralentissement critique": {
+   "BTC": {
+    "moy_complete": -0.0005802327895510132,
+    "moy_tronquee": -0.0004976315200868534,
+    "std_complete": 0.12297643522882133,
+    "delta_std": 0.0007,
+    "n_complet": 104051,
+    "n_tronque": 53447
+   },
+   "ETH": {
+    "moy_complete": -0.006685448822359646,
+    "moy_tronquee": -0.00678490447795026,
+    "std_complete": 0.1705206804653874,
+    "delta_std": -0.0006,
+    "n_complet": 103993,
+    "n_tronque": 55975
+   }
+  },
+  "T0 · masse brute au palier": {
+   "BTC": {
+    "moy_complete": 140066878.48532277,
+    "moy_tronquee": 137197366.75081366,
+    "std_complete": 16096787.868480073,
+    "delta_std": -0.1783,
+    "n_complet": 104292,
+    "n_tronque": 53688
+   },
+   "ETH": {
+    "moy_complete": 53247352.49311369,
+    "moy_tronquee": 52882989.05391292,
+    "std_complete": 5625769.682450252,
+    "delta_std": -0.0648,
+    "n_complet": 104234,
+    "n_tronque": 56216
+   }
+  }
+ }
+}

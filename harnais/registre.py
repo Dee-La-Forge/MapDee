@@ -71,4 +71,12 @@ def ajouter(date: str, nom: str, etat: str, epreuve: str, chiffre: str,
     nouvelle = (f"| {date} | {nom} | {etat} | {epreuve} | {chiffre} "
                 f"| {perimetre} | {proposee_par} |\n")
     lignes.insert(fin, nouvelle)
-    chemin.write_text("".join(lignes), encoding="utf-8")
+    # ÉCRITURE ATOMIQUE (audit du 06/08) : un kill au milieu d'un write_text
+    # tronquerait le grand livre append-only — la seule chose du projet qui
+    # ne doit jamais se corrompre était protégée par moins que `fusionne`.
+    # tmp + os.replace : le fichier final est entier ou inchangé, jamais
+    # entre les deux.
+    import os
+    tmp = chemin.with_suffix(".encours")
+    tmp.write_text("".join(lignes), encoding="utf-8")
+    os.replace(tmp, chemin)

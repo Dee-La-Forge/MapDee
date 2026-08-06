@@ -78,6 +78,13 @@ def rejoue(day: str, coin: str) -> dict:
     n_ev = n_croise_ech = 0
     premier_croisement: str | None = None
 
+    # les diffs du jour, ré-extraits si le lot a nettoyé work/ (le tar est
+    # libre : plus aucun run de construction en cours)
+    if not (SRC / "work" / day / "ex0.gz").exists():
+        from construit.jour import _extract_day
+        n = _extract_day(SRC / "book_diffs_202512.tar", f"{day}/",
+                         SRC / "work", "ex*.gz")
+        print(f"  extraction : {n} fichiers de diffs", flush=True)
     for h in range(24):
         f = SRC / "work" / day / f"ex{h}.gz"
         if not f.exists():

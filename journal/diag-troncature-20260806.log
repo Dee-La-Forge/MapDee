@@ -1,0 +1,25 @@
+[     0s] charge 20251214 BTC…
+  BTC A1 · OFI                               delta = +0.010 σ
+  BTC A4 · microprice                        delta = -0.034 σ
+  BTC B1 · hazard rate (version palier)      delta = -0.065 σ
+  BTC B2 · résilience                        delta = +0.003 σ
+  BTC B5 · premier passage                   delta = +0.348 σ
+  BTC C1 · concentration                     delta = +0.187 σ
+  BTC C2 · forme et courbure                 delta = +0.113 σ
+  BTC C3 · diffusion anormale                delta = -0.168 σ
+C:\Users\DyBoo\Desktop\-MapDee-\harnais\extracteurs.py:197: RuntimeWarning: All-NaN slice encountered
+  out[i] = np.nanmedian(x[i - w:i])
+  BTC D1 · ralentissement critique           delta = +0.001 σ
+  BTC T0 · masse brute au palier             delta = -0.178 σ
+[   107s] charge 20251214 ETH…
+  ETH A1 · OFI                               delta = -0.011 σ
+  ETH A4 · microprice                        delta = +0.052 σ
+  ETH B1 · hazard rate (version palier)      delta = -0.071 σ
+  ETH B2 · résilience                        delta = -0.001 σ
+  ETH B5 · premier passage                   delta = +0.250 σ
+  ETH C1 · concentration                     delta = +0.201 σ
+  ETH C2 · forme et courbure                 delta = +0.121 σ
+  ETH C3 · diffusion anormale                delta = +0.109 σ
+  ETH D1 · ralentissement critique           delta = -0.001 σ
+  ETH T0 · masse brute au palier             delta = -0.065 σ
+[   180s] écrit : journal\diag-troncature-20260806-063848.json
