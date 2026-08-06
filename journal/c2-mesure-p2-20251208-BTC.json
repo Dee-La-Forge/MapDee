@@ -1,0 +1,32 @@
+{
+ "jour": "20251208",
+ "coin": "BTC",
+ "protocole": "C2-observation.md §5 (2e passe)",
+ "manifeste_sha12": "ef4ff4f6dc38",
+ "S1p_M": 423.52465894733234,
+ "S1p_demi_voisinage_rel": 0.0005,
+ "S2p_P_photos": 6.0,
+ "S2p_episodes": 52216,
+ "S3_taux_coincidence": 0.11228171833434299,
+ "S3_episodes_double": 37967,
+ "S3_ex_seule": 10065,
+ "S3_bl_seule": 8,
+ "S3_aucun": 4176,
+ "S3_delais_ms_quantiles": {
+  "0.1": -24327721.0,
+  "0.5": -575659.0,
+  "0.9": 0.0
+ },
+ "S4p_bande": 0.5003508329951554,
+ "S4p_quantiles": {
+  "0.99": 0.10118966291697373,
+  "0.995": 0.20007132468892963,
+  "0.999": 0.5003508329951554,
+  "0.9999": 1.0018941386930442
+ },
+ "S4p_n_jointes": 460290,
+ "S4p_filled_total": 460290,
+ "S4p_ecartees_px_nul": 0,
+ "S4p_ecartees_sans_mid": 0,
+ "duree_s": 2015.2
+}

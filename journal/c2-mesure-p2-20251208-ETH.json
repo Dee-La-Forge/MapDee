@@ -1,0 +1,32 @@
+{
+ "jour": "20251208",
+ "coin": "ETH",
+ "protocole": "C2-observation.md §5 (2e passe)",
+ "manifeste_sha12": "7ac6ebcd7271",
+ "S1p_M": 175.35783825405497,
+ "S1p_demi_voisinage_rel": 0.0005,
+ "S2p_P_photos": 4.0,
+ "S2p_episodes": 34137,
+ "S3_taux_coincidence": 0.10691525423728813,
+ "S3_episodes_double": 29500,
+ "S3_ex_seule": 3111,
+ "S3_bl_seule": 0,
+ "S3_aucun": 1526,
+ "S3_delais_ms_quantiles": {
+  "0.1": -13520289.0,
+  "0.5": -513879.0,
+  "0.9": 171.0
+ },
+ "S4p_bande": 1.0000955962343112,
+ "S4p_quantiles": {
+  "0.99": 0.14967680927342913,
+  "0.995": 0.3667407750995666,
+  "0.999": 1.0000955962343112,
+  "0.9999": 1.0024898993087212
+ },
+ "S4p_n_jointes": 288350,
+ "S4p_filled_total": 288350,
+ "S4p_ecartees_px_nul": 0,
+ "S4p_ecartees_sans_mid": 0,
+ "duree_s": 1004.6
+}
