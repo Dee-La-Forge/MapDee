@@ -60,15 +60,29 @@ TROUS_ARCHIVE = {("20251213", "ETH"), ("20251213", "BTC")}
 DIST_MAX = 0.005
 
 
-def _non_causal(nom: str, x_complet: np.ndarray, s_tronque, k: int) -> bool:
+#: Coupes de la garde de causalité, en fraction du jour. Une seule coupe à
+#: mi-journée laissait l'après-midi non contrôlé — la moitié qui porte 3 à
+#: 5 fois plus de flux et les motifs rares (carnet croisé, incidents 12/15).
+#: La coupe k attrape toute dépendance d'un indice < k à une donnée ≥ k :
+#: trois coupes aux quarts couvrent les indices < 3n/4 contre chacun de
+#: leurs futurs. Le dernier quart reste incontrôlable par construction —
+#: il n'y a rien après lui à retenir — et c'est écrit, pas caché.
+FRACTIONS_CAUSALITE = (0.25, 0.50, 0.75)
+
+
+def _non_causal(nom: str, x_complet: np.ndarray,
+                coupes: list[tuple[int, "object"]]) -> bool:
     """La garde de causalité SUR LE RÉEL (`00` §3, préalable du tir) :
-    ext(jour tronqué) doit égaler ext(jour)[:k]. Le test synthétique ne
-    suffit pas — le générateur est pauvre par construction (D3) : une
-    branche non causale conditionnée à un motif réel (carnet croisé,
-    palier au mid, trou de photos) n'y est jamais exercée. Ici, chaque
-    extracteur est contrôlé sur CHAQUE jour-symbole qu'il va juger."""
-    xc = EXTRACTEURS[nom](s_tronque)
-    return len(xc) != k or not np.allclose(xc, x_complet[:k], equal_nan=True)
+    à chaque coupe k, ext(jour tronqué) doit égaler ext(jour)[:k]. Le test
+    synthétique ne suffit pas — le générateur est pauvre par construction
+    (D3) : une branche non causale conditionnée à un motif réel (carnet
+    croisé, palier au mid, trou de photos) n'y est jamais exercée. Ici,
+    chaque extracteur est contrôlé sur CHAQUE jour-symbole qu'il va juger."""
+    for k, s_tronque in coupes:
+        xc = EXTRACTEURS[nom](s_tronque)
+        if len(xc) != k or not np.allclose(xc, x_complet[:k], equal_nan=True):
+            return True
+    return False
 
 
 def inventaire() -> dict:
@@ -133,21 +147,23 @@ def series_du_perimetre(noms: list[str], t0: float,
                 # CHAQUE extracteur sur CE jour réel — refus du tir AVANT
                 # É0, jamais un constat après coup (les lignes du registre
                 # ne se réécrivent pas)
-                k_c = len(s.mid) // 2
-                st = tronque_series(s, k_c)
+                n_ph = len(s.mid)
+                coupes = [(k, tronque_series(s, k)) for k in
+                          sorted({max(1, int(n_ph * f))
+                                  for f in FRACTIONS_CAUSALITE})]
                 tricheurs = []
                 for nom in membres:
                     x = EXTRACTEURS[nom](s)
-                    if _non_causal(nom, x, st, k_c):
+                    if _non_causal(nom, x, coupes):
                         tricheurs.append(nom)
                     series[nom].append(x)
                 x = EXTRACTEURS[TEMOIN](s)
-                if _non_causal(TEMOIN, x, st, k_c):
+                if _non_causal(TEMOIN, x, coupes):
                     tricheurs.append(TEMOIN)
                 series[temoins[per]].append(x)
                 for nom in retenus:
                     x = EXTRACTEURS[nom](s)
-                    if _non_causal(nom, x, st, k_c):
+                    if _non_causal(nom, x, coupes):
                         tricheurs.append(nom)
                     series[cles_bloc[(per, nom)]].append(x)
                 if tricheurs:

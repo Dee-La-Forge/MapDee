@@ -45,20 +45,34 @@ def test_chaque_extracteur_est_causal(jour_synthetique):
         f"{non_causaux}")
 
 
-def test_la_garde_du_tir_attrape_un_tricheur(jour_synthetique, monkeypatch):
-    """La garde d'e0_reel (préalable du tir, sur le RÉEL) : un extracteur
-    qui utilise une statistique du jour entier — la moyenne du mid, le
-    lookahead classique — est détecté ; un extracteur honnête passe."""
+def test_la_garde_du_tir_attrape_les_deux_tricheurs(jour_synthetique, monkeypatch):
+    """La garde d'e0_reel (préalable du tir, sur le RÉEL) attrape :
+    (a) le lookahead GLOBAL — un agrégat du jour entier diffusé partout,
+    le cas canonique ; (b) le lookahead LOCAL — quelques pas en avant,
+    le mode de défaillance réaliste (fenêtre centrée, décalage d'indice).
+    Et l'honnête passe."""
     import harnais.e0_reel as ER
     s = jour_synthetique
-    k = len(s.mid) // 2
-    st = tronque_series(s, k)
-    nom_t = "TRICHEUR · moyenne du jour (test)"
-    monkeypatch.setitem(EXTRACTEURS, nom_t,
+    n = len(s.mid)
+    coupes = [(k, tronque_series(s, k)) for k in
+              sorted({max(1, int(n * f)) for f in ER.FRACTIONS_CAUSALITE})]
+
+    nom_g = "TRICHEUR · moyenne du jour (test)"
+    monkeypatch.setitem(EXTRACTEURS, nom_g,
                         lambda sj: np.full(len(sj.mid), float(np.mean(sj.mid))))
-    assert ER._non_causal(nom_t, EXTRACTEURS[nom_t](s), st, k)
+    assert ER._non_causal(nom_g, EXTRACTEURS[nom_g](s), coupes)
+
+    def espion(sj):   # x[i] = mid[i+1] — UN pas de lookahead local
+        x = np.empty(len(sj.mid))
+        x[:-1] = sj.mid[1:]
+        x[-1] = np.nan
+        return x
+    nom_l = "TRICHEUR · un pas en avant (test)"
+    monkeypatch.setitem(EXTRACTEURS, nom_l, espion)
+    assert ER._non_causal(nom_l, EXTRACTEURS[nom_l](s), coupes)
+
     nom_ok = "T0 · masse brute au palier"
-    assert not ER._non_causal(nom_ok, EXTRACTEURS[nom_ok](s), st, k)
+    assert not ER._non_causal(nom_ok, EXTRACTEURS[nom_ok](s), coupes)
 
 
 def test_tronque_series_coupe_tout_ce_qui_est_indexe(jour_synthetique):
