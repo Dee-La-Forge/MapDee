@@ -39,7 +39,8 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from harnais import boucle                                          # noqa: E402
-from harnais.extracteurs import ABSENTS, EXTRACTEURS, charge        # noqa: E402
+from harnais.extracteurs import (ABSENTS, EXTRACTEURS, charge,      # noqa: E402
+                                 tronque_series)
 from harnais.fiches import FICHES, TEMOIN                           # noqa: E402
 from harnais.preflight import run as preflight                      # noqa: E402
 
@@ -57,6 +58,17 @@ COINS = ("BTC", "ETH")
 #: DÉGRADÉS (12 et 15, ≈44-75 %) restent : dégradation documentée ≠ trou.
 TROUS_ARCHIVE = {("20251213", "ETH"), ("20251213", "BTC")}
 DIST_MAX = 0.005
+
+
+def _non_causal(nom: str, x_complet: np.ndarray, s_tronque, k: int) -> bool:
+    """La garde de causalité SUR LE RÉEL (`00` §3, préalable du tir) :
+    ext(jour tronqué) doit égaler ext(jour)[:k]. Le test synthétique ne
+    suffit pas — le générateur est pauvre par construction (D3) : une
+    branche non causale conditionnée à un motif réel (carnet croisé,
+    palier au mid, trou de photos) n'y est jamais exercée. Ici, chaque
+    extracteur est contrôlé sur CHAQUE jour-symbole qu'il va juger."""
+    xc = EXTRACTEURS[nom](s_tronque)
+    return len(xc) != k or not np.allclose(xc, x_complet[:k], equal_nan=True)
 
 
 def inventaire() -> dict:
@@ -117,11 +129,33 @@ def series_du_perimetre(noms: list[str], t0: float,
                 print(f"[{time.time()-t0:6.0f}s]   extraction {j} {c} "
                       f"({chemin.stat().st_size/1e9:.2f} Go)…", flush=True)
                 s = charge(chemin, DIST_MAX)
+                # garde de causalité : coupe à mi-journée, contrôle de
+                # CHAQUE extracteur sur CE jour réel — refus du tir AVANT
+                # É0, jamais un constat après coup (les lignes du registre
+                # ne se réécrivent pas)
+                k_c = len(s.mid) // 2
+                st = tronque_series(s, k_c)
+                tricheurs = []
                 for nom in membres:
-                    series[nom].append(EXTRACTEURS[nom](s))
-                series[temoins[per]].append(EXTRACTEURS[TEMOIN](s))
+                    x = EXTRACTEURS[nom](s)
+                    if _non_causal(nom, x, st, k_c):
+                        tricheurs.append(nom)
+                    series[nom].append(x)
+                x = EXTRACTEURS[TEMOIN](s)
+                if _non_causal(TEMOIN, x, st, k_c):
+                    tricheurs.append(TEMOIN)
+                series[temoins[per]].append(x)
                 for nom in retenus:
-                    series[cles_bloc[(per, nom)]].append(EXTRACTEURS[nom](s))
+                    x = EXTRACTEURS[nom](s)
+                    if _non_causal(nom, x, st, k_c):
+                        tricheurs.append(nom)
+                    series[cles_bloc[(per, nom)]].append(x)
+                if tricheurs:
+                    raise SystemExit(
+                        f"REFUS DU TIR — extracteur(s) NON CAUSAL(AUX) sur "
+                        f"{j} {c} (lookahead, `00` §3, vérifié sur le "
+                        f"RÉEL) : {tricheurs} — aucun verdict n'est écrit "
+                        f"tant que l'instrument regarde le futur")
                 # diagnostics de l'audit du 05-06/08, publiés avant tout É0 :
                 # la part de masse au palier du mid (exclue des stocks/flux),
                 # et |Δmid| pour la corrélation mécanique de chaque série

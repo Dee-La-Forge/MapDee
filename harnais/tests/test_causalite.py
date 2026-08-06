@@ -45,6 +45,22 @@ def test_chaque_extracteur_est_causal(jour_synthetique):
         f"{non_causaux}")
 
 
+def test_la_garde_du_tir_attrape_un_tricheur(jour_synthetique, monkeypatch):
+    """La garde d'e0_reel (préalable du tir, sur le RÉEL) : un extracteur
+    qui utilise une statistique du jour entier — la moyenne du mid, le
+    lookahead classique — est détecté ; un extracteur honnête passe."""
+    import harnais.e0_reel as ER
+    s = jour_synthetique
+    k = len(s.mid) // 2
+    st = tronque_series(s, k)
+    nom_t = "TRICHEUR · moyenne du jour (test)"
+    monkeypatch.setitem(EXTRACTEURS, nom_t,
+                        lambda sj: np.full(len(sj.mid), float(np.mean(sj.mid))))
+    assert ER._non_causal(nom_t, EXTRACTEURS[nom_t](s), st, k)
+    nom_ok = "T0 · masse brute au palier"
+    assert not ER._non_causal(nom_ok, EXTRACTEURS[nom_ok](s), st, k)
+
+
 def test_tronque_series_coupe_tout_ce_qui_est_indexe(jour_synthetique):
     s = jour_synthetique
     n = len(s.mid)

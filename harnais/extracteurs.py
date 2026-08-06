@@ -62,7 +62,13 @@ def tronque_series(s: SeriesJour, n: int) -> SeriesJour:
     par photo est tranché [:n], le reste copié tel quel. Sert la garde de
     causalité (`00` §3, zéro lookahead) : pour un extracteur causal,
     ext(tronque(s, n)) == ext(s)[:n] — si l'égalité tombe, l'extracteur
-    regarde le futur et le test/diagnostic REFUSE."""
+    regarde le futur et le test/diagnostic REFUSE.
+
+    Le critère « len == len(s.mid) ⇒ indexé par photo » est une inférence
+    de structure qui se trompe DU BON CÔTÉ : un attribut mal classé
+    produit une fausse alerte, jamais un faux blanc-seing. NE PAS
+    l'assouplir le jour où une fausse alerte apparaîtra — la corriger en
+    nommant l'attribut."""
     total = len(s.mid)
     out = SeriesJour()
     for att, val in vars(s).items():
