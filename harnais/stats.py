@@ -72,9 +72,14 @@ def student_jours(coefs: np.ndarray) -> dict:
         raise ValueError(f"{n} coefficient(s) journalier(s) : Student exige n >= 2")
     m, s = c.mean(), c.std(ddof=1)
     if s == 0:
-        # coefficients identiques : p-value dégénérée, IC ponctuel
-        return {"n_jours": n, "moyenne": float(m), "p_value": 0.0 if m != 0 else 1.0,
-                "ic95": (float(m), float(m))}
+        # Audit du 06/08 : rendre p = 0 ici affirmait une certitude qu'aucun
+        # test n'a produite — et la branche est sur le chemin des verdicts ÉS.
+        # Des coefficients STRICTEMENT identiques sur n jours réels sont un
+        # symptôme d'instrument (série constante, doublon de données), pas
+        # une découverte : on refuse, on ne conclut pas.
+        raise ValueError(
+            f"variance nulle sur {n} coefficients journaliers (tous égaux à "
+            f"{m}) — symptôme d'instrument, pas de conclusion possible")
     t = m / (s / np.sqrt(n))
     p = 2.0 * sps.t.sf(abs(t), df=n - 1)
     demi = sps.t.ppf(0.975, df=n - 1) * s / np.sqrt(n)

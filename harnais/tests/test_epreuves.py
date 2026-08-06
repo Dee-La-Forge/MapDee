@@ -2,20 +2,26 @@
 import numpy as np
 import pytest
 
-from harnais.epreuves import RefusEpreuve, e0, e1, e2, e3, e4
+from harnais.epreuves import RefusEpreuve, e0_duel, e1, e2, e3, e4
 
 rng = np.random.default_rng(0)
 
 
-def test_e0_elimine_le_doublon():
-    x = rng.normal(size=500)
-    v = e0(x + 0.01 * rng.normal(size=500), {"A1": x})
-    assert not v.passe and v.etat_suivant == "éliminée" and abs(v.chiffre) >= 0.90
+def test_e0_duel_le_plus_cher_meurt():
+    assert e0_duel(0.95, cout_a=3, cout_b=1, rang_a=0, rang_b=5) == "a"
+    assert e0_duel(-0.92, cout_a=1, cout_b=3, rang_a=5, rang_b=0) == "b"
 
 
-def test_e0_passe_l_independant():
-    v = e0(rng.normal(size=500), {"A1": rng.normal(size=500)})
-    assert v.passe and v.etat_suivant == "É1"
+def test_e0_duel_egalite_de_cout_l_ordre_tranche():
+    # même coût : le déclaré en premier (rang plus petit) survit
+    assert e0_duel(0.95, cout_a=2, cout_b=2, rang_a=0, rang_b=1) == "b"
+    assert e0_duel(0.95, cout_a=2, cout_b=2, rang_a=1, rang_b=0) == "a"
+
+
+def test_e0_duel_pas_doublon_et_nan():
+    assert e0_duel(0.5, 1, 2, 0, 1) is None
+    with pytest.raises(RefusEpreuve, match="fini"):
+        e0_duel(float("nan"), 1, 2, 0, 1)
 
 
 def test_e1_reoriente_le_l4():

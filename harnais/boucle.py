@@ -23,7 +23,7 @@ from pathlib import Path
 import numpy as np
 
 from harnais import registre
-from harnais.epreuves import (SEUIL_E0_DOUBLON, RefusEpreuve, e1, e2, e3, e4)
+from harnais.epreuves import RefusEpreuve, e0_duel, e1, e2, e3, e4
 from harnais.fiches import FICHES, TEMOIN
 from harnais.stats import spearman
 
@@ -96,15 +96,13 @@ def _avance_un(nom: str, series: dict[str, "np.ndarray"] | None,
                         f"{nom} {len(series[nom])} contre {autre} "
                         f"{len(series[autre])} : alignement défaillant en amont")
                 rho = spearman(series[nom], series[autre])
-                if not np.isfinite(rho):
-                    raise RefusEpreuve(
-                        f"É0 : ρ non fini contre {autre} — un NaN ne décide "
-                        f"pas, il refuse (audit F2)")
-                if abs(rho) < SEUIL_E0_DOUBLON:
+                # la décision est UNE fonction, testée : epreuves.e0_duel
+                duel = e0_duel(rho, f["cout_rang"], FICHES[autre]["cout_rang"],
+                               ordre_decl.index(nom), ordre_decl.index(autre))
+                if duel is None:
                     continue
-                moi = (f["cout_rang"], ordre_decl.index(nom))
-                lui = (FICHES[autre]["cout_rang"], ordre_decl.index(autre))
-                perdant, gagnant = (nom, autre) if moi > lui else (autre, nom)
+                perdant, gagnant = ((nom, autre) if duel == "a"
+                                    else (autre, nom))
                 registre.ajouter(_aujourdhui(), perdant, "éliminée", "É0",
                                  f"ρ={abs(rho):.3f} — même objet que {gagnant}, "
                                  f"on garde le moins cher", f["perimetre"],

@@ -23,10 +23,12 @@ EXPLORATION = {f"202512{d:02d}" for d in range(9, 17)}
 
 #: Chemins de sortie déclarés — s'écrivent PENDANT un run, exclus du contrôle
 #: d'arbre propre, sinon le préflight s'interbloque (audit I.5).
-SORTIES_DECLAREES = ("journal/construction/", "journal/registre-des-grandeurs.md",
-                    "journal/c5/", "chantiers/c5_",   # C5 écrit à côté de sa recette (ETAT §3)
-                    "journal/es-campagne-",           # la campagne ÉS écrit son log et son JSON
-                    "journal/c8-3-")                  # C8.3 écrit le sien pendant sa mesure
+# Une exclusion N'EST PAS éternelle : elle vit tant que son chantier écrit,
+# et meurt avec lui (audit du 06/08 — `chantiers/c5_` restait exclu après la
+# fin de C5, rendant sa recette invisible au contrôle d'arbre propre).
+SORTIES_DECLAREES = ("journal/construction/",              # la construction écrit en continu
+                    "journal/registre-des-grandeurs.md",   # la boucle écrit pendant le run
+                    "journal/e0-reel-")                    # le log du tir É0
 
 PROTOCOLES = ("05_Protocole_de_selection.md", "03_EconoPhysique.md",
               "decisions/ADR-001-la-metrique-de-E4.md")

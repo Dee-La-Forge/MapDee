@@ -34,21 +34,21 @@ class Verdict:
 
 
 # --- É0 — doublon interne ----------------------------------------------------
+# UNE SEULE implémentation (audit du 06/08 : l'ancienne `e0` éliminait
+# toujours le candidat testé — les jumeaux mouraient tous les deux — et
+# n'était plus appelée que par ses tests pendant que la boucle réimplémentait.
+# La décision pure vit ici ; la boucle l'appelle et écrit le registre.)
 
-def e0(candidat: np.ndarray, deja_la: dict[str, np.ndarray],
-       couts: dict[str, float] | None = None,
-       cout_candidat: float = float("inf")) -> Verdict:
-    """`|ρ| ≥ 0,90` contre un candidat déjà déposé → même objet, on garde le
-    moins cher (`05` §4)."""
-    for nom, serie in deja_la.items():
-        rho = spearman(candidat, serie)
-        if abs(rho) >= SEUIL_E0_DOUBLON:
-            moins_cher = (couts or {}).get(nom, 0.0) <= cout_candidat
-            return Verdict("É0", False, rho, "éliminée",
-                           f"même objet que {nom} (|ρ|={abs(rho):.3f} ≥ 0,90) — "
-                           f"on garde le moins cher"
-                           + (f" : {nom}" if moins_cher else " : le candidat"))
-    return Verdict("É0", True, None, "É1", "aucun doublon interne")
+def e0_duel(rho: float, cout_a: float, cout_b: float,
+            rang_a: int, rang_b: int) -> str | None:
+    """Le duel d'É0 (`05` §4) : `|ρ| ≥ 0,90` → même objet, LE PLUS CHER meurt
+    (égalité de coût : l'ordre de déclaration tranche — règle J3/boucle).
+    Rend 'a' ou 'b' (le perdant), None si pas doublon. ρ non fini REFUSE."""
+    if not np.isfinite(rho):
+        raise RefusEpreuve("É0 : ρ non fini — un NaN ne décide pas, il refuse")
+    if abs(rho) < SEUIL_E0_DOUBLON:
+        return None
+    return "a" if (cout_a, rang_a) > (cout_b, rang_b) else "b"
 
 
 # --- É1 — admissible au produit (papier, la fiche répond) --------------------
