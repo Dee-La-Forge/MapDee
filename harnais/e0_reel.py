@@ -232,6 +232,12 @@ def main() -> None:
     dmid = {per: series.pop(f"_absdmid_{per}")
             for per in diag["absdmid"] if f"_absdmid_{per}" in series}
 
+    if any(j in ("20251212", "20251215") for j in jours_utiles):
+        print("  AVERTISSEMENT (ADR-007) : le périmètre contient des jours "
+              "DÉGRADÉS (12 et/ou 15, ≈44-75 % de couverture) — tout verdict "
+              "J8 de ce tir est PROVISOIRE tant qu'ADR-007 n'est pas "
+              "tranchée : si le plancher accepté les exclut, les candidats "
+              "jugés repassent (`05` §7).")
     print(f"[{time.time()-t0:6.0f}s] === diagnostics d'audit, publiés avant É0 ===")
     for nom_js, part in diag["part_k0"]:
         print(f"  masse au palier du mid (exclue des stocks) {nom_js} : {part:.3%}")

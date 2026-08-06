@@ -49,6 +49,15 @@ C3 et tout É4 réel.
    déjà mécaniquement un jour à 172 observations pour tout bloc non
    trivial.
 
+## Conséquence immédiate, déclarée avant le tir J8
+
+Rien n'empêche É0/É2 de tourner sur J8 avant que cette ADR ne soit
+tranchée — mais si le plancher accepté sort le 12 ou le 15, `05` §7
+impose de faire repasser tous les candidats jugés. Donc, ÉCRIT D'AVANCE :
+**tout verdict calculé sur un périmètre contenant 20251212 ou 20251215
+est PROVISOIRE au regard de cette ADR** — il repasse si le plancher les
+exclut, sans discussion. Le tir l'imprime, le rapport le portera.
+
 ## Ce que ça ne décide pas
 
 La valeur X (Meddy), et le sort statistique des jours 44-75 % déjà dans

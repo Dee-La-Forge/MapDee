@@ -72,3 +72,22 @@ tout ce qui est presque vide. Et un jour « vérifié sain » par le non-échec
 d'un instrument n'a été vérifié par personne — **le non-échec n'est pas
 une mesure.** Les compteurs des manifestes, eux, l'étaient depuis le
 début : il suffisait de les ouvrir en table.
+
+---
+
+**Addendum du 06/08, même jour — trois compléments d'audit, actés avant le
+signal.** (1) **C6 d'abord** : c'est lui que les jours dégradés mordront
+en premier — `ADR-000` fait reposer la réserve sur σ à l'unité JOUR, et un
+σ mêlant journées pleines et demi-journées calmes n'est plus la quantité
+que l'ADR nomme. PRÉ-DÉCLARÉ dans la dette C6 (ETAT §4 ter) : σ se mesure
+sur les jours PLEINS uniquement, avant toute mesure de C6. (2) **Verdicts
+provisoires** : tout verdict J8 calculé avant l'arbitrage d'ADR-007 est
+PROVISOIRE — si le plancher accepté sort le 12 ou le 15, les candidats
+jugés repassent (`05` §7). Écrit dans l'ADR et imprimé par le tir —
+maintenant c'est une précaution, après ç'aurait été une justification.
+(3) **Le biais se chiffre gratuitement** : `harnais/diag_troncature.py`,
+PRÉ-ENREGISTRÉ (commité avant exécution), tronque le 20251214 plein à
+l'index exact des comptes du 15 (BTC 53 688, ETH 56 216) et publie, pour
+chaque grandeur, delta = (moy_tronquée − moy_complète)/std_complète — la
+démarche du plancher k/n : l'inquiétude devient un nombre avant de
+devenir une garde. Exécution au signal, avant le tir.
