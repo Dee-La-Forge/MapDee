@@ -43,3 +43,36 @@ Le typage annulé/mangé/rechargé (`05` §9.3, table de contingence par strate)
 exige la **vérité** (`oid`, côté L4) et vient APRÈS les définitions de B7 —
 deuxième passe sur le même jour, protocole séparé. L'amplitude plausible
 (`ADR-004`) reste à 2,0× tant que S1 n'a pas motivé un errata.
+
+## 5. La 2ᵉ passe — PRÉ-ENREGISTRÉE le 06/08/2026, avant tout calcul
+
+Ce qu'elle refait et pourquoi, chaque règle déclarée ici avant d'être lue :
+
+* **S1′ — le voisinage passe en DISTANCE RELATIVE** (dette de production du
+  06/08 : ±20 paliers ≠ même largeur selon `bs` — 0,044 % BTC contre
+  0,067 % ETH, la comparaison des M était polluée). Demi-largeur déclarée :
+  **±0,05 % du mid** (l'arrondi de la localité historique BTC), convertie
+  par photo en paliers : `round(0,0005 × mid / bs)`. Ratio et quantile 0,99
+  inchangés. Les M′ des deux symboles deviennent comparables — le
+  « facteur 3 » se relira là.
+* **S2′** — règle inchangée (médiane des persistances au-dessus du seuil),
+  relue sous M′.
+* **S3 — le contact, par jointure photo-à-photo.** Pour chaque épisode de
+  mur (palier passant au-dessus de M′) : `t_bl` = première photo ≥ début
+  d'épisode où le palier est la meilleure limite de son côté (lu du deep) ;
+  `t_ex` = première exécution FILLED dont le prix tombe dans le palier, à
+  t ≥ début. **Coïncidence si |t_ex − t_bl| ≤ 1 000 ms** (fenêtre déclarée).
+  Taux calculé sur les épisodes où LES DEUX événements existent ; les parts
+  « exécution seule », « meilleure limite seule », « aucun » sont publiées.
+  Décision (règle de §2 inchangée) : taux > 95 % → variante exécution ;
+  sinon deux distributions publiées et le choix est un ADR.
+* **S4′ — la bande, par jointure au mid du deep.** Exécutions FILLED du
+  jour ; mid = photo deep la plus proche EN ARRIÈRE, tolérance 2 000 ms.
+  Écartées avec raison publiée : `limitPx ≤ 0` (l'hypothèse de la 1ʳᵉ
+  passe, enfin vérifiée) et « sans mid à ≤ 2 s ». Distance relative
+  `|px − mid| / mid`, quantiles publiés (0,99 / 0,995 / 0,999 / 0,9999),
+  **bande = quantile 0,999** — règle de §2 inchangée.
+
+Fermeture de B7 : APRÈS lecture, les trois définitions (mur M′/P′, contact,
+bande) s'écrivent ENSEMBLE dans `03` avec leurs sources — jamais en
+fragments. Si une distribution rend une règle absurde : rapporté, ADR.
