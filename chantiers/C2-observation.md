@@ -76,3 +76,18 @@ Ce qu'elle refait et pourquoi, chaque règle déclarée ici avant d'être lue :
 Fermeture de B7 : APRÈS lecture, les trois définitions (mur M′/P′, contact,
 bande) s'écrivent ENSEMBLE dans `03` avec leurs sources — jamais en
 fragments. Si une distribution rend une règle absurde : rapporté, ADR.
+
+## 6. La 3ᵉ passe (ADR-009, acceptée le 06/08) — PRÉ-ENREGISTRÉE avant tout calcul
+
+* **Source** : les transactions du jour (`trades_2025_12.tar`, lecture
+  directe `read_trades`) — le prix réellement touché, une transaction
+  comptée UNE fois. Les statuts ne servent plus à S3/S4.
+* **S4″** : distance relative du prix de chaque transaction au mid deep
+  asof-arrière (tolérance 2 000 ms, part non jointe publiée) ; quantiles
+  0,99/0,995/0,999/0,9999 publiés ; **bande = quantile 0,999** (règle §2).
+* **S3″** : palier d'exécution = prix de transaction // bs asof ; épisodes
+  de mur sous le M′ de la 2ᵉ passe (recalculé à l'identique, ÉGALITÉ
+  VÉRIFIÉE contre le JSON de la 2ᵉ passe — sinon refus) ; `t_bl` du deep,
+  fenêtre de coïncidence 1 000 ms, barre 95 % — tout inchangé de §5.
+* Fermeture B7 : si S3″ et S4″ sortent sains, les trois définitions
+  (M′/P′, contact, bande) s'écrivent ENSEMBLE dans `03` — le bloc entier.

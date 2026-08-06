@@ -1,7 +1,8 @@
 # ADR-009 — S3 et S4 se mesurent sur les PRIX EXÉCUTÉS, pas sur `limitPx`
 
-**Statut : EN RÉDACTION** — la décision appartient à Meddy.
-Écrite le 06/08/2026, à la lecture de la 2ᵉ passe C2.
+**Statut : ACCEPTÉE** — décision de Meddy, 06/08/2026
+(« ADR-009 validée, lance la 3ᵉ passe »). Écrite le même jour, à la
+lecture de la 2ᵉ passe C2.
 
 ## Le constat qui l'impose
 
