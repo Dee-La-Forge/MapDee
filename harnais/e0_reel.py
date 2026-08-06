@@ -60,16 +60,30 @@ TROUS_ARCHIVE = {("20251213", "ETH"), ("20251213", "BTC")}
 DIST_MAX = 0.005
 
 
-#: Coupes de la garde de causalité, en fraction du jour. Une seule coupe à
-#: mi-journée laissait l'après-midi non contrôlé — la moitié qui porte 3 à
-#: 5 fois plus de flux et les motifs rares (carnet croisé, incidents 12/15).
-#: La coupe k attrape toute dépendance d'un indice < k à une donnée ≥ k :
-#: un indice est contrôlé dès qu'une coupe existe APRÈS lui. Quatre coupes
-#: (quarts + 0,95) couvrent ~95 % du jour — le soir compris, deux fois la
-#: zone des incidents réels (le 12 : « incident du soir »). Ce qui reste
-#: hors contrôle est un CHOIX DE COÛT, jamais une limite structurelle —
-#: seul le tout dernier point l'est (rien après lui à retenir).
-FRACTIONS_CAUSALITE = (0.25, 0.50, 0.75, 0.95)
+def coupes_causalite(jour: str, coin: str, n: int) -> list[int]:
+    """Quatre coupes de la garde de causalité, TIRÉES par jour-symbole à
+    graine fixe (crc32 — `hash()` Python est salé par processus, il ne se
+    pré-enregistre pas). Reproductibles : mêmes (jour, symbole, n), mêmes
+    coupes, pour toujours.
+
+    Pourquoi tirées et non fixes : des fractions fixes sondent 4 positions
+    relatives, quatorze fois — tirées par jour-symbole, ~56 positions
+    distinctes au même coût, et une branche rare a un ordre de grandeur de
+    plus de chances de tomber sur un bord.
+
+    LIMITE DE MÉTHODE, écrite : la coupe k attrape toute dépendance d'un
+    indice < k à une donnée ≥ k — la garde est donc COMPLÈTE pour un
+    lookahead de LONGUE portée (tout indice avant la coupe diffère) et
+    pour un lookahead court PERMANENT (chaque bord le voit). Pour un
+    lookahead court CONDITIONNEL à un motif rare, elle ne contrôle que le
+    VOISINAGE des coupes : le motif doit tomber sur un bord. La
+    randomisation élargit le filet — elle ne le ferme pas. Le test
+    `test_causalite.py` rend cette limite visible plutôt que théorique."""
+    import zlib
+    graine = zlib.crc32(f"{jour}:{coin}".encode())
+    rng = np.random.default_rng(graine)
+    fracs = rng.uniform(0.05, 0.98, size=4)
+    return sorted({max(1, min(n - 1, int(n * f))) for f in fracs})
 
 
 def _non_causal(nom: str, x_complet: np.ndarray,
@@ -149,10 +163,8 @@ def series_du_perimetre(noms: list[str], t0: float,
                 # CHAQUE extracteur sur CE jour réel — refus du tir AVANT
                 # É0, jamais un constat après coup (les lignes du registre
                 # ne se réécrivent pas)
-                n_ph = len(s.mid)
                 coupes = [(k, tronque_series(s, k)) for k in
-                          sorted({max(1, int(n_ph * f))
-                                  for f in FRACTIONS_CAUSALITE})]
+                          coupes_causalite(j, c, len(s.mid))]
                 tricheurs = []
                 for nom in membres:
                     x = EXTRACTEURS[nom](s)

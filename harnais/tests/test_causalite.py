@@ -55,7 +55,7 @@ def test_la_garde_du_tir_attrape_les_deux_tricheurs(jour_synthetique, monkeypatc
     s = jour_synthetique
     n = len(s.mid)
     coupes = [(k, tronque_series(s, k)) for k in
-              sorted({max(1, int(n * f)) for f in ER.FRACTIONS_CAUSALITE})]
+              ER.coupes_causalite("20251209", "BTC", n)]
 
     nom_g = "TRICHEUR · moyenne du jour (test)"
     monkeypatch.setitem(EXTRACTEURS, nom_g,
@@ -73,6 +73,47 @@ def test_la_garde_du_tir_attrape_les_deux_tricheurs(jour_synthetique, monkeypatc
 
     nom_ok = "T0 · masse brute au palier"
     assert not ER._non_causal(nom_ok, EXTRACTEURS[nom_ok](s), coupes)
+
+
+def test_coupes_causalite_reproductibles_et_variees():
+    """Pré-enregistrement : mêmes (jour, symbole, n) → mêmes coupes, pour
+    toujours. Et deux jour-symboles ne sondent pas les mêmes positions —
+    c'est tout l'intérêt du tirage."""
+    import harnais.e0_reel as ER
+    a = ER.coupes_causalite("20251209", "BTC", 100_000)
+    assert a == ER.coupes_causalite("20251209", "BTC", 100_000)
+    b = ER.coupes_causalite("20251209", "ETH", 100_000)
+    assert a != b
+    assert all(1 <= k < 100_000 for k in a + b)
+
+
+def test_le_tricheur_conditionnel_documente_la_limite(jour_synthetique, monkeypatch):
+    """La limite de méthode, rendue VISIBLE plutôt que décrite : un
+    lookahead d'UN pas conditionné à un motif rare n'est attrapé que si le
+    motif tombe au bord d'une coupe. On place le motif au bord d'une coupe
+    randomisée de ce jour-symbole, hors des anciens quarts fixes : les
+    quarts ne le voient pas, le tirage le voit. Un test qui documente une
+    limite vaut mieux qu'un paragraphe qui la décrit."""
+    import harnais.e0_reel as ER
+    s = jour_synthetique
+    n = len(s.mid)
+    ks_fixes = sorted({max(1, int(n * f)) for f in (0.25, 0.50, 0.75, 0.95)})
+    ks_rand = ER.coupes_causalite("20251209", "BTC", n)
+    k_cible = next(k for k in ks_rand if k not in ks_fixes and k < n - 1)
+    cible = k_cible - 1          # le seul indice que la coupe k_cible contrôle
+
+    def tricheur(sj):            # un pas en avant, à UN seul indice
+        x = np.asarray(sj.mid, dtype=float).copy()
+        if len(x) > cible + 1:
+            x[cible] = x[cible + 1] + 1000.0
+        return x
+    nom = "TRICHEUR · conditionnel au motif rare (test)"
+    monkeypatch.setitem(EXTRACTEURS, nom, tricheur)
+    x = EXTRACTEURS[nom](s)
+    coupes_fixes = [(k, tronque_series(s, k)) for k in ks_fixes]
+    coupes_rand = [(k, tronque_series(s, k)) for k in ks_rand]
+    assert not ER._non_causal(nom, x, coupes_fixes)   # les quarts : aveugles
+    assert ER._non_causal(nom, x, coupes_rand)        # le tirage : le voit
 
 
 def test_tronque_series_coupe_tout_ce_qui_est_indexe(jour_synthetique):
