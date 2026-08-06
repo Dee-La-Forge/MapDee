@@ -195,22 +195,37 @@ def main() -> None:
             print(f"  ρ(|Δmid|, {nom}) = {_sp(x, dmid[per]):+.3f}"
                   f"   <- entanglement mécanique avec le prix, à garder pour É4")
 
-    # É0 à ciel ouvert (note du 06/08 au rapport, N1/N2) : la matrice
-    # complète des |ρ| intra-périmètre est PUBLIÉE avant tout verdict — un
-    # chiffre qui fonde un verdict doit lui survivre. La bande 0,70-0,90
-    # (« distincts » pour É0, « doublon probable » à l'échelle d'É2) est
-    # marquée : visible ici, traitée par ADR si elle se peuple, jamais par
-    # renégociation. Diagnostic — le verdict reste celui de la boucle.
+    # É0 à ciel ouvert (note du 06/08 au rapport, N1/N2 + post-scriptum) :
+    # la matrice complète des |ρ| intra-périmètre est PUBLIÉE avant tout
+    # verdict — un chiffre qui fonde un verdict doit lui survivre, et en
+    # JSON, pas dans une phrase de log qu'il faudrait reparser. La bande
+    # 0,70-0,90 bloque É4 par code (`epreuves.verifie_bande_e0`), plus par
+    # promesse. C'est LA matrice de CE tir, sur SON alignement — jamais une
+    # récupération des nombres d'un tir passé.
     vivants = sorted(n for n in series if n in FICHES)
+    matrice = []
     print(f"[{time.time()-t0:6.0f}s] === matrice É0 (|ρ| par paire, intra-périmètre) ===")
     for i, na in enumerate(vivants):
         for nb in vivants[i + 1:]:
             if perimetre_de[na] != perimetre_de[nb]:
                 continue
             r = abs(_sp(series[na], series[nb]))
+            matrice.append({"a": na, "b": nb, "perimetre": perimetre_de[na],
+                            "abs_rho": round(float(r), 6),
+                            "bande_0.70-0.90": bool(0.70 <= r < 0.90)})
             bande = ("   <- BANDE 0,70-0,90 : sous la barre de fusion, "
                      "au-dessus du doublon probable d'É2" if 0.70 <= r < 0.90 else "")
             print(f"  |ρ|({na.split(' ·')[0]}, {nb.split(' ·')[0]}) = {r:.3f}{bande}")
+    horodatage = time.strftime("%Y%m%d-%H%M%S")
+    sortie = DEPOT / "journal" / f"e0-matrice-{horodatage}.json"
+    sortie.write_text(json.dumps(
+        {"tir": horodatage, "protocole_hash": pf["protocole_hash"],
+         "n_obs_par_perimetre": {per: int(len(next(series[n] for n in vivants
+                                                   if perimetre_de[n] == per)))
+                                 for per in {perimetre_de[n] for n in vivants}},
+         "paires": matrice},
+        ensure_ascii=False, indent=1), encoding="utf-8")
+    print(f"  matrice écrite : {sortie.relative_to(DEPOT)} ({len(matrice)} paires)")
 
     n_obs = {n: int(np.isfinite(x).sum()) for n, x in series.items()}
     print(f"[{time.time()-t0:6.0f}s] séries alignées : "

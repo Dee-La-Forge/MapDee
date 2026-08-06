@@ -23,7 +23,8 @@ from pathlib import Path
 import numpy as np
 
 from harnais import registre
-from harnais.epreuves import RefusEpreuve, e0_duel, e1, e2, e3, e4
+from harnais.epreuves import (RefusEpreuve, e0_duel, e1, e2, e3, e4,
+                              verifie_bande_e0)
 from harnais.fiches import FICHES, TEMOIN
 from harnais.stats import spearman
 
@@ -55,10 +56,29 @@ def depose_manquants(chemin: Path = registre.CHEMIN) -> list[str]:
     return deposes
 
 
+def _paires_bande(series: dict[str, "np.ndarray"] | None
+                  ) -> list[tuple[str, str, float]]:
+    """Toutes les paires intra-périmètre avec leur |ρ| — le matériau de la
+    garde de bande d'É4 (post-scriptum du 06/08). Calculé une fois par tour."""
+    if not series:
+        return []
+    vivants = [n for n in series if n in FICHES]
+    paires = []
+    for i, a in enumerate(vivants):
+        for b in vivants[i + 1:]:
+            if (FICHES[a]["perimetre"] != FICHES[b]["perimetre"]
+                    or len(series[a]) != len(series[b])):
+                continue
+            paires.append((a, b, abs(spearman(series[a], series[b]))))
+    return paires
+
+
 def _avance_un(nom: str, series: dict[str, "np.ndarray"] | None,
                bloc: dict[str, "np.ndarray"] | None,
                chemin: Path, signataire: str = "la boucle",
-               bloc_par_perimetre: dict[str, dict] | None = None) -> tuple[str, str]:
+               bloc_par_perimetre: dict[str, dict] | None = None,
+               paires_bande: list[tuple[str, str, float]] | None = None
+               ) -> tuple[str, str]:
     """Avance UN candidat tant que l'épreuve suivante est exécutable.
     Rend (état final, raison d'arrêt)."""
     f = FICHES[nom]
@@ -146,6 +166,10 @@ def _avance_un(nom: str, series: dict[str, "np.ndarray"] | None,
         elif epreuve == "É3":
             e3()   # lève toujours à ce jour : rejeu absent, D12 ouverte
         elif epreuve == "É4":
+            # la garde de bande AVANT le refus C3 : placée après, elle
+            # serait du code mort tant que C3 bloque — une garde qui ne
+            # peut pas tirer est décorative
+            verifie_bande_e0(paires_bande or [])
             e4([], [], None)   # lève : C3 non gelé, paires intra-unité
         else:
             return etat or "?", f"état inattendu : {etat!r}"
@@ -176,6 +200,7 @@ def tour(series: dict | None = None, bloc: dict | None = None,
             if not np.isfinite(x).all():
                 raise RefusEpreuve(f"bloc de référence pollué (NaN/inf) : {n}")
     depose_manquants(chemin)
+    paires_bande = _paires_bande(series)
     rapport = {}
     for nom in FICHES:
         if nom in pollues:
@@ -183,7 +208,7 @@ def tour(series: dict | None = None, bloc: dict | None = None,
             continue
         try:
             rapport[nom] = _avance_un(nom, series, bloc, chemin, signataire,
-                                      bloc_par_perimetre)
+                                      bloc_par_perimetre, paires_bande)
         except RefusEpreuve as e:
             rapport[nom] = (etat_courant(nom, chemin) or "?", f"REFUS : {e}")
     return rapport

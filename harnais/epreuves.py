@@ -103,6 +103,33 @@ def e2(candidat: np.ndarray, bloc_retenu: dict[str, np.ndarray]) -> Verdict:
     return Verdict("É2", True, pire, "É3", f"|ρ| max = {pire:.3f} < 0,50")
 
 
+# --- la garde de bande É0 (post-scriptum du 06/08 au rapport du 1er tour) ----
+# « Une règle en prose n'arrête personne » : la promesse de N2 (« si des
+# paires siègent dans [0,70 ; 0,90), traitement par ADR avant É4 ») devient
+# du code qui lève. Sans elle, BH compterait deux quasi-jumeaux à 0,85 comme
+# deux tests indépendants — seuils trop laxistes, et rien ne le remarquerait.
+
+#: Peuplé UNIQUEMENT par une ADR acceptée — chaque entrée cite son ADR en
+#: commentaire. Vide tant qu'aucune paire de la bande n'a été arbitrée.
+PAIRES_SOUS_ADR: set[frozenset[str]] = set()
+
+
+def verifie_bande_e0(paires: list[tuple[str, str, float]]) -> None:
+    """REFUSE É4 tant qu'une paire intra-périmètre siège dans
+    [0,70 ; 0,90) — sous la barre de fusion d'É0, au-dessus du doublon
+    présumé d'É2 — sans ADR déclarée dans PAIRES_SOUS_ADR."""
+    bloquantes = [(a, b, r) for a, b, r in paires
+                  if SEUIL_E2_DOUBLON_PRESUME <= r < SEUIL_E0_DOUBLON
+                  and frozenset((a, b)) not in PAIRES_SOUS_ADR]
+    if bloquantes:
+        detail = " ; ".join(f"|ρ|({a}, {b})={r:.3f}" for a, b, r in bloquantes)
+        raise RefusEpreuve(
+            f"É4 refusée : {len(bloquantes)} paire(s) intra-périmètre dans "
+            f"[0,70 ; 0,90) sans ADR — la multiplicité de BH serait fausse "
+            f"(`05` : « quarante synonymes ne sont pas soixante tests »). "
+            f"{detail}")
+
+
 # --- É3 / É4 — refus tant que les préalables manquent ------------------------
 
 def e3(*_args, **_kw) -> Verdict:
