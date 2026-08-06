@@ -64,3 +64,23 @@ fautes passées sont documentées dans le code avec leurs mesures, les
 gardes actives normalisent leurs entrées. Les quatre défauts sont des
 défauts d'OBSERVABILITÉ (compteurs, garde binaire), pas de calcul — la
 promotion C10 peut se faire après la fenêtre de corrections.
+
+---
+
+**Addendum du 06/08 — la passe complémentaire (registre.py, empreinte.py,
+fills.py), pendant le tir J8.** `empreinte.py` : sain — limites écrites
+(sources non hachées, dit pour ne pas être pris pour une garantie),
+selftest INCONNU/OK/ALTÉRÉ/mélange de générations. `fills.py` : sain —
+attribution Maker/Taker par prix→temps→oid avec compteurs publiés
+(`role_indecis` rendu, pas caché). **`registre.py` : UN défaut réel —
+l'écriture n'est pas atomique.** `ajouter` réécrit le fichier ENTIER par
+`write_text` : un kill ou une coupure au milieu tronque le grand livre
+append-only — la seule chose du projet qui ne doit jamais se corrompre,
+protégée par moins que `fusionne` (tmp + replace). Défaut latent noté au
+passage : `lire` accepte plusieurs tables (chaque en-tête `| date | nom |`
+rouvre la lecture) mais `ajouter` n'écrit que dans la DERNIÈRE — inoffensif
+à une table, piège si une section s'ajoute un jour. CORRECTION EN FILE :
+tmp + `os.replace` dans `ajouter` (et le même motif dans `empreinte.ecris`,
+conséquence moindre) — PAS pendant le tir, qui écrit à travers ce module
+en ce moment même. Fin des passes d'audit : la valeur marginale est
+désormais dans les résultats et les chantiers.
