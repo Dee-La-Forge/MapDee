@@ -1,0 +1,28 @@
+{
+ "jour": "20251208",
+ "coin": "ETH",
+ "protocole": "C2-observation.md §6 (ADR-009)",
+ "manifeste_sha12": "7ac6ebcd7271",
+ "M_prime_verifie_egal_p2": true,
+ "S3s_taux_coincidence": 0.2674781311453177,
+ "S3s_episodes_double": 29494,
+ "S3s_ex_seule": 502,
+ "S3s_bl_seule": 6,
+ "S3s_aucun": 4135,
+ "S3s_delais_ms_quantiles": {
+  "0.1": -749215.2999999995,
+  "0.5": -8371.0,
+  "0.9": 864.0
+ },
+ "S4s_bande": 0.0014506470448942008,
+ "S4s_quantiles": {
+  "0.99": 0.0008460642050989084,
+  "0.995": 0.0010518650376244033,
+  "0.999": 0.0014506470448942008,
+  "0.9999": 0.002709590013225409
+ },
+ "S4s_n_jointes": 297615,
+ "S4s_transactions": 297615,
+ "S4s_sans_mid": 0,
+ "duree_s": 983.2
+}

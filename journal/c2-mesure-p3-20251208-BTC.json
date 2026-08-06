@@ -1,0 +1,28 @@
+{
+ "jour": "20251208",
+ "coin": "BTC",
+ "protocole": "C2-observation.md §6 (ADR-009)",
+ "manifeste_sha12": "ef4ff4f6dc38",
+ "M_prime_verifie_egal_p2": true,
+ "S3s_taux_coincidence": 0.2394633490603337,
+ "S3s_episodes_double": 37939,
+ "S3s_ex_seule": 842,
+ "S3s_bl_seule": 36,
+ "S3s_aucun": 13399,
+ "S3s_delais_ms_quantiles": {
+  "0.1": -1206355.0,
+  "0.5": -18117.0,
+  "0.9": 293.0
+ },
+ "S4s_bande": 0.0009253374728185036,
+ "S4s_quantiles": {
+  "0.99": 0.00044562054035616637,
+  "0.995": 0.0005539323768043533,
+  "0.999": 0.0009253374728185036,
+  "0.9999": 0.0012672463450091888
+ },
+ "S4s_n_jointes": 468262,
+ "S4s_transactions": 468262,
+ "S4s_sans_mid": 0,
+ "duree_s": 1792.2
+}
